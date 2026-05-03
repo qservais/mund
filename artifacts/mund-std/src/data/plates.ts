@@ -55,8 +55,12 @@ export type Plate = {
 };
 
 const LAYOUT_CYCLE: PlateLayout[] = ["A", "B", "C", "D", "E"];
-export const resolveLayout = (plate: Plate): PlateLayout =>
-  plate.layout ?? LAYOUT_CYCLE[parseInt(plate.n, 10) % 5];
+
+export const resolveLayout = (plate: Plate): PlateLayout => {
+  if (plate.layout) return plate.layout;
+  const n = parseInt(plate.n, 10);
+  return LAYOUT_CYCLE[(n - 1) % 5];
+};
 
 export const plates: Plate[] = [
   {
