@@ -1,43 +1,93 @@
+import { Link } from "wouter";
+import { motion } from "framer-motion";
 import Hero from "@/components/sections/Hero";
 import Manifesto from "@/components/sections/Manifesto";
-import Portfolio from "@/components/sections/Portfolio";
-import Contact from "@/components/sections/Contact";
-import Footer from "@/components/sections/Footer";
-import { useEffect } from "react";
+import Plate from "@/components/Plate";
+import { plates } from "@/data/plates";
 
 export default function Home() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  const teaser = [plates[0], plates[5], plates[8]];
 
   return (
-    <main className="relative min-h-screen w-full overflow-x-hidden bg-background text-foreground">
-      {/* Editorial fixed nav — paper-style, no mix-blend */}
-      <header className="fixed top-0 left-0 right-0 z-40 px-6 md:px-12 xl:px-24 py-5 flex items-baseline justify-between font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/80">
-        <a href="#hero" className="hover:text-accent transition-colors">
-          mund.std
-        </a>
-        <span className="hidden md:inline text-foreground/40">
-          Studio floral, Liège
-        </span>
-        <nav className="flex items-baseline gap-6">
-          <a href="#manifeste" className="hover:text-accent transition-colors">
-            Édito
-          </a>
-          <a href="#travaux" className="hover:text-accent transition-colors">
-            Travaux
-          </a>
-          <a href="#contact" className="hover:text-accent transition-colors">
-            Contact
-          </a>
-        </nav>
-      </header>
-
+    <>
       <Hero />
       <Manifesto />
-      <Portfolio />
-      <Contact />
-      <Footer />
-    </main>
+
+      {/* Aperçu des projets */}
+      <section className="relative w-full py-32 md:py-48 px-6 md:px-12 xl:px-24">
+        <div className="grid grid-cols-12 gap-6 mb-20 md:mb-32 items-end">
+          <div className="col-span-12 md:col-span-3 flex flex-col gap-2">
+            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/60">
+              Aperçu 003
+            </span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-accent">
+              03 / 15 planches
+            </span>
+          </div>
+          <div className="col-span-12 md:col-span-9">
+            <h2 className="font-mono uppercase text-[8vw] md:text-[4.4vw] leading-[1.05] tracking-[0.02em] font-medium">
+              Quelques<br />gestes récents.
+            </h2>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-12 gap-x-6 gap-y-12 md:gap-y-20">
+          <div className="col-span-12 md:col-span-4 md:col-start-1">
+            <Plate plate={teaser[0]} imgClass="aspect-[3/4]" linkable />
+          </div>
+          <div className="col-span-12 md:col-span-4 md:col-start-5 md:mt-32">
+            <Plate plate={teaser[1]} imgClass="aspect-[4/5]" linkable />
+          </div>
+          <div className="col-span-12 md:col-span-3 md:col-start-10 md:mt-12">
+            <Plate plate={teaser[2]} imgClass="aspect-[3/4]" linkable />
+          </div>
+        </div>
+
+        <div className="mt-24 flex justify-center">
+          <Link
+            href="/projets"
+            className="group inline-flex items-baseline gap-4 font-mono uppercase text-xs md:text-sm tracking-[0.25em] text-foreground hover:text-accent transition-colors"
+            data-testid="link-all-projects"
+          >
+            <span>Voir les 15 planches</span>
+            <motion.span
+              aria-hidden
+              className="inline-block"
+              initial={{ x: 0 }}
+              whileHover={{ x: 8 }}
+              transition={{ type: "spring", stiffness: 280, damping: 20 }}
+            >
+              &rarr;
+            </motion.span>
+          </Link>
+        </div>
+      </section>
+
+      {/* CTA contact */}
+      <section className="relative w-full py-32 md:py-48 px-6 md:px-12 xl:px-24 border-t border-foreground/15">
+        <div className="grid grid-cols-12 gap-6 items-end">
+          <div className="col-span-12 md:col-span-3">
+            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/60">
+              ✦ Devis & projets
+            </span>
+          </div>
+          <div className="col-span-12 md:col-span-9">
+            <h2 className="font-mono uppercase text-[8vw] md:text-[4vw] leading-[1.05] tracking-[0.02em] font-medium mb-10">
+              Un événement,<br />une scénographie&nbsp;?
+            </h2>
+            <Link
+              href="/contact"
+              className="group inline-flex items-baseline gap-4 font-mono uppercase text-sm md:text-base tracking-[0.2em] text-foreground border-b border-foreground pb-1 hover:text-accent hover:border-accent transition-colors"
+              data-testid="link-contact-cta"
+            >
+              <span>Écrire au studio</span>
+              <span aria-hidden className="inline-block transition-transform group-hover:translate-x-2">
+                &rarr;
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

@@ -1,107 +1,39 @@
 import { motion } from "framer-motion";
+import Plate from "@/components/Plate";
+import { plates } from "@/data/plates";
 
-import img01 from "@assets/626467322_17934961971161771_3662617065775760134_n._1777806036053.jpg";
-import img02 from "@assets/626488966_17934961944161771_7273886817966626180_n._1777806036053.jpg";
-import img03 from "@assets/626518008_17934961953161771_8014125308187955234_n._1777806036053.jpg";
-import img04 from "@assets/626619100_17934961989161771_3853617996805756525_n._1777806036053.jpg";
-import img05 from "@assets/626625225_17934961932161771_7786532183815332101_n._1777806036053.jpg";
-import img06 from "@assets/631503775_17936135724161771_7695730491443903255_n._1777806036054.jpg";
-import img07 from "@assets/631712593_17936135751161771_822116378189591435_n._1777806036054.jpg";
-import img08 from "@assets/632004268_17936135760161771_6077639138614133001_n._1777806036054.jpg";
-import img09 from "@assets/633244361_17936135781161771_1714601659444056169_n._1777806036053.jpg";
-import img10 from "@assets/657927985_17875601865563074_3400857847866793533_n._1777806036054.jpg";
-import img11 from "@assets/658044112_17875601877563074_6274336354711419466_n._1777806036054.jpg";
-import img12 from "@assets/658667262_17875601886563074_86142893132348652_n._1777806036054.jpg";
-import img13 from "@assets/470152122_122142130910374224_2764620469980688957_n_1777805889705.jpg";
-import img14 from "@assets/626683964_17934961980161771_9106265817495129291_n._1777806036052.jpg";
-import img15 from "@assets/626467322_17934961971161771_3662617065775760134_n._1777806036053.jpg";
-
-type Plate = {
-  n: string;
-  src: string;
-  alt: string;
-  title: string;
-  meta: string;
-};
-
-const plates: Plate[] = [
-  { n: "01", src: img04, alt: "Mariée bouquet sauvage", title: "Cérémonie sauvage", meta: "Mariage / Été 2024" },
-  { n: "02", src: img05, alt: "Détail amaranthe", title: "Amaranthe & dentelle", meta: "Détail / Studio" },
-  { n: "03", src: img03, alt: "Couple de mariés", title: "Cérémonie civile", meta: "Liège / 2024" },
-  { n: "04", src: img01, alt: "Centre Allium", title: "Miroirs & alliums", meta: "Table / Privé" },
-  { n: "05", src: img12, alt: "Coquelicots et bougies", title: "Lignes minimales", meta: "Composition éphémère" },
-  { n: "06", src: img02, alt: "Gloriosa architecturale", title: "Gloriosa", meta: "Installation sol" },
-  { n: "07", src: img10, alt: "Anthurium béton", title: "Contraste brut", meta: "Éditorial" },
-  { n: "08", src: img11, alt: "Anthurium pastel", title: "Camaïeu", meta: "Studio" },
-  { n: "09", src: img09, alt: "Atrium végétal", title: "Atrium", meta: "Lobby / Liège" },
-  { n: "10", src: img06, alt: "Fougères banc chêne", title: "Lignage", meta: "Lobby corporate" },
-  { n: "11", src: img08, alt: "Glaïeuls", title: "Glaïeuls & réunions", meta: "Bureaux" },
-  { n: "12", src: img07, alt: "Mur béton végétal", title: "Mur vivant", meta: "Architecture" },
-  { n: "13", src: img13, alt: "Bouquet hivernal", title: "Hivernale", meta: "Atelier" },
-  { n: "14", src: img14, alt: "Boule à facettes amaranthe", title: "Disco botanique", meta: "Soirée privée" },
-  { n: "15", src: img15, alt: "Composition Allium close-up", title: "Allium, in extenso", meta: "Macro" },
-];
-
-function Plate({
-  plate,
-  className = "",
-  imgClass = "aspect-[3/4]",
-  align = "left",
-}: {
-  plate: Plate;
-  className?: string;
-  imgClass?: string;
-  align?: "left" | "right";
-}) {
+export default function Projets() {
   return (
-    <motion.figure
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-      className={`group flex flex-col gap-2 hover-trigger ${className}`}
-    >
-      <div className={`relative overflow-hidden bg-muted ${imgClass}`}>
-        <img
-          src={plate.src}
-          alt={plate.alt}
-          loading="lazy"
-          decoding="async"
-          className="w-full h-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.03]"
-        />
-      </div>
-      <figcaption
-        className={`flex items-baseline gap-3 pt-1 font-mono text-[9px] uppercase tracking-[0.25em] text-foreground/65 ${
-          align === "right" ? "justify-end text-right" : ""
-        }`}
-      >
-        <span className="text-accent">{plate.n}</span>
-        <span className="text-foreground/85">{plate.title}</span>
-        <span className="ml-auto md:ml-3 text-foreground/50">{plate.meta}</span>
-      </figcaption>
-    </motion.figure>
-  );
-}
-
-export default function Portfolio() {
-  return (
-    <section id="travaux" className="relative w-full py-32 md:py-48">
+    <section className="relative w-full pt-40 md:pt-56 pb-32 md:pb-48">
       {/* Section header */}
       <div className="px-6 md:px-12 xl:px-24 mb-24 md:mb-40 grid grid-cols-12 gap-6 items-end">
         <div className="col-span-12 md:col-span-3 flex flex-col gap-2">
-          <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/60">
+          <motion.span
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/60"
+          >
             Moodboard 001
-          </span>
-          <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-accent">
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.05, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="font-mono text-[10px] uppercase tracking-[0.25em] text-accent"
+          >
             15 planches
-          </span>
+          </motion.span>
         </div>
-        <div className="col-span-12 md:col-span-9">
-          <h2 className="font-mono uppercase text-[9vw] md:text-[5vw] leading-[1] tracking-[0.02em] font-medium">
-            Travaux<br />
-            récents.
-          </h2>
-        </div>
+        <motion.h1
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.95, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="col-span-12 md:col-span-9 font-mono uppercase text-[10vw] md:text-[5.5vw] leading-[1] tracking-[0.02em] font-medium"
+        >
+          Travaux<br />
+          récents.
+        </motion.h1>
       </div>
 
       {/* Mosaic */}
@@ -141,7 +73,7 @@ export default function Portfolio() {
           </motion.figure>
         </div>
 
-        {/* Movement 3 — moodboard grid 01-06 references */}
+        {/* Movement 3 — moodboard grid 04-09 */}
         <div>
           <div className="mb-12 grid grid-cols-12 gap-6">
             <div className="col-span-12 md:col-span-3">
@@ -149,9 +81,9 @@ export default function Portfolio() {
                 Planches 04 → 09
               </span>
             </div>
-            <h3 className="col-span-12 md:col-span-9 font-mono uppercase text-xl md:text-3xl tracking-[0.03em] text-foreground/90">
+            <h2 className="col-span-12 md:col-span-9 font-mono uppercase text-xl md:text-3xl tracking-[0.03em] text-foreground/90">
               Tables, gestes, objets.
-            </h3>
+            </h2>
           </div>
           <div className="grid grid-cols-12 gap-x-6 gap-y-12 md:gap-y-20">
             <div className="col-span-6 md:col-span-3 md:col-start-1"><Plate plate={plates[3]} imgClass="aspect-[4/5]" /></div>
@@ -209,8 +141,8 @@ export default function Portfolio() {
             </span>
             <p className="font-mono text-[11px] leading-[1.9] text-foreground/70 text-justify">
               Quinze planches sélectionnées dans l'archive du studio. D'autres
-              dorment dans les cartons&mdash;sur demande, écrivez-nous en
-              message direct.
+              dorment dans les cartons&mdash;sur demande, écrivez-nous via la
+              page contact.
             </p>
           </div>
         </div>
