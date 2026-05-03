@@ -30,7 +30,7 @@ export default function Manifesto() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="col-span-12 md:col-span-9 md:col-start-4"
         >
-          <h2 className="font-mono uppercase text-[7vw] md:text-[3.6vw] leading-[1.05] tracking-[0.02em] font-medium">
+          <h2 className="font-sans uppercase text-[8vw] md:text-[4.2vw] leading-[0.95] tracking-[-0.01em] font-semibold">
             Peindre avec<br />
             le vivant.
           </h2>
@@ -43,7 +43,7 @@ export default function Manifesto() {
           transition={{ duration: 0.9, delay: 0.15 }}
           className="col-span-12 md:col-span-4 md:col-start-4"
         >
-          <p className="font-mono text-[11px] md:text-xs leading-[1.9] text-foreground/85 text-justify">
+          <p className="font-sans text-sm md:text-base leading-[1.75] text-foreground/85 text-justify">
             Mund.std est un studio de design floral contemporain basé à Liège,
             dirigé par <span className="text-accent">Julie Ahn</span>. Une
             approche architecturale et poétique&nbsp;: fleurs de saison,

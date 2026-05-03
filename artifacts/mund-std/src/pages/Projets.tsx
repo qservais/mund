@@ -1,39 +1,116 @@
-import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { motion, stagger, useAnimate } from "framer-motion";
 import Plate from "@/components/Plate";
 import { plates } from "@/data/plates";
+import Floating, { FloatingElement } from "@/components/ui/parallax-floating";
 
 export default function Projets() {
+  const [scope, animate] = useAnimate();
+
+  useEffect(() => {
+    animate(
+      ".float-img",
+      { opacity: [0, 1] },
+      { duration: 0.6, delay: stagger(0.1, { startDelay: 0.4 }) },
+    );
+  }, [animate]);
+
   return (
-    <section className="relative w-full pt-40 md:pt-56 pb-32 md:pb-48">
-      {/* Section header */}
-      <div className="px-6 md:px-12 xl:px-24 mb-24 md:mb-40 grid grid-cols-12 gap-6 items-end">
-        <div className="col-span-12 md:col-span-3 flex flex-col gap-2">
-          <motion.span
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/60"
-          >
-            Moodboard 001
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.05, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="font-mono text-[10px] uppercase tracking-[0.25em] text-accent"
-          >
-            15 planches
-          </motion.span>
-        </div>
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
+    <section className="relative w-full pt-32 md:pt-40 pb-32 md:pb-48">
+      {/* Parallax moodboard hero */}
+      <div
+        ref={scope}
+        className="relative w-full h-[78vh] min-h-[560px] md:min-h-[680px] overflow-hidden mb-24 md:mb-40"
+      >
+        {/* Centered headline */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.95, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="col-span-12 md:col-span-9 font-mono uppercase text-[10vw] md:text-[5.5vw] leading-[1] tracking-[0.02em] font-medium"
+          transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute inset-0 z-30 flex flex-col items-center justify-center px-6 text-center pointer-events-none"
         >
-          Travaux<br />
-          récents.
-        </motion.h1>
+          <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-foreground/55 mb-6">
+            Moodboard 001 &nbsp;/&nbsp; <span className="text-accent">15 planches</span>
+          </span>
+          <h1 className="font-sans uppercase text-[14vw] md:text-[8.5vw] leading-[0.88] tracking-[-0.02em] font-semibold max-w-[12ch] mix-blend-multiply">
+            Travaux<br />récents.
+          </h1>
+          <span className="mt-8 font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/45">
+            ↓ &nbsp; faites bouger la souris
+          </span>
+        </motion.div>
+
+        {/* Floating images */}
+        <Floating sensitivity={-0.6} easingFactor={0.06} className="overflow-hidden">
+          <FloatingElement depth={0.6} className="top-[6%] left-[6%]">
+            <img
+              src={plates[0].src}
+              alt=""
+              className="float-img w-24 h-32 md:w-36 md:h-48 object-cover opacity-0 grayscale-[10%]"
+            />
+          </FloatingElement>
+          <FloatingElement depth={1.2} className="top-[4%] left-[28%]">
+            <img
+              src={plates[3].src}
+              alt=""
+              className="float-img w-20 h-20 md:w-28 md:h-28 object-cover opacity-0"
+            />
+          </FloatingElement>
+          <FloatingElement depth={2.4} className="top-[2%] right-[26%]">
+            <img
+              src={plates[5].src}
+              alt=""
+              className="float-img w-28 h-40 md:w-40 md:h-56 object-cover opacity-0"
+            />
+          </FloatingElement>
+          <FloatingElement depth={0.8} className="top-[8%] right-[4%]">
+            <img
+              src={plates[1].src}
+              alt=""
+              className="float-img w-24 h-24 md:w-32 md:h-32 object-cover opacity-0"
+            />
+          </FloatingElement>
+
+          <FloatingElement depth={1.5} className="top-[42%] left-[2%]">
+            <img
+              src={plates[10].src}
+              alt=""
+              className="float-img w-28 h-36 md:w-36 md:h-44 object-cover opacity-0"
+            />
+          </FloatingElement>
+          <FloatingElement depth={2} className="top-[44%] right-[3%]">
+            <img
+              src={plates[7].src}
+              alt=""
+              className="float-img w-24 h-32 md:w-32 md:h-44 object-cover opacity-0"
+            />
+          </FloatingElement>
+
+          <FloatingElement depth={3.5} className="bottom-[6%] left-[14%]">
+            <img
+              src={plates[12].src}
+              alt=""
+              className="float-img w-36 h-48 md:w-52 md:h-64 object-cover opacity-0"
+            />
+          </FloatingElement>
+          <FloatingElement depth={1.6} className="bottom-[10%] left-[44%]">
+            <img
+              src={plates[9].src}
+              alt=""
+              className="float-img w-24 h-24 md:w-32 md:h-32 object-cover opacity-0"
+            />
+          </FloatingElement>
+          <FloatingElement depth={2.2} className="bottom-[4%] right-[10%]">
+            <img
+              src={plates[14].src}
+              alt=""
+              className="float-img w-32 h-32 md:w-44 md:h-44 object-cover opacity-0"
+            />
+          </FloatingElement>
+        </Floating>
+
+        {/* Vignette to keep title legible */}
+        <div className="pointer-events-none absolute inset-0 z-20 bg-[radial-gradient(ellipse_at_center,_hsl(var(--background))_18%,_transparent_62%)]" />
       </div>
 
       {/* Mosaic */}
@@ -81,7 +158,7 @@ export default function Projets() {
                 Planches 04 → 09
               </span>
             </div>
-            <h2 className="col-span-12 md:col-span-9 font-mono uppercase text-xl md:text-3xl tracking-[0.03em] text-foreground/90">
+            <h2 className="col-span-12 md:col-span-9 font-sans uppercase text-2xl md:text-4xl tracking-[-0.005em] font-semibold text-foreground/90">
               Tables, gestes, objets.
             </h2>
           </div>
@@ -98,7 +175,7 @@ export default function Projets() {
         {/* Movement 4 — overlapping collage pair */}
         <div className="grid grid-cols-12 gap-x-6 gap-y-8 items-start">
           <div className="col-span-12 md:col-span-3 md:col-start-1">
-            <p className="font-mono text-[11px] leading-[1.9] text-foreground/80 text-justify">
+            <p className="font-sans text-sm md:text-base leading-[1.7] text-foreground/80 text-justify">
               Deux photographies posées l'une sur l'autre, comme un collage de
               page de droite&nbsp;: la rigueur d'un lobby, la <span className="text-accent">tendresse</span>
               &nbsp;d'un bouquet bureau. La scénographie ne s'arrête jamais à la
@@ -139,7 +216,7 @@ export default function Projets() {
             <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-accent">
               Fin du moodboard 001
             </span>
-            <p className="font-mono text-[11px] leading-[1.9] text-foreground/70 text-justify">
+            <p className="font-sans text-sm md:text-base leading-[1.7] text-foreground/70 text-justify">
               Quinze planches sélectionnées dans l'archive du studio. D'autres
               dorment dans les cartons&mdash;sur demande, écrivez-nous via la
               page contact.

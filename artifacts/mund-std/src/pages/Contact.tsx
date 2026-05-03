@@ -58,7 +58,7 @@ export default function Contact() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.95, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="col-span-12 md:col-span-9 font-mono uppercase text-[10vw] md:text-[5.5vw] leading-[1] tracking-[0.02em] font-medium"
+          className="col-span-12 md:col-span-9 font-sans uppercase text-[10vw] md:text-[6vw] leading-[0.92] tracking-[-0.015em] font-semibold"
         >
           Discutons<br />
           de vos projets.
@@ -77,7 +77,7 @@ export default function Contact() {
             <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/50">
               Atelier
             </span>
-            <p className="font-mono text-xs leading-[1.7]">
+            <p className="font-sans text-sm leading-[1.6]">
               Liège,<br />Belgique
             </p>
           </div>
@@ -85,7 +85,7 @@ export default function Contact() {
             <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/50">
               Ouverture
             </span>
-            <p className="font-mono text-xs leading-[1.7]">
+            <p className="font-sans text-sm leading-[1.6]">
               Du mardi au samedi,<br />sur rendez-vous.
             </p>
           </div>
@@ -97,7 +97,7 @@ export default function Contact() {
               href="https://instagram.com/mund.std"
               target="_blank"
               rel="noreferrer"
-              className="font-mono text-xs leading-[1.7] hover:text-accent transition-colors w-fit"
+              className="font-sans text-sm leading-[1.6] hover:text-accent transition-colors w-fit"
               data-testid="link-instagram"
             >
               Instagram&nbsp;— @mund.std
@@ -106,7 +106,7 @@ export default function Contact() {
               href="https://www.facebook.com/p/Mund-Std-61561226727135/"
               target="_blank"
               rel="noreferrer"
-              className="font-mono text-xs leading-[1.7] hover:text-accent transition-colors w-fit"
+              className="font-sans text-sm leading-[1.6] hover:text-accent transition-colors w-fit"
               data-testid="link-facebook"
             >
               Facebook&nbsp;— Mund Std
@@ -116,7 +116,7 @@ export default function Contact() {
             <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent">
               Direction
             </span>
-            <p className="font-mono text-xs leading-[1.7]">
+            <p className="font-sans text-sm leading-[1.6]">
               Julie Ahn,<br />architecte & designer florale.
             </p>
           </div>
@@ -166,7 +166,7 @@ export default function Contact() {
                         onChange={(e) =>
                           setValues((v) => ({ ...v, [field.name]: e.target.value }))
                         }
-                        className="peer w-full bg-transparent border-b border-foreground/30 pb-3 pt-1 font-mono text-sm leading-[1.7] text-foreground placeholder:text-foreground/30 focus:outline-none focus:border-foreground transition-colors resize-none"
+                        className="peer w-full bg-transparent border-b border-foreground/30 pb-3 pt-1 font-sans text-base leading-[1.6] text-foreground placeholder:text-foreground/30 focus:outline-none focus:border-foreground transition-colors resize-none"
                         data-testid={`input-${field.name}`}
                       />
                     ) : (
@@ -180,7 +180,7 @@ export default function Contact() {
                         onChange={(e) =>
                           setValues((v) => ({ ...v, [field.name]: e.target.value }))
                         }
-                        className="peer w-full bg-transparent border-b border-foreground/30 pb-3 pt-1 font-mono text-sm text-foreground placeholder:text-foreground/30 focus:outline-none focus:border-foreground transition-colors"
+                        className="peer w-full bg-transparent border-b border-foreground/30 pb-3 pt-1 font-sans text-base text-foreground placeholder:text-foreground/30 focus:outline-none focus:border-foreground transition-colors"
                         data-testid={`input-${field.name}`}
                       />
                     )}
@@ -221,13 +221,13 @@ export default function Contact() {
                 data-testid="contact-success"
               >
                 <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
-                  ✦ Message bien reçu
+                  Message bien reçu
                 </span>
-                <h2 className="font-mono uppercase text-2xl md:text-4xl leading-[1.15] tracking-[0.02em]">
+                <h2 className="font-sans uppercase text-3xl md:text-5xl leading-[1.05] tracking-[-0.01em] font-semibold">
                   Merci, {values.nom?.split(" ")[0] || "à très vite"}.<br />
                   Nous vous répondons sous 48h.
                 </h2>
-                <p className="font-mono text-xs leading-[1.8] text-foreground/70 max-w-md">
+                <p className="font-sans text-sm leading-[1.7] text-foreground/70 max-w-md">
                   D'ici là, vous pouvez aussi nous écrire en message direct sur
                   Instagram (@mund.std) ou Facebook&nbsp;: c'est souvent là que
                   les premières esquisses se dessinent.

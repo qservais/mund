@@ -8,7 +8,7 @@ export default function Footer() {
           &nbsp;— Julie Ahn, Liège (BE)
         </span>
         <span className="hidden md:inline text-foreground/40">
-          ✦ &nbsp; Imprimé sur écran &nbsp; ✦
+          — Imprimé sur écran —
         </span>
         <span>© {year} — Tous droits réservés</span>
       </div>

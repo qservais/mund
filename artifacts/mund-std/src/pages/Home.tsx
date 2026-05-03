@@ -25,7 +25,7 @@ export default function Home() {
             </span>
           </div>
           <div className="col-span-12 md:col-span-9">
-            <h2 className="font-mono uppercase text-[8vw] md:text-[4.4vw] leading-[1.05] tracking-[0.02em] font-medium">
+            <h2 className="font-sans uppercase text-[9vw] md:text-[5vw] leading-[0.95] tracking-[-0.01em] font-semibold">
               Quelques<br />gestes récents.
             </h2>
           </div>
@@ -68,11 +68,11 @@ export default function Home() {
         <div className="grid grid-cols-12 gap-6 items-end">
           <div className="col-span-12 md:col-span-3">
             <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/60">
-              ✦ Devis & projets
+              Devis & projets
             </span>
           </div>
           <div className="col-span-12 md:col-span-9">
-            <h2 className="font-mono uppercase text-[8vw] md:text-[4vw] leading-[1.05] tracking-[0.02em] font-medium mb-10">
+            <h2 className="font-sans uppercase text-[8vw] md:text-[4.4vw] leading-[0.95] tracking-[-0.01em] font-semibold mb-10">
               Un événement,<br />une scénographie&nbsp;?
             </h2>
             <Link
