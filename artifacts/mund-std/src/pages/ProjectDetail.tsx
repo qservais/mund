@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link, useRoute } from "wouter";
 import { motion } from "framer-motion";
 import { ZoomParallax } from "@/components/ui/zoom-parallax";
+import { StickyScrollGallery } from "@/components/ui/sticky-scroll-gallery";
 import { getNeighbours, getPlateBySlug, plates } from "@/data/plates";
 import NotFound from "@/pages/not-found";
 
@@ -93,13 +94,10 @@ export default function ProjectDetail() {
         )}
       </header>
 
-      {/* Scroll cue */}
-      <div className="px-6 md:px-12 xl:px-24 mb-2 flex items-baseline justify-between font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/45">
+      <div className="px-6 md:px-12 xl:px-24 mb-2 flex items-baseline font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/45">
         <span>↓ &nbsp; faites défiler — la planche s'ouvre</span>
-        <span className="hidden md:inline">Zoom parallax</span>
       </div>
 
-      {/* Zoom parallax intro */}
       <ZoomParallax images={parallaxImages} />
 
       {/* Body / story */}
@@ -126,78 +124,9 @@ export default function ProjectDetail() {
           <Meta label="Référence" value={`MUND·${plate.n}/15`} />
         </div>
 
-        {/* Hero image after scroll */}
-        <motion.figure
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="col-span-12 mt-6"
-        >
-          <div className="aspect-[16/10] md:aspect-[21/9] overflow-hidden bg-muted">
-            <img
-              src={gallery[0]}
-              alt={plate.alt}
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <figcaption className="flex flex-wrap items-baseline gap-3 pt-3 font-mono text-[9px] uppercase tracking-[0.25em] text-foreground/65">
-            <span className="text-accent">{plate.n}</span>
-            <span>{plate.title}</span>
-            <span className="ml-auto text-foreground/50">{plate.meta}</span>
-          </figcaption>
-        </motion.figure>
-
-        {/* Additional gallery — only when the project has its own shoot */}
-        {gallery.length > 1 && (
-          <div
-            className="col-span-12 mt-12 grid grid-cols-12 gap-x-6 gap-y-10"
-            data-testid="project-gallery"
-          >
-            {gallery.slice(1).map((src, i) => {
-              // Editorial alternating layout: alt sizes & offsets
-              const layouts = [
-                "col-span-12 md:col-span-7 md:col-start-1",
-                "col-span-12 md:col-span-5 md:col-start-8",
-                "col-span-12 md:col-span-8 md:col-start-3",
-                "col-span-12 md:col-span-5 md:col-start-1",
-                "col-span-12 md:col-span-6 md:col-start-7",
-                "col-span-12 md:col-span-9 md:col-start-2",
-              ];
-              const aspects = [
-                "aspect-[4/5]",
-                "aspect-[3/4]",
-                "aspect-[16/10]",
-                "aspect-[3/4]",
-                "aspect-[4/5]",
-                "aspect-[16/9]",
-              ];
-              return (
-                <motion.figure
-                  key={i}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.95, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
-                  className={layouts[i % layouts.length]}
-                >
-                  <div className={`${aspects[i % aspects.length]} overflow-hidden bg-muted`}>
-                    <img
-                      src={src}
-                      alt={`${plate.alt} — fig. ${i + 2}`}
-                      loading="lazy"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <figcaption className="flex items-baseline justify-between pt-2 font-mono text-[9px] uppercase tracking-[0.25em] text-foreground/55">
-                    <span>fig. {String(i + 2).padStart(2, "0")}</span>
-                    <span>{plate.location}</span>
-                  </figcaption>
-                </motion.figure>
-              );
-            })}
-          </div>
-        )}
+        <div className="col-span-12 mt-6" data-testid="project-gallery">
+          <StickyScrollGallery images={gallery} alt={plate.alt} />
+        </div>
       </section>
 
       {/* Prev / Next */}
