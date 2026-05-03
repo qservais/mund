@@ -7,24 +7,33 @@ import Cursor from "@/components/Cursor";
 import { useEffect } from "react";
 
 export default function Home() {
-  // Ensure we start at top on load
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <main className="relative min-h-screen w-full overflow-hidden bg-background text-foreground">
+    <main className="relative min-h-screen w-full overflow-x-hidden bg-background text-foreground">
       <Cursor />
-      
-      {/* Navigation / Header simple */}
-      <header className="fixed top-0 left-0 w-full z-40 p-6 md:p-10 flex justify-between items-start mix-blend-difference text-white">
-        <a href="#hero" className="text-sm font-sans tracking-widest uppercase">
-          Bruxelles
+
+      {/* Editorial fixed nav — paper-style, no mix-blend */}
+      <header className="fixed top-0 left-0 right-0 z-40 px-6 md:px-12 xl:px-24 py-5 flex items-baseline justify-between font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/80">
+        <a href="#hero" className="hover:text-accent transition-colors">
+          mund.std
         </a>
-        <div className="flex flex-col items-end gap-1">
-          <a href="#travaux" className="text-sm font-sans tracking-widest uppercase hover:italic">Travaux</a>
-          <a href="#contact" className="text-sm font-sans tracking-widest uppercase hover:italic">Contact</a>
-        </div>
+        <span className="hidden md:inline text-foreground/40">
+          Studio floral, Belgique
+        </span>
+        <nav className="flex items-baseline gap-6">
+          <a href="#manifeste" className="hover:text-accent transition-colors">
+            Édito
+          </a>
+          <a href="#travaux" className="hover:text-accent transition-colors">
+            Travaux
+          </a>
+          <a href="#contact" className="hover:text-accent transition-colors">
+            Contact
+          </a>
+        </nav>
       </header>
 
       <Hero />

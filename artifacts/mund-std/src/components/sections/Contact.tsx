@@ -1,61 +1,120 @@
 import { motion } from "framer-motion";
+import imgContact from "@assets/626625225_17934961932161771_7786532183815332101_n._1777806036053.jpg";
 
 export default function Contact() {
   return (
-    <section id="contact" className="w-full bg-foreground text-background py-32 md:py-48 px-6 md:px-12 xl:px-24">
-      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
-        
-        <div className="flex flex-col gap-8 justify-center">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="font-serif italic text-4xl md:text-6xl leading-tight"
-          >
-            Discutons de vos projets botaniques.
-          </motion.h2>
-          
-          <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col gap-2 mt-8"
-          >
-            <span className="font-sans text-[10px] tracking-widest uppercase text-background/60 mb-2">Pour toute demande</span>
-            <a href="https://instagram.com/mund.std" target="_blank" rel="noreferrer" className="font-sans text-xl md:text-2xl hover:italic transition-all duration-300 w-fit">
-              Message direct sur Instagram
-            </a>
-          </motion.div>
-        </div>
-
-        <motion.div 
+    <section
+      id="contact"
+      className="relative w-full px-6 md:px-12 xl:px-24 py-32 md:py-56"
+    >
+      <div className="mx-auto max-w-6xl grid grid-cols-12 gap-x-6 gap-y-16 items-start">
+        {/* Left — colophon */}
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.4 }}
-          className="flex flex-col justify-end gap-12 font-sans"
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1 }}
+          className="col-span-12 md:col-span-6"
         >
-          <div>
-            <span className="text-[10px] tracking-widest uppercase text-background/60 mb-4 block">Atelier</span>
-            <p className="not-italic text-sm md:text-base leading-relaxed opacity-90">
-              Belgique<br/>
-              Sur rendez-vous
-            </p>
+          <div className="flex items-baseline justify-between border-b border-foreground/20 pb-6 mb-12">
+            <span className="font-mono text-[10px] uppercase tracking-[0.3em]">
+              mund.std
+            </span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/60">
+              Édition 26 / Printemps
+            </span>
           </div>
 
-          <div>
-            <span className="text-[10px] tracking-widest uppercase text-background/60 mb-4 block">Réseaux</span>
-            <a href="https://instagram.com/mund.std" target="_blank" rel="noreferrer" className="text-sm md:text-base leading-relaxed opacity-90 hover:italic block w-fit">
-              Instagram @mund.std
-            </a>
-            <a href="https://www.facebook.com/p/Mund-Std-61561226727135/" target="_blank" rel="noreferrer" className="text-sm md:text-base leading-relaxed opacity-90 hover:italic block w-fit mt-1">
-              Facebook Mund Std
-            </a>
+          <h2 className="font-serif italic text-5xl md:text-7xl leading-[0.95] mb-16">
+            Discutons de<br />vos projets<br />botaniques.
+          </h2>
+
+          <div className="grid grid-cols-2 gap-x-6 gap-y-10 max-w-md">
+            <div className="flex flex-col gap-2">
+              <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/50">
+                Lieu
+              </span>
+              <p className="font-mono text-xs leading-[1.7]">
+                Belgique<br />
+                Sur rendez-vous
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/50">
+                Date
+              </span>
+              <p className="font-mono text-xs leading-[1.7]">
+                Toute l'année<br />
+                Saison 2026
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/50">
+                Réseaux
+              </span>
+              <a
+                href="https://instagram.com/mund.std"
+                target="_blank"
+                rel="noreferrer"
+                className="font-mono text-xs leading-[1.7] hover:text-accent transition-colors w-fit"
+              >
+                Instagram<br />@mund.std
+              </a>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/50">
+                Contact
+              </span>
+              <a
+                href="https://www.facebook.com/p/Mund-Std-61561226727135/"
+                target="_blank"
+                rel="noreferrer"
+                className="font-mono text-xs leading-[1.7] hover:text-accent transition-colors w-fit"
+              >
+                Facebook<br />Mund Std
+              </a>
+            </div>
+
+            <div className="col-span-2 flex flex-col gap-2 pt-2">
+              <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent">
+                Demandes de devis
+              </span>
+              <a
+                href="https://instagram.com/mund.std"
+                target="_blank"
+                rel="noreferrer"
+                className="font-serif italic text-2xl md:text-3xl hover:underline underline-offset-4 decoration-accent w-fit"
+              >
+                Message direct sur Instagram &rarr;
+              </a>
+            </div>
           </div>
         </motion.div>
 
+        {/* Right — single posed photograph */}
+        <motion.figure
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1.1, delay: 0.15 }}
+          className="col-span-12 md:col-span-5 md:col-start-8 md:mt-24"
+        >
+          <div className="relative aspect-[3/4] overflow-hidden bg-muted">
+            <img
+              src={imgContact}
+              alt="Détail floral mund.std"
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <figcaption className="flex items-baseline justify-between font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/60 pt-3">
+            <span>fig. 16</span>
+            <span>Bonjour.</span>
+          </figcaption>
+        </motion.figure>
       </div>
     </section>
   );
