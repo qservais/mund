@@ -139,7 +139,7 @@ export default function Projets() {
                 src={plates[2].src}
                 alt={plates[2].alt}
                 loading="lazy"
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover object-bottom"
               />
             </div>
             <figcaption className="flex flex-wrap items-baseline gap-3 pt-3 px-6 md:px-12 xl:px-24 font-mono text-[9px] uppercase tracking-[0.25em] text-foreground/65">
