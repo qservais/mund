@@ -36,7 +36,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   const [location] = useLocation();
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+    window.scrollTo({ top: 0, behavior: "auto" });
   }, [location]);
 
   return (
