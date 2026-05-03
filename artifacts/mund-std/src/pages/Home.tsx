@@ -25,7 +25,7 @@ export default function Home() {
             </span>
           </div>
           <div className="col-span-12 md:col-span-9">
-            <h2 className="font-sans uppercase text-[9vw] md:text-[5vw] leading-[0.95] tracking-[-0.01em] font-semibold">
+            <h2 className="font-display uppercase text-[9vw] md:text-[5vw] leading-[0.95] tracking-[-0.01em] font-semibold">
               Quelques<br />gestes récents.
             </h2>
           </div>
@@ -72,7 +72,7 @@ export default function Home() {
             </span>
           </div>
           <div className="col-span-12 md:col-span-9">
-            <h2 className="font-sans uppercase text-[8vw] md:text-[4.4vw] leading-[0.95] tracking-[-0.01em] font-semibold mb-10">
+            <h2 className="font-display uppercase text-[8vw] md:text-[4.4vw] leading-[0.95] tracking-[-0.01em] font-semibold mb-10">
               Un événement,<br />une scénographie&nbsp;?
             </h2>
             <Link

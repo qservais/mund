@@ -34,7 +34,7 @@ export default function Hero() {
             />
             <span className="sr-only">mund.std</span>
           </h1>
-          <p className="font-sans font-light italic text-2xl md:text-4xl leading-[1.15] text-foreground/60 mt-4 max-w-3xl">
+          <p className="font-mono uppercase tracking-[0.25em] text-xs text-foreground/55 mt-6 max-w-3xl">
             <em>fleurs vivantes,</em> volumes architecturés.
           </p>
           <div className="mt-8 flex flex-col md:flex-row md:items-end justify-between gap-8 w-full max-w-4xl">

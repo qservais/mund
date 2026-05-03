@@ -30,10 +30,10 @@ export default function Manifesto() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="col-span-12 md:col-span-9 md:col-start-4"
         >
-          <p className="font-sans font-light italic text-3xl md:text-5xl leading-[1.05] text-foreground/55 mb-4 md:mb-6">
+          <p className="font-mono uppercase tracking-[0.3em] text-xs text-foreground/55 mb-6">
             Manifeste —
           </p>
-          <h2 className="font-sans uppercase text-[8vw] md:text-[4.2vw] leading-[0.95] tracking-[-0.01em] font-semibold">
+          <h2 className="font-display uppercase text-[8vw] md:text-[4.2vw] leading-[0.95] tracking-[-0.01em] font-semibold">
             Peindre avec<br />
             le vivant.
           </h2>

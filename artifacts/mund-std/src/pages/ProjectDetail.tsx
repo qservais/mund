@@ -67,7 +67,7 @@ export default function ProjectDetail() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="font-sans font-light italic text-3xl md:text-5xl text-foreground/55"
+          className="font-mono uppercase tracking-[0.3em] text-xs text-foreground/55"
         >
           {plate.tagline ?? "une planche —"}
         </motion.p>
@@ -75,7 +75,7 @@ export default function ProjectDetail() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.95, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-          className="font-sans uppercase text-[12vw] md:text-[7vw] leading-[0.92] tracking-[-0.02em] font-semibold max-w-[14ch]"
+          className="font-display uppercase text-[12vw] md:text-[7vw] leading-[0.92] tracking-[-0.02em] font-semibold max-w-[14ch]"
           data-testid="project-title"
         >
           {plate.title}.
@@ -211,7 +211,7 @@ export default function ProjectDetail() {
             <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/55 group-hover:text-accent transition-colors">
               ← Précédente — Planche {prev.n}
             </span>
-            <span className="font-sans uppercase text-xl md:text-3xl tracking-[-0.005em] font-semibold group-hover:text-accent transition-colors">
+            <span className="font-display uppercase text-xl md:text-3xl tracking-[-0.005em] font-semibold group-hover:text-accent transition-colors">
               {prev.title}
             </span>
           </Link>
@@ -225,7 +225,7 @@ export default function ProjectDetail() {
             <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/55 group-hover:text-accent transition-colors">
               Suivante — Planche {next.n} →
             </span>
-            <span className="font-sans uppercase text-xl md:text-3xl tracking-[-0.005em] font-semibold group-hover:text-accent transition-colors">
+            <span className="font-display uppercase text-xl md:text-3xl tracking-[-0.005em] font-semibold group-hover:text-accent transition-colors">
               {next.title}
             </span>
           </Link>

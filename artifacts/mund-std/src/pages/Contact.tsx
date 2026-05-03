@@ -60,10 +60,10 @@ export default function Contact() {
           transition={{ duration: 0.95, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="col-span-12 md:col-span-9 flex flex-col gap-3"
         >
-          <p className="font-sans font-light italic text-3xl md:text-5xl text-foreground/55">
+          <p className="font-mono uppercase tracking-[0.3em] text-xs text-foreground/55 mb-4">
             écrivez-nous —
           </p>
-          <h1 className="font-sans uppercase text-[10vw] md:text-[6vw] leading-[0.92] tracking-[-0.015em] font-semibold">
+          <h1 className="font-display uppercase text-[10vw] md:text-[6vw] leading-[0.92] tracking-[-0.015em] font-semibold">
             Discutons<br />
             de vos projets.
           </h1>
@@ -246,7 +246,7 @@ export default function Contact() {
                 <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
                   Message bien reçu
                 </span>
-                <h2 className="font-sans uppercase text-3xl md:text-5xl leading-[1.05] tracking-[-0.01em] font-semibold">
+                <h2 className="font-display uppercase text-3xl md:text-5xl leading-[1.05] tracking-[-0.01em] font-semibold">
                   Merci, {values.nom?.split(" ")[0] || "à très vite"}.<br />
                   Nous vous répondons sous 48h.
                 </h2>

@@ -7,7 +7,7 @@ export default function NotFound() {
         <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-foreground/60">
           Erreur 404
         </span>
-        <h1 className="font-sans font-light italic text-5xl md:text-6xl leading-none">
+        <h1 className="font-display font-light uppercase text-5xl md:text-6xl leading-none">
           Page introuvable.
         </h1>
         <p className="font-sans text-sm md:text-base text-foreground/70 leading-relaxed">
