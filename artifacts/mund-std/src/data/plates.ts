@@ -31,6 +31,8 @@ import az5 from "@/assets/projects/backfromthedead/5.jpg";
 import az6 from "@/assets/projects/backfromthedead/6.jpg";
 import az7 from "@/assets/projects/backfromthedead/7.jpg";
 
+export type PlateLayout = "A" | "B" | "C" | "D" | "E";
+
 export type Plate = {
   n: string;
   slug: string;
@@ -48,7 +50,13 @@ export type Plate = {
   gallery?: string[];
   /** Optional editorial sub-line (often bilingual EN/FR) */
   tagline?: string;
+  /** Explicit layout override — auto-derived from plate number if omitted */
+  layout?: PlateLayout;
 };
+
+const LAYOUT_CYCLE: PlateLayout[] = ["A", "B", "C", "D", "E"];
+export const resolveLayout = (plate: Plate): PlateLayout =>
+  plate.layout ?? LAYOUT_CYCLE[parseInt(plate.n, 10) % 5];
 
 export const plates: Plate[] = [
   {
@@ -64,6 +72,7 @@ export const plates: Plate[] = [
     year: "2025",
     location: "Liège, BE",
     credits: "Photos : @parowuidar",
+    layout: "A",
     story:
       "Mon dernier mariage de 2025, mais surtout la rencontre d'une mariée soleil. De longues conversations, un lieu incroyable, quelques idées lancées et une confiance donnée. Je ne pouvais pas mieux clôturer cette saison.",
   },
@@ -171,6 +180,7 @@ export const plates: Plate[] = [
     year: "2025",
     location: "Liège, BE",
     credits: "Co-réalisation : @ophelie.demulier · Architecture : Luc Spits",
+    layout: "D",
     story:
       "Installation végétale pour l'inauguration de Bord de Meuse — la dernière du studio en 2025, réalisée avec la précieuse aide et surtout le talent d'@ophelie.demulier. Le concept : l'eau et la végétation ont laissé la place au bâtiment réalisé par Luc Spits architecture. Le temps d'un weekend, elles venaient en reprendre possession.",
   },
@@ -239,6 +249,7 @@ export const plates: Plate[] = [
     year: "2025",
     location: "Salon @azizabulwerhairstylist, Liège",
     credits: "Pour @azizabulwerhairstylist",
+    layout: "B",
     story:
       "Composition florale réalisée pour @azizabulwerhairstylist, la reine des chevelures de rêves, qui me laisse créer deux fois par mois pour son cocon. Une confiance totale depuis le début, sans aucune contrainte — je peux expérimenter les couleurs et chercher les fleurs les plus étranges. Parce que non, tout le monde n'est pas ok avec les minis cerveaux et les fleurs à boutons. Elle, oui.",
   },

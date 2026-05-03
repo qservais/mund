@@ -1,9 +1,23 @@
 import { useEffect } from "react";
 import { Link, useRoute } from "wouter";
 import { motion } from "framer-motion";
-import { StickyScrollGallery } from "@/components/ui/sticky-scroll-gallery";
-import { getNeighbours, getPlateBySlug } from "@/data/plates";
+import { getNeighbours, getPlateBySlug, resolveLayout } from "@/data/plates";
+import { LayoutA } from "@/components/project-layouts/LayoutA";
+import { LayoutB } from "@/components/project-layouts/LayoutB";
+import { LayoutC } from "@/components/project-layouts/LayoutC";
+import { LayoutD } from "@/components/project-layouts/LayoutD";
+import { LayoutE } from "@/components/project-layouts/LayoutE";
 import NotFound from "@/pages/not-found";
+import type { Plate } from "@/data/plates";
+
+function PlateBody({ plate }: { plate: Plate }) {
+  const layout = resolveLayout(plate);
+  if (layout === "A") return <LayoutA plate={plate} />;
+  if (layout === "B") return <LayoutB plate={plate} />;
+  if (layout === "C") return <LayoutC plate={plate} />;
+  if (layout === "D") return <LayoutD plate={plate} />;
+  return <LayoutE plate={plate} />;
+}
 
 export default function ProjectDetail() {
   const [, params] = useRoute("/projets/:slug");
@@ -17,7 +31,6 @@ export default function ProjectDetail() {
   if (!plate) return <NotFound />;
 
   const { prev, next } = getNeighbours(plate.slug);
-  const gallery = plate.gallery ?? [plate.src];
 
   return (
     <article className="relative w-full pb-24 md:pb-40">
@@ -71,31 +84,8 @@ export default function ProjectDetail() {
       </header>
 
       <div data-testid="project-gallery">
-        <StickyScrollGallery images={gallery} alt={plate.alt} />
+        <PlateBody plate={plate} />
       </div>
-
-      <section className="px-6 md:px-12 xl:px-24 pt-28 md:pt-40 grid grid-cols-12 gap-6 gap-y-16">
-        <div className="col-span-12 md:col-span-3">
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
-            Note du studio
-          </span>
-        </div>
-        <div className="col-span-12 md:col-span-7 md:col-start-5">
-          <p
-            className="font-sans text-base md:text-lg leading-[1.7] text-foreground/85 text-justify"
-            data-testid="project-story"
-          >
-            {plate.story}
-          </p>
-        </div>
-
-        <div className="col-span-12 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-8 border-t border-foreground/15 pt-10">
-          <Meta label="Catégorie" value={plate.category} />
-          <Meta label="Année" value={plate.year} />
-          <Meta label="Lieu" value={plate.location} />
-          <Meta label="Référence" value={`MUND·${plate.n}/15`} />
-        </div>
-      </section>
 
       <nav className="px-6 md:px-12 xl:px-24 mt-32 md:mt-48 grid grid-cols-12 gap-6 border-t border-foreground/15 pt-10">
         {prev && (
@@ -128,18 +118,5 @@ export default function ProjectDetail() {
         )}
       </nav>
     </article>
-  );
-}
-
-function Meta({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex flex-col gap-1.5">
-      <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/50">
-        {label}
-      </span>
-      <span className="font-sans text-sm md:text-base text-foreground/90">
-        {value}
-      </span>
-    </div>
   );
 }
