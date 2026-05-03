@@ -32,7 +32,7 @@ export default function Projets() {
           <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-foreground/55 mb-3">
             Moodboard 001 &nbsp;/&nbsp; <span className="text-accent">15 planches</span>
           </span>
-          <p className="font-serif italic text-2xl md:text-4xl text-foreground/70 mb-2 mix-blend-multiply">
+          <p className="font-sans font-light italic text-2xl md:text-4xl text-foreground/60 mb-2 mix-blend-multiply">
             quinze gestes —
           </p>
           <h1 className="font-sans uppercase text-[14vw] md:text-[8.5vw] leading-[0.88] tracking-[-0.02em] font-semibold max-w-[12ch] mix-blend-multiply">

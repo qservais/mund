@@ -67,7 +67,7 @@ export default function ProjectDetail() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="font-serif italic text-3xl md:text-5xl text-foreground/70"
+          className="font-sans font-light italic text-3xl md:text-5xl text-foreground/55"
         >
           {plate.tagline ?? "une planche —"}
         </motion.p>

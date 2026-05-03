@@ -60,7 +60,7 @@ export default function Contact() {
           transition={{ duration: 0.95, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="col-span-12 md:col-span-9 flex flex-col gap-3"
         >
-          <p className="font-serif italic text-3xl md:text-5xl text-foreground/70">
+          <p className="font-sans font-light italic text-3xl md:text-5xl text-foreground/55">
             écrivez-nous —
           </p>
           <h1 className="font-sans uppercase text-[10vw] md:text-[6vw] leading-[0.92] tracking-[-0.015em] font-semibold">

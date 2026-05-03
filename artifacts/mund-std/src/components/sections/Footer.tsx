@@ -8,7 +8,7 @@ export default function Footer() {
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground">
             MUND STUDIO
           </span>
-          <p className="font-serif italic text-base text-foreground/70 leading-snug">
+          <p className="font-sans font-light text-sm text-foreground/60 leading-snug">
             Studio floral &amp; scénographies végétales
           </p>
           {/* Director name "Julie Ahn" provided in the project brief
