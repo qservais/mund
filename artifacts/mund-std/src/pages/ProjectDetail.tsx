@@ -18,12 +18,27 @@ export default function ProjectDetail() {
 
   const { prev, next } = getNeighbours(plate.slug);
 
-  // Build 7 images for the parallax: current plate first, then 6 others
+  // Parallax images: prefer the project's own gallery (real shoot),
+  // otherwise fall back to current plate + 6 sibling plates.
   const others = plates.filter((p) => p.slug !== plate.slug);
-  const parallaxImages = [
-    { src: plate.src, alt: plate.alt },
-    ...others.slice(0, 6).map((p) => ({ src: p.src, alt: p.alt })),
-  ];
+  const ownGallery = (plate.gallery ?? []).map((src, i) => ({
+    src,
+    alt: `${plate.alt} — ${i + 1}`,
+  }));
+  const parallaxImages = (
+    ownGallery.length >= 7
+      ? ownGallery.slice(0, 7)
+      : [
+          ...ownGallery,
+          { src: plate.src, alt: plate.alt },
+          ...others.slice(0, 7 - ownGallery.length - 1).map((p) => ({
+            src: p.src,
+            alt: p.alt,
+          })),
+        ]
+  ).slice(0, 7);
+
+  const gallery = plate.gallery ?? [plate.src];
 
   return (
     <article className="relative w-full pb-24 md:pb-40">
@@ -54,7 +69,7 @@ export default function ProjectDetail() {
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="font-serif italic text-3xl md:text-5xl text-foreground/70"
         >
-          une planche —
+          {plate.tagline ?? "une planche —"}
         </motion.p>
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
@@ -65,6 +80,17 @@ export default function ProjectDetail() {
         >
           {plate.title}.
         </motion.h1>
+        {plate.credits && (
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.9, delay: 0.2 }}
+            className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/55 mt-2"
+            data-testid="project-credits"
+          >
+            {plate.credits}
+          </motion.p>
+        )}
       </header>
 
       {/* Scroll cue */}
@@ -110,7 +136,7 @@ export default function ProjectDetail() {
         >
           <div className="aspect-[16/10] md:aspect-[21/9] overflow-hidden bg-muted">
             <img
-              src={plate.src}
+              src={gallery[0]}
               alt={plate.alt}
               className="w-full h-full object-cover"
             />
@@ -121,6 +147,57 @@ export default function ProjectDetail() {
             <span className="ml-auto text-foreground/50">{plate.meta}</span>
           </figcaption>
         </motion.figure>
+
+        {/* Additional gallery — only when the project has its own shoot */}
+        {gallery.length > 1 && (
+          <div
+            className="col-span-12 mt-12 grid grid-cols-12 gap-x-6 gap-y-10"
+            data-testid="project-gallery"
+          >
+            {gallery.slice(1).map((src, i) => {
+              // Editorial alternating layout: alt sizes & offsets
+              const layouts = [
+                "col-span-12 md:col-span-7 md:col-start-1",
+                "col-span-12 md:col-span-5 md:col-start-8",
+                "col-span-12 md:col-span-8 md:col-start-3",
+                "col-span-12 md:col-span-5 md:col-start-1",
+                "col-span-12 md:col-span-6 md:col-start-7",
+                "col-span-12 md:col-span-9 md:col-start-2",
+              ];
+              const aspects = [
+                "aspect-[4/5]",
+                "aspect-[3/4]",
+                "aspect-[16/10]",
+                "aspect-[3/4]",
+                "aspect-[4/5]",
+                "aspect-[16/9]",
+              ];
+              return (
+                <motion.figure
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.95, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
+                  className={layouts[i % layouts.length]}
+                >
+                  <div className={`${aspects[i % aspects.length]} overflow-hidden bg-muted`}>
+                    <img
+                      src={src}
+                      alt={`${plate.alt} — fig. ${i + 2}`}
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <figcaption className="flex items-baseline justify-between pt-2 font-mono text-[9px] uppercase tracking-[0.25em] text-foreground/55">
+                    <span>fig. {String(i + 2).padStart(2, "0")}</span>
+                    <span>{plate.location}</span>
+                  </figcaption>
+                </motion.figure>
+              );
+            })}
+          </div>
+        )}
       </section>
 
       {/* Prev / Next */}

@@ -1,18 +1,35 @@
 import img01 from "@assets/626467322_17934961971161771_3662617065775760134_n._1777806036053.jpg";
 import img02 from "@assets/626488966_17934961944161771_7273886817966626180_n._1777806036053.jpg";
 import img03 from "@assets/626518008_17934961953161771_8014125308187955234_n._1777806036053.jpg";
-import img04 from "@assets/626619100_17934961989161771_3853617996805756525_n._1777806036053.jpg";
 import img05 from "@assets/626625225_17934961932161771_7786532183815332101_n._1777806036053.jpg";
 import img06 from "@assets/631503775_17936135724161771_7695730491443903255_n._1777806036054.jpg";
 import img07 from "@assets/631712593_17936135751161771_822116378189591435_n._1777806036054.jpg";
 import img08 from "@assets/632004268_17936135760161771_6077639138614133001_n._1777806036054.jpg";
-import img09 from "@assets/633244361_17936135781161771_1714601659444056169_n._1777806036053.jpg";
 import img10 from "@assets/657927985_17875601865563074_3400857847866793533_n._1777806036054.jpg";
 import img11 from "@assets/658044112_17875601877563074_6274336354711419466_n._1777806036054.jpg";
 import img12 from "@assets/658667262_17875601886563074_86142893132348652_n._1777806036054.jpg";
 import img13 from "@assets/470152122_122142130910374224_2764620469980688957_n_1777805889705.jpg";
-import img14 from "@assets/626683964_17934961980161771_9106265817495129291_n._1777806036052.jpg";
 import img15 from "@assets/626467322_17934961971161771_3662617065775760134_n._1777806036053.jpg";
+
+// Real projects
+import bdm1 from "@/assets/projects/bord_de_meuse/1.jpg";
+import bdm2 from "@/assets/projects/bord_de_meuse/2.jpg";
+import bdm3 from "@/assets/projects/bord_de_meuse/3.jpg";
+import bdm4 from "@/assets/projects/bord_de_meuse/4.jpg";
+import bdm5 from "@/assets/projects/bord_de_meuse/5.jpg";
+import lt1 from "@/assets/projects/im_back/1.jpg";
+import lt2 from "@/assets/projects/im_back/2.jpg";
+import lt3 from "@/assets/projects/im_back/3.jpg";
+import lt4 from "@/assets/projects/im_back/4.jpg";
+import lt5 from "@/assets/projects/im_back/5.jpg";
+import lt6 from "@/assets/projects/im_back/6.jpg";
+import az1 from "@/assets/projects/backfromthedead/1.jpg";
+import az2 from "@/assets/projects/backfromthedead/2.jpg";
+import az3 from "@/assets/projects/backfromthedead/3.jpg";
+import az4 from "@/assets/projects/backfromthedead/4.jpg";
+import az5 from "@/assets/projects/backfromthedead/5.jpg";
+import az6 from "@/assets/projects/backfromthedead/6.jpg";
+import az7 from "@/assets/projects/backfromthedead/7.jpg";
 
 export type Plate = {
   n: string;
@@ -25,21 +42,30 @@ export type Plate = {
   year: string;
   location: string;
   story: string;
+  /** Optional credits, e.g. photographer / collaborator IG handles */
+  credits?: string;
+  /** Optional gallery for the detail page (defaults to [src]). */
+  gallery?: string[];
+  /** Optional editorial sub-line (often bilingual EN/FR) */
+  tagline?: string;
 };
 
 export const plates: Plate[] = [
   {
     n: "01",
-    slug: "ceremonie-sauvage",
-    src: img04,
-    alt: "Mariée bouquet sauvage",
-    title: "Cérémonie sauvage",
-    meta: "Mariage / Été 2024",
+    slug: "lara-thibault",
+    src: lt1,
+    gallery: [lt1, lt2, lt3, lt4, lt5, lt6],
+    alt: "Mariage Lara & Thibault",
+    title: "Lara & Thibault",
+    tagline: "I'm back. This is just the warm up.",
+    meta: "Mariage / Clôture de saison 2025",
     category: "Mariage",
-    year: "2024",
+    year: "2025",
     location: "Liège, BE",
+    credits: "Photos : @parowuidar",
     story:
-      "Un bouquet pensé comme un pré dérivé : gloriosa, alstromères, herbes folles cueillies à la main. La mariée porte le geste plutôt qu'un objet, et la cérémonie se laisse traverser par le mouvement du bouquet à chaque pas.",
+      "Mon dernier mariage de 2025, mais surtout la rencontre d'une mariée soleil. De longues conversations, un lieu incroyable, quelques idées lancées et une confiance donnée. Je ne pouvais pas mieux clôturer cette saison.",
   },
   {
     n: "02",
@@ -134,16 +160,19 @@ export const plates: Plate[] = [
   },
   {
     n: "09",
-    slug: "atrium",
-    src: img09,
-    alt: "Atrium végétal",
-    title: "Atrium",
-    meta: "Lobby / Liège",
-    category: "Architecture",
+    slug: "bord-de-meuse",
+    src: bdm1,
+    gallery: [bdm1, bdm2, bdm3, bdm4, bdm5],
+    alt: "Installation végétale Bord de Meuse",
+    title: "Bord de Meuse",
+    tagline: "Let the green in.",
+    meta: "Installation végétale / Inauguration 2025",
+    category: "Installation",
     year: "2025",
     location: "Liège, BE",
+    credits: "Co-réalisation : @ophelie.demulier · Architecture : Luc Spits",
     story:
-      "Composition pour l'atrium d'un immeuble de bureaux liégeois : on travaille ici à l'échelle du lieu, les volumes floraux dialoguent avec l'escalier et la verrière. Le végétal devient un repère architectural.",
+      "Installation végétale pour l'inauguration de Bord de Meuse — la dernière du studio en 2025, réalisée avec la précieuse aide et surtout le talent d'@ophelie.demulier. Le concept : l'eau et la végétation ont laissé la place au bâtiment réalisé par Luc Spits architecture. Le temps d'un weekend, elles venaient en reprendre possession.",
   },
   {
     n: "10",
@@ -199,16 +228,19 @@ export const plates: Plate[] = [
   },
   {
     n: "14",
-    slug: "disco-botanique",
-    src: img14,
-    alt: "Boule à facettes amaranthe",
-    title: "Disco botanique",
-    meta: "Soirée privée",
-    category: "Événement",
-    year: "2024",
-    location: "Liège, BE",
+    slug: "high-contrast",
+    src: az1,
+    gallery: [az1, az2, az3, az4, az5, az6, az7],
+    alt: "Composition florale haute saturation pour Aziza Bulwer",
+    title: "High contrast",
+    tagline: "Back from the dead. Brought high contrast as a gift.",
+    meta: "Composition récurrente / Liège",
+    category: "Composition",
+    year: "2025",
+    location: "Salon @azizabulwerhairstylist, Liège",
+    credits: "Pour @azizabulwerhairstylist",
     story:
-      "Une boule à facettes habillée d'amaranthe pour une soirée privée : référence assumée aux scénographies pop des années 70. La lumière éclate la fleur en miroirs, la fête devient sculpture.",
+      "Composition florale réalisée pour @azizabulwerhairstylist, la reine des chevelures de rêves, qui me laisse créer deux fois par mois pour son cocon. Une confiance totale depuis le début, sans aucune contrainte — je peux expérimenter les couleurs et chercher les fleurs les plus étranges. Parce que non, tout le monde n'est pas ok avec les minis cerveaux et les fleurs à boutons. Elle, oui.",
   },
   {
     n: "15",

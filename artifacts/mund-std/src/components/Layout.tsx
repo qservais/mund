@@ -47,10 +47,10 @@ export default function Layout({ children }: { children: ReactNode }) {
           className="hover:text-accent transition-colors"
           data-testid="nav-brand"
         >
-          mund.std
+          MUND STUDIO
         </Link>
         <span className="hidden md:inline text-foreground/40">
-          Studio floral, Liège
+          Rue Monulphe 7 · 4000 Liège
         </span>
         <nav className="flex items-baseline gap-6">
           {navItems.map((item) => (

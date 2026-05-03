@@ -47,13 +47,14 @@ export default function Manifesto() {
           className="col-span-12 md:col-span-4 md:col-start-4"
         >
           <p className="font-sans text-sm md:text-base leading-[1.75] text-foreground/85 text-justify">
-            Mund.std est un studio de design floral contemporain basé à Liège,
-            dirigé par <span className="text-accent">Julie Ahn</span>. Une
-            approche architecturale et poétique&nbsp;: fleurs de saison,
-            structures sculpturales, volumes généreux et audacieux. Bouquets
-            personnalisés sur commande et design événementiel — chaque
-            composition est pensée comme une œuvre éphémère, à mi-chemin entre
-            l'architecture et la peinture.
+            <span className="font-mono uppercase text-xs tracking-[0.2em] text-foreground">MUND STUDIO</span> est un studio de design floral
+            contemporain basé <span className="text-accent">Rue Monulphe 7,
+            à Liège</span>, dirigé par Julie Ahn. Approche architecturale et
+            poétique&nbsp;: fleurs de saison, structures sculpturales, volumes
+            généreux et un peu audacieux. Bouquets sur mesure, design
+            événementiel, abonnements floraux — chaque composition est pensée
+            comme une œuvre éphémère, à mi-chemin entre l'architecture et la
+            peinture. Agenda 2026 &amp; 2027 ouverts.
           </p>
         </motion.div>
 
@@ -85,11 +86,11 @@ export default function Manifesto() {
           transition={{ duration: 1, delay: 0.4 }}
           className="col-span-12 md:col-span-9 md:col-start-4 border-t border-foreground/15 pt-6 mt-8 flex flex-wrap gap-x-10 gap-y-2 font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/70"
         >
-          <span>— Mariages</span>
+          <span>— Design floral</span>
           <span>— Événements</span>
-          <span>— Installations</span>
-          <span>— Scénographies</span>
-          <span>— Direction artistique</span>
+          <span>— Mariages</span>
+          <span>— Abonnements sur mesure</span>
+          <span>— Installations &amp; scénographies</span>
         </motion.div>
       </div>
     </section>

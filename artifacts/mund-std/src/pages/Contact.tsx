@@ -83,7 +83,21 @@ export default function Contact() {
               Atelier
             </span>
             <p className="font-sans text-sm leading-[1.6]">
-              Liège,<br />Belgique
+              MUND STUDIO<br />
+              Rue Monulphe 7<br />
+              4000 Liège, Belgique
+            </p>
+          </div>
+          <div className="flex flex-col gap-2">
+            <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/50">
+              Services
+            </span>
+            <p className="font-sans text-sm leading-[1.7] text-foreground/85">
+              Design floral · Événements ·<br />
+              Mariages · Abonnements sur mesure
+            </p>
+            <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent mt-1">
+              Agenda 2026 &amp; 2027 ouverts
             </p>
           </div>
           <div className="flex flex-col gap-2">
