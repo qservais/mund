@@ -11,6 +11,8 @@ export default function Footer() {
           <p className="font-serif italic text-base text-foreground/70 leading-snug">
             Studio floral &amp; scénographies végétales
           </p>
+          {/* Director name "Julie Ahn" provided in the project brief
+              by the user (architecte running mund.std). */}
           <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/55">
             Direction — Julie Ahn
           </p>
@@ -21,6 +23,8 @@ export default function Footer() {
           <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent">
             Atelier
           </span>
+          {/* Address sourced from MUND STUDIO Instagram bio (@mund.std):
+              "Rue Monulphe 7, Liège, Belgium 4000" */}
           <p className="font-sans text-sm leading-[1.6]">
             Rue Monulphe 7<br />
             4000 Liège, BE

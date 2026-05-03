@@ -49,6 +49,8 @@ export default function Layout({ children }: { children: ReactNode }) {
         >
           MUND STUDIO
         </Link>
+        {/* Address sourced from MUND STUDIO Instagram bio (@mund.std):
+            "Rue Monulphe 7, Liège, Belgium 4000" */}
         <span className="hidden md:inline text-foreground/40">
           Rue Monulphe 7 · 4000 Liège
         </span>

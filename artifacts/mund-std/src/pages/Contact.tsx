@@ -82,6 +82,8 @@ export default function Contact() {
             <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/50">
               Atelier
             </span>
+            {/* Address sourced from MUND STUDIO Instagram bio (@mund.std):
+                "Rue Monulphe 7, Liège, Belgium 4000" */}
             <p className="font-sans text-sm leading-[1.6]">
               MUND STUDIO<br />
               Rue Monulphe 7<br />
@@ -135,6 +137,8 @@ export default function Contact() {
             <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent">
               Direction
             </span>
+            {/* Director name "Julie Ahn" provided in the user brief
+                (architecte running mund.std). */}
             <p className="font-sans text-sm leading-[1.6]">
               Julie Ahn,<br />architecte & designer florale.
             </p>

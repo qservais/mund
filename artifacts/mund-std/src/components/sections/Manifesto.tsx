@@ -46,6 +46,9 @@ export default function Manifesto() {
           transition={{ duration: 0.9, delay: 0.15 }}
           className="col-span-12 md:col-span-4 md:col-start-4"
         >
+          {/* Real facts sourced from the user brief & the MUND STUDIO IG bio
+              (@mund.std): address "Rue Monulphe 7, Liège, Belgium 4000",
+              director "Julie Ahn" (architecte). */}
           <p className="font-sans text-sm md:text-base leading-[1.75] text-foreground/85 text-justify">
             <span className="font-mono uppercase text-xs tracking-[0.2em] text-foreground">MUND STUDIO</span> est un studio de design floral
             contemporain basé <span className="text-accent">Rue Monulphe 7,
