@@ -30,8 +30,8 @@ export default function Manifesto() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="col-span-12 md:col-span-9 md:col-start-4"
         >
-          <h2 className="font-serif text-[10vw] md:text-[6vw] leading-[0.9] tracking-tight">
-            Peindre <span className="italic">avec</span><br />
+          <h2 className="font-mono uppercase text-[7vw] md:text-[3.6vw] leading-[1.05] tracking-[0.02em] font-medium">
+            Peindre avec<br />
             le vivant.
           </h2>
         </motion.div>
@@ -44,12 +44,13 @@ export default function Manifesto() {
           className="col-span-12 md:col-span-4 md:col-start-4"
         >
           <p className="font-mono text-[11px] md:text-xs leading-[1.9] text-foreground/85 text-justify">
-            Nous composons des installations où la sauvagerie des tiges vient
-            rompre la rigueur du béton. Une recherche constante d'équilibre
-            entre l'opulence des pigments vifs et la douceur des lumières
-            naturelles. Chaque bouquet, chaque table, chaque espace est pensé
-            comme une toile. Nous n'assemblons pas des fleurs ; nous
-            <span className="text-accent"> peignons avec le vivant</span>.
+            Mund.std est un studio de design floral contemporain basé à Liège,
+            dirigé par <span className="text-accent">Julie Ahn</span>. Une
+            approche architecturale et poétique&nbsp;: fleurs de saison,
+            structures sculpturales, volumes généreux et audacieux. Bouquets
+            personnalisés sur commande et design événementiel — chaque
+            composition est pensée comme une œuvre éphémère, à mi-chemin entre
+            l'architecture et la peinture.
           </p>
         </motion.div>
 

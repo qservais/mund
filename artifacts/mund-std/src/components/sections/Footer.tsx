@@ -5,7 +5,7 @@ export default function Footer() {
       <div className="mx-auto max-w-6xl flex flex-col md:flex-row items-baseline justify-between gap-6 font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/65">
         <span>
           <span className="text-foreground">mund.std</span>
-          &nbsp;— Studio floral, Belgique
+          &nbsp;— Julie Ahn, Liège (BE)
         </span>
         <span className="hidden md:inline text-foreground/40">
           ✦ &nbsp; Imprimé sur écran &nbsp; ✦

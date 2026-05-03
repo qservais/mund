@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import heroImgUrl from "@assets/626467322_17934961971161771_3662617065775760134_n._1777806036053.jpg"; // Allium center piece
+import wordmarkUrl from "@/assets/wordmark.png";
 
 export default function Hero() {
   return (
@@ -24,8 +25,14 @@ export default function Hero() {
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
           className="w-full flex flex-col"
         >
-          <h1 className="font-serif italic text-[12vw] md:text-[10vw] leading-[0.85] text-foreground tracking-tighter">
-            mund.std
+          <h1 className="leading-none">
+            <img
+              src={wordmarkUrl}
+              alt="mund."
+              className="block w-[60vw] md:w-[46vw] max-w-[640px] h-auto select-none -ml-[2vw] md:-ml-[1.5vw]"
+              draggable={false}
+            />
+            <span className="sr-only">mund.std</span>
           </h1>
           <div className="mt-8 flex flex-col md:flex-row md:items-end justify-between gap-8 w-full max-w-4xl">
             <p className="font-mono text-[10px] md:text-xs uppercase tracking-[0.2em] max-w-[200px] leading-relaxed text-foreground/80">
@@ -62,7 +69,7 @@ export default function Hero() {
         transition={{ delay: 1.5, duration: 1 }}
         className="w-full flex justify-between items-end border-t border-foreground/20 pt-4"
       >
-        <span className="text-[9px] font-mono tracking-widest uppercase">Bruxelles, BE</span>
+        <span className="text-[9px] font-mono tracking-widest uppercase">Liège, BE</span>
         <span className="text-[9px] font-mono tracking-widest uppercase">Scroll &rarr;</span>
       </motion.div>
     </section>

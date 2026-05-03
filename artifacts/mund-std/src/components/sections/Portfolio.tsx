@@ -27,13 +27,13 @@ type Plate = {
 const plates: Plate[] = [
   { n: "01", src: img04, alt: "Mariée bouquet sauvage", title: "Cérémonie sauvage", meta: "Mariage / Été 2024" },
   { n: "02", src: img05, alt: "Détail amaranthe", title: "Amaranthe & dentelle", meta: "Détail / Studio" },
-  { n: "03", src: img03, alt: "Couple de mariés", title: "Hôtel de Ville", meta: "Mons / 2024" },
+  { n: "03", src: img03, alt: "Couple de mariés", title: "Cérémonie civile", meta: "Liège / 2024" },
   { n: "04", src: img01, alt: "Centre Allium", title: "Miroirs & alliums", meta: "Table / Privé" },
   { n: "05", src: img12, alt: "Coquelicots et bougies", title: "Lignes minimales", meta: "Composition éphémère" },
   { n: "06", src: img02, alt: "Gloriosa architecturale", title: "Gloriosa", meta: "Installation sol" },
   { n: "07", src: img10, alt: "Anthurium béton", title: "Contraste brut", meta: "Éditorial" },
   { n: "08", src: img11, alt: "Anthurium pastel", title: "Camaïeu", meta: "Studio" },
-  { n: "09", src: img09, alt: "Atrium végétal", title: "Atrium", meta: "MoMu / Anvers" },
+  { n: "09", src: img09, alt: "Atrium végétal", title: "Atrium", meta: "Lobby / Liège" },
   { n: "10", src: img06, alt: "Fougères banc chêne", title: "Lignage", meta: "Lobby corporate" },
   { n: "11", src: img08, alt: "Glaïeuls", title: "Glaïeuls & réunions", meta: "Bureaux" },
   { n: "12", src: img07, alt: "Mur béton végétal", title: "Mur vivant", meta: "Architecture" },
@@ -97,9 +97,9 @@ export default function Portfolio() {
           </span>
         </div>
         <div className="col-span-12 md:col-span-9">
-          <h2 className="font-serif text-[14vw] md:text-[9vw] leading-[0.85] tracking-tight">
+          <h2 className="font-mono uppercase text-[9vw] md:text-[5vw] leading-[1] tracking-[0.02em] font-medium">
             Travaux<br />
-            <span className="italic">récents.</span>
+            récents.
           </h2>
         </div>
       </div>
@@ -149,7 +149,7 @@ export default function Portfolio() {
                 Planches 04 → 09
               </span>
             </div>
-            <h3 className="col-span-12 md:col-span-9 font-serif italic text-3xl md:text-5xl text-foreground/90">
+            <h3 className="col-span-12 md:col-span-9 font-mono uppercase text-xl md:text-3xl tracking-[0.03em] text-foreground/90">
               Tables, gestes, objets.
             </h3>
           </div>

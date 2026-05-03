@@ -25,28 +25,28 @@ export default function Contact() {
             </span>
           </div>
 
-          <h2 className="font-serif italic text-5xl md:text-7xl leading-[0.95] mb-16">
+          <h2 className="font-mono uppercase text-3xl md:text-5xl leading-[1.1] tracking-[0.02em] font-medium mb-16">
             Discutons de<br />vos projets<br />botaniques.
           </h2>
 
           <div className="grid grid-cols-2 gap-x-6 gap-y-10 max-w-md">
             <div className="flex flex-col gap-2">
               <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/50">
-                Lieu
+                Atelier
               </span>
               <p className="font-mono text-xs leading-[1.7]">
-                Belgique<br />
-                Sur rendez-vous
+                Liège,<br />
+                Belgique
               </p>
             </div>
 
             <div className="flex flex-col gap-2">
               <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/50">
-                Date
+                Ouverture
               </span>
               <p className="font-mono text-xs leading-[1.7]">
-                Toute l'année<br />
-                Saison 2026
+                Du mardi<br />
+                au samedi
               </p>
             </div>
 
@@ -86,7 +86,7 @@ export default function Contact() {
                 href="https://instagram.com/mund.std"
                 target="_blank"
                 rel="noreferrer"
-                className="font-serif italic text-2xl md:text-3xl hover:underline underline-offset-4 decoration-accent w-fit"
+                className="font-mono uppercase tracking-[0.05em] text-base md:text-xl hover:underline underline-offset-4 decoration-accent w-fit"
               >
                 Message direct sur Instagram &rarr;
               </a>
