@@ -54,15 +54,20 @@ export default function Contact() {
             Sur rendez-vous
           </motion.span>
         </div>
-        <motion.h1
+        <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.95, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="col-span-12 md:col-span-9 font-sans uppercase text-[10vw] md:text-[6vw] leading-[0.92] tracking-[-0.015em] font-semibold"
+          className="col-span-12 md:col-span-9 flex flex-col gap-3"
         >
-          Discutons<br />
-          de vos projets.
-        </motion.h1>
+          <p className="font-serif italic text-3xl md:text-5xl text-foreground/70">
+            écrivez-nous —
+          </p>
+          <h1 className="font-sans uppercase text-[10vw] md:text-[6vw] leading-[0.92] tracking-[-0.015em] font-semibold">
+            Discutons<br />
+            de vos projets.
+          </h1>
+        </motion.div>
       </div>
 
       <div className="grid grid-cols-12 gap-x-6 gap-y-16">

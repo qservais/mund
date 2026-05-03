@@ -29,9 +29,12 @@ export default function Projets() {
           transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="absolute inset-0 z-30 flex flex-col items-center justify-center px-6 text-center pointer-events-none"
         >
-          <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-foreground/55 mb-6">
+          <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-foreground/55 mb-3">
             Moodboard 001 &nbsp;/&nbsp; <span className="text-accent">15 planches</span>
           </span>
+          <p className="font-serif italic text-2xl md:text-4xl text-foreground/70 mb-2 mix-blend-multiply">
+            quinze gestes —
+          </p>
           <h1 className="font-sans uppercase text-[14vw] md:text-[8.5vw] leading-[0.88] tracking-[-0.02em] font-semibold max-w-[12ch] mix-blend-multiply">
             Travaux<br />récents.
           </h1>

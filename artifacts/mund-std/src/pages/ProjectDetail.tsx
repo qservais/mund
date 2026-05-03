@@ -47,11 +47,19 @@ export default function ProjectDetail() {
       </div>
 
       {/* Big title */}
-      <header className="px-6 md:px-12 xl:px-24 mb-8 md:mb-12">
+      <header className="px-6 md:px-12 xl:px-24 mb-8 md:mb-12 flex flex-col gap-3">
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="font-serif italic text-3xl md:text-5xl text-foreground/70"
+        >
+          une planche —
+        </motion.p>
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.95, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
           className="font-sans uppercase text-[12vw] md:text-[7vw] leading-[0.92] tracking-[-0.02em] font-semibold max-w-[14ch]"
           data-testid="project-title"
         >

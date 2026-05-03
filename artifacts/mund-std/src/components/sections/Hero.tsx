@@ -34,6 +34,9 @@ export default function Hero() {
             />
             <span className="sr-only">mund.std</span>
           </h1>
+          <p className="font-serif italic text-2xl md:text-4xl leading-[1.15] text-foreground/75 mt-4 max-w-3xl">
+            <em>fleurs vivantes,</em> volumes architecturés.
+          </p>
           <div className="mt-8 flex flex-col md:flex-row md:items-end justify-between gap-8 w-full max-w-4xl">
             <p className="font-mono text-[10px] md:text-xs uppercase tracking-[0.2em] max-w-[200px] leading-relaxed text-foreground/80">
               Studio floral &<br />scénographies<br />végétales.
