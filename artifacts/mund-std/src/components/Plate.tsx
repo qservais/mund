@@ -7,7 +7,7 @@ export default function Plate({
   className = "",
   imgClass = "aspect-[3/4]",
   align = "left",
-  linkable = false,
+  linkable = true,
 }: {
   plate: PlateType;
   className?: string;
@@ -32,7 +32,9 @@ export default function Plate({
         }`}
       >
         <span className="text-accent">{plate.n}</span>
-        <span className="text-foreground/85">{plate.title}</span>
+        <span className="text-foreground/85 group-hover:text-accent transition-colors">
+          {plate.title}
+        </span>
         <span className="ml-auto md:ml-3 text-foreground/50">{plate.meta}</span>
       </figcaption>
     </>
@@ -47,7 +49,11 @@ export default function Plate({
       className={`group flex flex-col gap-2 hover-trigger ${className}`}
     >
       {linkable ? (
-        <Link href="/projets" className="contents" data-testid={`plate-link-${plate.n}`}>
+        <Link
+          href={`/projets/${plate.slug}`}
+          className="contents"
+          data-testid={`plate-link-${plate.n}`}
+        >
           {inner}
         </Link>
       ) : (
