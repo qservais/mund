@@ -38,9 +38,6 @@ export default function Projets() {
           <h1 className="font-display uppercase text-[14vw] md:text-[8.5vw] leading-[0.88] tracking-[-0.02em] font-semibold max-w-[12ch] mix-blend-multiply">
             Travaux<br />récents.
           </h1>
-          <span className="mt-8 font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/45">
-            ↓ &nbsp; faites bouger la souris
-          </span>
         </motion.div>
 
         {/* Floating images */}

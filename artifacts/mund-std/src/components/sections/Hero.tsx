@@ -73,7 +73,7 @@ export default function Hero() {
         className="w-full flex justify-between items-end border-t border-foreground/20 pt-4"
       >
         <span className="text-[9px] font-mono tracking-widest uppercase">Liège, BE</span>
-        <span className="text-[9px] font-mono tracking-widest uppercase">Scroll &rarr;</span>
+        <span className="text-[9px] font-mono tracking-widest uppercase">mund.be</span>
       </motion.div>
     </section>
   );

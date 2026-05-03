@@ -94,10 +94,6 @@ export default function ProjectDetail() {
         )}
       </header>
 
-      <div className="px-6 md:px-12 xl:px-24 mb-2 flex items-baseline font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/45">
-        <span>↓ &nbsp; faites défiler — la planche s'ouvre</span>
-      </div>
-
       <ZoomParallax images={parallaxImages} />
 
       {/* Body / story */}
