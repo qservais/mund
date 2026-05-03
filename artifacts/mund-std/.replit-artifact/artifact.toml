@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "mund.std"
+version = "1.0.0"
+id = "artifacts/mund-std"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18860
+
+[services.development]
+run = "pnpm --filter @workspace/mund-std run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/mund-std", "run", "build" ]
+publicDir = "artifacts/mund-std/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18860"
+BASE_PATH = "/"
