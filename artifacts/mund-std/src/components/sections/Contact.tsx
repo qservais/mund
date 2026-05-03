@@ -23,9 +23,9 @@ export default function Contact() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex flex-col gap-2 mt-8"
           >
-            <span className="font-sans text-[10px] tracking-widest uppercase text-background/60 mb-2">Écrivez-nous</span>
-            <a href="mailto:bonjour@mund.std" className="font-sans text-xl md:text-2xl hover:italic transition-all duration-300 w-fit">
-              bonjour@mund.std
+            <span className="font-sans text-[10px] tracking-widest uppercase text-background/60 mb-2">Pour toute demande</span>
+            <a href="https://instagram.com/mund.std" target="_blank" rel="noreferrer" className="font-sans text-xl md:text-2xl hover:italic transition-all duration-300 w-fit">
+              Message direct sur Instagram
             </a>
           </motion.div>
         </div>
@@ -38,12 +38,11 @@ export default function Contact() {
           className="flex flex-col justify-end gap-12 font-sans"
         >
           <div>
-            <span className="text-[10px] tracking-widest uppercase text-background/60 mb-4 block">Atelier (sur rdv)</span>
-            <address className="not-italic text-sm md:text-base leading-relaxed opacity-90">
-              Rue de la Botanique 42,<br/>
-              1210 Saint-Josse-ten-Noode<br/>
-              Bruxelles, Belgique
-            </address>
+            <span className="text-[10px] tracking-widest uppercase text-background/60 mb-4 block">Atelier</span>
+            <p className="not-italic text-sm md:text-base leading-relaxed opacity-90">
+              Belgique<br/>
+              Sur rendez-vous
+            </p>
           </div>
 
           <div>
@@ -51,7 +50,7 @@ export default function Contact() {
             <a href="https://instagram.com/mund.std" target="_blank" rel="noreferrer" className="text-sm md:text-base leading-relaxed opacity-90 hover:italic block w-fit">
               Instagram @mund.std
             </a>
-            <a href="https://facebook.com/mund.std" target="_blank" rel="noreferrer" className="text-sm md:text-base leading-relaxed opacity-90 hover:italic block w-fit mt-1">
+            <a href="https://www.facebook.com/p/Mund-Std-61561226727135/" target="_blank" rel="noreferrer" className="text-sm md:text-base leading-relaxed opacity-90 hover:italic block w-fit mt-1">
               Facebook Mund Std
             </a>
           </div>
