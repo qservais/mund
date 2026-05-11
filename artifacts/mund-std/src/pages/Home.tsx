@@ -47,24 +47,27 @@ const copy = {
   },
 };
 
-// ── Type tokens (after user corrections: -2px, -0.07em, lh 0.9) ────────────
+// ── Type tokens ──────────────────────────────────────────────────────────────
+// Titles: Cormorant Garamond Bold, tracking -50 = -0.05em
 const SERIF: React.CSSProperties = {
-  fontFamily: '"Times New Roman", Times, serif',
+  fontFamily: '"Cormorant Garamond", "Times New Roman", Times, serif',
   fontSize: 18,
-  fontWeight: 400,
-  letterSpacing: "-0.02em",
+  fontWeight: 700,
+  letterSpacing: "-0.05em",
   textTransform: "uppercase",
   lineHeight: 1,
 };
+// Body: Helvetica Now Display (commercial, falls back to Helvetica Neue), tracking -60 = -0.06em
 const BODY: React.CSSProperties = {
-  fontFamily: '"Inter", "Helvetica Neue", Arial, sans-serif',
-  fontSize: 16, // was 18, -2px per user
+  fontFamily: '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif',
+  fontSize: 16,
   fontWeight: 300,
-  letterSpacing: "-0.07em", // per user
-  lineHeight: 0.9, // per user
+  letterSpacing: "-0.06em",
+  lineHeight: 0.9,
 };
+// Nav: same as body
 const NAV: React.CSSProperties = {
-  fontFamily: '"Inter", "Helvetica Neue", Arial, sans-serif',
+  fontFamily: '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif',
   fontSize: 18,
   lineHeight: 0.85,
   fontWeight: 300,
