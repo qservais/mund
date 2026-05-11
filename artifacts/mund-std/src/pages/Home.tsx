@@ -1,8 +1,10 @@
 import ArtboardShell, { SERIF, BODY } from "@/components/ArtboardShell";
 import { Link } from "wouter";
 import { useLang } from "@/context/LanguageContext";
-import { plates } from "@/data/plates";
 import overlayRef from "@assets/1_1778522805215.png";
+import heroImg   from "@assets/IMG_4763_1778527475088.jpeg";
+import svc1Img   from "@assets/IMG_6053_1778527475094.jpeg";
+import svc2Img   from "@assets/IMG_6283_1778527475095.jpeg";
 
 const copy = {
   fr: {
@@ -50,12 +52,6 @@ const copy = {
 export default function Home() {
   const { lang } = useLang();
   const c = copy[lang];
-
-  // Hero: plates[1] = img05 (amaranthe/studio)
-  // Service photos: plates[4] (lignes minimales) + plates[7] (camaïeu)
-  const heroImg = plates[1].src;
-  const svc1    = plates[4].src;
-  const svc2    = plates[7].src;
 
   return (
     <ArtboardShell overlayRef={overlayRef} minHeight={2100}>
@@ -116,7 +112,7 @@ export default function Home() {
       {/* ── Service photos — below the two columns ───────────── */}
       {/* Photo 1 — below col1 */}
       <img
-        src={svc1}
+        src={svc1Img}
         alt=""
         style={{
           position: "absolute", left: 130, top: 1220,
@@ -125,7 +121,7 @@ export default function Home() {
       />
       {/* Photo 2 — below col2 */}
       <img
-        src={svc2}
+        src={svc2Img}
         alt=""
         style={{
           position: "absolute", left: 380, top: 1220,
