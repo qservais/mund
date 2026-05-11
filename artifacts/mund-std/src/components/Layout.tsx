@@ -1,9 +1,10 @@
 import { Link, useLocation } from "wouter";
 import { type ReactNode, useEffect } from "react";
 import { useLang } from "@/context/LanguageContext";
+import MobileShell from "./MobileShell";
+import { useViewportWidth, ARTBOARD_W } from "./ArtboardShell";
 
 const FONT_BODY = '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif';
-const FONT_GULDSCRIPT = '"GuldScript", cursive';
 
 const navItems = [
   { href: "/floral",      label: "work"   },
@@ -39,6 +40,7 @@ function NavLink({ href, label }: { href: string; label: string }) {
 export default function Layout({ children }: { children: ReactNode }) {
   const [location] = useLocation();
   const { lang, toggle } = useLang();
+  const viewportW = useViewportWidth();
 
   const artboardRoutes = ["/", "/floral", "/abonnements", "/past", "/about"];
   const isArtboard = artboardRoutes.includes(location);
@@ -47,6 +49,7 @@ export default function Layout({ children }: { children: ReactNode }) {
     window.scrollTo({ top: 0, behavior: "auto" });
   }, [location]);
 
+  /* ── Artboard routes — pas de wrapper ici, ArtboardShell s'en charge ── */
   if (isArtboard) {
     return (
       <div className="relative min-h-screen w-full bg-background text-foreground">
@@ -57,6 +60,18 @@ export default function Layout({ children }: { children: ReactNode }) {
     );
   }
 
+  /* ── Mobile (< 1300px) — MobileShell avec hamburger ─────────────────── */
+  if (viewportW < ARTBOARD_W) {
+    return (
+      <MobileShell>
+        <main key={location} style={{ animation: "pageFadeIn 0.25s ease forwards" }}>
+          {children}
+        </main>
+      </MobileShell>
+    );
+  }
+
+  /* ── Desktop — header fixe + footer ─────────────────────────────────── */
   return (
     <div
       style={{
@@ -80,14 +95,12 @@ export default function Layout({ children }: { children: ReactNode }) {
           alignItems: "start",
           padding: "24px clamp(16px, 10vw, 130px) 16px",
         }}>
-          {/* Left: nav */}
           <nav style={{ display: "flex", flexDirection: "column", gap: 4 }}>
             {navItems.map((item) => (
               <NavLink key={item.href} {...item} />
             ))}
           </nav>
 
-          {/* Center: SVG logo */}
           <Link
             href="/"
             data-testid="nav-brand"
@@ -100,7 +113,6 @@ export default function Layout({ children }: { children: ReactNode }) {
             />
           </Link>
 
-          {/* Right: lang toggle */}
           <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "flex-start" }}>
             <button
               onClick={toggle}
