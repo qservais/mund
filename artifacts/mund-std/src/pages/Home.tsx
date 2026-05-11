@@ -1,93 +1,148 @@
 import { Link } from "wouter";
-import { motion } from "framer-motion";
-import Hero from "@/components/sections/Hero";
-import Manifesto from "@/components/sections/Manifesto";
-import Plate from "@/components/Plate";
+import { useLang } from "@/context/LanguageContext";
 import { plates } from "@/data/plates";
 
+const copy = {
+  fr: {
+    label: "floral design",
+    desc: "mund est un studio de composition alliant les fleurs et les matériaux vivants. nous jouons avec les rythmes, le vide, l'équilibre et le déséquilibre.",
+    caption: "le végétal devient sculpture, moment, intention.",
+    servicesLabel: "nos services",
+    col1: ["abonnement professionnel", "abonnement mensuel", "bouquets"],
+    col2: ["mariages", "événements", "set design / scénographie"],
+    devisLabel: "devis & projets",
+    devisText:
+      "nous accompagnons chaque projet de manière unique. vous souhaitez en savoir plus sur notre manière de travailler ou travailler avec nous ?",
+    devisLink: "écrivez-nous",
+  },
+  en: {
+    label: "floral design",
+    desc: "mund is a composition studio combining flowers and living materials. we play with rhythms, void, balance and imbalance.",
+    caption: "the plant becomes sculpture, moment, intention.",
+    servicesLabel: "our services",
+    col1: ["professional subscription", "monthly subscription", "bouquets"],
+    col2: ["weddings", "events", "set design / scenography"],
+    devisLabel: "quotes & projects",
+    devisText:
+      "we support each project in a unique way. would you like to know more about how we work or work with us?",
+    devisLink: "write to us",
+  },
+};
+
 export default function Home() {
-  const teaser = [plates[0], plates[5], plates[8]];
+  const { lang } = useLang();
+  const c = copy[lang];
+
+  const hero = plates[0];
+  const img2 = plates[8];
+  const img3 = plates[5];
 
   return (
-    <>
-      <Hero />
-      <Manifesto />
-
-      {/* Aperçu des projets */}
-      <section className="relative w-full py-32 md:py-48 px-6 md:px-12 xl:px-24">
-        <div className="grid grid-cols-12 gap-6 mb-20 md:mb-32 items-end">
-          <div className="col-span-12 md:col-span-3 flex flex-col gap-2">
-            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/60">
-              Aperçu 003
+    <div className="px-6 md:px-8 xl:px-14">
+      {/* Hero: two-col */}
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 py-10 md:py-14" data-testid="home-hero">
+        {/* Left */}
+        <div className="flex flex-col justify-between gap-10">
+          <div className="flex flex-col gap-6">
+            <span className="font-mono text-[9px] uppercase tracking-[0.35em] text-foreground/40">
+              {c.label}
             </span>
-            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-accent">
-              03 / 15 planches
-            </span>
+            <p className="font-sans text-[11px] leading-[1.9] text-foreground/75 max-w-[38ch]">
+              {c.desc}
+            </p>
           </div>
-          <div className="col-span-12 md:col-span-9">
-            <h2 className="font-display uppercase text-[9vw] md:text-[5vw] leading-[0.95] tracking-[-0.01em] font-semibold">
-              Quelques<br />gestes récents.
-            </h2>
-          </div>
+          <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/40 italic">
+            {c.caption}
+          </p>
         </div>
 
-        <div className="grid grid-cols-12 gap-x-6 gap-y-12 md:gap-y-20">
-          <div className="col-span-12 md:col-span-4 md:col-start-1">
-            <Plate plate={teaser[0]} imgClass="aspect-[3/4]" linkable />
-          </div>
-          <div className="col-span-12 md:col-span-4 md:col-start-5 md:mt-32">
-            <Plate plate={teaser[1]} imgClass="aspect-[4/5]" linkable />
-          </div>
-          <div className="col-span-12 md:col-span-3 md:col-start-10 md:mt-12">
-            <Plate plate={teaser[2]} imgClass="aspect-[3/4]" linkable />
-          </div>
+        {/* Right: hero image */}
+        <div>
+          <img
+            src={hero.src}
+            alt={hero.alt}
+            className="w-full aspect-[4/5] object-cover"
+          />
         </div>
+      </section>
 
-        <div className="mt-24 flex justify-center">
+      <div className="h-px bg-foreground/10 my-2" />
+
+      {/* Services */}
+      <section className="py-10 md:py-12" data-testid="home-services">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <span className="font-mono text-[9px] uppercase tracking-[0.35em] text-foreground/40 md:pt-1">
+            {c.servicesLabel}
+          </span>
+          <ul className="flex flex-col gap-[10px]">
+            {c.col1.map((s) => (
+              <li
+                key={s}
+                className="font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/70"
+              >
+                {s}
+              </li>
+            ))}
+          </ul>
+          <ul className="flex flex-col gap-[10px]">
+            {c.col2.map((s) => (
+              <li
+                key={s}
+                className="font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/70"
+              >
+                {s}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <div className="h-px bg-foreground/10 my-2" />
+
+      {/* Two small images */}
+      <section className="py-10 md:py-12 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <div className="col-span-1 md:col-span-2 md:col-start-2">
+          <img
+            src={img2.src}
+            alt={img2.alt}
+            className="w-full aspect-square object-cover"
+          />
+          <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/35 mt-2">
+            {img2.title}
+          </p>
+        </div>
+        <div className="col-span-1 md:col-span-1 md:col-start-4 md:mt-16 self-start">
+          <img
+            src={img3.src}
+            alt={img3.alt}
+            className="w-full aspect-[3/4] object-cover"
+          />
+          <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/35 mt-2">
+            {img3.title}
+          </p>
+        </div>
+      </section>
+
+      <div className="h-px bg-foreground/10 my-2" />
+
+      {/* Devis CTA */}
+      <section className="py-10 md:py-14 grid grid-cols-1 md:grid-cols-3 gap-8" data-testid="home-cta">
+        <span className="font-mono text-[9px] uppercase tracking-[0.35em] text-foreground/40">
+          {c.devisLabel}
+        </span>
+        <div className="md:col-span-2 flex flex-col gap-5">
+          <p className="font-sans text-[11px] leading-[1.9] text-foreground/70 max-w-[52ch]">
+            {c.devisText}
+          </p>
           <Link
-            href="/projets"
-            className="group inline-flex items-baseline gap-4 font-mono uppercase text-xs md:text-sm tracking-[0.25em] text-foreground hover:text-accent transition-colors"
-            data-testid="link-all-projects"
+            href="/contact"
+            className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground border-b border-foreground pb-[2px] w-fit hover:text-accent hover:border-accent transition-colors"
+            data-testid="link-contact-cta"
           >
-            <span>Voir les 15 planches</span>
-            <motion.span
-              aria-hidden
-              className="inline-block"
-              initial={{ x: 0 }}
-              whileHover={{ x: 8 }}
-              transition={{ type: "spring", stiffness: 280, damping: 20 }}
-            >
-              &rarr;
-            </motion.span>
+            {c.devisLink}
           </Link>
         </div>
       </section>
-
-      {/* CTA contact */}
-      <section className="relative w-full py-32 md:py-48 px-6 md:px-12 xl:px-24 border-t border-foreground/15">
-        <div className="grid grid-cols-12 gap-6 items-end">
-          <div className="col-span-12 md:col-span-3">
-            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/60">
-              Devis & projets
-            </span>
-          </div>
-          <div className="col-span-12 md:col-span-9">
-            <h2 className="font-display uppercase text-[8vw] md:text-[4.4vw] leading-[0.95] tracking-[-0.01em] font-semibold mb-10">
-              Un événement,<br />une scénographie&nbsp;?
-            </h2>
-            <Link
-              href="/contact"
-              className="group inline-flex items-baseline gap-4 font-mono uppercase text-sm md:text-base tracking-[0.2em] text-foreground border-b border-foreground pb-1 hover:text-accent hover:border-accent transition-colors"
-              data-testid="link-contact-cta"
-            >
-              <span>Écrire au studio</span>
-              <span aria-hidden className="inline-block transition-transform group-hover:translate-x-2">
-                &rarr;
-              </span>
-            </Link>
-          </div>
-        </div>
-      </section>
-    </>
+    </div>
   );
 }

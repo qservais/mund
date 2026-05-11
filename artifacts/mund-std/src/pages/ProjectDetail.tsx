@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Link, useRoute } from "wouter";
-import { motion } from "framer-motion";
 import { getNeighbours, getPlateBySlug, resolveLayout } from "@/data/plates";
 import { LayoutA } from "@/components/project-layouts/LayoutA";
 import { LayoutB } from "@/components/project-layouts/LayoutB";
@@ -37,11 +36,11 @@ export default function ProjectDetail() {
       <div className="px-6 md:px-12 xl:px-24 pt-32 md:pt-40 pb-10 md:pb-16 grid grid-cols-12 gap-6">
         <div className="col-span-12 md:col-span-3 flex flex-col gap-2">
           <Link
-            href="/projets"
+            href="/past"
             className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/55 hover:text-accent transition-colors w-fit"
             data-testid="link-back-projets"
           >
-            ← Retour aux planches
+            ← work
           </Link>
         </div>
         <div className="col-span-12 md:col-span-9 flex flex-wrap items-baseline gap-x-6 gap-y-2 font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/60">
@@ -53,33 +52,22 @@ export default function ProjectDetail() {
       </div>
 
       <header className="px-6 md:px-12 xl:px-24 mb-8 md:mb-12 flex flex-col gap-3">
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="font-mono uppercase tracking-[0.3em] text-xs text-foreground/55"
-        >
+        <p className="font-mono uppercase tracking-[0.3em] text-xs text-foreground/55">
           {plate.tagline ?? "une planche —"}
-        </motion.p>
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.95, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+        </p>
+        <h1
           className="font-display uppercase text-[12vw] md:text-[7vw] leading-[0.92] tracking-[-0.02em] font-semibold max-w-[14ch]"
           data-testid="project-title"
         >
           {plate.title}.
-        </motion.h1>
+        </h1>
         {plate.credits && (
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.9, delay: 0.2 }}
+          <p
             className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/55 mt-2"
             data-testid="project-credits"
           >
             {plate.credits}
-          </motion.p>
+          </p>
         )}
       </header>
 

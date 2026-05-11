@@ -41,7 +41,7 @@
 }
 
 :root {
-  --background: 42 20% 94%; /* Cream/Ivory paper #F4F1EA */
+  --background: 0 0% 100%; /* White */
   --foreground: 0 0% 7%;    /* Deep ink #111111 */
   --border: 40 10% 85%;
   --input: 40 10% 85%;
