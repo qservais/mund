@@ -75,7 +75,7 @@ export default function ProjectShell({ heroSrc, heroAlt, children, mobile }: Pro
             <img
               src="/svg/mund%20studio.svg"
               alt="mund studio"
-              style={{ width: 370, display: "block" }}
+              style={{ width: 300, display: "block" }}
             />
           </Link>
 
