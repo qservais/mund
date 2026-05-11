@@ -1,8 +1,10 @@
 import ArtboardShell, { SERIF, BODY } from "@/components/ArtboardShell";
 import { Link } from "wouter";
 import { useLang } from "@/context/LanguageContext";
-import { plates } from "@/data/plates";
 import overlayRef from "@assets/work_1778525400139.png";
+import imgRight from "@assets/IMG_5685_1778527498241.jpeg";
+import imgSet1  from "@assets/IMG_5675_1778527498241.jpeg";
+import imgSet2  from "@assets/IMG_5692_1778527498242.jpeg";
 
 const copy = {
   fr: {
@@ -52,10 +54,6 @@ const copy = {
 export default function Floral() {
   const { lang } = useLang();
   const c = copy[lang];
-
-  const imgRight = plates[9].src;
-  const imgSet1  = plates[13].src;
-  const imgSet2  = plates[5].src;
 
   const bodyLines = (text: string) =>
     text.split("\n").map((l, i) => <span key={i}>{l}<br /></span>);
