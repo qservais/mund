@@ -97,7 +97,11 @@ export default function Layout({ children }: { children: ReactNode }) {
         <div className="h-px bg-foreground/10 mx-6 md:mx-8 xl:mx-14" />
       </header>
 
-      <main className="flex-1 pt-[100px] md:pt-[110px]">
+      <main
+        key={location}
+        className="flex-1 pt-[100px] md:pt-[110px]"
+        style={{ animation: "pageFadeIn 0.25s ease forwards" }}
+      >
         {children}
       </main>
 

@@ -41,7 +41,7 @@
 }
 
 :root {
-  --background: 0 0% 100%; /* White */
+  --background: 38 18% 93%; /* Warm cream paper #F2EDE5 */
   --foreground: 0 0% 7%;    /* Deep ink #111111 */
   --border: 40 10% 85%;
   --input: 40 10% 85%;
@@ -147,4 +147,9 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
