@@ -78,7 +78,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         <div style={{
           display: "grid", gridTemplateColumns: "1fr auto 1fr",
           alignItems: "start",
-          padding: "24px 130px 16px",
+          padding: "24px clamp(16px, 10vw, 130px) 16px",
         }}>
           {/* Left: nav */}
           <nav style={{ display: "flex", flexDirection: "column", gap: 4 }}>
@@ -87,22 +87,17 @@ export default function Layout({ children }: { children: ReactNode }) {
             ))}
           </nav>
 
-          {/* Center: GuldScript logo */}
+          {/* Center: SVG logo */}
           <Link
             href="/"
             data-testid="nav-brand"
-            style={{
-              fontFamily: FONT_GULDSCRIPT,
-              fontSize: 56,
-              fontWeight: "normal",
-              letterSpacing: "0.01em",
-              color: "#111",
-              textDecoration: "none",
-              lineHeight: 1,
-              whiteSpace: "nowrap",
-            }}
+            style={{ display: "block", textDecoration: "none" }}
           >
-            mund studio
+            <img
+              src="/svg/mund%20studio.svg"
+              alt="mund studio"
+              style={{ width: "clamp(160px, 28vw, 370px)", display: "block" }}
+            />
           </Link>
 
           {/* Right: lang toggle */}
@@ -126,7 +121,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             </button>
           </div>
         </div>
-        <div style={{ height: 1, backgroundColor: "rgba(0,0,0,0.1)", margin: "0 130px" }} />
+        <div style={{ height: 1, backgroundColor: "rgba(0,0,0,0.1)", margin: "0 clamp(16px, 10vw, 130px)" }} />
       </header>
 
       <main
@@ -137,7 +132,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       </main>
 
       <footer style={{
-        padding: "22px 130px",
+        padding: "22px clamp(16px, 10vw, 130px)",
         borderTop: "1px solid rgba(0,0,0,0.1)",
         display: "flex",
         justifyContent: "space-between",

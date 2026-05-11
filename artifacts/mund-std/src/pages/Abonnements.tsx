@@ -2,7 +2,7 @@ import ArtboardShell, { SERIF, BODY } from "@/components/ArtboardShell";
 import { Link } from "wouter";
 import { useLang } from "@/context/LanguageContext";
 import overlayRef from "@assets/floral_1778527882896.png";
-import imgMain from "@assets/IMG_6053_1778527475094.jpeg";
+const imgMain = "/images/svc1.webp";
 
 const copy = {
   fr: {

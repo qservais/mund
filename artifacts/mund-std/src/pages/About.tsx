@@ -1,7 +1,7 @@
 import ArtboardShell, { SERIF, BODY, GULDSCRIPT } from "@/components/ArtboardShell";
 import { useLang } from "@/context/LanguageContext";
 import overlayRef from "@assets/about_1778527941884.png";
-import julieImg from "@assets/IMG_3296_1778527976668.jpeg";
+const julieImg = "/images/julie.webp";
 
 // ── Shared horizontal anchor ─────────────────────────────
 const LEFT  = 496;

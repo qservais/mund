@@ -37,13 +37,28 @@ export const GULDSCRIPT: React.CSSProperties = {
   letterSpacing: "0.01em",
 };
 
-// Nav: work→/floral, floral→/abonnements, past→/past, about→/about  (home "/" via logo only)
+// Nav: work→/floral, floral→/abonnements, past→/past, about→/about
 const NAV_ITEMS = [
   { label: "work",   href: "/floral",      testId: "nav-work"   },
   { label: "floral", href: "/abonnements", testId: "nav-floral" },
   { label: "past",   href: "/past",        testId: "nav-past"   },
   { label: "about",  href: "/about",       testId: "nav-about"  },
 ];
+
+const ARTBOARD_W = 1300;
+
+function useViewportWidth() {
+  const [w, setW] = useState(() =>
+    typeof window !== "undefined" ? window.innerWidth : ARTBOARD_W
+  );
+  useEffect(() => {
+    const update = () => setW(window.innerWidth);
+    window.addEventListener("resize", update);
+    update();
+    return () => window.removeEventListener("resize", update);
+  }, []);
+  return w;
+}
 
 type Props = {
   children: ReactNode;
@@ -54,10 +69,14 @@ type Props = {
 export default function ArtboardShell({ children, overlayRef, minHeight = 2048 }: Props) {
   const [location] = useLocation();
   const { lang, toggle } = useLang();
+  const viewportW = useViewportWidth();
   const [overlay, setOverlay] = useState(() => {
     if (typeof window === "undefined") return false;
     return new URLSearchParams(window.location.search).get("overlay") === "1";
   });
+
+  const scale = Math.min(1, viewportW / ARTBOARD_W);
+  const scaledHeight = Math.round(minHeight * scale);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -72,111 +91,126 @@ export default function ArtboardShell({ children, overlayRef, minHeight = 2048 }
   }, []);
 
   return (
+    /* Responsive outer wrapper — clips and sizes to scaled artboard */
     <div
       style={{
-        width: 1300,
-        minHeight,
-        margin: "0 auto",
-        position: "relative",
-        backgroundColor: "#f4f4f2",
+        display: "flex",
+        justifyContent: "center",
         overflow: "hidden",
-        color: "#151515",
-        WebkitFontSmoothing: "antialiased",
+        height: scaledHeight,
+        width: "100%",
+        backgroundColor: "#f4f4f2",
       }}
     >
-      {/* Overlay reference image */}
-      {overlay && overlayRef && (
-        <img
-          src={overlayRef}
-          alt=""
+      {/* Fixed-width 1300px artboard, scaled from top-center */}
+      <div
+        style={{
+          width: ARTBOARD_W,
+          minHeight,
+          flexShrink: 0,
+          position: "relative",
+          backgroundColor: "#f4f4f2",
+          overflow: "hidden",
+          color: "#151515",
+          WebkitFontSmoothing: "antialiased",
+          transform: `scale(${scale})`,
+          transformOrigin: "top center",
+        }}
+      >
+        {/* Overlay reference image */}
+        {overlay && overlayRef && (
+          <img
+            src={overlayRef}
+            alt=""
+            style={{
+              position: "absolute", top: 0, left: 0,
+              width: ARTBOARD_W, height: minHeight,
+              opacity: 0.35, pointerEvents: "none", zIndex: 9999,
+            }}
+          />
+        )}
+
+        {/* Nav — top-left, stacked */}
+        <nav style={{ position: "absolute", top: 52, left: 130 }}>
+          {NAV_ITEMS.map(({ label, href, testId }) => {
+            const isActive = href === "/" ? location === "/" : location.startsWith(href);
+            return (
+              <Link
+                key={href}
+                href={href}
+                data-testid={testId}
+                style={{ ...NAV_STYLE, fontWeight: isActive ? 700 : 300 }}
+              >
+                {label}
+              </Link>
+            );
+          })}
+        </nav>
+
+        {/* Logo — SVG centré */}
+        <Link
+          href="/"
+          data-testid="nav-brand"
           style={{
-            position: "absolute", top: 0, left: 0,
-            width: 1300, height: minHeight,
-            opacity: 0.35, pointerEvents: "none", zIndex: 9999,
+            position: "absolute", top: 46,
+            left: "50%", transform: "translateX(-50%)",
+            display: "block", zIndex: 10, textDecoration: "none",
           }}
-        />
-      )}
-
-      {/* Nav — top-left, stacked */}
-      <nav style={{ position: "absolute", top: 52, left: 130 }}>
-        {NAV_ITEMS.map(({ label, href, testId }) => {
-          const isActive = href === "/" ? location === "/" : location.startsWith(href);
-          return (
-            <Link
-              key={href}
-              href={href}
-              data-testid={testId}
-              style={{ ...NAV_STYLE, fontWeight: isActive ? 700 : 300 }}
-            >
-              {label}
-            </Link>
-          );
-        })}
-      </nav>
-
-      {/* Logo — SVG centré */}
-      <Link
-        href="/"
-        data-testid="nav-brand"
-        style={{
-          position: "absolute", top: 46,
-          left: "50%", transform: "translateX(-50%)",
-          display: "block", zIndex: 10, textDecoration: "none",
-        }}
-      >
-        <img
-          src="/svg/mund%20studio.svg"
-          alt="mund studio"
-          style={{ width: 370, display: "block" }}
-        />
-      </Link>
-
-      {/* FR/EN toggle — top-right */}
-      <button
-        onClick={toggle}
-        data-testid="lang-toggle"
-        style={{
-          position: "absolute", top: 52, right: 130,
-          ...BODY, fontSize: 18, color: "#111",
-          background: "transparent", border: "none", padding: 0, cursor: "pointer", zIndex: 10,
-        }}
-      >
-        {lang === "fr" ? "en" : "fr"}
-      </button>
-
-      {/* Page content */}
-      {children}
-
-      {/* Footer — bas de l'artboard */}
-      <div style={{
-        position: "absolute", bottom: 0, left: 0, right: 0,
-        padding: "22px 130px",
-        borderTop: "1px solid rgba(0,0,0,0.1)",
-        display: "flex", justifyContent: "space-between", alignItems: "baseline",
-        ...BODY, fontSize: 13, color: "rgba(0,0,0,0.4)",
-      }}>
-        <span>MUND STUDIO — Rue Monulphe 7, 4000 Liège</span>
-        <span>vides et pleins / chaos et structure</span>
-        <a
-          href="https://instagram.com/mund.std"
-          target="_blank"
-          rel="noreferrer"
-          style={{ color: "rgba(0,0,0,0.4)", textDecoration: "none" }}
         >
-          @mund.std
-        </a>
-      </div>
+          <img
+            src="/svg/mund%20studio.svg"
+            alt="mund studio"
+            style={{ width: 370, display: "block" }}
+          />
+        </Link>
 
-      {/* Dev hint */}
-      {overlay && (
+        {/* FR/EN toggle — top-right */}
+        <button
+          onClick={toggle}
+          data-testid="lang-toggle"
+          style={{
+            position: "absolute", top: 52, right: 130,
+            ...BODY, fontSize: 18, color: "#111",
+            background: "transparent", border: "none", padding: 0, cursor: "pointer", zIndex: 10,
+          }}
+        >
+          {lang === "fr" ? "en" : "fr"}
+        </button>
+
+        {/* Page content */}
+        {children}
+
+        {/* Footer — bas de l'artboard */}
         <div style={{
-          position: "fixed", bottom: 12, left: 12, zIndex: 10000,
-          background: "#111", color: "#fff",
-          fontFamily: "monospace", fontSize: 11, padding: "4px 8px", opacity: 0.85,
+          position: "absolute", bottom: 0, left: 0, right: 0,
+          padding: "22px 130px",
+          borderTop: "1px solid rgba(0,0,0,0.1)",
+          display: "flex", justifyContent: "space-between", alignItems: "baseline",
+          ...BODY, fontSize: 13, color: "rgba(0,0,0,0.4)",
         }}>
-          OVERLAY ON · press "o" to toggle
+          <span>MUND STUDIO — Rue Monulphe 7, 4000 Liège</span>
+          <span>vides et pleins / chaos et structure</span>
+          <a
+            href="https://instagram.com/mund.std"
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: "rgba(0,0,0,0.4)", textDecoration: "none" }}
+          >
+            @mund.std
+          </a>
         </div>
-      )}
+
+        {/* Dev hint */}
+        {overlay && (
+          <div style={{
+            position: "fixed", bottom: 12, left: 12, zIndex: 10000,
+            background: "#111", color: "#fff",
+            fontFamily: "monospace", fontSize: 11, padding: "4px 8px", opacity: 0.85,
+          }}>
+            OVERLAY ON · press "o" to toggle
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -3,12 +3,12 @@ import { Link } from "wouter";
 import { plates } from "@/data/plates";
 import overlayRef from "@assets/past_1778525400140.png";
 
-import img1 from "@assets/FullSizeRender_1778527384373.jpeg";
-import img2 from "@assets/IMG_2681_1778527384374.jpeg";
-import img3 from "@assets/IMG_4719_1778527384375.jpeg";
-import img4 from "@assets/IMG_5685_1778527384375.jpeg";
-import img5 from "@assets/IMG_6860_1778527384375.jpeg";
-import img6 from "@assets/IMG_7362_1778527384375.jpeg";
+const img1 = "/images/past-1.webp";
+const img2 = "/images/past-2.webp";
+const img3 = "/images/past-3.webp";
+const img4 = "/images/past-4.webp";
+const img5 = "/images/past-5.webp";
+const img6 = "/images/past-6.webp";
 
 // 7 slots — 6 new images + 1 existing plate (plates[9] = bord de meuse)
 const GRID_ITEMS = [
