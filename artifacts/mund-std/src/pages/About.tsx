@@ -80,15 +80,15 @@ export default function About() {
         }}
       />
 
-      {/* ── Photo — Julie Ahn ─────────────────────────────── */}
+      {/* ── Photo — Julie Ahn (format original, pas de recadrage) ── */}
       <img
         src={julieImg}
         alt="Julie Ahn — Mund Studio"
         style={{
           position: "absolute", left: LEFT, top: 910,
-          width: 258, height: 328,
-          objectFit: "cover",
-          objectPosition: "center top",
+          width: 258,
+          height: "auto",
+          display: "block",
           zIndex: 1,
         }}
       />

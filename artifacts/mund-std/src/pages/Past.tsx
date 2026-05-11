@@ -10,15 +10,17 @@ const img4 = "/images/past-4.webp";
 const img5 = "/images/past-5.webp";
 const img6 = "/images/past-6.webp";
 
-// 7 slots — 6 new images + 1 existing plate (plates[9] = bord de meuse)
+// 003 - jardin : table de réception Lara × Thibault (im_back projet)
+// 004 - bord de meuse : planter extérieur (bord_de_meuse projet)
+// 005/006/007 : composition=orchid(img6), grappe=roses roses(img5), vitu=cheminée(img2)
 const GRID_ITEMS = [
-  { label: "001 - sapiens",       src: img1,           slug: "lara-thibault",    left: 130, top:  190, w: 260, h: 220 },
-  { label: "002 - lara",          src: img3,           slug: "ceremonie-civile", left: 435, top:  190, w: 260, h: 220 },
-  { label: "003 - jardin",        src: plates[9].src,  slug: "bord-de-meuse",    left: 640, top:  500, w: 300, h: 210 },
-  { label: "004 - bord de meuse", src: img4,           slug: "miroirs-alliums",  left: 965, top:  535, w: 220, h: 260 },
-  { label: "005 - composition",   src: img5,           slug: "lignes-minimales", left: 480, top:  775, w: 210, h: 300 },
-  { label: "006 - grappe",        src: img2,           slug: "high-contrast",    left: 730, top:  775, w: 210, h: 300 },
-  { label: "007 - vitu",          src: img6,           slug: "contraste-brut",   left: 930, top: 1130, w: 255, h: 225 },
+  { label: "001 - sapiens",       src: img4,                                        slug: "lara-thibault",   left: 130, top:  190, w: 260, h: 220 },
+  { label: "002 - lara",          src: img3,                                        slug: "lara-thibault",   left: 435, top:  190, w: 260, h: 220 },
+  { label: "003 - jardin",        src: "/images/projects/bord_de_meuse/2.webp",    slug: "bord-de-meuse",   left: 640, top:  500, w: 300, h: 210 },
+  { label: "004 - bord de meuse", src: img1,                                        slug: "bord-de-meuse",   left: 965, top:  535, w: 220, h: 260 },
+  { label: "005 - composition",   src: img6,                                        slug: "lignes-minimales",left: 480, top:  775, w: 210, h: 300 },
+  { label: "006 - grappe",        src: img5,                                        slug: "high-contrast",   left: 730, top:  775, w: 210, h: 300 },
+  { label: "007 - vitu",          src: img2,                                        slug: "contraste-brut",  left: 930, top: 1130, w: 255, h: 225 },
 ];
 
 const CAPTION: React.CSSProperties = {
