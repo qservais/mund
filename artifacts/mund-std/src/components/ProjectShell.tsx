@@ -37,58 +37,61 @@ export default function ProjectShell({ heroSrc, heroAlt, children, mobile }: Pro
       WebkitFontSmoothing: "antialiased",
     }}>
 
-      {/* ── Header identique à ArtboardShell ────────────────────────── */}
-      <header style={{
-        position: "relative",
-        height: 160,
-        backgroundColor: "#f4f4f2",
-      }}>
-        {/* Nav gauche */}
-        <nav style={{ position: "absolute", top: 52, left: 130 }}>
-          {NAV_ITEMS.map(({ label, href, testId }) => {
-            const isActive = href === "/" ? location === "/" : location.startsWith(href);
-            return (
-              <Link
-                key={href}
-                href={href}
-                data-testid={testId}
-                style={{ ...NAV_STYLE, fontWeight: isActive ? 700 : 300 }}
-              >
-                {label}
-              </Link>
-            );
-          })}
-        </nav>
+      {/* ── Header — bloc 1300px centré, identique à ArtboardShell ─── */}
+      <header style={{ backgroundColor: "#f4f4f2", height: 160, overflow: "hidden" }}>
+        <div style={{
+          position: "relative",
+          width: ARTBOARD_W,
+          height: 160,
+          margin: "0 auto",
+        }}>
+          {/* Nav gauche */}
+          <nav style={{ position: "absolute", top: 52, left: 130 }}>
+            {NAV_ITEMS.map(({ label, href, testId }) => {
+              const isActive = href === "/" ? location === "/" : location.startsWith(href);
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  data-testid={testId}
+                  style={{ ...NAV_STYLE, fontWeight: isActive ? 700 : 300 }}
+                >
+                  {label}
+                </Link>
+              );
+            })}
+          </nav>
 
-        {/* Logo centré */}
-        <Link
-          href="/"
-          data-testid="nav-brand"
-          style={{
-            position: "absolute", top: 46,
-            left: "50%", transform: "translateX(-50%)",
-            display: "block", zIndex: 10, textDecoration: "none",
-          }}
-        >
-          <img
-            src="/svg/mund%20studio.svg"
-            alt="mund studio"
-            style={{ width: 370, display: "block" }}
-          />
-        </Link>
+          {/* Logo centré dans le bloc 1300px */}
+          <Link
+            href="/"
+            data-testid="nav-brand"
+            style={{
+              position: "absolute", top: 46,
+              left: "50%", transform: "translateX(-50%)",
+              display: "block", zIndex: 10, textDecoration: "none",
+            }}
+          >
+            <img
+              src="/svg/mund%20studio.svg"
+              alt="mund studio"
+              style={{ width: 370, display: "block" }}
+            />
+          </Link>
 
-        {/* Lang toggle droite */}
-        <button
-          onClick={toggle}
-          data-testid="lang-toggle"
-          style={{
-            position: "absolute", top: 52, right: 130,
-            ...BODY, fontSize: 18, color: "#111",
-            background: "transparent", border: "none", padding: 0, cursor: "pointer", zIndex: 10,
-          }}
-        >
-          {lang === "fr" ? "en" : "fr"}
-        </button>
+          {/* Lang toggle droite */}
+          <button
+            onClick={toggle}
+            data-testid="lang-toggle"
+            style={{
+              position: "absolute", top: 52, right: 130,
+              ...BODY, fontSize: 18, color: "#111",
+              background: "transparent", border: "none", padding: 0, cursor: "pointer", zIndex: 10,
+            }}
+          >
+            {lang === "fr" ? "en" : "fr"}
+          </button>
+        </div>
       </header>
 
       {/* ── Hero plein écran sous le header ─────────────────────────── */}
