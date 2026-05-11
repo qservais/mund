@@ -82,7 +82,7 @@ export default function About() {
   const c = copy[lang];
 
   return (
-    <ArtboardShell overlayRef={overlayRef} minHeight={1460} mobile={<AboutMobile c={c} />}>
+    <ArtboardShell overlayRef={overlayRef} minHeight={1510} mobile={<AboutMobile c={c} />}>
 
       {/* ── Title ─────────────────────────────────────────── */}
       <div style={{ position: "absolute", left: LEFT, top: 200 }}>
@@ -113,28 +113,30 @@ export default function About() {
         ))}
       </div>
 
-      {/* ── Handwritten quote SVG — décalé au-dessus de la photo ──── */}
+      {/* ── Photo — Julie Ahn — wrapper fixe pour ne pas déborder sur le footer ── */}
+      <div style={{
+        position: "absolute", left: LEFT, top: 980,
+        width: 258, height: 440,
+        overflow: "hidden",
+        zIndex: 1,
+      }}>
+        <img
+          src={julieImg}
+          alt="Julie Ahn — Mund Studio"
+          style={{ width: "100%", height: "auto", display: "block" }}
+        />
+      </div>
+
+      {/* ── Texte manuscrit — 1ère ligne juste au-dessus de la photo,
+              2ème ligne qui rentre dans l'image ──────────────────── */}
       <img
         src="/svg/le%20temps%20est%20beau.svg"
         alt="le temps est beau, une petite averse"
         style={{
-          position: "absolute", left: LEFT + 10, top: 865,
-          width: 274,
-          zIndex: 2, pointerEvents: "none",
-          opacity: 0.72,
-        }}
-      />
-
-      {/* ── Photo — Julie Ahn (format original, pas de recadrage) ── */}
-      <img
-        src={julieImg}
-        alt="Julie Ahn — Mund Studio"
-        style={{
-          position: "absolute", left: LEFT, top: 990,
-          width: 258,
-          height: "auto",
-          display: "block",
-          zIndex: 1,
+          position: "absolute", left: LEFT + 6, top: 955,
+          width: 310,
+          zIndex: 3, pointerEvents: "none",
+          opacity: 0.80,
         }}
       />
 
