@@ -1,8 +1,8 @@
 import ArtboardShell, { SERIF, BODY } from "@/components/ArtboardShell";
 import { Link } from "wouter";
 import { useLang } from "@/context/LanguageContext";
-import { plates } from "@/data/plates";
-import overlayRef from "@assets/floral_1778525400140.png";
+import overlayRef from "@assets/floral_1778527882896.png";
+import imgMain from "@assets/IMG_6053_1778527475094.jpeg";
 
 const copy = {
   fr: {
@@ -36,8 +36,6 @@ const copy = {
 export default function Abonnements() {
   const { lang } = useLang();
   const c = copy[lang];
-  const imgMain = plates[4].src;
-
   const bodyLines = (text: string) =>
     text.split("\n").map((l, i) => <span key={i}>{l}<br /></span>);
 

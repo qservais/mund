@@ -37,12 +37,12 @@ export const GULDSCRIPT: React.CSSProperties = {
   letterSpacing: "0.01em",
 };
 
-// Nav: work→/ (home), floral→/floral, past→/past, about→/about
+// Nav: work→/floral, floral→/abonnements, past→/past, about→/about  (home "/" via logo only)
 const NAV_ITEMS = [
-  { label: "work",   href: "/",       testId: "nav-work"   },
-  { label: "floral", href: "/floral", testId: "nav-floral" },
-  { label: "past",   href: "/past",   testId: "nav-past"   },
-  { label: "about",  href: "/about",  testId: "nav-about"  },
+  { label: "work",   href: "/floral",      testId: "nav-work"   },
+  { label: "floral", href: "/abonnements", testId: "nav-floral" },
+  { label: "past",   href: "/past",        testId: "nav-past"   },
+  { label: "about",  href: "/about",       testId: "nav-about"  },
 ];
 
 type Props = {

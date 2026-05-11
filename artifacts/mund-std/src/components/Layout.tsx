@@ -6,10 +6,10 @@ const FONT_BODY = '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, 
 const FONT_GULDSCRIPT = '"GuldScript", cursive';
 
 const navItems = [
-  { href: "/",       label: "work"   },
-  { href: "/floral", label: "floral" },
-  { href: "/past",   label: "past"   },
-  { href: "/about",  label: "about"  },
+  { href: "/floral",      label: "work"   },
+  { href: "/abonnements", label: "floral" },
+  { href: "/past",        label: "past"   },
+  { href: "/about",       label: "about"  },
 ];
 
 function NavLink({ href, label }: { href: string; label: string }) {
