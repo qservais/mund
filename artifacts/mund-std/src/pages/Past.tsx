@@ -10,9 +10,6 @@ const img4 = "/images/past-4.webp";
 const img5 = "/images/past-5.webp";
 const img6 = "/images/past-6.webp";
 
-// 003 - jardin : table de réception Lara × Thibault (im_back projet)
-// 004 - bord de meuse : planter extérieur (bord_de_meuse projet)
-// 005/006/007 : composition=orchid(img6), grappe=roses roses(img5), vitu=cheminée(img2)
 const GRID_ITEMS = [
   { label: "001 - sapiens",       src: img4,                                        slug: "lara-thibault",   left: 130, top:  190, w: 260, h: 220 },
   { label: "002 - lara",          src: img3,                                        slug: "lara-thibault",   left: 435, top:  190, w: 260, h: 220 },
@@ -32,9 +29,43 @@ const CAPTION: React.CSSProperties = {
   marginTop: 6,
 };
 
+const F = '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif';
+
+function PastMobile() {
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px 12px" }}>
+      {GRID_ITEMS.map(({ label, src, slug }) => (
+        <Link
+          key={label}
+          href={`/projets/${slug}`}
+          style={{ display: "block", textDecoration: "none" }}
+        >
+          <img
+            src={src}
+            alt={label}
+            loading="lazy"
+            style={{ width: "100%", aspectRatio: "4/3", objectFit: "cover", display: "block" }}
+          />
+          <div style={{
+            fontFamily: F,
+            fontSize: 12,
+            fontWeight: 300,
+            letterSpacing: "-0.06em",
+            lineHeight: 1,
+            color: "#151515",
+            marginTop: 6,
+          }}>
+            {label}
+          </div>
+        </Link>
+      ))}
+    </div>
+  );
+}
+
 export default function Past() {
   return (
-    <ArtboardShell overlayRef={overlayRef} minHeight={1600}>
+    <ArtboardShell overlayRef={overlayRef} minHeight={1600} mobile={<PastMobile />}>
       {GRID_ITEMS.map(({ label, src, slug, left, top, w, h }) => (
         <div key={label} style={{ position: "absolute", left, top }}>
           <Link href={`/projets/${slug}`} style={{ display: "block", textDecoration: "none" }}>

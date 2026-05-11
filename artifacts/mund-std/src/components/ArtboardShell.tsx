@@ -1,6 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Link, useLocation } from "wouter";
 import { useLang } from "@/context/LanguageContext";
+import MobileShell from "./MobileShell";
 
 // ── Design tokens ────────────────────────────────────────────────────────────
 export const SERIF: React.CSSProperties = {
@@ -37,7 +38,6 @@ export const GULDSCRIPT: React.CSSProperties = {
   letterSpacing: "0.01em",
 };
 
-// Nav: work→/floral, floral→/abonnements, past→/past, about→/about
 const NAV_ITEMS = [
   { label: "work",   href: "/floral",      testId: "nav-work"   },
   { label: "floral", href: "/abonnements", testId: "nav-floral" },
@@ -45,9 +45,9 @@ const NAV_ITEMS = [
   { label: "about",  href: "/about",       testId: "nav-about"  },
 ];
 
-const ARTBOARD_W = 1300;
+export const ARTBOARD_W = 1300;
 
-function useViewportWidth() {
+export function useViewportWidth() {
   const [w, setW] = useState(() =>
     typeof window !== "undefined" ? window.innerWidth : ARTBOARD_W
   );
@@ -64,9 +64,10 @@ type Props = {
   children: ReactNode;
   overlayRef?: string;
   minHeight?: number;
+  mobile?: ReactNode;
 };
 
-export default function ArtboardShell({ children, overlayRef, minHeight = 2048 }: Props) {
+export default function ArtboardShell({ children, overlayRef, minHeight = 2048, mobile }: Props) {
   const [location] = useLocation();
   const { lang, toggle } = useLang();
   const viewportW = useViewportWidth();
@@ -74,9 +75,6 @@ export default function ArtboardShell({ children, overlayRef, minHeight = 2048 }
     if (typeof window === "undefined") return false;
     return new URLSearchParams(window.location.search).get("overlay") === "1";
   });
-
-  const scale = Math.min(1, viewportW / ARTBOARD_W);
-  const scaledHeight = Math.round(minHeight * scale);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -90,8 +88,16 @@ export default function ArtboardShell({ children, overlayRef, minHeight = 2048 }
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  // ── Mobile path: flow layout, no scaling ──────────────────────────────────
+  if (viewportW < ARTBOARD_W && mobile !== undefined) {
+    return <MobileShell>{mobile}</MobileShell>;
+  }
+
+  // ── Desktop path: pixel-perfect 1300px artboard, unchanged ───────────────
+  const scale = Math.min(1, viewportW / ARTBOARD_W);
+  const scaledHeight = Math.round(minHeight * scale);
+
   return (
-    /* Responsive outer wrapper — clips and sizes to scaled artboard */
     <div
       style={{
         display: "flex",
@@ -102,7 +108,6 @@ export default function ArtboardShell({ children, overlayRef, minHeight = 2048 }
         backgroundColor: "#f4f4f2",
       }}
     >
-      {/* Fixed-width 1300px artboard, scaled from top-center */}
       <div
         style={{
           width: ARTBOARD_W,
@@ -117,7 +122,6 @@ export default function ArtboardShell({ children, overlayRef, minHeight = 2048 }
           transformOrigin: "top center",
         }}
       >
-        {/* Overlay reference image */}
         {overlay && overlayRef && (
           <img
             src={overlayRef}
@@ -130,7 +134,6 @@ export default function ArtboardShell({ children, overlayRef, minHeight = 2048 }
           />
         )}
 
-        {/* Nav — top-left, stacked */}
         <nav style={{ position: "absolute", top: 52, left: 130 }}>
           {NAV_ITEMS.map(({ label, href, testId }) => {
             const isActive = href === "/" ? location === "/" : location.startsWith(href);
@@ -147,7 +150,6 @@ export default function ArtboardShell({ children, overlayRef, minHeight = 2048 }
           })}
         </nav>
 
-        {/* Logo — SVG centré */}
         <Link
           href="/"
           data-testid="nav-brand"
@@ -164,7 +166,6 @@ export default function ArtboardShell({ children, overlayRef, minHeight = 2048 }
           />
         </Link>
 
-        {/* FR/EN toggle — top-right */}
         <button
           onClick={toggle}
           data-testid="lang-toggle"
@@ -177,10 +178,8 @@ export default function ArtboardShell({ children, overlayRef, minHeight = 2048 }
           {lang === "fr" ? "en" : "fr"}
         </button>
 
-        {/* Page content */}
         {children}
 
-        {/* Footer — bas de l'artboard */}
         <div style={{
           position: "absolute", bottom: 0, left: 0, right: 0,
           padding: "22px 130px",
@@ -200,7 +199,6 @@ export default function ArtboardShell({ children, overlayRef, minHeight = 2048 }
           </a>
         </div>
 
-        {/* Dev hint */}
         {overlay && (
           <div style={{
             position: "fixed", bottom: 12, left: 12, zIndex: 10000,

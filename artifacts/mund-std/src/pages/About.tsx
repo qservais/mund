@@ -3,7 +3,6 @@ import { useLang } from "@/context/LanguageContext";
 import overlayRef from "@assets/about_1778527941884.png";
 const julieImg = "/images/julie.webp";
 
-// ── Shared horizontal anchor ─────────────────────────────
 const LEFT  = 496;
 const W_BIO = 520;
 const W_COL = 220;
@@ -32,12 +31,58 @@ const copy = {
   },
 };
 
+const F = '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif';
+const S = '"Cormorant Garamond", "Times New Roman", Times, serif';
+
+function AboutMobile({ c }: { c: typeof copy.fr }) {
+  return (
+    <div>
+      <img
+        src={julieImg}
+        alt="Julie Ahn — Mund Studio"
+        style={{ width: "60%", maxWidth: 220, height: "auto", display: "block", marginBottom: 24 }}
+      />
+
+      <div style={{ marginBottom: 20 }}>
+        {c.titleLines.map((line) => (
+          <div key={line} style={{ fontFamily: S, fontSize: 20, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 2 }}>
+            {line}
+          </div>
+        ))}
+      </div>
+
+      <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.65, margin: "0 0 12px" }}>{c.bio1}</p>
+      <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.65, margin: "0 0 12px" }}>{c.bio2}</p>
+      <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.65, margin: "0 0 28px" }}>{c.bio3}</p>
+
+      <div style={{ height: 1, backgroundColor: "rgba(0,0,0,0.15)", marginBottom: 24 }} />
+
+      <p style={{ fontFamily: F, fontSize: 14, fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1.6, margin: "0 0 14px", color: "rgba(0,0,0,0.7)" }}>{c.col1}</p>
+      <p style={{ fontFamily: F, fontSize: 14, fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1.6, margin: "0 0 28px", color: "rgba(0,0,0,0.7)" }}>{c.col2}</p>
+
+      <div style={{ height: 1, backgroundColor: "rgba(0,0,0,0.15)", marginBottom: 24 }} />
+
+      <div style={{ marginBottom: 16 }}>
+        {c.vides.map((l) => (
+          <div key={l} style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.5 }}>{l}</div>
+        ))}
+      </div>
+
+      <img
+        src="/svg/le%20temps%20est%20beau.svg"
+        alt="le temps est beau, une petite averse"
+        style={{ width: "clamp(160px, 55vw, 240px)", display: "block", opacity: 0.72 }}
+      />
+    </div>
+  );
+}
+
 export default function About() {
   const { lang } = useLang();
   const c = copy[lang];
 
   return (
-    <ArtboardShell overlayRef={overlayRef} minHeight={1350}>
+    <ArtboardShell overlayRef={overlayRef} minHeight={1350} mobile={<AboutMobile c={c} />}>
 
       {/* ── Title ─────────────────────────────────────────── */}
       <div style={{ position: "absolute", left: LEFT, top: 200 }}>

@@ -49,12 +49,82 @@ const copy = {
   },
 };
 
+const F = '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif';
+const S = '"Cormorant Garamond", "Times New Roman", Times, serif';
+
+function HomeMobile({ c }: { c: typeof copy.fr }) {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+      <img
+        src={heroImg}
+        alt=""
+        style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", display: "block", marginBottom: 28 }}
+        data-testid="home-hero"
+      />
+
+      <div style={{ marginBottom: 32 }}>
+        <div style={{ fontFamily: S, fontSize: 20, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 }}>
+          {c.floralTitle}
+        </div>
+        <p style={{ fontFamily: F, fontSize: 16, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.6, margin: 0, marginBottom: 12 }}>
+          {c.floralBody.join(" ")}
+        </p>
+        <p style={{ fontFamily: F, fontSize: 14, fontWeight: 300, letterSpacing: "-0.04em", fontStyle: "italic", lineHeight: 1.5, margin: 0, color: "rgba(0,0,0,0.5)", textAlign: "right" }}>
+          {c.caption.join(" ")}
+        </p>
+      </div>
+
+      <div style={{ height: 1, backgroundColor: "rgba(0,0,0,0.15)", marginBottom: 28 }} />
+
+      <div style={{ marginBottom: 32 }}>
+        <div style={{ fontFamily: S, fontSize: 20, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 }}>
+          {c.servicesTitle}
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+          <div>
+            {c.col1.map((s, i) => (
+              <div key={i} style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.65 }}>{s}</div>
+            ))}
+          </div>
+          <div>
+            {c.col2.map((s, i) => (
+              <div key={i} style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.65 }}>{s}</div>
+            ))}
+          </div>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginTop: 20 }}>
+          <img src={svc1Img} alt="" style={{ width: "100%", aspectRatio: "1", objectFit: "cover", display: "block" }} />
+          <img src={svc2Img} alt="" style={{ width: "100%", aspectRatio: "1", objectFit: "cover", display: "block" }} />
+        </div>
+      </div>
+
+      <div style={{ height: 1, backgroundColor: "rgba(0,0,0,0.15)", marginBottom: 28 }} />
+
+      <div data-testid="home-cta">
+        <div style={{ fontFamily: S, fontSize: 20, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 }}>
+          {c.devisTitle}
+        </div>
+        <p style={{ fontFamily: F, fontSize: 16, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.6, margin: 0, marginBottom: 16 }}>
+          {c.devisBody.join(" ")}
+        </p>
+        <Link
+          href="/contact"
+          data-testid="link-contact-cta"
+          style={{ fontFamily: F, fontSize: 16, fontWeight: 300, letterSpacing: "-0.05em", color: "#151515", textDecoration: "underline", textUnderlineOffset: 3 }}
+        >
+          {c.devisCta}
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   const { lang } = useLang();
   const c = copy[lang];
 
   return (
-    <ArtboardShell overlayRef={overlayRef} minHeight={2100}>
+    <ArtboardShell overlayRef={overlayRef} minHeight={2100} mobile={<HomeMobile c={c} />}>
 
       {/* ── Hero image — right side ──────────────────────────── */}
       <img
@@ -92,25 +162,19 @@ export default function Home() {
       }} />
 
       {/* ── NOS SERVICES ────────────────────────────────────── */}
-      {/* Title */}
       <div style={{ position: "absolute", left: 130, top: 1040 }}>
         <div style={{ ...SERIF, marginBottom: 16 }}>{c.servicesTitle}</div>
-
-        {/* Col 1: abonnements */}
         <div style={{ ...BODY, lineHeight: 1.55 }}>
           {c.col1.map((s, i) => <div key={i}>{s}</div>)}
         </div>
       </div>
 
-      {/* Col 2: mariages / evenements / set design / scénographie */}
       <div style={{ position: "absolute", left: 380, top: 1065 }}>
         <div style={{ ...BODY, lineHeight: 1.55 }}>
           {c.col2.map((s, i) => <div key={i}>{s}</div>)}
         </div>
       </div>
 
-      {/* ── Service photos — below the two columns ───────────── */}
-      {/* Photo 1 — below col1 */}
       <img
         src={svc1Img}
         alt=""
@@ -119,7 +183,6 @@ export default function Home() {
           width: 230, height: 230, objectFit: "cover",
         }}
       />
-      {/* Photo 2 — below col2 */}
       <img
         src={svc2Img}
         alt=""

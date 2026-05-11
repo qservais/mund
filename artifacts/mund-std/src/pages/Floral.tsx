@@ -51,6 +51,62 @@ const copy = {
   },
 };
 
+const F = '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif';
+const S = '"Cormorant Garamond", "Times New Roman", Times, serif';
+
+const mTitle: React.CSSProperties = { fontFamily: S, fontSize: 20, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 };
+const mBody: React.CSSProperties = { fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.65, margin: 0, marginBottom: 12 };
+const mItalic: React.CSSProperties = { fontFamily: F, fontSize: 14, fontWeight: 300, letterSpacing: "-0.04em", fontStyle: "italic", lineHeight: 1.5, margin: 0, color: "rgba(0,0,0,0.55)", textAlign: "right" };
+const mLink: React.CSSProperties = { fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", color: "#151515", textDecoration: "none" };
+const mSection: React.CSSProperties = { marginBottom: 40 };
+const mDivider: React.CSSProperties = { height: 1, backgroundColor: "rgba(0,0,0,0.15)", margin: "28px 0" };
+
+function FloralMobile({ c }: { c: typeof copy.fr }) {
+  const bodyLines = (text: string) => text.split("\n").join(" ");
+  return (
+    <div>
+      <div style={mSection}>
+        <div style={mTitle}>{c.mariagesTitle}</div>
+        <img src={imgRight} alt="" style={{ width: "100%", aspectRatio: "1", objectFit: "cover", display: "block", marginBottom: 16 }} />
+        <p style={mBody}>{bodyLines(c.mariagesBody)}</p>
+        <p style={mItalic}>{c.mariagesItalic}</p>
+        <Link href="/contact" style={{ ...mLink, display: "block", marginTop: 12 }}>{c.mariagesLink}</Link>
+      </div>
+
+      <div style={mDivider} />
+
+      <div style={mSection}>
+        <div style={mTitle}>{c.eventsTitle}</div>
+        <p style={mBody}>{bodyLines(c.eventsBody)}</p>
+        <p style={mItalic}>{c.eventsItalic}</p>
+        <Link href="/contact" style={{ ...mLink, display: "block", marginTop: 12 }}>{c.eventsLink}</Link>
+      </div>
+
+      <div style={mDivider} />
+
+      <div style={mSection}>
+        <div style={mTitle}>{c.setTitle}</div>
+        <p style={mBody}>{bodyLines(c.setBody)}</p>
+        <p style={mItalic}>{c.setItalic}</p>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, margin: "16px 0" }}>
+          <img src={imgSet1} alt="" style={{ width: "100%", aspectRatio: "4/5", objectFit: "cover", display: "block" }} />
+          <img src={imgSet2} alt="" style={{ width: "100%", aspectRatio: "4/5", objectFit: "cover", display: "block" }} />
+        </div>
+        <Link href="/contact" style={{ ...mLink, display: "block" }}>{c.setLink}</Link>
+      </div>
+
+      <div style={mDivider} />
+
+      <div style={{ ...mSection, marginBottom: 0 }}>
+        <div style={mTitle}>{c.globalTitle}</div>
+        <p style={mBody}>{bodyLines(c.globalBody)}</p>
+        <p style={mItalic}>{c.globalItalic}</p>
+        <Link href="/contact" style={{ ...mLink, display: "block", marginTop: 12 }}>{c.globalLink}</Link>
+      </div>
+    </div>
+  );
+}
+
 export default function Floral() {
   const { lang } = useLang();
   const c = copy[lang];
@@ -59,7 +115,7 @@ export default function Floral() {
     text.split("\n").map((l, i) => <span key={i}>{l}<br /></span>);
 
   return (
-    <ArtboardShell overlayRef={overlayRef} minHeight={2200}>
+    <ArtboardShell overlayRef={overlayRef} minHeight={2200} mobile={<FloralMobile c={c} />}>
 
       {/* ── MARIAGES ─────────────────────────────────────── */}
       <div style={{ position: "absolute", left: 130, top: 180, width: 600 }}>
@@ -73,14 +129,13 @@ export default function Floral() {
         </p>
       </div>
 
-      {/* Image top right — left 815, top 165, 360×360 */}
       <img
         src={imgRight}
         alt=""
         style={{ position: "absolute", left: 815, top: 165, width: 360, height: 360, objectFit: "cover" }}
       />
 
-      {/* ── EVENEMENTS ───────────────────────────────────── left 570, top 545, right-aligned */}
+      {/* ── EVENEMENTS ───────────────────────────────────── */}
       <div style={{ position: "absolute", left: 570, top: 545, width: 600, textAlign: "right" }}>
         <div style={{ ...SERIF, marginBottom: 20 }}>{c.eventsTitle}</div>
         <p style={{ ...BODY, margin: 0, marginBottom: 22 }}>{bodyLines(c.eventsBody)}</p>
@@ -92,7 +147,7 @@ export default function Floral() {
         </Link>
       </div>
 
-      {/* ── SET DESIGN ───────────────────────────────────── left 140, top 730 */}
+      {/* ── SET DESIGN ───────────────────────────────────── */}
       <div style={{ position: "absolute", left: 140, top: 730, width: 1030 }}>
         <div style={{ ...SERIF, marginBottom: 20 }}>{c.setTitle}</div>
         <p style={{ ...BODY, margin: 0, marginBottom: 22 }}>{bodyLines(c.setBody)}</p>
@@ -104,11 +159,10 @@ export default function Floral() {
         </Link>
       </div>
 
-      {/* Two images — left 140/500, top 925, 340×390 */}
       <img src={imgSet1} alt="" style={{ position: "absolute", left: 140, top: 925, width: 340, height: 390, objectFit: "cover" }} />
       <img src={imgSet2} alt="" style={{ position: "absolute", left: 500, top: 925, width: 340, height: 390, objectFit: "cover" }} />
 
-      {/* ── UNE VISION GLOBALE ───────────────────────────── left 140, top 1415 */}
+      {/* ── UNE VISION GLOBALE ───────────────────────────── */}
       <div style={{ position: "absolute", left: 140, top: 1415, width: 930 }}>
         <div style={{ ...SERIF, marginBottom: 20 }}>{c.globalTitle}</div>
         <p style={{ ...BODY, margin: 0, marginBottom: 22 }}>{bodyLines(c.globalBody)}</p>
@@ -117,7 +171,6 @@ export default function Floral() {
         </Link>
       </div>
 
-      {/* Phrase italic droite — "composer au-delà du floral." */}
       <div style={{
         position: "absolute", left: 700, top: 1510, width: 460, textAlign: "right",
         ...SERIF, fontWeight: 400, textTransform: "none", fontStyle: "italic", fontSize: 16,
