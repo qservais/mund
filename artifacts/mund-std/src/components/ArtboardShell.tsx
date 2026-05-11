@@ -77,6 +77,7 @@ export default function ArtboardShell({ children, overlayRef, minHeight = 2048, 
   });
 
   useEffect(() => {
+    if (viewportW < ARTBOARD_W) return;
     const onKey = (e: KeyboardEvent) => {
       if ((e.key === "o" || e.key === "O") && !e.metaKey && !e.ctrlKey) {
         const tag = (e.target as HTMLElement)?.tagName;
@@ -86,7 +87,7 @@ export default function ArtboardShell({ children, overlayRef, minHeight = 2048, 
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [viewportW]);
 
   // ── Mobile path: flow layout, no scaling ──────────────────────────────────
   if (viewportW < ARTBOARD_W && mobile !== undefined) {
