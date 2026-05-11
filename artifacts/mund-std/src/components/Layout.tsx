@@ -42,7 +42,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   const { lang, toggle } = useLang();
   const viewportW = useViewportWidth();
 
-  const artboardRoutes = ["/", "/floral", "/abonnements", "/past", "/about"];
+  const artboardRoutes = ["/", "/floral", "/abonnements", "/past", "/about", "/contact"];
   const isArtboard = artboardRoutes.includes(location);
 
   useEffect(() => {
