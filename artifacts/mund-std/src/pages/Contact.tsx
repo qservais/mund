@@ -1,6 +1,34 @@
 import { useState, type FormEvent } from "react";
 import { useLang } from "@/context/LanguageContext";
 
+// ── Typography tokens (match the rest of the site) ──────────
+const FF = '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif';
+
+const LABEL: React.CSSProperties = {
+  fontFamily: FF, fontWeight: 300, fontSize: 9,
+  textTransform: "uppercase", letterSpacing: "0.32em",
+  color: "rgba(0,0,0,0.40)", lineHeight: 1,
+};
+const BODY_SM: React.CSSProperties = {
+  fontFamily: FF, fontWeight: 300, fontSize: 13,
+  letterSpacing: "-0.04em", lineHeight: 1.7,
+  color: "rgba(0,0,0,0.65)",
+};
+const FIELD_LABEL: React.CSSProperties = {
+  fontFamily: FF, fontWeight: 300, fontSize: 9,
+  textTransform: "uppercase", letterSpacing: "0.28em",
+  color: "rgba(0,0,0,0.45)", lineHeight: 1,
+  display: "flex", alignItems: "baseline", justifyContent: "space-between",
+};
+const INPUT: React.CSSProperties = {
+  fontFamily: FF, fontWeight: 300, fontSize: 13,
+  letterSpacing: "-0.04em", lineHeight: 1.7,
+  color: "#151515", background: "transparent",
+  border: "none", borderBottom: "1px solid rgba(0,0,0,0.18)",
+  paddingBottom: 10, paddingTop: 2,
+  width: "100%", outline: "none",
+};
+
 const copy = {
   fr: {
     header: "contact",
@@ -12,11 +40,11 @@ const copy = {
     direction: "Direction",
     directionText: ["Julie Ahn,", "architecte & designer florale."],
     fields: [
-      { name: "nom",     label: "Votre nom",         type: "text",  placeholder: "Prénom & nom",                                          required: true  },
-      { name: "email",   label: "Email",              type: "email", placeholder: "vous@exemple.be",                                       required: true  },
-      { name: "type",    label: "Nature du projet",   type: "text",  placeholder: "Mariage, événement, scénographie…",                     required: false },
-      { name: "date",    label: "Date envisagée",     type: "text",  placeholder: "Saison, mois, journée…",                               required: false },
-      { name: "message", label: "Votre message",      type: "text",  placeholder: "Décrivez le lieu, le nombre d'invités, l'ambiance…",    required: true, multiline: true },
+      { name: "nom",     label: "Votre nom",       type: "text",  placeholder: "Prénom & nom",                                        required: true  },
+      { name: "email",   label: "Email",            type: "email", placeholder: "vous@exemple.be",                                     required: true  },
+      { name: "type",    label: "Nature du projet", type: "text",  placeholder: "Mariage, événement, scénographie…",                   required: false },
+      { name: "date",    label: "Date envisagée",   type: "text",  placeholder: "Saison, mois, journée…",                             required: false },
+      { name: "message", label: "Votre message",    type: "text",  placeholder: "Décrivez le lieu, le nombre d'invités, l'ambiance…", required: true, multiline: true },
     ],
     note:    "Réponse sous 48h, du mardi au samedi.",
     submit:  "Envoyer",
@@ -35,11 +63,11 @@ const copy = {
     direction: "Direction",
     directionText: ["Julie Ahn,", "architect & floral designer."],
     fields: [
-      { name: "nom",     label: "Your name",          type: "text",  placeholder: "First & last name",                                    required: true  },
-      { name: "email",   label: "Email",              type: "email", placeholder: "you@example.com",                                      required: true  },
-      { name: "type",    label: "Project type",       type: "text",  placeholder: "Wedding, event, scenography…",                        required: false },
-      { name: "date",    label: "Planned date",       type: "text",  placeholder: "Season, month, day…",                                 required: false },
-      { name: "message", label: "Your message",       type: "text",  placeholder: "Describe the venue, number of guests, atmosphere…",   required: true, multiline: true },
+      { name: "nom",     label: "Your name",     type: "text",  placeholder: "First & last name",                                  required: true  },
+      { name: "email",   label: "Email",          type: "email", placeholder: "you@example.com",                                    required: true  },
+      { name: "type",    label: "Project type",   type: "text",  placeholder: "Wedding, event, scenography…",                      required: false },
+      { name: "date",    label: "Planned date",   type: "text",  placeholder: "Season, month, day…",                              required: false },
+      { name: "message", label: "Your message",   type: "text",  placeholder: "Describe the venue, guests, atmosphere…",          required: true, multiline: true },
     ],
     note:    "We reply within 48h, Tuesday to Saturday.",
     submit:  "Send",
@@ -60,158 +88,138 @@ export default function Contact() {
     e.preventDefault();
     setSubmitted(true);
   }
-
-  function reset() {
-    setValues({});
-    setSubmitted(false);
-  }
+  function reset() { setValues({}); setSubmitted(false); }
 
   return (
-    <section className="relative w-full pt-10 pb-24 px-6 md:px-8 xl:px-14">
-      {/* Header */}
-      <div className="border-b border-foreground/10 pb-8 mb-12">
-        <span className="font-mono text-[9px] uppercase tracking-[0.35em] text-foreground/40">
-          {c.header}
-        </span>
+    <section style={{ position: "relative", width: "100%", paddingTop: 40, paddingBottom: 96, paddingLeft: 56, paddingRight: 56 }}>
+
+      {/* ── Header ──────────────────────────────────────────── */}
+      <div style={{ borderBottom: "1px solid rgba(0,0,0,0.10)", paddingBottom: 32, marginBottom: 48 }}>
+        <span style={{ ...LABEL }}>{c.header}</span>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-x-6 gap-y-12">
-        {/* Left — coordinates */}
-        <aside className="md:col-span-4 flex flex-col gap-8">
-          <div className="flex flex-col gap-2">
-            <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/40">
-              {c.atelier}
-            </span>
-            <p className="font-sans text-[11px] leading-[1.8] text-foreground/65">
-              {c.adresse.map((line, i) => (
-                <span key={i}>{line}{i < c.adresse.length - 1 && <br />}</span>
-              ))}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 48px" }}>
+
+        {/* ── Left — coordonnées ──────────────────────────── */}
+        <aside style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            <span style={LABEL}>{c.atelier}</span>
+            <p style={{ ...BODY_SM, margin: 0 }}>
+              {c.adresse.map((line, i) => <span key={i}>{line}{i < c.adresse.length - 1 && <br />}</span>)}
             </p>
           </div>
-          <div className="flex flex-col gap-2">
-            <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/40">
-              {c.ouverture}
-            </span>
-            <p className="font-sans text-[11px] leading-[1.8] text-foreground/65">
-              {c.horaires[0]}<br />{c.horaires[1]}
-            </p>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            <span style={LABEL}>{c.ouverture}</span>
+            <p style={{ ...BODY_SM, margin: 0 }}>{c.horaires[0]}<br />{c.horaires[1]}</p>
           </div>
-          <div className="flex flex-col gap-2">
-            <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/40">
-              {c.reseaux}
-            </span>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            <span style={LABEL}>{c.reseaux}</span>
             <a
               href="https://instagram.com/mund.std"
-              target="_blank"
-              rel="noreferrer"
-              className="font-sans text-[11px] leading-[1.8] text-foreground/65 hover:text-accent transition-colors w-fit"
+              target="_blank" rel="noreferrer"
               data-testid="link-instagram"
+              style={{ ...BODY_SM, textDecoration: "none" }}
             >
               Instagram — @mund.std
             </a>
             <a
               href="https://www.facebook.com/p/Mund-Std-61561226727135/"
-              target="_blank"
-              rel="noreferrer"
-              className="font-sans text-[11px] leading-[1.8] text-foreground/65 hover:text-accent transition-colors w-fit"
+              target="_blank" rel="noreferrer"
               data-testid="link-facebook"
+              style={{ ...BODY_SM, textDecoration: "none" }}
             >
               Facebook — Mund Std
             </a>
           </div>
-          <div className="flex flex-col gap-2 pt-4 border-t border-foreground/10">
-            <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent">
-              {c.direction}
-            </span>
-            <p className="font-sans text-[11px] leading-[1.8] text-foreground/65">
-              {c.directionText[0]}<br />{c.directionText[1]}
-            </p>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 8, paddingTop: 16, borderTop: "1px solid rgba(0,0,0,0.10)" }}>
+            <span style={{ ...LABEL, color: "#c0392b" }}>{c.direction}</span>
+            <p style={{ ...BODY_SM, margin: 0 }}>{c.directionText[0]}<br />{c.directionText[1]}</p>
           </div>
+
         </aside>
 
-        {/* Right — form */}
-        <div className="md:col-span-7 md:col-start-6">
+        {/* ── Right — formulaire ──────────────────────────── */}
+        <div>
           {!submitted ? (
-            <form
-              onSubmit={handleSubmit}
-              className="flex flex-col gap-8"
-              data-testid="form-contact"
-            >
+            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 32 }} data-testid="form-contact">
+
               {c.fields.map((field, i) => (
-                <div key={field.name} className="group relative flex flex-col gap-3">
-                  <label
-                    htmlFor={field.name}
-                    className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/45 flex items-baseline justify-between"
-                  >
+                <div key={field.name} style={{ position: "relative", display: "flex", flexDirection: "column", gap: 12 }}>
+                  <label htmlFor={field.name} style={FIELD_LABEL}>
                     <span>{String(i + 1).padStart(2, "0")} — {field.label}</span>
-                    {field.required && <span className="text-accent">*</span>}
+                    {field.required && <span style={{ color: "#c0392b" }}>*</span>}
                   </label>
                   {"multiline" in field && field.multiline ? (
                     <textarea
-                      id={field.name}
-                      name={field.name}
+                      id={field.name} name={field.name}
                       required={field.required}
                       placeholder={field.placeholder}
                       rows={5}
                       value={values[field.name] ?? ""}
-                      onChange={(e) =>
-                        setValues((v) => ({ ...v, [field.name]: e.target.value }))
-                      }
-                      className="peer w-full bg-transparent border-b border-foreground/20 pb-3 pt-1 font-sans text-[11px] leading-[1.8] text-foreground placeholder:text-foreground/25 focus:outline-none focus:border-foreground transition-colors resize-none"
+                      onChange={(e) => setValues((v) => ({ ...v, [field.name]: e.target.value }))}
                       data-testid={`input-${field.name}`}
+                      style={{ ...INPUT, resize: "none" }}
                     />
                   ) : (
                     <input
-                      id={field.name}
-                      type={field.type}
-                      name={field.name}
+                      id={field.name} type={field.type} name={field.name}
                       required={field.required}
                       placeholder={field.placeholder}
                       value={values[field.name] ?? ""}
-                      onChange={(e) =>
-                        setValues((v) => ({ ...v, [field.name]: e.target.value }))
-                      }
-                      className="peer w-full bg-transparent border-b border-foreground/20 pb-3 pt-1 font-sans text-[11px] text-foreground placeholder:text-foreground/25 focus:outline-none focus:border-foreground transition-colors"
+                      onChange={(e) => setValues((v) => ({ ...v, [field.name]: e.target.value }))}
                       data-testid={`input-${field.name}`}
+                      style={INPUT}
                     />
                   )}
-                  <span className="pointer-events-none absolute left-0 -bottom-px h-px bg-accent w-0 peer-focus:w-full transition-[width] duration-500 ease-out" />
                 </div>
               ))}
 
-              <div className="flex items-baseline justify-between gap-6 pt-4">
-                <p className="font-mono text-[9px] uppercase tracking-[0.25em] text-foreground/35 max-w-xs">
-                  {c.note}
-                </p>
+              <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 24, paddingTop: 16 }}>
+                <p style={{ ...LABEL, maxWidth: 260, lineHeight: 1.5 }}>{c.note}</p>
                 <button
                   type="submit"
-                  className="inline-flex items-baseline gap-3 font-mono uppercase text-[10px] tracking-[0.25em] text-foreground border-b border-foreground pb-[2px] hover:text-accent hover:border-accent transition-colors"
                   data-testid="button-submit"
+                  style={{
+                    fontFamily: FF, fontWeight: 300, fontSize: 10,
+                    textTransform: "uppercase", letterSpacing: "0.25em",
+                    color: "#151515", background: "transparent", border: "none",
+                    borderBottom: "1px solid #151515", paddingBottom: 2,
+                    cursor: "pointer", display: "inline-flex", gap: 10, alignItems: "baseline",
+                  }}
                 >
                   <span>{c.submit}</span>
-                  <span aria-hidden>&rarr;</span>
+                  <span aria-hidden>→</span>
                 </button>
               </div>
+
             </form>
           ) : (
-            <div className="flex flex-col gap-6 pt-2" data-testid="contact-success">
-              <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent">
-                {c.success}
-              </span>
-              <p className="font-sans text-[11px] leading-[1.9] text-foreground/70 max-w-md whitespace-pre-line">
+            <div style={{ display: "flex", flexDirection: "column", gap: 24, paddingTop: 8 }} data-testid="contact-success">
+              <span style={{ ...LABEL, color: "#c0392b" }}>{c.success}</span>
+              <p style={{ ...BODY_SM, margin: 0, maxWidth: 380, whiteSpace: "pre-line" }}>
                 {c.successBody(values.nom?.split(" ")[0] || (lang === "fr" ? "à très vite" : "see you soon"))}
               </p>
               <button
-                type="button"
-                onClick={reset}
-                className="self-start font-mono uppercase text-[9px] tracking-[0.25em] text-foreground/45 hover:text-accent border-b border-foreground/30 hover:border-accent pb-[2px] transition-colors"
+                type="button" onClick={reset}
                 data-testid="button-reset"
+                style={{
+                  fontFamily: FF, fontWeight: 300, fontSize: 9,
+                  textTransform: "uppercase", letterSpacing: "0.25em",
+                  color: "rgba(0,0,0,0.45)", background: "transparent", border: "none",
+                  borderBottom: "1px solid rgba(0,0,0,0.30)", paddingBottom: 2,
+                  cursor: "pointer", alignSelf: "flex-start",
+                }}
               >
                 {c.reset}
               </button>
             </div>
           )}
         </div>
+
       </div>
     </section>
   );
