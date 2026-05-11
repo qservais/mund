@@ -1,0 +1,582 @@
+# OBJECTIF
+
+Tu dois recréer en HTML/CSS/React une série de pages inspirées des screenshots fournis, en visant un rendu pixel-perfect desktop.
+
+Il ne s’agit PAS de faire une landing page moderne classique.
+Il faut reproduire une direction artistique éditoriale, minimaliste, très espacée, avec une mise en page proche d’un portfolio d’art floral.
+
+Le rendu doit ressembler aux captures fournies :
+- fond blanc cassé / gris très clair avec un léger grain
+- typographies fines, serrées, parfois condensées
+- énormément d’espace vide
+- placements asymétriques
+- images en blocs rectangulaires
+- textes petits, très proches visuellement des captures
+- navigation verticale en haut à gauche
+- logo manuscrit centré en haut
+- approche “magazine / affiche / portfolio”
+
+# RÈGLE IMPORTANTE
+
+Pour le desktop, ne pas utiliser une mise en page fluide classique.
+Chaque page doit être construite comme un artboard fixe de 1300px de large par 2048px de haut.
+
+Utiliser principalement :
+- position: relative sur chaque page
+- position: absolute pour placer précisément les textes et images
+- dimensions exactes en px
+- line-height très serré
+- letter-spacing légèrement négatif
+- font-size petit
+
+Ensuite seulement, prévoir une adaptation mobile simplifiée.
+
+# STACK
+
+Utiliser :
+- React + Vite
+- CSS pur ou Tailwind si nécessaire, mais CSS pur préférable pour la précision
+- pas de framework UI
+- pas de composants shadcn
+- pas d’animations inutiles
+- pas de padding générique
+- pas de container max-width automatique
+
+# STRUCTURE ATTENDUE
+
+Créer :
+
+src/
+  App.jsx
+  data/pages.js
+  components/
+    PageFrame.jsx
+    SideNav.jsx
+    SignatureLogo.jsx
+    TextBlock.jsx
+    ImageBlock.jsx
+    WorkGrid.jsx
+  styles/
+    global.css
+    pages.css
+
+public/
+  references/
+    home.png
+    floral.png
+    abonnements.png
+    work.png
+    about.png
+  assets/
+    logo-signature.png
+    toutes-les-images-du-site...
+
+# DIMENSIONS GLOBALES
+
+Chaque page :
+- width: 1300px
+- min-height: 2048px
+- background: #f4f4f2 ou proche
+- margin: 0 auto
+- position: relative
+- overflow: hidden
+
+Le body :
+- background: #f4f4f2
+- color: #151515
+- font-smoothing activé
+- pas de scroll horizontal
+
+# FOND TEXTURÉ
+
+Ajouter un léger grain sur toute la page via pseudo-element :
+
+body::before ou .page::before :
+- position fixed ou absolute
+- inset: 0
+- pointer-events: none
+- opacity: 0.08 à 0.12
+- background-image avec radial-gradient ou SVG noise
+- mix-blend-mode: multiply
+
+Le rendu doit rester très subtil.
+
+# TYPOGRAPHIES
+
+Le logo manuscrit ne doit PAS être recréé en texte.
+Utiliser une image PNG/SVG du logo.
+
+Pour le texte courant :
+- utiliser une typo sans-serif très fine et condensée si disponible
+- fallback : Helvetica Neue, Arial, sans-serif
+- font-weight: 300
+- letter-spacing: -0.06em à -0.08em
+- line-height: 0.88 à 0.98
+- font-size desktop : entre 18px et 22px selon les zones
+
+Pour les titres serif :
+- utiliser une serif élégante type Times New Roman / Cormorant Garamond / Editorial New si disponible
+- uppercase
+- font-size : 18px à 22px
+- font-weight: 400
+- letter-spacing: -0.02em
+- line-height: 1
+
+Important :
+Les textes doivent être petits, serrés, presque fragiles.
+Ne pas utiliser de gros titres modernes.
+
+# NAVIGATION
+
+Navigation fixe visuellement en haut à gauche de chaque page.
+
+Position approximative :
+- left: 130px
+- top: 55px
+
+Texte :
+work
+floral
+past
+about
+
+Style :
+- font-size: 18px
+- line-height: 0.85
+- font-weight: 300
+- letter-spacing: -0.06em
+- color: #111
+- aucun soulignement
+- hover très discret : opacity 0.55
+
+# LOGO
+
+Logo manuscrit centré horizontalement en haut.
+
+Position approximative :
+- top: 55px
+- left: 50%
+- transform: translateX(-50%)
+- width: environ 300px
+
+Utiliser une image du logo.
+Ne pas essayer de taper le logo en texte.
+
+# MODE OVERLAY PIXEL PERFECT
+
+Créer un mode de développement permettant d’afficher la capture de référence par-dessus la page.
+
+Ajouter dans App.jsx :
+- une touche clavier "o" pour activer/désactiver l’overlay
+- overlay position absolute
+- top: 0
+- left: 0
+- width: 1300px
+- height: 2048px
+- opacity: 0.35
+- pointer-events: none
+- z-index: 9999
+
+Chaque page doit pouvoir recevoir sa capture de référence correspondante.
+
+Objectif :
+je dois pouvoir superposer la capture et le rendu pour ajuster les positions.
+
+# PAGE 1 — HOME / FLORAL DESIGN
+
+Créer une page correspondant à la première capture.
+
+Éléments principaux :
+
+1. Navigation en haut gauche
+2. Logo manuscrit en haut centre
+3. Grande image principale en haut à droite
+   - position approximative : left 665px, top 50px
+   - width environ 570px
+   - height environ 800px
+   - object-fit: cover
+
+4. Bloc texte “FLORAL DESIGN”
+   - position : left 130px, top environ 720px
+   - titre serif uppercase
+   - paragraphe très serré
+   - largeur environ 330px
+
+Texte :
+FLORAL DESIGN
+
+mund est un studio de composition alliant les
+fleurs et les matériaux vivants.
+Nous jouons avec les rythmes, le vide, équilibre et
+déséquilibre.
+
+5. Petite phrase sous image principale, alignée à droite
+   - position environ left 1030px top 860px
+   - texte :
+le végétal devient sculpture
+moment, intention.
+
+6. Ligne horizontale fine
+   - position left 180px top 990px
+   - width environ 940px
+   - height 1px
+   - background rgba(0,0,0,0.18)
+
+7. Section services bas gauche
+   - position left 130px top 1225px
+   - titre : NOS SERVICES
+   - deux colonnes de services
+
+Colonne 1 :
+abonnement professionnel
+abonnement mensuel
+bouquets
+
+Colonne 2 :
+mariages
+evenements
+set design
+scénographie
+
+8. Deux petites images sous les services
+   - image 1 left 130px top 1340px width 240px height 240px
+   - image 2 left 410px top 1340px width 240px height 240px
+
+9. Bloc devis en bas droite
+   - position left 815px top 1580px
+   - aligné à droite
+   - titre serif uppercase : DEVIS & PROJETS
+   - texte :
+nous accompagnons chaque projet de manière unique.
+vous souhaitez en savoir plus sur notre manière de travailler
+ou vous souhaitez travailler avec nous ?
+écrivez nous
+
+# PAGE 2 — FLORAL / SERVICES
+
+Créer une page correspondant à la deuxième capture.
+
+Structure :
+- même navigation
+- même logo
+- beaucoup d’espace vide
+- blocs textes dispersés
+- images intégrées comme dans la capture
+
+Éléments :
+
+1. Bloc MARIAGES
+   - left 130px
+   - top 180px
+   - width environ 600px
+
+Titre :
+MARIAGES
+
+Texte :
+le studio propose un service de conception florale pour votre mariage.
+nous abordons ces moments avec autant de singularité qu’ils en ont pour vous.
+ils sont des compositions à construire, en lien avec le lieu, un rythme, une manière
+de se rassembler. nous avançons ensemble pour définir la direction en tenant
+compte de l’ensemble des éléments présents et ainsi créer un événement à votre
+mesure, rien n’est standardisé.
+
+vous souhaitez en savoir plus ? contactez-nous
+
+Phrase centrée / serif :
+chaque mariage est un projet à part.
+
+2. Image en haut droite
+   - left environ 815px
+   - top 165px
+   - width environ 360px
+   - height environ 360px
+
+3. Bloc EVENEMENTS sous image
+   - left environ 570px
+   - top environ 545px
+   - width environ 600px
+   - align text right
+
+Titre :
+EVENEMENTS
+
+Texte :
+nous intervenons sur tous types d’événements pour des marques, des agences
+événementielles et des particuliers.
+nos installations florales et nos interventions se développent à différentes échelles.
+chaque projet se développe en réponse à un contexte précis, une ambiance ou à
+votre identité.
+
+Phrase serif :
+un lieu, un moment, une intervention.
+
+CTA :
+envie de discuter de votre projet ? c’est ici
+
+4. Bloc SET DESIGN
+   - left 140px
+   - top environ 730px
+   - width environ 1030px
+
+Titre :
+SET DESIGN
+
+Texte :
+le studio vous accompagne dans vos projet de set design et scénographie florale.
+en collaboration avec les marques, photographes, et studios créatifs nous réalisons des compositions et installations sur
+mesure pour des campagnes, shooting, vitrines ou projet éditoriaux.
+
+Phrase serif :
+nous composons avec votre image et votre direction artistique.
+
+CTA :
+une idée ? on lui donne vie, écrivez-nous
+
+5. Deux images bas gauche
+   - image 1 left 140px top 925px width 340px height 390px
+   - image 2 left 500px top 925px width 340px height 390px
+
+6. Bloc UNE VISION GLOBALE
+   - left 140px
+   - top environ 1415px
+   - width 930px
+
+Titre :
+UNE VISION GLOBALE
+
+Texte :
+pour certains projets, nous pouvons développer une approche plus globale et dépasser le cadre floral.
+main dans la main avec MAISON VAGABONDE, nous pouvons intervenir sur l’ensemble de la direction visuelle et spatiale :
+scénographie, composition des tables, choix des matières, lumières, graphisme...
+chaque élément est pensé en relation afin de construire un ensemble cohérent.
+
+CTA :
+contactez-nous
+
+Phrase serif à droite :
+composer au-delà du floral.
+
+# PAGE 3 — ABONNEMENTS
+
+Créer une page correspondant à la troisième capture.
+
+1. Navigation + logo identiques
+
+2. Bloc gauche ESPACES & PROFESSIONNELS
+   - left 120px
+   - top 300px
+   - width 600px
+
+Titre :
+ESPACES & PROFESSIONNELS
+
+Texte :
+nous proposons un travail floral récurrent pour vos espaces professionnels,
+hôtels, boutiques, bureaux, cabinets...
+chaque intervention est développée sur mesure, pensée en lien avec l’identité
+de l’espace.
+nous définissons ensemble le format et la fréquence selon vos besoins.
+pour toute demande ou mise en place d’un abonnement, contactez-nous.
+
+Phrase serif :
+nous composons avec votre image et votre espace.
+
+3. Bloc PARTICULIERS
+   - left 120px
+   - top 555px
+   - width 600px
+
+Titre :
+PARTICULIERS
+
+Texte :
+chaque deuxième jeudi du mois, nous vous proposons un bouquet surprise
+composé selon les arrivages du moment.
+Une manière d’inviter notre travail chez vous en le voyant évoluer au fil des
+saisons ou de manière occasionnelle.
+
+Phrase serif :
+un rendez-vous mensuel autour des fleurs de saison.
+
+CTA :
+envie d’en savoir plus ? c’est par ici.
+
+4. Bloc droite NOS ABONNEMENTS
+   - left 840px
+   - top 130px
+   - width 330px
+   - align right ou center selon capture
+
+Titre :
+NOS ABONNEMENTS
+
+Texte :
+retrouver notre travail floral pour vos espaces
+ou votre habitation
+
+5. Image principale droite
+   - left 840px
+   - top 220px
+   - width 335px
+   - height 610px
+   - object-fit cover
+
+# PAGE 4 — WORK
+
+Créer une grille libre de projets comme la quatrième capture.
+
+Même navigation + logo.
+
+Chaque item est une image avec une légende en dessous.
+La grille ne doit PAS être régulière.
+Elle doit être positionnée librement avec absolute.
+
+Items :
+
+001 - sapiens
+- left 130px top 190px
+- image width 260px height 220px
+
+002 - lara
+- left 435px top 190px
+- image width 260px height 220px
+
+003 - jardin
+- left 640px top 500px
+- image width 300px height 210px
+
+004 - bord de meuse
+- left 965px top 535px
+- image width 220px height 260px
+
+005 - composition
+- left 480px top 775px
+- image width 210px height 300px
+
+006 - grappe
+- left 730px top 775px
+- image width 210px height 300px
+
+007 - viti
+- left 930px top 1130px
+- image width 255px height 225px
+
+Légendes :
+- font-size 20px
+- line-height 1
+- letter-spacing -0.07em
+- position juste sous chaque image
+
+# PAGE 5 — ABOUT
+
+Créer la page about comme la cinquième capture.
+
+Même navigation + logo.
+
+Contenu principal centré mais légèrement décalé à droite.
+
+Bloc texte :
+- left 495px
+- top 355px
+- width 500px
+
+Titre serif uppercase :
+MUND STUDIO
+LES FLEURS
+AUTREMENT
+
+Texte :
+après un parcours en art et en architecture où elle aborde le design et la
+scénographie, Julie Ahn s’oriente finalement vers la création florale et fonde
+MUND.
+
+dans son studio les compositions sont sculpturales, les fleurs sont
+envisagées comme des éléments de composition, au même titre qu’une
+matière, une lumière ou un objet.
+
+les interventions du studio sont sur mesure, pensées dans leur ensemble
+avec une attention portée aux formes autant qu’à la fleur seule.
+
+Bloc secondaire :
+- left 495px
+- top 690px
+- width 280px
+
+Texte :
+le nom MUND est emprunté au
+grand-père de Julie, artiste, ébéniste
+et jardinier, dont l’univers multiple
+continue d’influencer sa manière de
+composer et de regarder les
+choses.
+
+Bloc troisième :
+- left 495px
+- top 880px
+- width 290px
+
+Texte :
+le studio travaille en Belgique et
+partout ailleurs sur des événements,
+mariages, set design et
+scénographies florales.
+
+Phrase serif :
+vides et pleins
+chaos et structure
+
+Image :
+- left 495px
+- top 1115px
+- width 260px
+- height 400px
+
+Texte manuscrit au-dessus de l’image :
+Utiliser une image ou une typo manuscrite seulement si disponible.
+Sinon laisser cette phrase en image asset.
+Ne pas essayer de la recréer approximativement avec une typo standard.
+
+# COMPORTEMENT RESPONSIVE
+
+Important :
+Le desktop pixel-perfect est prioritaire.
+
+Pour mobile :
+- ne pas essayer de garder la mise en page absolute
+- transformer chaque page en flux vertical simple
+- logo en haut
+- nav en haut ou en menu très simple
+- images en full width
+- textes lisibles
+- conserver l’esthétique minimaliste
+
+Utiliser media query :
+@media (max-width: 768px)
+
+# QUALITÉ ATTENDUE
+
+Le rendu doit être très proche visuellement :
+- mêmes grands blancs
+- mêmes proportions
+- même fragilité typographique
+- mêmes placements
+- pas de grosses marges Bootstrap
+- pas de titres surdimensionnés
+- pas de boutons modernes
+- pas d’ombres
+- pas de cards
+- pas de border-radius
+- pas de couleurs ajoutées
+- pas d’effets inutiles
+
+# TRAVAIL À FAIRE
+
+1. Créer la structure React.
+2. Importer les images depuis /public/assets.
+3. Créer les 5 pages.
+4. Ajouter un système de navigation simple.
+5. Ajouter le mode overlay avec la touche "o".
+6. Me permettre d’ajuster facilement les coordonnées de chaque élément dans un fichier data/pages.js.
+7. Ne pas hardcoder tout dans le JSX : les positions des images et textes doivent être centralisées dans des objets de configuration quand c’est possible.
+8. Le résultat doit être propre, maintenable, et visuellement fidèle aux captures.

@@ -30,9 +30,25 @@ export default function Layout({ children }: { children: ReactNode }) {
   const [location] = useLocation();
   const { lang, toggle } = useLang();
 
+  // Artboard pages render their own nav/logo absolutely — bypass shared chrome
+  const isArtboard = location === "/";
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" });
   }, [location]);
+
+  if (isArtboard) {
+    return (
+      <div className="relative min-h-screen w-full bg-background text-foreground">
+        <main
+          key={location}
+          style={{ animation: "pageFadeIn 0.25s ease forwards" }}
+        >
+          {children}
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="relative min-h-screen w-full overflow-x-hidden bg-background text-foreground flex flex-col">

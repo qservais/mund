@@ -41,7 +41,7 @@
 }
 
 :root {
-  --background: 38 18% 93%; /* Warm cream paper #F2EDE5 */
+  --background: 60 6% 96%; /* Off-white / very light grey #f4f4f2 (artboard spec) */
   --foreground: 0 0% 7%;    /* Deep ink #111111 */
   --border: 40 10% 85%;
   --input: 40 10% 85%;

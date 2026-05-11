@@ -1,284 +1,352 @@
+import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { useLang } from "@/context/LanguageContext";
 import { plates } from "@/data/plates";
+import logo from "@assets/image001_1778521429706.png";
+import overlayRef from "@assets/1_1778522805215.png";
 
 const copy = {
   fr: {
-    label: "FLORAL DESIGN",
-    desc: "mund est un studio de composition alliant les\nfleurs et les matériaux vivants.\nNous jouons avec les rythmes, le vide, équilibre et\ndéséquilibre.",
-    caption: "le végétal devient sculpture,\nmoment, intention.",
-    servicesLabel: "NOS SERVICES",
+    floralTitle: "FLORAL DESIGN",
+    floralBody: [
+      "mund est un studio de composition alliant les",
+      "fleurs et les matériaux vivants.",
+      "Nous jouons avec les rythmes, le vide, équilibre et",
+      "déséquilibre.",
+    ],
+    caption: ["le végétal devient sculpture", "moment, intention."],
+    servicesTitle: "NOS SERVICES",
     col1: ["abonnement professionnel", "abonnement mensuel", "bouquets"],
     col2: ["mariages", "evenements", "set design", "scénographie"],
-    devisLabel: "DEVIS & PROJETS",
-    devisText: "nous accompagnons chaque projet de manière unique.\nvous souhaitez en savoir plus sur notre manière de travailler\nou vous souhaitez travailler avec nous ?",
-    devisLink: "écrivez nous",
+    devisTitle: "DEVIS & PROJETS",
+    devisBody: [
+      "nous accompagnons chaque projet de manière unique.",
+      "vous souhaitez en savoir plus sur notre manière de travailler",
+      "ou vous souhaitez travailler avec nous ?",
+    ],
+    devisCta: "écrivez nous",
   },
   en: {
-    label: "FLORAL DESIGN",
-    desc: "mund is a composition studio combining flowers\nand living materials.\nWe play with rhythms, void, balance and\nimbalance.",
-    caption: "the plant becomes sculpture,\nmoment, intention.",
-    servicesLabel: "OUR SERVICES",
+    floralTitle: "FLORAL DESIGN",
+    floralBody: [
+      "mund is a composition studio combining flowers",
+      "and living materials.",
+      "We play with rhythms, void, balance and",
+      "imbalance.",
+    ],
+    caption: ["the plant becomes sculpture", "moment, intention."],
+    servicesTitle: "OUR SERVICES",
     col1: ["professional subscription", "monthly subscription", "bouquets"],
     col2: ["weddings", "events", "set design", "scenography"],
-    devisLabel: "QUOTES & PROJECTS",
-    devisText: "we support each project in a unique way.\nwould you like to know more about how we work\nor work with us?",
-    devisLink: "write to us",
+    devisTitle: "QUOTES & PROJECTS",
+    devisBody: [
+      "we support each project in a unique way.",
+      "would you like to know more about how we work",
+      "or work with us?",
+    ],
+    devisCta: "write to us",
   },
 };
 
+// ── Type tokens (after user corrections: -2px, -0.07em, lh 0.9) ────────────
+const SERIF: React.CSSProperties = {
+  fontFamily: '"Times New Roman", Times, serif',
+  fontSize: 18,
+  fontWeight: 400,
+  letterSpacing: "-0.02em",
+  textTransform: "uppercase",
+  lineHeight: 1,
+};
+const BODY: React.CSSProperties = {
+  fontFamily: '"Inter", "Helvetica Neue", Arial, sans-serif',
+  fontSize: 16, // was 18, -2px per user
+  fontWeight: 300,
+  letterSpacing: "-0.07em", // per user
+  lineHeight: 0.9, // per user
+};
+const NAV: React.CSSProperties = {
+  fontFamily: '"Inter", "Helvetica Neue", Arial, sans-serif',
+  fontSize: 18,
+  lineHeight: 0.85,
+  fontWeight: 300,
+  letterSpacing: "-0.06em",
+  color: "#111",
+  display: "block",
+  textDecoration: "none",
+};
+
 export default function Home() {
-  const { lang } = useLang();
+  const { lang, toggle } = useLang();
+  // Overlay default state from ?overlay=1 query param (for QA)
+  const [overlay, setOverlay] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return new URLSearchParams(window.location.search).get("overlay") === "1";
+  });
   const c = copy[lang];
 
-  // Hero image — most atmospheric studio composition
-  const heroImg = plates[1].src;
-  const heroAlt = plates[1].alt;
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.key === "o" || e.key === "O") && !e.metaKey && !e.ctrlKey) {
+        const tag = (e.target as HTMLElement)?.tagName;
+        if (tag === "INPUT" || tag === "TEXTAREA") return;
+        setOverlay((v) => !v);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
-  // Service section images
-  const svcImg1 = plates[4].src;
-  const svcImg2 = plates[7].src;
+  // Hero + service photos sourced from existing plates
+  const heroImg = plates[1].src;
+  const svc1 = plates[4].src;
+  const svc2 = plates[7].src;
 
   return (
-    <div style={{ paddingTop: 0 }}>
+    <div
+      style={{
+        width: 1300,
+        minHeight: 2048,
+        margin: "0 auto",
+        position: "relative",
+        backgroundColor: "#f4f4f2",
+        overflow: "hidden",
+        color: "#151515",
+        WebkitFontSmoothing: "antialiased",
+      }}
+      data-testid="home-artboard"
+    >
+      {/* ── PIXEL-PERFECT OVERLAY (toggle with "o") ─────────────── */}
+      {overlay && (
+        <img
+          src={overlayRef}
+          alt=""
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: 1300,
+            height: 2048,
+            opacity: 0.35,
+            pointerEvents: "none",
+            zIndex: 9999,
+          }}
+        />
+      )}
 
-      {/* ── HERO ───────────────────────────────────────────────── */}
-      <section
+      {/* Side nav — top: 55, left: 130 */}
+      <nav
         style={{
-          display: "grid",
-          gridTemplateColumns: "38% 62%",
-          height: "calc(100vh - 110px)",
+          position: "absolute",
+          top: 55,
+          left: 130,
         }}
       >
-        {/* Left — FLORAL DESIGN pushed to bottom */}
-        <div
+        <Link href="/" style={NAV} data-testid="nav-work">work</Link>
+        <Link href="/floral" style={NAV} data-testid="nav-floral">floral</Link>
+        <Link href="/past" style={NAV} data-testid="nav-past">past</Link>
+        <Link href="/about" style={NAV} data-testid="nav-about">about</Link>
+      </nav>
+
+      {/* Logo — centered, +12% (300 → 336px) */}
+      <Link
+        href="/"
+        data-testid="nav-brand"
+        style={{
+          position: "absolute",
+          top: 55,
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: 336,
+          display: "block",
+        }}
+      >
+        <img
+          src={logo}
+          alt="mund studio"
           style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-end",
-            padding: "0 56px 52px 56px",
+            width: "100%",
+            display: "block",
+            mixBlendMode: "multiply",
           }}
-        >
-          <span
-            style={{
-              fontFamily: "var(--app-font-display)",
-              fontSize: "10px",
-              fontWeight: 600,
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              color: "hsl(var(--foreground))",
-              marginBottom: "12px",
-            }}
-          >
-            {c.label}
-          </span>
-          <p
-            style={{
-              fontFamily: "var(--app-font-sans)",
-              fontSize: "11px",
-              lineHeight: "1.85",
-              color: "hsl(var(--foreground) / 0.72)",
-              whiteSpace: "pre-line",
-              maxWidth: "36ch",
-            }}
-          >
-            {c.desc}
-          </p>
-        </div>
+        />
+      </Link>
 
-        {/* Right — hero photo constrained to hero height */}
-        <div style={{ overflow: "hidden" }}>
-          <img
-            src={heroImg}
-            alt={heroAlt}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "center top",
-              display: "block",
-            }}
-          />
-        </div>
-      </section>
+      {/* FR/EN toggle — top right */}
+      <button
+        onClick={toggle}
+        data-testid="lang-toggle"
+        style={{
+          position: "absolute",
+          top: 55,
+          right: 130,
+          fontFamily: '"Inter", "Helvetica Neue", Arial, sans-serif',
+          fontSize: 16,
+          fontWeight: 300,
+          letterSpacing: "-0.07em",
+          color: "#111",
+          background: "transparent",
+          border: "none",
+          padding: 0,
+          cursor: "pointer",
+        }}
+      >
+        {lang === "fr" ? "en" : "fr"}
+      </button>
 
-      {/* Caption — right-aligned, below photo */}
+      {/* Hero image — left 665, top 26 (was 50, -24px per user) */}
+      <img
+        src={heroImg}
+        alt=""
+        style={{
+          position: "absolute",
+          left: 665,
+          top: 26,
+          width: 570,
+          height: 800,
+          objectFit: "cover",
+        }}
+        data-testid="home-hero"
+      />
+
+      {/* FLORAL DESIGN block — left 112 (was 130, -18px per user), top 720 */}
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "45% 55%",
+          position: "absolute",
+          left: 112,
+          top: 720,
+          width: 330,
         }}
       >
-        <div />
-        <p
-          style={{
-            fontFamily: "var(--app-font-sans)",
-            fontSize: "10px",
-            fontStyle: "italic",
-            lineHeight: "1.7",
-            color: "hsl(var(--foreground) / 0.55)",
-            textAlign: "right",
-            whiteSpace: "pre-line",
-            padding: "12px 56px 0 0",
-          }}
-        >
-          {c.caption}
+        <div style={{ ...SERIF, marginBottom: 18 }}>{c.floralTitle}</div>
+        <p style={{ ...BODY, margin: 0 }}>
+          {c.floralBody.map((line, i) => (
+            <span key={i}>{line}<br /></span>
+          ))}
         </p>
       </div>
 
-      {/* Divider */}
+      {/* Caption right of image — left 1030, top 860 */}
       <div
         style={{
-          height: "1px",
-          backgroundColor: "hsl(var(--foreground) / 0.12)",
-          margin: "48px 56px 0",
+          position: "absolute",
+          left: 1030,
+          top: 860,
+          textAlign: "right",
+          ...BODY,
+          fontStyle: "italic",
+          fontSize: 14,
+        }}
+      >
+        {c.caption.map((line, i) => (
+          <span key={i}>{line}<br /></span>
+        ))}
+      </div>
+
+      {/* Horizontal divider — left 180, top 990, w 940, h 1 */}
+      <div
+        style={{
+          position: "absolute",
+          left: 180,
+          top: 990,
+          width: 940,
+          height: 1,
+          backgroundColor: "rgba(0,0,0,0.18)",
         }}
       />
 
-      {/* ── NOS SERVICES ───────────────────────────────────────── */}
-      <section
-        style={{
-          padding: "96px 56px 0",
-        }}
+      {/* NOS SERVICES — left 130, top 1225 */}
+      <div
+        style={{ position: "absolute", left: 130, top: 1225 }}
         data-testid="home-services"
       >
-        {/* Label + two columns */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "160px 1fr 1fr",
-            gap: "0 24px",
-            marginBottom: "40px",
-          }}
-        >
-          <span
-            style={{
-              fontFamily: "var(--app-font-display)",
-              fontSize: "10px",
-              fontWeight: 600,
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              color: "hsl(var(--foreground))",
-              paddingTop: "2px",
-            }}
-          >
-            {c.servicesLabel}
-          </span>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-            {c.col1.map((s) => (
-              <li
-                key={s}
-                style={{
-                  fontFamily: "var(--app-font-sans)",
-                  fontSize: "11px",
-                  lineHeight: "1.85",
-                  color: "hsl(var(--foreground) / 0.68)",
-                }}
-              >
-                {s}
-              </li>
-            ))}
-          </ul>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-            {c.col2.map((s) => (
-              <li
-                key={s}
-                style={{
-                  fontFamily: "var(--app-font-sans)",
-                  fontSize: "11px",
-                  lineHeight: "1.85",
-                  color: "hsl(var(--foreground) / 0.68)",
-                }}
-              >
-                {s}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Two square photos */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, minmax(0, 220px))",
-            gap: "16px",
-            marginBottom: "0",
-          }}
-        >
-          <div style={{ aspectRatio: "1/1", overflow: "hidden" }}>
-            <img
-              src={svcImg1}
-              alt=""
-              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-            />
+        <div style={{ ...SERIF, marginBottom: 18 }}>{c.servicesTitle}</div>
+        <div style={{ display: "flex", gap: 80 }}>
+          <div style={BODY}>
+            {c.col1.map((s, i) => <div key={i}>{s}</div>)}
           </div>
-          <div style={{ aspectRatio: "1/1", overflow: "hidden" }}>
-            <img
-              src={svcImg2}
-              alt=""
-              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-            />
+          <div style={BODY}>
+            {c.col2.map((s, i) => <div key={i}>{s}</div>)}
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* ── DEVIS & PROJETS ────────────────────────────────────── */}
-      <section
+      {/* Service photo 1 — left 130, top 1340, 240×240 */}
+      <img
+        src={svc1}
+        alt=""
         style={{
-          padding: "64px 56px 80px",
-          display: "flex",
-          justifyContent: "flex-end",
+          position: "absolute",
+          left: 130,
+          top: 1340,
+          width: 240,
+          height: 240,
+          objectFit: "cover",
+        }}
+      />
+      {/* Service photo 2 — left 410, top 1340, 240×240 */}
+      <img
+        src={svc2}
+        alt=""
+        style={{
+          position: "absolute",
+          left: 410,
+          top: 1340,
+          width: 240,
+          height: 240,
+          objectFit: "cover",
+        }}
+      />
+
+      {/* DEVIS & PROJETS — left 815, top 1580, right-aligned */}
+      <div
+        style={{
+          position: "absolute",
+          left: 815,
+          top: 1580,
+          width: 360,
+          textAlign: "right",
         }}
         data-testid="home-cta"
       >
-        <div
+        <div style={{ ...SERIF, marginBottom: 18 }}>{c.devisTitle}</div>
+        <p style={{ ...BODY, margin: 0, marginBottom: 14 }}>
+          {c.devisBody.map((line, i) => (
+            <span key={i}>{line}<br /></span>
+          ))}
+        </p>
+        <Link
+          href="/contact"
+          data-testid="link-contact-cta"
           style={{
-            textAlign: "right",
-            maxWidth: "380px",
+            ...BODY,
+            color: "#151515",
+            textDecoration: "underline",
+            textUnderlineOffset: 3,
           }}
         >
-          <span
-            style={{
-              fontFamily: "var(--app-font-display)",
-              fontSize: "10px",
-              fontWeight: 700,
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              color: "hsl(var(--foreground))",
-              display: "block",
-              marginBottom: "14px",
-            }}
-          >
-            {c.devisLabel}
-          </span>
-          <p
-            style={{
-              fontFamily: "var(--app-font-sans)",
-              fontSize: "11px",
-              lineHeight: "1.9",
-              color: "hsl(var(--foreground) / 0.65)",
-              whiteSpace: "pre-line",
-              marginBottom: "18px",
-            }}
-          >
-            {c.devisText}
-          </p>
-          <Link
-            href="/contact"
-            style={{
-              fontFamily: "var(--app-font-sans)",
-              fontSize: "11px",
-              fontStyle: "italic",
-              color: "hsl(var(--foreground) / 0.75)",
-              textDecoration: "underline",
-              textUnderlineOffset: "3px",
-            }}
-            data-testid="link-contact-cta"
-          >
-            {c.devisLink}
-          </Link>
+          {c.devisCta}
+        </Link>
+      </div>
+
+      {/* Tiny dev hint for overlay (only when overlay is on) */}
+      {overlay && (
+        <div
+          style={{
+            position: "fixed",
+            bottom: 12,
+            left: 12,
+            zIndex: 10000,
+            background: "#111",
+            color: "#fff",
+            fontFamily: "monospace",
+            fontSize: 11,
+            padding: "4px 8px",
+            opacity: 0.85,
+          }}
+        >
+          OVERLAY ON · press "o" to toggle
         </div>
-      </section>
+      )}
     </div>
   );
 }
