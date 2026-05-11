@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { useLang } from "@/context/LanguageContext";
 
 // ── Design tokens ────────────────────────────────────────────────────────────
@@ -52,6 +52,7 @@ type Props = {
 };
 
 export default function ArtboardShell({ children, overlayRef, minHeight = 2048 }: Props) {
+  const [location] = useLocation();
   const { lang, toggle } = useLang();
   const [overlay, setOverlay] = useState(() => {
     if (typeof window === "undefined") return false;
@@ -98,11 +99,19 @@ export default function ArtboardShell({ children, overlayRef, minHeight = 2048 }
 
       {/* Nav — top-left, stacked */}
       <nav style={{ position: "absolute", top: 52, left: 130 }}>
-        {NAV_ITEMS.map(({ label, href, testId }) => (
-          <Link key={href} href={href} style={NAV_STYLE} data-testid={testId}>
-            {label}
-          </Link>
-        ))}
+        {NAV_ITEMS.map(({ label, href, testId }) => {
+          const isActive = href === "/" ? location === "/" : location.startsWith(href);
+          return (
+            <Link
+              key={href}
+              href={href}
+              data-testid={testId}
+              style={{ ...NAV_STYLE, fontWeight: isActive ? 700 : 300 }}
+            >
+              {label}
+            </Link>
+          );
+        })}
       </nav>
 
       {/* Logo — GuldScript centré */}
