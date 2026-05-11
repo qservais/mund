@@ -82,7 +82,7 @@ export default function About() {
   const c = copy[lang];
 
   return (
-    <ArtboardShell overlayRef={overlayRef} minHeight={1350} mobile={<AboutMobile c={c} />}>
+    <ArtboardShell overlayRef={overlayRef} minHeight={1460} mobile={<AboutMobile c={c} />}>
 
       {/* ── Title ─────────────────────────────────────────── */}
       <div style={{ position: "absolute", left: LEFT, top: 200 }}>
@@ -113,12 +113,12 @@ export default function About() {
         ))}
       </div>
 
-      {/* ── Handwritten quote SVG — above photo ──────────── */}
+      {/* ── Handwritten quote SVG — décalé au-dessus de la photo ──── */}
       <img
         src="/svg/le%20temps%20est%20beau.svg"
         alt="le temps est beau, une petite averse"
         style={{
-          position: "absolute", left: LEFT, top: 848,
+          position: "absolute", left: LEFT + 10, top: 865,
           width: 274,
           zIndex: 2, pointerEvents: "none",
           opacity: 0.72,
@@ -130,7 +130,7 @@ export default function About() {
         src={julieImg}
         alt="Julie Ahn — Mund Studio"
         style={{
-          position: "absolute", left: LEFT, top: 910,
+          position: "absolute", left: LEFT, top: 990,
           width: 258,
           height: "auto",
           display: "block",

@@ -115,7 +115,7 @@ export default function Floral() {
     text.split("\n").map((l, i) => <span key={i}>{l}<br /></span>);
 
   return (
-    <ArtboardShell overlayRef={overlayRef} minHeight={2200} mobile={<FloralMobile c={c} />}>
+    <ArtboardShell overlayRef={overlayRef} minHeight={1680} mobile={<FloralMobile c={c} />}>
 
       {/* ── MARIAGES ─────────────────────────────────────── */}
       <div style={{ position: "absolute", left: 130, top: 180, width: 600 }}>

@@ -1,110 +1,274 @@
-import { useEffect } from "react";
 import { Link, useRoute } from "wouter";
-import { getNeighbours, getPlateBySlug, resolveLayout } from "@/data/plates";
-import { LayoutA } from "@/components/project-layouts/LayoutA";
-import { LayoutB } from "@/components/project-layouts/LayoutB";
-import { LayoutC } from "@/components/project-layouts/LayoutC";
-import { LayoutD } from "@/components/project-layouts/LayoutD";
-import { LayoutE } from "@/components/project-layouts/LayoutE";
+import { getNeighbours, getPlateBySlug } from "@/data/plates";
 import NotFound from "@/pages/not-found";
+import ProjectShell from "@/components/ProjectShell";
 import type { Plate } from "@/data/plates";
 
-function PlateBody({ plate }: { plate: Plate }) {
-  const layout = resolveLayout(plate);
-  if (layout === "A") return <LayoutA plate={plate} />;
-  if (layout === "B") return <LayoutB plate={plate} />;
-  if (layout === "C") return <LayoutC plate={plate} />;
-  if (layout === "D") return <LayoutD plate={plate} />;
-  return <LayoutE plate={plate} />;
+const FF = '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif';
+const SF = '"Cormorant Garamond", "Times New Roman", Times, serif';
+
+const PAD = "0 130px";
+
+/* ── Meta item ────────────────────────────────────────────────────────────── */
+function MetaItem({ label, value }: { label: string; value: string }) {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
+      <span style={{
+        fontFamily: FF, fontWeight: 300, fontSize: 10,
+        textTransform: "uppercase", letterSpacing: "0.26em",
+        color: "rgba(0,0,0,0.38)", lineHeight: 1,
+      }}>
+        {label}
+      </span>
+      <span style={{ fontFamily: FF, fontWeight: 300, fontSize: 16, letterSpacing: "-0.05em", color: "rgba(0,0,0,0.75)" }}>
+        {value}
+      </span>
+    </div>
+  );
 }
 
+/* ── Desktop content ──────────────────────────────────────────────────────── */
+function ProjectContent({ plate, prev, next }: { plate: Plate; prev?: Plate; next?: Plate }) {
+  const gallery = plate.gallery ?? [plate.src];
+  const galleryRest = gallery.slice(1);
+
+  return (
+    <div>
+      {/* ── Header: back + title ─────────────────────────────────── */}
+      <div style={{ padding: "56px 130px 0" }}>
+        <Link
+          href="/past"
+          data-testid="link-back-projets"
+          style={{
+            fontFamily: FF, fontWeight: 300, fontSize: 12,
+            textTransform: "uppercase", letterSpacing: "0.24em",
+            color: "rgba(0,0,0,0.40)", textDecoration: "none",
+            display: "inline-block", marginBottom: 28,
+          }}
+        >
+          ← work
+        </Link>
+
+        <h1
+          data-testid="project-title"
+          style={{
+            fontFamily: SF, fontWeight: 700, fontSize: "clamp(48px, 6vw, 88px)",
+            letterSpacing: "-0.04em", textTransform: "uppercase",
+            lineHeight: 0.92, margin: 0, marginBottom: 12,
+          }}
+        >
+          {plate.title}.
+        </h1>
+
+        {plate.tagline && (
+          <p style={{
+            fontFamily: FF, fontWeight: 300, fontSize: 17,
+            letterSpacing: "-0.05em", fontStyle: "italic",
+            color: "rgba(0,0,0,0.50)", margin: 0, marginBottom: 0,
+          }}>
+            {plate.tagline}
+          </p>
+        )}
+      </div>
+
+      {/* ── HR ───────────────────────────────────────────────────── */}
+      <div style={{ height: 1, backgroundColor: "rgba(0,0,0,0.12)", margin: "36px 130px 0" }} />
+
+      {/* ── Meta + Story ─────────────────────────────────────────── */}
+      <div style={{
+        padding: "40px 130px 60px",
+        display: "grid",
+        gridTemplateColumns: "220px 1fr",
+        gap: "0 80px",
+        alignItems: "start",
+      }}>
+        {/* Meta gauche */}
+        <aside style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+          <MetaItem label="Catégorie" value={plate.category} />
+          <MetaItem label="Année" value={plate.year} />
+          <MetaItem label="Lieu" value={plate.location} />
+          <MetaItem label="Référence" value={`MUND ${plate.n}/15`} />
+          {plate.credits && (
+            <MetaItem label="Crédits" value={plate.credits} />
+          )}
+        </aside>
+
+        {/* Story droite */}
+        <div>
+          <p
+            data-testid="project-story"
+            style={{
+              fontFamily: FF, fontWeight: 300, fontSize: 18,
+              letterSpacing: "-0.06em", lineHeight: 1.65,
+              color: "rgba(0,0,0,0.80)", margin: 0,
+            }}
+          >
+            {plate.story}
+          </p>
+        </div>
+      </div>
+
+      {/* ── Galerie ──────────────────────────────────────────────── */}
+      {galleryRest.length > 0 && (
+        <div style={{
+          padding: "0 130px 80px",
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: 3,
+        }}
+        data-testid="project-gallery"
+        >
+          {galleryRest.map((src, i) => (
+            <img
+              key={i}
+              src={src}
+              alt={`${plate.alt} — ${i + 2}`}
+              loading="lazy"
+              style={{ width: "100%", aspectRatio: "4/3", objectFit: "cover", display: "block" }}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* ── Nav précédent / suivant ───────────────────────────────── */}
+      <div style={{
+        padding: "36px 130px 60px",
+        borderTop: "1px solid rgba(0,0,0,0.10)",
+        display: "flex",
+        justifyContent: "space-between",
+      }}>
+        {prev ? (
+          <Link
+            href={`/projets/${prev.slug}`}
+            data-testid="link-prev-project"
+            style={{ textDecoration: "none", display: "flex", flexDirection: "column", gap: 6 }}
+          >
+            <span style={{ fontFamily: FF, fontWeight: 300, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.22em", color: "rgba(0,0,0,0.38)" }}>
+              ← Précédente
+            </span>
+            <span style={{ fontFamily: SF, fontWeight: 700, fontSize: 22, letterSpacing: "-0.04em", textTransform: "uppercase", color: "#151515" }}>
+              {prev.title}
+            </span>
+          </Link>
+        ) : <div />}
+
+        {next && (
+          <Link
+            href={`/projets/${next.slug}`}
+            data-testid="link-next-project"
+            style={{ textDecoration: "none", display: "flex", flexDirection: "column", gap: 6, alignItems: "flex-end" }}
+          >
+            <span style={{ fontFamily: FF, fontWeight: 300, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.22em", color: "rgba(0,0,0,0.38)" }}>
+              Suivante →
+            </span>
+            <span style={{ fontFamily: SF, fontWeight: 700, fontSize: 22, letterSpacing: "-0.04em", textTransform: "uppercase", color: "#151515" }}>
+              {next.title}
+            </span>
+          </Link>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ── Mobile content ───────────────────────────────────────────────────────── */
+function ProjectMobile({ plate, prev, next }: { plate: Plate; prev?: Plate; next?: Plate }) {
+  const gallery = plate.gallery ?? [plate.src];
+
+  return (
+    <div>
+      {/* Hero mobile */}
+      <div style={{ margin: "0 -20px 28px", overflow: "hidden" }}>
+        <img
+          src={plate.src}
+          alt={plate.alt}
+          style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", display: "block" }}
+        />
+      </div>
+
+      {/* Back */}
+      <Link
+        href="/past"
+        style={{ fontFamily: FF, fontWeight: 300, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.22em", color: "rgba(0,0,0,0.40)", textDecoration: "none", display: "block", marginBottom: 20 }}
+      >
+        ← work
+      </Link>
+
+      {/* Title */}
+      <h1 style={{ fontFamily: SF, fontWeight: 700, fontSize: "clamp(36px, 10vw, 56px)", letterSpacing: "-0.04em", textTransform: "uppercase", lineHeight: 0.92, margin: "0 0 10px" }}
+        data-testid="project-title">
+        {plate.title}.
+      </h1>
+      {plate.tagline && (
+        <p style={{ fontFamily: FF, fontWeight: 300, fontSize: 15, letterSpacing: "-0.04em", fontStyle: "italic", color: "rgba(0,0,0,0.50)", margin: "0 0 28px" }}>
+          {plate.tagline}
+        </p>
+      )}
+
+      <div style={{ height: 1, backgroundColor: "rgba(0,0,0,0.12)", marginBottom: 24 }} />
+
+      {/* Meta */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px 24px", marginBottom: 28 }}>
+        <MetaItem label="Catégorie" value={plate.category} />
+        <MetaItem label="Année" value={plate.year} />
+        <MetaItem label="Lieu" value={plate.location} />
+        <MetaItem label="Référence" value={`MUND ${plate.n}/15`} />
+      </div>
+      {plate.credits && <MetaItem label="Crédits" value={plate.credits} />}
+
+      <div style={{ height: 1, backgroundColor: "rgba(0,0,0,0.12)", margin: "24px 0" }} />
+
+      {/* Story */}
+      <p data-testid="project-story" style={{ fontFamily: FF, fontWeight: 300, fontSize: 16, letterSpacing: "-0.05em", lineHeight: 1.65, color: "rgba(0,0,0,0.80)", margin: "0 0 32px" }}>
+        {plate.story}
+      </p>
+
+      {/* Gallery */}
+      {gallery.length > 1 && (
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 4, marginBottom: 36 }} data-testid="project-gallery">
+          {gallery.slice(1).map((src, i) => (
+            <img key={i} src={src} alt={`${plate.alt} — ${i + 2}`} loading="lazy"
+              style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", display: "block" }} />
+          ))}
+        </div>
+      )}
+
+      {/* Nav */}
+      <div style={{ borderTop: "1px solid rgba(0,0,0,0.10)", paddingTop: 24, display: "flex", justifyContent: "space-between" }}>
+        {prev && (
+          <Link href={`/projets/${prev.slug}`} style={{ textDecoration: "none" }} data-testid="link-prev-project">
+            <span style={{ fontFamily: FF, fontWeight: 300, fontSize: 10, textTransform: "uppercase", letterSpacing: "0.22em", color: "rgba(0,0,0,0.38)", display: "block" }}>← Précédente</span>
+            <span style={{ fontFamily: SF, fontWeight: 700, fontSize: 18, letterSpacing: "-0.04em", textTransform: "uppercase", color: "#151515", display: "block" }}>{prev.title}</span>
+          </Link>
+        )}
+        {next && (
+          <Link href={`/projets/${next.slug}`} style={{ textDecoration: "none", textAlign: "right" }} data-testid="link-next-project">
+            <span style={{ fontFamily: FF, fontWeight: 300, fontSize: 10, textTransform: "uppercase", letterSpacing: "0.22em", color: "rgba(0,0,0,0.38)", display: "block" }}>Suivante →</span>
+            <span style={{ fontFamily: SF, fontWeight: 700, fontSize: 18, letterSpacing: "-0.04em", textTransform: "uppercase", color: "#151515", display: "block" }}>{next.title}</span>
+          </Link>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ── Page ─────────────────────────────────────────────────────────────────── */
 export default function ProjectDetail() {
   const [, params] = useRoute("/projets/:slug");
   const slug = params?.slug ?? "";
   const plate = getPlateBySlug(slug);
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "auto" });
-  }, [slug]);
 
   if (!plate) return <NotFound />;
 
   const { prev, next } = getNeighbours(plate.slug);
 
   return (
-    <article className="relative w-full pb-24 md:pb-40">
-      <div className="px-6 md:px-12 xl:px-24 pt-32 md:pt-40 pb-10 md:pb-16 grid grid-cols-12 gap-6">
-        <div className="col-span-12 md:col-span-3 flex flex-col gap-2">
-          <Link
-            href="/past"
-            className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/55 hover:text-accent transition-colors w-fit"
-            data-testid="link-back-projets"
-          >
-            ← work
-          </Link>
-        </div>
-        <div className="col-span-12 md:col-span-9 flex flex-wrap items-baseline gap-x-6 gap-y-2 font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/60">
-          <span className="text-accent">Planche {plate.n}&nbsp;/&nbsp;15</span>
-          <span>{plate.category}</span>
-          <span>{plate.year}</span>
-          <span>{plate.location}</span>
-        </div>
-      </div>
-
-      <header className="px-6 md:px-12 xl:px-24 mb-8 md:mb-12 flex flex-col gap-3">
-        <p className="font-mono uppercase tracking-[0.3em] text-xs text-foreground/55">
-          {plate.tagline ?? "une planche —"}
-        </p>
-        <h1
-          className="font-display uppercase text-[12vw] md:text-[7vw] leading-[0.92] tracking-[-0.02em] font-semibold max-w-[14ch]"
-          data-testid="project-title"
-        >
-          {plate.title}.
-        </h1>
-        {plate.credits && (
-          <p
-            className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/55 mt-2"
-            data-testid="project-credits"
-          >
-            {plate.credits}
-          </p>
-        )}
-      </header>
-
-      <div data-testid="project-gallery">
-        <PlateBody plate={plate} />
-      </div>
-
-      <nav className="px-6 md:px-12 xl:px-24 mt-32 md:mt-48 grid grid-cols-12 gap-6 border-t border-foreground/15 pt-10">
-        {prev && (
-          <Link
-            href={`/projets/${prev.slug}`}
-            className="col-span-6 group flex flex-col gap-3"
-            data-testid="link-prev-project"
-          >
-            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/55 group-hover:text-accent transition-colors">
-              ← Précédente — Planche {prev.n}
-            </span>
-            <span className="font-display uppercase text-xl md:text-3xl tracking-[-0.005em] font-semibold group-hover:text-accent transition-colors">
-              {prev.title}
-            </span>
-          </Link>
-        )}
-        {next && (
-          <Link
-            href={`/projets/${next.slug}`}
-            className="col-span-6 group flex flex-col gap-3 text-right items-end"
-            data-testid="link-next-project"
-          >
-            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/55 group-hover:text-accent transition-colors">
-              Suivante — Planche {next.n} →
-            </span>
-            <span className="font-display uppercase text-xl md:text-3xl tracking-[-0.005em] font-semibold group-hover:text-accent transition-colors">
-              {next.title}
-            </span>
-          </Link>
-        )}
-      </nav>
-    </article>
+    <ProjectShell
+      heroSrc={plate.src}
+      heroAlt={plate.alt}
+      mobile={<ProjectMobile plate={plate} prev={prev} next={next} />}
+    >
+      <ProjectContent plate={plate} prev={prev} next={next} />
+    </ProjectShell>
   );
 }
