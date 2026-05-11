@@ -1,13 +1,15 @@
 import { Link, useLocation } from "wouter";
 import { type ReactNode, useEffect } from "react";
 import { useLang } from "@/context/LanguageContext";
-import logo from "@assets/image001_1778521429706.png";
+
+const FONT_BODY = '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif';
+const FONT_GULDSCRIPT = '"GuldScript", cursive';
 
 const navItems = [
-  { href: "/", label: "work" },
+  { href: "/",       label: "work"   },
   { href: "/floral", label: "floral" },
-  { href: "/past", label: "past" },
-  { href: "/about", label: "about" },
+  { href: "/past",   label: "past"   },
+  { href: "/about",  label: "about"  },
 ];
 
 function NavLink({ href, label }: { href: string; label: string }) {
@@ -16,9 +18,17 @@ function NavLink({ href, label }: { href: string; label: string }) {
   return (
     <Link
       href={href}
-      className={`block font-mono text-[10px] uppercase tracking-[0.3em] transition-colors hover:text-accent ${
-        active ? "text-foreground" : "text-foreground/45"
-      }`}
+      style={{
+        display: "block",
+        fontFamily: FONT_BODY,
+        fontSize: 18,
+        fontWeight: 300,
+        letterSpacing: "-0.06em",
+        lineHeight: 0.9,
+        color: active ? "#111" : "rgba(0,0,0,0.38)",
+        textDecoration: "none",
+        transition: "color 0.2s",
+      }}
       data-testid={`nav-${label}`}
     >
       {label}
@@ -30,7 +40,6 @@ export default function Layout({ children }: { children: ReactNode }) {
   const [location] = useLocation();
   const { lang, toggle } = useLang();
 
-  // Artboard pages render their own nav/logo absolutely — bypass shared chrome
   const artboardRoutes = ["/", "/floral", "/abonnements", "/past", "/about"];
   const isArtboard = artboardRoutes.includes(location);
 
@@ -41,10 +50,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   if (isArtboard) {
     return (
       <div className="relative min-h-screen w-full bg-background text-foreground">
-        <main
-          key={location}
-          style={{ animation: "pageFadeIn 0.25s ease forwards" }}
-        >
+        <main key={location} style={{ animation: "pageFadeIn 0.25s ease forwards" }}>
           {children}
         </main>
       </div>
@@ -52,83 +58,103 @@ export default function Layout({ children }: { children: ReactNode }) {
   }
 
   return (
-    <div className="relative min-h-screen w-full overflow-x-hidden bg-background text-foreground flex flex-col">
-      <header className="fixed top-0 left-0 right-0 z-40 bg-background">
-        {/* Desktop: 3-zone header */}
-        <div className="hidden md:grid grid-cols-3 px-8 xl:px-14 pt-6 pb-4">
-          {/* Left: stacked nav */}
-          <nav className="flex flex-col gap-[6px] justify-start">
+    <div
+      style={{
+        position: "relative",
+        minHeight: "100vh",
+        width: "100%",
+        overflowX: "hidden",
+        backgroundColor: "#f4f4f2",
+        color: "#151515",
+        display: "flex",
+        flexDirection: "column",
+        WebkitFontSmoothing: "antialiased",
+      }}
+    >
+      <header style={{
+        position: "fixed", top: 0, left: 0, right: 0, zIndex: 40,
+        backgroundColor: "#f4f4f2",
+      }}>
+        <div style={{
+          display: "grid", gridTemplateColumns: "1fr auto 1fr",
+          alignItems: "start",
+          padding: "24px 130px 16px",
+        }}>
+          {/* Left: nav */}
+          <nav style={{ display: "flex", flexDirection: "column", gap: 4 }}>
             {navItems.map((item) => (
               <NavLink key={item.href} {...item} />
             ))}
           </nav>
 
-          {/* Center: logo */}
-          <div className="flex items-start justify-center">
-            <Link href="/" data-testid="nav-brand">
-              <img
-                src={logo}
-                alt="mund studio"
-                className="max-h-[52px] w-auto mix-blend-multiply"
-              />
-            </Link>
-          </div>
+          {/* Center: GuldScript logo */}
+          <Link
+            href="/"
+            data-testid="nav-brand"
+            style={{
+              fontFamily: FONT_GULDSCRIPT,
+              fontSize: 56,
+              fontWeight: "normal",
+              letterSpacing: "0.01em",
+              color: "#111",
+              textDecoration: "none",
+              lineHeight: 1,
+              whiteSpace: "nowrap",
+            }}
+          >
+            mund studio
+          </Link>
 
-          {/* Right: language toggle */}
-          <div className="flex justify-end items-start">
+          {/* Right: lang toggle */}
+          <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "flex-start" }}>
             <button
               onClick={toggle}
-              className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/45 hover:text-accent transition-colors"
               data-testid="lang-toggle"
+              style={{
+                fontFamily: FONT_BODY,
+                fontSize: 18,
+                fontWeight: 300,
+                letterSpacing: "-0.06em",
+                color: "rgba(0,0,0,0.45)",
+                background: "transparent",
+                border: "none",
+                padding: 0,
+                cursor: "pointer",
+              }}
             >
               {lang === "fr" ? "en" : "fr"}
             </button>
           </div>
         </div>
-
-        {/* Mobile: logo top + nav below */}
-        <div className="md:hidden px-6 pt-5 pb-3 flex flex-col gap-3">
-          <div className="flex items-center justify-between">
-            <Link href="/" data-testid="nav-brand-mobile">
-              <img
-                src={logo}
-                alt="mund studio"
-                className="max-h-[36px] w-auto mix-blend-multiply"
-              />
-            </Link>
-            <button
-              onClick={toggle}
-              className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/45"
-              data-testid="lang-toggle-mobile"
-            >
-              {lang === "fr" ? "en" : "fr"}
-            </button>
-          </div>
-          <nav className="flex gap-5">
-            {navItems.map((item) => (
-              <NavLink key={item.href} {...item} />
-            ))}
-          </nav>
-        </div>
-
-        <div className="h-px bg-foreground/10 mx-6 md:mx-8 xl:mx-14" />
+        <div style={{ height: 1, backgroundColor: "rgba(0,0,0,0.1)", margin: "0 130px" }} />
       </header>
 
       <main
         key={location}
-        className="flex-1 pt-[100px] md:pt-[110px]"
-        style={{ animation: "pageFadeIn 0.25s ease forwards" }}
+        style={{ flex: 1, paddingTop: 130, animation: "pageFadeIn 0.25s ease forwards" }}
       >
         {children}
       </main>
 
-      <footer className="px-6 md:px-8 xl:px-14 py-8 border-t border-foreground/10 flex flex-wrap items-baseline justify-between gap-4 font-mono text-[9px] uppercase tracking-[0.25em] text-foreground/35">
-        <span>© {new Date().getFullYear()} Mund Studio — Rue Monulphe 7, 4000 Liège</span>
+      <footer style={{
+        padding: "22px 130px",
+        borderTop: "1px solid rgba(0,0,0,0.1)",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "baseline",
+        fontFamily: FONT_BODY,
+        fontSize: 13,
+        fontWeight: 300,
+        letterSpacing: "-0.06em",
+        color: "rgba(0,0,0,0.4)",
+      }}>
+        <span>MUND STUDIO — Rue Monulphe 7, 4000 Liège, Belgique</span>
+        <span>vides et pleins / chaos et structure</span>
         <a
           href="https://instagram.com/mund.std"
           target="_blank"
           rel="noreferrer"
-          className="hover:text-accent transition-colors"
+          style={{ color: "rgba(0,0,0,0.4)", textDecoration: "none" }}
         >
           @mund.std
         </a>

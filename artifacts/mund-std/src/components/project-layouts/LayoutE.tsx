@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import type { Plate } from "@/data/plates";
 
 interface Props {
@@ -17,20 +16,12 @@ export function LayoutE({ plate }: Props) {
           {gallery.map((src, i) => {
             const isEven = i % 2 === 0;
             return (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.9, delay: i * 0.05 }}
                 className="flex flex-col gap-4"
-                style={{
-                  alignItems: isEven ? "flex-start" : "flex-end",
-                }}
+                style={{ alignItems: isEven ? "flex-start" : "flex-end" }}
               >
-                <figure
-                  style={{ width: "clamp(260px, 45vw, 700px)" }}
-                >
+                <figure style={{ width: "clamp(260px, 45vw, 700px)" }}>
                   <img
                     src={src}
                     alt={`${plate.alt} — ${i + 1}`}
@@ -40,12 +31,7 @@ export function LayoutE({ plate }: Props) {
                 </figure>
 
                 {i === 0 && (
-                  <div
-                    className="mt-4 mb-8"
-                    style={{
-                      width: "clamp(260px, 45vw, 700px)",
-                    }}
-                  >
+                  <div className="mt-4 mb-8" style={{ width: "clamp(260px, 45vw, 700px)" }}>
                     <span className="font-mono text-[9px] uppercase tracking-[0.45em] text-accent block mb-5">
                       Note du studio
                     </span>
@@ -57,7 +43,7 @@ export function LayoutE({ plate }: Props) {
                     </p>
                   </div>
                 )}
-              </motion.div>
+              </div>
             );
           })}
         </div>

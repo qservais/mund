@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import type { Plate } from "@/data/plates";
 
 interface Props {
@@ -22,31 +21,22 @@ export function LayoutC({ plate }: Props) {
   return (
     <div>
       <div className="flex flex-col items-center px-6 md:px-12 xl:px-24 pt-4 pb-8 gap-0">
-        <motion.figure
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full md:w-[55vw] max-w-3xl"
-        >
+        <figure className="w-full md:w-[55vw] max-w-3xl">
           <img
             src={hero}
             alt={plate.alt}
             loading="eager"
             className="w-full h-[55vh] md:h-[70vh] object-cover"
           />
-        </motion.figure>
+        </figure>
 
         {rest.length > 0 && (
           <div className="w-full flex flex-col items-center gap-1 mt-1">
             {rest.map((src, i) => {
               const o = offsets[(i + 1) % offsets.length];
               return (
-                <motion.figure
+                <figure
                   key={i}
-                  initial={{ opacity: 0, y: 32 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.9, delay: i * 0.08 }}
                   style={{
                     width: `calc(${o.scale * 55}vw)`,
                     transform: `translateX(${o.x})`,
@@ -59,7 +49,7 @@ export function LayoutC({ plate }: Props) {
                     loading="lazy"
                     className="w-full h-48 md:h-72 object-cover"
                   />
-                </motion.figure>
+                </figure>
               );
             })}
           </div>

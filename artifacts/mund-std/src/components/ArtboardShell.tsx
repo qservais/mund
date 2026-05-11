@@ -2,10 +2,10 @@ import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "wouter";
 import { useLang } from "@/context/LanguageContext";
 
-// ── Shared type tokens ──────────────────────────────────────────────────────
+// ── Design tokens ────────────────────────────────────────────────────────────
 export const SERIF: React.CSSProperties = {
   fontFamily: '"Cormorant Garamond", "Times New Roman", Times, serif',
-  fontSize: 18,
+  fontSize: 22,
   fontWeight: 700,
   letterSpacing: "-0.05em",
   textTransform: "uppercase",
@@ -14,15 +14,15 @@ export const SERIF: React.CSSProperties = {
 
 export const BODY: React.CSSProperties = {
   fontFamily: '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif',
-  fontSize: 16,
+  fontSize: 18,
   fontWeight: 300,
   letterSpacing: "-0.06em",
-  lineHeight: 0.9,
+  lineHeight: 1.0,
 };
 
 export const NAV_STYLE: React.CSSProperties = {
   fontFamily: '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif',
-  fontSize: 18,
+  fontSize: 20,
   lineHeight: 0.85,
   fontWeight: 300,
   letterSpacing: "-0.06em",
@@ -31,12 +31,18 @@ export const NAV_STYLE: React.CSSProperties = {
   textDecoration: "none",
 };
 
-// Nav links: work→/floral, floral→/abonnements, past→/past, about→/about
+export const GULDSCRIPT: React.CSSProperties = {
+  fontFamily: '"GuldScript", cursive',
+  fontWeight: "normal",
+  letterSpacing: "0.01em",
+};
+
+// Nav: work→/ (home), floral→/floral, past→/past, about→/about
 const NAV_ITEMS = [
-  { label: "work",   href: "/floral",      testId: "nav-work"  },
-  { label: "floral", href: "/abonnements", testId: "nav-floral" },
-  { label: "past",   href: "/past",        testId: "nav-past"  },
-  { label: "about",  href: "/about",       testId: "nav-about" },
+  { label: "work",   href: "/",       testId: "nav-work"   },
+  { label: "floral", href: "/floral", testId: "nav-floral" },
+  { label: "past",   href: "/past",   testId: "nav-past"   },
+  { label: "about",  href: "/about",  testId: "nav-about"  },
 ];
 
 type Props = {
@@ -83,18 +89,15 @@ export default function ArtboardShell({ children, overlayRef, minHeight = 2048 }
           src={overlayRef}
           alt=""
           style={{
-            position: "absolute",
-            top: 0, left: 0,
+            position: "absolute", top: 0, left: 0,
             width: 1300, height: minHeight,
-            opacity: 0.35,
-            pointerEvents: "none",
-            zIndex: 9999,
+            opacity: 0.35, pointerEvents: "none", zIndex: 9999,
           }}
         />
       )}
 
-      {/* Nav — top-left */}
-      <nav style={{ position: "absolute", top: 55, left: 130 }}>
+      {/* Nav — top-left, stacked */}
+      <nav style={{ position: "absolute", top: 52, left: 130 }}>
         {NAV_ITEMS.map(({ label, href, testId }) => (
           <Link key={href} href={href} style={NAV_STYLE} data-testid={testId}>
             {label}
@@ -102,25 +105,16 @@ export default function ArtboardShell({ children, overlayRef, minHeight = 2048 }
         ))}
       </nav>
 
-      {/* Logo — GuldScript centered */}
+      {/* Logo — GuldScript centré */}
       <Link
         href="/"
         data-testid="nav-brand"
         style={{
-          position: "absolute",
-          top: 48,
-          left: "50%",
-          transform: "translateX(-50%)",
-          display: "block",
-          whiteSpace: "nowrap",
-          fontFamily: '"GuldScript", cursive',
-          fontSize: 56,
-          fontWeight: "normal",
-          letterSpacing: "0.01em",
-          color: "#111",
-          textDecoration: "none",
-          lineHeight: 1,
-          zIndex: 10,
+          position: "absolute", top: 42,
+          left: "50%", transform: "translateX(-50%)",
+          display: "block", whiteSpace: "nowrap", zIndex: 10,
+          ...GULDSCRIPT,
+          fontSize: 60, color: "#111", textDecoration: "none", lineHeight: 1,
         }}
       >
         mund studio
@@ -131,17 +125,9 @@ export default function ArtboardShell({ children, overlayRef, minHeight = 2048 }
         onClick={toggle}
         data-testid="lang-toggle"
         style={{
-          position: "absolute",
-          top: 55,
-          right: 130,
-          ...BODY,
-          fontSize: 16,
-          color: "#111",
-          background: "transparent",
-          border: "none",
-          padding: 0,
-          cursor: "pointer",
-          zIndex: 10,
+          position: "absolute", top: 52, right: 130,
+          ...BODY, fontSize: 18, color: "#111",
+          background: "transparent", border: "none", padding: 0, cursor: "pointer", zIndex: 10,
         }}
       >
         {lang === "fr" ? "en" : "fr"}
@@ -150,13 +136,32 @@ export default function ArtboardShell({ children, overlayRef, minHeight = 2048 }
       {/* Page content */}
       {children}
 
+      {/* Footer — bas de l'artboard */}
+      <div style={{
+        position: "absolute", bottom: 0, left: 0, right: 0,
+        padding: "22px 130px",
+        borderTop: "1px solid rgba(0,0,0,0.1)",
+        display: "flex", justifyContent: "space-between", alignItems: "baseline",
+        ...BODY, fontSize: 13, color: "rgba(0,0,0,0.4)",
+      }}>
+        <span>MUND STUDIO — Rue Monulphe 7, 4000 Liège</span>
+        <span>vides et pleins / chaos et structure</span>
+        <a
+          href="https://instagram.com/mund.std"
+          target="_blank"
+          rel="noreferrer"
+          style={{ color: "rgba(0,0,0,0.4)", textDecoration: "none" }}
+        >
+          @mund.std
+        </a>
+      </div>
+
       {/* Dev hint */}
       {overlay && (
         <div style={{
           position: "fixed", bottom: 12, left: 12, zIndex: 10000,
           background: "#111", color: "#fff",
-          fontFamily: "monospace", fontSize: 11,
-          padding: "4px 8px", opacity: 0.85,
+          fontFamily: "monospace", fontSize: 11, padding: "4px 8px", opacity: 0.85,
         }}>
           OVERLAY ON · press "o" to toggle
         </div>

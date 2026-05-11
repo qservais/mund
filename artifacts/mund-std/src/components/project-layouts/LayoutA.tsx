@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import type { Plate } from "@/data/plates";
 
 interface Props {
@@ -35,39 +34,27 @@ export function LayoutA({ plate }: Props) {
           </div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-          className="relative overflow-hidden bg-foreground/5"
-          style={{ minHeight: "60vh" }}
-        >
+        <div className="relative overflow-hidden bg-foreground/5" style={{ minHeight: "60vh" }}>
           <img
             src={hero}
             alt={plate.alt}
             loading="eager"
             className="absolute inset-0 w-full h-full object-cover"
           />
-        </motion.div>
+        </div>
       </div>
 
       {rest.length > 0 && (
         <div className="px-6 md:px-12 xl:px-24 pt-4 grid grid-cols-2 md:grid-cols-3 gap-1 md:gap-2">
           {rest.map((src, i) => (
-            <motion.figure
-              key={i}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.8, delay: i * 0.07 }}
-            >
+            <figure key={i}>
               <img
                 src={src}
                 alt={`${plate.alt} — ${i + 2}`}
                 loading="lazy"
                 className="w-full h-56 md:h-80 object-cover"
               />
-            </motion.figure>
+            </figure>
           ))}
         </div>
       )}

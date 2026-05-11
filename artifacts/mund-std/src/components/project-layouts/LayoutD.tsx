@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import type { Plate } from "@/data/plates";
 
 interface Props {
@@ -32,55 +31,37 @@ export function LayoutD({ plate }: Props) {
             </div>
           </div>
 
-          <motion.figure
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-            className="hidden md:block absolute right-0 top-0 w-[42%]"
-            style={{ marginLeft: "auto" }}
-          >
+          <figure className="hidden md:block absolute right-0 top-0 w-[42%]" style={{ marginLeft: "auto" }}>
             <img
               src={hero}
               alt={plate.alt}
               loading="eager"
               className="w-full h-[75vh] object-cover"
             />
-          </motion.figure>
+          </figure>
 
-          <motion.figure
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.1 }}
-            className="md:hidden w-full mt-8"
-          >
+          <figure className="md:hidden w-full mt-8">
             <img
               src={hero}
               alt={plate.alt}
               loading="eager"
               className="w-full h-72 object-cover"
             />
-          </motion.figure>
+          </figure>
         </div>
       </div>
 
       {rest.length > 0 && (
         <div className="mt-2 flex flex-col gap-1">
           {rest.map((src, i) => (
-            <motion.figure
-              key={i}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.85, delay: i * 0.05 }}
-              className="w-full"
-            >
+            <figure key={i} className="w-full">
               <img
                 src={src}
                 alt={`${plate.alt} — ${i + 2}`}
                 loading="lazy"
                 className="w-full h-56 md:h-[40vh] object-cover"
               />
-            </motion.figure>
+            </figure>
           ))}
         </div>
       )}

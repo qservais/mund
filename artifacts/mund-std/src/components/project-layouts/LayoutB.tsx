@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import type { Plate } from "@/data/plates";
 
 interface Props {
@@ -19,14 +18,7 @@ export function LayoutB({ plate }: Props) {
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
           {gallery.map((src, i) => (
-            <motion.figure
-              key={i}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.85, delay: i * 0.06 }}
-              className="flex flex-col gap-3"
-            >
+            <figure key={i} className="flex flex-col gap-3">
               <div className="overflow-hidden bg-foreground/5">
                 <img
                   src={src}
@@ -38,7 +30,7 @@ export function LayoutB({ plate }: Props) {
               <span className="font-mono text-[9px] text-foreground/40 tracking-[0.2em]">
                 {String(i + 1).padStart(2, "0")}
               </span>
-            </motion.figure>
+            </figure>
           ))}
         </div>
 
