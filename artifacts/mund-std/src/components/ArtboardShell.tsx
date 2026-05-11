@@ -114,19 +114,21 @@ export default function ArtboardShell({ children, overlayRef, minHeight = 2048 }
         })}
       </nav>
 
-      {/* Logo — GuldScript centré */}
+      {/* Logo — SVG centré */}
       <Link
         href="/"
         data-testid="nav-brand"
         style={{
-          position: "absolute", top: 42,
+          position: "absolute", top: 46,
           left: "50%", transform: "translateX(-50%)",
-          display: "block", whiteSpace: "nowrap", zIndex: 10,
-          ...GULDSCRIPT,
-          fontSize: 60, color: "#111", textDecoration: "none", lineHeight: 1,
+          display: "block", zIndex: 10, textDecoration: "none",
         }}
       >
-        mund studio
+        <img
+          src="/svg/mund%20studio.svg"
+          alt="mund studio"
+          style={{ width: 370, display: "block" }}
+        />
       </Link>
 
       {/* FR/EN toggle — top-right */}

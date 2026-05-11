@@ -68,23 +68,17 @@ export default function About() {
         ))}
       </div>
 
-      {/* ── GuldScript quote — above photo ────────────────── */}
-      <div style={{
-        position: "absolute", left: LEFT, top: 858,
-        zIndex: 2, pointerEvents: "none",
-      }}>
-        {c.quote.map((l, i) => (
-          <div key={i} style={{
-            ...GULDSCRIPT,
-            fontSize: 28,
-            lineHeight: 1.35,
-            color: "rgba(0,0,0,0.48)",
-            marginLeft: i * 22,
-          }}>
-            {l}
-          </div>
-        ))}
-      </div>
+      {/* ── Handwritten quote SVG — above photo ──────────── */}
+      <img
+        src="/svg/le%20temps%20est%20beau.svg"
+        alt="le temps est beau, une petite averse"
+        style={{
+          position: "absolute", left: LEFT, top: 848,
+          width: 274,
+          zIndex: 2, pointerEvents: "none",
+          opacity: 0.72,
+        }}
+      />
 
       {/* ── Photo — Julie Ahn ─────────────────────────────── */}
       <img
