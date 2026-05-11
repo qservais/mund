@@ -1,127 +1,89 @@
+import ArtboardShell, { SERIF, BODY } from "@/components/ArtboardShell";
 import { Link } from "wouter";
 import { useLang } from "@/context/LanguageContext";
 import { plates } from "@/data/plates";
+import overlayRef from "@assets/floral_1778525400140.png";
 
 const copy = {
   fr: {
-    title: "nos abonnements",
-    subtitle:
-      "retrouvez notre travail floral pour vos espaces ou votre habitation.",
+    aboTitle: "NOS ABONNEMENTS",
+    aboSub: "retrouver notre travail floral pour vos espaces\nou votre habitation.",
 
-    proLabel: "espaces & professionnels",
-    proText:
-      "nous proposons un travail floral récurrent pour vos espaces professionnels, hôtels, boutiques, bureaux, cabinets. chaque intervention est développée sur mesure, pensée en lien avec l'identité de l'espace. nous définissons ensemble le format et la fréquence selon vos besoins.",
+    proTitle: "ESPACES & PROFESSIONNELS",
+    proBody: "nous proposons un travail floral récurent  pour  vos espaces professionnels,\nhôtels, boutiques, bureaux, cabinets...\nchaque intervention est développée sur mesure, pensée en lien avec l'idéntité\nde l'espace.\nnous définissons ensemble le format et la fréquence selon vos besoins.\npour toute demande ou mise en place d'un abonnement, contactez-nous.",
     proItalic: "nous composons avec votre image et votre espace.",
-    proLink: "pour toute demande, contactez-nous",
 
-    partLabel: "particuliers",
-    partText:
-      "chaque deuxième jeudi du mois, nous vous proposons un bouquet surprise composé selon les arrivages du moment. une manière d'inviter notre travail chez vous en le voyant évoluer au fil des saisons ou de manière occasionnelle.",
+    partTitle: "PARTICULIERS",
+    partBody: "chaque deuxième jeudi du mois, nous vous proposons un bouquet surprise\ncomposé selon les arrivages du moment.\nUne manière d'inviter notre travail chez vous en le voyant évoluer au fil des\nsaisons ou de manière occasionnelle.",
     partItalic: "un rendez-vous mensuel autour des fleurs de saison.",
-    partLink: "réserver un bouquet",
+    partLink: "envie d'en savoir plus ? c'est par ici.",
   },
   en: {
-    title: "our subscriptions",
-    subtitle:
-      "find our floral work for your spaces or your home.",
+    aboTitle: "OUR SUBSCRIPTIONS",
+    aboSub: "find our floral work for your spaces\nor your home.",
 
-    proLabel: "spaces & professionals",
-    proText:
-      "we offer recurring floral work for your professional spaces, hotels, boutiques, offices, practices. each intervention is developed to measure, conceived in relation to the identity of the space. we define together the format and frequency according to your needs.",
+    proTitle: "SPACES & PROFESSIONALS",
+    proBody: "we offer recurring floral work for your professional spaces,\nhotels, boutiques, offices, practices...\neach intervention is developed to measure, conceived in relation\nto the identity of the space.\nwe define together the format and frequency according to your needs.\nfor any enquiry or to set up a subscription, contact us.",
     proItalic: "we compose with your image and your space.",
-    proLink: "for any enquiry, contact us",
 
-    partLabel: "private clients",
-    partText:
-      "every second thursday of the month, we offer you a surprise bouquet composed according to current arrivals. a way to invite our work into your home, watching it evolve with the seasons or on an occasional basis.",
+    partTitle: "PRIVATE CLIENTS",
+    partBody: "every second thursday of the month, we offer you a surprise bouquet\ncomposed according to current arrivals.\na way to invite our work into your home,\nwatching it evolve with the seasons or on an occasional basis.",
     partItalic: "a monthly appointment around seasonal flowers.",
-    partLink: "reserve a bouquet",
+    partLink: "want to know more? right here.",
   },
 };
 
 export default function Abonnements() {
   const { lang } = useLang();
   const c = copy[lang];
+  const imgMain = plates[4].src;
 
-  const imgMain = plates[10];
-  const imgSecond = plates[3];
+  const bodyLines = (text: string) =>
+    text.split("\n").map((l, i) => <span key={i}>{l}<br /></span>);
 
   return (
-    <div className="px-6 md:px-8 xl:px-14">
+    <ArtboardShell overlayRef={overlayRef} minHeight={2048}>
 
-      {/* Title */}
-      <section className="py-10 md:py-14 border-b border-foreground/10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div />
-          <div className="md:col-span-2 flex flex-col gap-3">
-            <span className="font-mono text-[9px] uppercase tracking-[0.35em] text-foreground/40">
-              {c.title}
-            </span>
-            <p className="font-sans text-[11px] leading-[1.9] text-foreground/60 max-w-[44ch]">
-              {c.subtitle}
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* ── NOS ABONNEMENTS — top right, left 840, top 130 */}
+      <div style={{ position: "absolute", left: 840, top: 130, width: 330, textAlign: "right" }}>
+        <div style={{ ...SERIF, marginBottom: 14 }}>{c.aboTitle}</div>
+        <p style={{ ...BODY, margin: 0 }}>{bodyLines(c.aboSub)}</p>
+      </div>
 
-      {/* Two-col: text blocks + image */}
-      <section className="py-10 md:py-14 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
-        {/* Left: pro + particuliers */}
-        <div className="flex flex-col gap-12">
-          {/* Pro */}
-          <div className="flex flex-col gap-5 border-b border-foreground/10 pb-10">
-            <span className="font-mono text-[9px] uppercase tracking-[0.35em] text-foreground/40">
-              {c.proLabel}
-            </span>
-            <p className="font-sans text-[11px] leading-[1.9] text-foreground/75 max-w-[44ch]">
-              {c.proText}
-            </p>
-            <p className="font-mono text-[9px] italic tracking-[0.2em] text-foreground/45">
-              {c.proItalic}
-            </p>
-            <Link
-              href="/contact"
-              className="font-mono text-[9px] uppercase tracking-[0.25em] text-foreground/55 border-b border-foreground/30 pb-[2px] w-fit hover:text-accent hover:border-accent transition-colors"
-            >
-              {c.proLink}
-            </Link>
-          </div>
+      {/* Image right — left 840, top 220, 335×610 */}
+      <img
+        src={imgMain}
+        alt=""
+        style={{ position: "absolute", left: 840, top: 220, width: 335, height: 610, objectFit: "cover" }}
+      />
 
-          {/* Particuliers */}
-          <div className="flex flex-col gap-5">
-            <span className="font-mono text-[9px] uppercase tracking-[0.35em] text-foreground/40">
-              {c.partLabel}
-            </span>
-            <p className="font-sans text-[11px] leading-[1.9] text-foreground/75 max-w-[44ch]">
-              {c.partText}
-            </p>
-            <p className="font-mono text-[9px] italic tracking-[0.2em] text-foreground/45">
-              {c.partItalic}
-            </p>
-            <Link
-              href="/contact"
-              className="font-mono text-[9px] uppercase tracking-[0.25em] text-accent border-b border-accent pb-[2px] w-fit hover:opacity-70 transition-opacity"
-              data-testid="link-reserver"
-            >
-              {c.partLink}
-            </Link>
-          </div>
-        </div>
+      {/* ── ESPACES & PROFESSIONNELS — left 120, top 300 */}
+      <div style={{ position: "absolute", left: 120, top: 300, width: 600 }}>
+        <div style={{ ...SERIF, marginBottom: 20 }}>{c.proTitle}</div>
+        <p style={{ ...BODY, margin: 0, marginBottom: 22 }}>{bodyLines(c.proBody)}</p>
+        <p style={{
+          ...SERIF, fontWeight: 400, textTransform: "none",
+          fontStyle: "italic", fontSize: 16, marginTop: 8, textAlign: "right",
+        }}>
+          {c.proItalic}
+        </p>
+      </div>
 
-        {/* Right: images */}
-        <div className="flex flex-col gap-4">
-          <img
-            src={imgMain.src}
-            alt={imgMain.alt}
-            className="w-full aspect-[3/4] object-cover"
-          />
-          <img
-            src={imgSecond.src}
-            alt={imgSecond.alt}
-            className="w-2/3 aspect-square object-cover self-end"
-          />
-        </div>
-      </section>
-    </div>
+      {/* ── PARTICULIERS — left 120, top 555 */}
+      <div style={{ position: "absolute", left: 120, top: 620, width: 600 }}>
+        <div style={{ ...SERIF, marginBottom: 20 }}>{c.partTitle}</div>
+        <p style={{ ...BODY, margin: 0, marginBottom: 22 }}>{bodyLines(c.partBody)}</p>
+        <p style={{
+          ...SERIF, fontWeight: 400, textTransform: "none",
+          fontStyle: "italic", fontSize: 16, marginBottom: 18, textAlign: "right",
+        }}>
+          {c.partItalic}
+        </p>
+        <Link href="/contact" style={{ ...BODY, color: "#151515", textDecoration: "none" }}>
+          {c.partLink}
+        </Link>
+      </div>
+
+    </ArtboardShell>
   );
 }

@@ -31,7 +31,8 @@ export default function Layout({ children }: { children: ReactNode }) {
   const { lang, toggle } = useLang();
 
   // Artboard pages render their own nav/logo absolutely — bypass shared chrome
-  const isArtboard = location === "/";
+  const artboardRoutes = ["/", "/floral", "/abonnements", "/past", "/about"];
+  const isArtboard = artboardRoutes.includes(location);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" });
