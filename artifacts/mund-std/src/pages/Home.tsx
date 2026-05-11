@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { useLang } from "@/context/LanguageContext";
 import { plates } from "@/data/plates";
-import logo from "@assets/image001_1778521429706.png";
 import overlayRef from "@assets/1_1778522805215.png";
 
 const copy = {
@@ -147,28 +146,28 @@ export default function Home() {
         <Link href="/about" style={NAV} data-testid="nav-about">about</Link>
       </nav>
 
-      {/* Logo — centered, +12% (300 → 336px) */}
+      {/* Logo — GuldScript text, centered, ~56px = 50 × 1.12 */}
       <Link
         href="/"
         data-testid="nav-brand"
         style={{
           position: "absolute",
-          top: 55,
+          top: 48,
           left: "50%",
           transform: "translateX(-50%)",
-          width: 336,
           display: "block",
+          whiteSpace: "nowrap",
+          fontFamily: '"GuldScript", cursive',
+          fontSize: 56,
+          fontWeight: "normal",
+          letterSpacing: "0.01em",
+          color: "#111",
+          textDecoration: "none",
+          lineHeight: 1,
+          zIndex: 10,
         }}
       >
-        <img
-          src={logo}
-          alt="mund studio"
-          style={{
-            width: "100%",
-            display: "block",
-            mixBlendMode: "multiply",
-          }}
-        />
+        mund studio
       </Link>
 
       {/* FR/EN toggle — top right */}
