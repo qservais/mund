@@ -102,12 +102,12 @@ export default function About() {
       </div>
 
       {/* ── col1 — 2cm gap below bio3 (~76px) ───────────────── */}
-      <div style={{ position: "absolute", left: LEFT, top: 490, width: W_BIO }}>
+      <div style={{ position: "absolute", left: LEFT, top: 490, width: 340 }}>
         <p style={{ ...BODY, margin: 0, textAlign: "justify" }}>{c.col1}</p>
       </div>
 
       {/* ── col2 — 1cm gap below col1 (~38px) ───────────────── */}
-      <div style={{ position: "absolute", left: LEFT, top: 580, width: W_BIO }}>
+      <div style={{ position: "absolute", left: LEFT, top: 580, width: 340 }}>
         <p style={{ ...BODY, margin: 0, textAlign: "justify" }}>{c.col2}</p>
       </div>
 

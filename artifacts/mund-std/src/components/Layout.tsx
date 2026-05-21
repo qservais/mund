@@ -8,7 +8,7 @@ const FONT_BODY = '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, 
 
 const navItems = [
   { href: "/floral",      label: "work"   },
-  { href: "/floral",      label: "floral" },
+  { href: "/abonnements", label: "floral" },
   { href: "/past",        label: "past"   },
   { href: "/about",       label: "about"  },
 ];

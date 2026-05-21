@@ -7,7 +7,7 @@ const SERIF = '"Cormorant Garamond", "Times New Roman", Times, serif';
 
 const NAV_ITEMS = [
   { label: "work",    href: "/floral"      },
-  { label: "floral",  href: "/floral"      },
+  { label: "floral",  href: "/abonnements" },
   { label: "past",    href: "/past"        },
   { label: "about",   href: "/about"       },
   { label: "contact", href: "/contact"     },

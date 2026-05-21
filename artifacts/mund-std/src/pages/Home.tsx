@@ -2,9 +2,9 @@ import ArtboardShell, { SERIF, BODY } from "@/components/ArtboardShell";
 import { Link } from "wouter";
 import { useLang } from "@/context/LanguageContext";
 import overlayRef from "@assets/1_1778522805215.png";
-const heroImg  = "/images/hero-home.webp";
+const heroImg  = "/images/svc2.webp";
 const svc1Img  = "/images/svc1.webp";
-const svc2Img  = "/images/svc2.webp";
+const svc2Img  = "/images/hero-home.webp";
 
 const copy = {
   fr: {
