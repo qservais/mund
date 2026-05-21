@@ -62,8 +62,8 @@ function ProjectContent({ plate, prev, next }: { plate: Plate; prev?: Plate; nex
 
         {plate.tagline && (
           <p style={{
-            fontFamily: FF, fontWeight: 300, fontSize: 17,
-            letterSpacing: "-0.05em", fontStyle: "italic",
+            fontFamily: FF, fontWeight: 300, fontSize: 15,
+            letterSpacing: "-0.05em",
             color: "rgba(0,0,0,0.50)", margin: 0, marginBottom: 0,
           }}>
             {plate.tagline}
@@ -98,8 +98,8 @@ function ProjectContent({ plate, prev, next }: { plate: Plate; prev?: Plate; nex
           <p
             data-testid="project-story"
             style={{
-              fontFamily: FF, fontWeight: 300, fontSize: 18,
-              letterSpacing: "-0.06em", lineHeight: 1.65,
+              fontFamily: FF, fontWeight: 300, fontSize: 15,
+              letterSpacing: "-0.06em", lineHeight: 1.0,
               color: "rgba(0,0,0,0.80)", margin: 0,
             }}
           >
@@ -146,7 +146,7 @@ function ProjectContent({ plate, prev, next }: { plate: Plate; prev?: Plate; nex
             <span style={{ fontFamily: FF, fontWeight: 300, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.22em", color: "rgba(0,0,0,0.38)" }}>
               ← Précédente
             </span>
-            <span style={{ fontFamily: SF, fontWeight: 700, fontSize: 22, letterSpacing: "-0.04em", textTransform: "uppercase", color: "#151515" }}>
+            <span style={{ fontFamily: SF, fontWeight: 700, fontSize: 16, letterSpacing: "-0.04em", textTransform: "uppercase", color: "#151515" }}>
               {prev.title}
             </span>
           </Link>
@@ -161,7 +161,7 @@ function ProjectContent({ plate, prev, next }: { plate: Plate; prev?: Plate; nex
             <span style={{ fontFamily: FF, fontWeight: 300, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.22em", color: "rgba(0,0,0,0.38)" }}>
               Suivante →
             </span>
-            <span style={{ fontFamily: SF, fontWeight: 700, fontSize: 22, letterSpacing: "-0.04em", textTransform: "uppercase", color: "#151515" }}>
+            <span style={{ fontFamily: SF, fontWeight: 700, fontSize: 16, letterSpacing: "-0.04em", textTransform: "uppercase", color: "#151515" }}>
               {next.title}
             </span>
           </Link>
@@ -200,7 +200,7 @@ function ProjectMobile({ plate, prev, next }: { plate: Plate; prev?: Plate; next
         {plate.title}.
       </h1>
       {plate.tagline && (
-        <p style={{ fontFamily: FF, fontWeight: 300, fontSize: 15, letterSpacing: "-0.04em", fontStyle: "italic", color: "rgba(0,0,0,0.50)", margin: "0 0 28px" }}>
+        <p style={{ fontFamily: FF, fontWeight: 300, fontSize: 15, letterSpacing: "-0.04em", color: "rgba(0,0,0,0.50)", margin: "0 0 28px" }}>
           {plate.tagline}
         </p>
       )}

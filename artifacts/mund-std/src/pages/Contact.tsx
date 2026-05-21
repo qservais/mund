@@ -5,16 +5,14 @@ import ArtboardShell, { SERIF, BODY } from "@/components/ArtboardShell";
 const FF  = '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif';
 
 const LBL: React.CSSProperties = {
-  fontFamily: FF, fontWeight: 300, fontSize: 10,
-  textTransform: "uppercase", letterSpacing: "0.28em",
+  ...BODY, textTransform: "uppercase", letterSpacing: "0.28em",
   color: "rgba(0,0,0,0.38)", lineHeight: 1, display: "block",
 };
 const INFO: React.CSSProperties = {
   ...BODY, lineHeight: 1.0,
 };
 const FIELD_LBL: React.CSSProperties = {
-  fontFamily: FF, fontWeight: 300, fontSize: 10,
-  textTransform: "uppercase", letterSpacing: "0.24em",
+  ...BODY, textTransform: "uppercase", letterSpacing: "0.24em",
   color: "rgba(0,0,0,0.38)", lineHeight: 1,
   display: "flex", alignItems: "baseline", justifyContent: "space-between",
 };
@@ -223,7 +221,7 @@ export default function Contact() {
 
       {/* ── CONTACT title ──────────────────────────────────────── */}
       <div style={{ position: "absolute", left: 130, top: 195 }}>
-        <div style={{ ...SERIF, fontSize: 22 }}>{c.title}</div>
+        <div style={{ ...SERIF }}>{c.title}</div>
       </div>
 
       {/* ── HR ─────────────────────────────────────────────────── */}

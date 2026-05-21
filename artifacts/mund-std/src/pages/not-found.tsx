@@ -15,7 +15,7 @@ export default function NotFound() {
         </p>
         <Link
           href="/"
-          className="font-sans text-[11px] tracking-[0.25em] uppercase border-b border-foreground/40 pb-1 self-center hover:italic transition-all"
+          className="font-sans text-[11px] tracking-[0.25em] uppercase border-b border-foreground/40 pb-1 self-center hover:opacity-60 transition-all"
         >
           Retour à l'accueil
         </Link>

@@ -78,7 +78,7 @@ function AbonnementsMobile({ c }: { c: typeof copy.fr }) {
         <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: "0 0 16px", textAlign: "right" }}>
           {c.partItalic}
         </p>
-        <Link href="/contact" style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", color: "#151515", textDecoration: "none" }}>
+        <Link href="/abonnements" style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", color: "#151515", textDecoration: "none" }}>
           {c.partLink}
         </Link>
       </div>
@@ -133,7 +133,7 @@ export default function Abonnements() {
         }}>
           {c.partItalic}
         </p>
-        <Link href="/contact" style={{ ...BODY, color: "#151515", textDecoration: "none" }}>
+        <Link href="/abonnements" style={{ ...BODY, color: "#151515", textDecoration: "none" }}>
           {c.partLink}
         </Link>
       </div>
