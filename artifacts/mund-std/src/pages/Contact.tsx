@@ -4,14 +4,13 @@ import ArtboardShell, { SERIF, BODY } from "@/components/ArtboardShell";
 
 const FF  = '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif';
 
-/* ── Tokens ──────────────────────────────────────────────────────────────── */
 const LBL: React.CSSProperties = {
   fontFamily: FF, fontWeight: 300, fontSize: 10,
   textTransform: "uppercase", letterSpacing: "0.28em",
   color: "rgba(0,0,0,0.38)", lineHeight: 1, display: "block",
 };
 const INFO: React.CSSProperties = {
-  ...BODY, fontSize: 16, lineHeight: 1.55, color: "rgba(0,0,0,0.70)",
+  ...BODY, lineHeight: 1.0,
 };
 const FIELD_LBL: React.CSSProperties = {
   fontFamily: FF, fontWeight: 300, fontSize: 10,
@@ -20,33 +19,29 @@ const FIELD_LBL: React.CSSProperties = {
   display: "flex", alignItems: "baseline", justifyContent: "space-between",
 };
 const INPUT: React.CSSProperties = {
-  ...BODY, fontSize: 17,
+  ...BODY,
   color: "#151515", background: "transparent",
   border: "none", borderBottom: "1px solid rgba(0,0,0,0.18)",
   paddingBottom: 9, paddingTop: 2,
   width: "100%", outline: "none",
 };
 
-/* ── Copy ────────────────────────────────────────────────────────────────── */
 const copy = {
   fr: {
     title: "CONTACT",
     atelier: "Atelier",
     adresse: ["MUND STUDIO", "Rue Monulphe 7", "4000 Liège, Belgique"],
-    ouverture: "Ouverture",
-    horaires: ["Du mardi au samedi,", "sur rendez-vous."],
     reseaux: "Réseaux",
     direction: "Direction",
-    directionText: ["Julie Ahn,", "architecte & designer florale."],
+    directionText: ["Julie Ahn,", "designer florale."],
     caption: "vides et pleins, chaos et structure.",
     fields: [
       { name: "nom",     label: "Votre nom",       type: "text",  placeholder: "Prénom & nom",                                       required: true  },
       { name: "email",   label: "Email",            type: "email", placeholder: "vous@exemple.be",                                    required: true  },
-      { name: "type",    label: "Nature du projet", type: "text",  placeholder: "Mariage, événement, scénographie…",                  required: false },
+      { name: "type",    label: "Nature du projet", type: "text",  placeholder: "Mariage, événement, scénographie, abonnement…",      required: false },
       { name: "date",    label: "Date envisagée",   type: "text",  placeholder: "Saison, mois, journée…",                            required: false },
       { name: "message", label: "Votre message",    type: "text",  placeholder: "Décrivez le lieu, le nombre d'invités, l'ambiance…", required: true, multiline: true },
     ],
-    note:        "Réponse sous 48h, du mardi au samedi.",
     submit:      "Envoyer",
     success:     "Message bien reçu",
     successBody: (nom: string) =>
@@ -57,20 +52,17 @@ const copy = {
     title: "CONTACT",
     atelier: "Studio",
     adresse: ["MUND STUDIO", "7 Rue Monulphe", "4000 Liège, Belgium"],
-    ouverture: "Hours",
-    horaires: ["Tuesday to Saturday,", "by appointment."],
     reseaux: "Social",
     direction: "Direction",
-    directionText: ["Julie Ahn,", "architect & floral designer."],
+    directionText: ["Julie Ahn,", "floral designer."],
     caption: "voids and solids, chaos and structure.",
     fields: [
       { name: "nom",     label: "Your name",     type: "text",  placeholder: "First & last name",                                 required: true  },
       { name: "email",   label: "Email",          type: "email", placeholder: "you@example.com",                                   required: true  },
-      { name: "type",    label: "Project type",   type: "text",  placeholder: "Wedding, event, scenography…",                     required: false },
+      { name: "type",    label: "Project type",   type: "text",  placeholder: "Wedding, event, scenography, subscription…",       required: false },
       { name: "date",    label: "Planned date",   type: "text",  placeholder: "Season, month, day…",                             required: false },
       { name: "message", label: "Your message",   type: "text",  placeholder: "Describe the venue, guests, atmosphere…",         required: true, multiline: true },
     ],
-    note:        "We reply within 48h, Tuesday to Saturday.",
     submit:      "Send",
     success:     "Message received",
     successBody: (nom: string) =>
@@ -79,7 +71,6 @@ const copy = {
   },
 } as const;
 
-/* ── Form component (shared between desktop & mobile) ────────────────────── */
 function ContactForm({
   c, style,
 }: {
@@ -99,8 +90,8 @@ function ContactForm({
   if (submitted) {
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: 24, ...style }} data-testid="contact-success">
-        <span style={{ ...SERIF, fontSize: 18, color: "#c0392b" }}>{c.success}</span>
-        <p style={{ ...BODY, fontSize: 16, lineHeight: 1.6, margin: 0, whiteSpace: "pre-line", color: "rgba(0,0,0,0.7)" }}>
+        <span style={{ ...SERIF, textTransform: "none" }}>{c.success}</span>
+        <p style={{ ...BODY, lineHeight: 1.0, margin: 0, whiteSpace: "pre-line" }}>
           {c.successBody(values.nom?.split(" ")[0] || (lang === "fr" ? "à très vite" : "see you soon"))}
         </p>
         <button
@@ -108,7 +99,7 @@ function ContactForm({
           onClick={reset}
           data-testid="button-reset"
           style={{
-            ...BODY, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.2em",
+            ...BODY, textTransform: "uppercase", letterSpacing: "0.2em",
             color: "rgba(0,0,0,0.45)", background: "transparent", border: "none",
             borderBottom: "1px solid rgba(0,0,0,0.25)", paddingBottom: 2,
             cursor: "pointer", alignSelf: "flex-start",
@@ -130,7 +121,7 @@ function ContactForm({
         <div key={field.name} style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           <label htmlFor={field.name} style={FIELD_LBL}>
             <span>{String(i + 1).padStart(2, "0")} — {field.label}</span>
-            {field.required && <span style={{ color: "#c0392b" }}>*</span>}
+            {field.required && <span>*</span>}
           </label>
           {"multiline" in field && field.multiline ? (
             <textarea
@@ -159,15 +150,14 @@ function ContactForm({
 
       <div style={{
         display: "flex", alignItems: "baseline",
-        justifyContent: "space-between", gap: 24, paddingTop: 8,
+        justifyContent: "flex-end", gap: 24, paddingTop: 8,
         borderTop: "1px solid rgba(0,0,0,0.10)",
       }}>
-        <p style={{ ...LBL, letterSpacing: "0.22em", lineHeight: 1.6, maxWidth: 280 }}>{c.note}</p>
         <button
           type="submit"
           data-testid="button-submit"
           style={{
-            ...BODY, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.22em",
+            ...BODY, textTransform: "uppercase", letterSpacing: "0.22em",
             color: "#151515", background: "transparent", border: "none",
             borderBottom: "1px solid #151515", paddingBottom: 2,
             cursor: "pointer", display: "inline-flex", gap: 10, alignItems: "baseline",
@@ -182,7 +172,6 @@ function ContactForm({
   );
 }
 
-/* ── Mobile layout ───────────────────────────────────────────────────────── */
 function ContactMobile({ c }: { c: typeof copy.fr }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
@@ -190,18 +179,11 @@ function ContactMobile({ c }: { c: typeof copy.fr }) {
 
       <div style={{ height: 1, backgroundColor: "rgba(0,0,0,0.12)", marginBottom: 32 }} />
 
-      {/* Info blocks */}
       <div style={{ display: "flex", flexDirection: "column", gap: 28, marginBottom: 40 }}>
         <div>
           <span style={LBL}>{c.atelier}</span>
           <div style={{ marginTop: 10 }}>
             {c.adresse.map((l, i) => <div key={i} style={INFO}>{l}</div>)}
-          </div>
-        </div>
-        <div>
-          <span style={LBL}>{c.ouverture}</span>
-          <div style={{ marginTop: 10 }}>
-            {c.horaires.map((l, i) => <div key={i} style={INFO}>{l}</div>)}
           </div>
         </div>
         <div>
@@ -218,7 +200,7 @@ function ContactMobile({ c }: { c: typeof copy.fr }) {
           </div>
         </div>
         <div style={{ borderTop: "1px solid rgba(0,0,0,0.10)", paddingTop: 20 }}>
-          <span style={{ ...LBL, color: "#c0392b" }}>{c.direction}</span>
+          <span style={LBL}>{c.direction}</span>
           <div style={{ marginTop: 10 }}>
             {c.directionText.map((l, i) => <div key={i} style={INFO}>{l}</div>)}
           </div>
@@ -232,78 +214,66 @@ function ContactMobile({ c }: { c: typeof copy.fr }) {
   );
 }
 
-/* ── Page ────────────────────────────────────────────────────────────────── */
 export default function Contact() {
   const { lang } = useLang();
   const c = copy[lang];
 
   return (
-    <ArtboardShell minHeight={1220} mobile={<ContactMobile c={c} />}>
+    <ArtboardShell minHeight={1100} mobile={<ContactMobile c={c} />}>
 
       {/* ── CONTACT title ──────────────────────────────────────── */}
       <div style={{ position: "absolute", left: 130, top: 195 }}>
-        <div style={{ ...SERIF, fontSize: 26 }}>{c.title}</div>
+        <div style={{ ...SERIF, fontSize: 22 }}>{c.title}</div>
       </div>
 
       {/* ── HR ─────────────────────────────────────────────────── */}
       <div style={{
-        position: "absolute", left: 130, top: 238,
+        position: "absolute", left: 130, top: 222,
         width: 940, height: 1, backgroundColor: "rgba(0,0,0,0.13)",
       }} />
 
-      {/* ══ Left column — info ══════════════════════════════════ */}
-
-      {/* Atelier */}
-      <div style={{ position: "absolute", left: 130, top: 270 }}>
+      {/* ── Atelier ────────────────────────────────────────────── */}
+      <div style={{ position: "absolute", left: 130, top: 250 }}>
         <span style={LBL}>{c.atelier}</span>
         <div style={{ marginTop: 12 }}>
-          {c.adresse.map((l, i) => <div key={i} style={{ ...INFO, lineHeight: 1.6 }}>{l}</div>)}
+          {c.adresse.map((l, i) => <div key={i} style={INFO}>{l}</div>)}
         </div>
       </div>
 
-      {/* Ouverture */}
-      <div style={{ position: "absolute", left: 130, top: 410 }}>
-        <span style={LBL}>{c.ouverture}</span>
-        <div style={{ marginTop: 12 }}>
-          {c.horaires.map((l, i) => <div key={i} style={{ ...INFO, lineHeight: 1.6 }}>{l}</div>)}
-        </div>
-      </div>
-
-      {/* Réseaux */}
-      <div style={{ position: "absolute", left: 130, top: 530 }}>
+      {/* ── Réseaux ────────────────────────────────────────────── */}
+      <div style={{ position: "absolute", left: 130, top: 370 }}>
         <span style={LBL}>{c.reseaux}</span>
         <div style={{ marginTop: 12, display: "flex", flexDirection: "column", gap: 6 }}>
           <a href="https://instagram.com/mund.std" target="_blank" rel="noreferrer"
-             style={{ ...INFO, textDecoration: "none", lineHeight: 1.6, display: "block" }}
+             style={{ ...INFO, textDecoration: "none", display: "block" }}
              data-testid="link-instagram">Instagram — @mund.std</a>
           <a href="https://www.facebook.com/p/Mund-Std-61561226727135/" target="_blank" rel="noreferrer"
-             style={{ ...INFO, textDecoration: "none", lineHeight: 1.6, display: "block" }}
+             style={{ ...INFO, textDecoration: "none", display: "block" }}
              data-testid="link-facebook">Facebook — Mund Std</a>
         </div>
       </div>
 
-      {/* Direction */}
+      {/* ── Direction ──────────────────────────────────────────── */}
       <div style={{
-        position: "absolute", left: 130, top: 680,
+        position: "absolute", left: 130, top: 480,
         paddingTop: 20, borderTop: "1px solid rgba(0,0,0,0.10)", width: 260,
       }}>
-        <span style={{ ...LBL, color: "#c0392b" }}>{c.direction}</span>
+        <span style={LBL}>{c.direction}</span>
         <div style={{ marginTop: 12 }}>
-          {c.directionText.map((l, i) => <div key={i} style={{ ...INFO, lineHeight: 1.6 }}>{l}</div>)}
+          {c.directionText.map((l, i) => <div key={i} style={INFO}>{l}</div>)}
         </div>
       </div>
 
-      {/* Caption italic */}
+      {/* ── Caption ────────────────────────────────────────────── */}
       <div style={{
-        position: "absolute", left: 130, top: 820,
-        ...BODY, fontStyle: "italic", fontSize: 14,
-        color: "rgba(0,0,0,0.35)", letterSpacing: "-0.04em",
+        position: "absolute", left: 130, top: 610,
+        ...BODY, color: "rgba(0,0,0,0.35)", letterSpacing: "-0.04em",
       }}>
         {c.caption}
       </div>
 
-      {/* ══ Right column — formulaire ═══════════════════════════ */}
-      <div style={{ position: "absolute", left: 490, top: 270, width: 680 }}>
+      {/* ── Formulaire ─────────────────────────────────────────── */}
+      <div style={{ position: "absolute", left: 490, top: 250, width: 680 }}>
         <ContactForm c={c} />
       </div>
 

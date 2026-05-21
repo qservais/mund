@@ -6,7 +6,7 @@ import MobileShell from "./MobileShell";
 // ── Design tokens ────────────────────────────────────────────────────────────
 export const SERIF: React.CSSProperties = {
   fontFamily: '"Cormorant Garamond", "Times New Roman", Times, serif',
-  fontSize: 22,
+  fontSize: 16,
   fontWeight: 700,
   letterSpacing: "-0.05em",
   textTransform: "uppercase",
@@ -15,7 +15,7 @@ export const SERIF: React.CSSProperties = {
 
 export const BODY: React.CSSProperties = {
   fontFamily: '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif',
-  fontSize: 18,
+  fontSize: 15,
   fontWeight: 300,
   letterSpacing: "-0.06em",
   lineHeight: 1.0,
@@ -23,7 +23,7 @@ export const BODY: React.CSSProperties = {
 
 export const NAV_STYLE: React.CSSProperties = {
   fontFamily: '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif',
-  fontSize: 20,
+  fontSize: 15,
   lineHeight: 0.85,
   fontWeight: 300,
   letterSpacing: "-0.06em",
@@ -39,10 +39,11 @@ export const GULDSCRIPT: React.CSSProperties = {
 };
 
 const NAV_ITEMS = [
-  { label: "work",   href: "/floral",      testId: "nav-work"   },
-  { label: "floral", href: "/abonnements", testId: "nav-floral" },
-  { label: "past",   href: "/past",        testId: "nav-past"   },
-  { label: "about",  href: "/about",       testId: "nav-about"  },
+  { label: "work",    href: "/floral",      testId: "nav-work"    },
+  { label: "floral",  href: "/abonnements", testId: "nav-floral"  },
+  { label: "past",    href: "/past",        testId: "nav-past"    },
+  { label: "about",   href: "/about",       testId: "nav-about"   },
+  { label: "contact", href: "/contact",     testId: "nav-contact" },
 ];
 
 export const ARTBOARD_W = 1300;
@@ -172,11 +173,14 @@ export default function ArtboardShell({ children, overlayRef, minHeight = 2048, 
           data-testid="lang-toggle"
           style={{
             position: "absolute", top: 52, right: 130,
-            ...BODY, fontSize: 18, color: "#111",
+            ...BODY, color: "#111",
             background: "transparent", border: "none", padding: 0, cursor: "pointer", zIndex: 10,
+            display: "flex", gap: 2, alignItems: "baseline",
           }}
         >
-          {lang === "fr" ? "en" : "fr"}
+          <span style={{ fontWeight: lang === "fr" ? 700 : 300, opacity: lang === "fr" ? 1 : 0.45 }}>fr</span>
+          <span style={{ fontWeight: 300, opacity: 0.45 }}>{" | "}</span>
+          <span style={{ fontWeight: lang === "en" ? 700 : 300, opacity: lang === "en" ? 1 : 0.45 }}>en</span>
         </button>
 
         {children}
@@ -186,7 +190,7 @@ export default function ArtboardShell({ children, overlayRef, minHeight = 2048, 
           padding: "22px 130px",
           borderTop: "1px solid rgba(0,0,0,0.1)",
           display: "flex", justifyContent: "space-between", alignItems: "baseline",
-          ...BODY, fontSize: 13, color: "rgba(0,0,0,0.4)",
+          ...BODY, color: "rgba(0,0,0,0.4)",
         }}>
           <span>MUND STUDIO — Rue Monulphe 7, 4000 Liège</span>
           <span>vides et pleins / chaos et structure</span>

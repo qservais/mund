@@ -6,10 +6,11 @@ const FONT  = '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans
 const SERIF = '"Cormorant Garamond", "Times New Roman", Times, serif';
 
 const NAV_ITEMS = [
-  { label: "work",   href: "/floral"      },
-  { label: "floral", href: "/abonnements" },
-  { label: "past",   href: "/past"        },
-  { label: "about",  href: "/about"       },
+  { label: "work",    href: "/floral"      },
+  { label: "floral",  href: "/abonnements" },
+  { label: "past",    href: "/past"        },
+  { label: "about",   href: "/about"       },
+  { label: "contact", href: "/contact"     },
 ];
 
 /* ── Hamburger icon — two lines ──────────────────────────────────────────── */
@@ -169,17 +170,22 @@ function FullScreenMenu({
           onClick={toggle}
           style={{
             fontFamily: FONT,
-            fontSize: 16,
+            fontSize: 15,
             fontWeight: 300,
             letterSpacing: "-0.06em",
-            color: "rgba(0,0,0,0.5)",
+            color: "#151515",
             background: "transparent",
             border: "none",
             padding: 0,
             cursor: "pointer",
+            display: "flex",
+            gap: 2,
+            alignItems: "baseline",
           }}
         >
-          {lang === "fr" ? "en" : "fr"}
+          <span style={{ fontWeight: lang === "fr" ? 700 : 300, opacity: lang === "fr" ? 1 : 0.45 }}>fr</span>
+          <span style={{ fontWeight: 300, opacity: 0.45 }}>{" | "}</span>
+          <span style={{ fontWeight: lang === "en" ? 700 : 300, opacity: lang === "en" ? 1 : 0.45 }}>en</span>
         </button>
       </div>
     </div>
@@ -253,7 +259,7 @@ export default function MobileShell({ children }: { children: ReactNode }) {
         flexDirection: "column",
         gap: 3,
         fontFamily: FONT,
-        fontSize: 12,
+        fontSize: 15,
         fontWeight: 300,
         letterSpacing: "-0.05em",
         color: "rgba(0,0,0,0.4)",

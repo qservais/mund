@@ -54,9 +54,9 @@ const copy = {
 const F = '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif';
 const S = '"Cormorant Garamond", "Times New Roman", Times, serif';
 
-const mTitle: React.CSSProperties = { fontFamily: S, fontSize: 20, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 };
-const mBody: React.CSSProperties = { fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.65, margin: 0, marginBottom: 12 };
-const mItalic: React.CSSProperties = { fontFamily: F, fontSize: 14, fontWeight: 300, letterSpacing: "-0.04em", fontStyle: "italic", lineHeight: 1.5, margin: 0, color: "rgba(0,0,0,0.55)", textAlign: "right" };
+const mTitle: React.CSSProperties = { fontFamily: S, fontSize: 16, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 };
+const mBody: React.CSSProperties = { fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: 0, marginBottom: 12 };
+const mItalic: React.CSSProperties = { fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: 0, textAlign: "right" };
 const mLink: React.CSSProperties = { fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", color: "#151515", textDecoration: "none" };
 const mSection: React.CSSProperties = { marginBottom: 40 };
 const mDivider: React.CSSProperties = { height: 1, backgroundColor: "rgba(0,0,0,0.15)", margin: "28px 0" };
@@ -89,8 +89,8 @@ function FloralMobile({ c }: { c: typeof copy.fr }) {
         <p style={mBody}>{bodyLines(c.setBody)}</p>
         <p style={mItalic}>{c.setItalic}</p>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, margin: "16px 0" }}>
-          <img src={imgSet1} alt="" style={{ width: "100%", aspectRatio: "4/5", objectFit: "cover", display: "block" }} />
-          <img src={imgSet2} alt="" style={{ width: "100%", aspectRatio: "4/5", objectFit: "cover", display: "block" }} />
+          <img src={imgSet1} alt="" style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", display: "block" }} />
+          <img src={imgSet2} alt="" style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", display: "block" }} />
         </div>
         <Link href="/contact" style={{ ...mLink, display: "block" }}>{c.setLink}</Link>
       </div>
@@ -124,7 +124,7 @@ export default function Floral() {
         <Link href="/contact" style={{ ...BODY, color: "#151515", textDecoration: "none" }}>
           {c.mariagesLink}
         </Link>
-        <p style={{ ...SERIF, fontWeight: 400, textTransform: "none", fontStyle: "italic", marginTop: 24, fontSize: 16 }}>
+        <p style={{ ...SERIF, fontWeight: 400, textTransform: "none", marginTop: 24 }}>
           {c.mariagesItalic}
         </p>
       </div>
@@ -139,7 +139,7 @@ export default function Floral() {
       <div style={{ position: "absolute", left: 570, top: 545, width: 600, textAlign: "right" }}>
         <div style={{ ...SERIF, marginBottom: 20 }}>{c.eventsTitle}</div>
         <p style={{ ...BODY, margin: 0, marginBottom: 22 }}>{bodyLines(c.eventsBody)}</p>
-        <p style={{ ...SERIF, fontWeight: 400, textTransform: "none", fontStyle: "italic", fontSize: 16, marginBottom: 16 }}>
+        <p style={{ ...SERIF, fontWeight: 400, textTransform: "none", marginBottom: 16 }}>
           {c.eventsItalic}
         </p>
         <Link href="/contact" style={{ ...BODY, color: "#151515", textDecoration: "none" }}>
@@ -151,7 +151,7 @@ export default function Floral() {
       <div style={{ position: "absolute", left: 140, top: 730, width: 1030 }}>
         <div style={{ ...SERIF, marginBottom: 20 }}>{c.setTitle}</div>
         <p style={{ ...BODY, margin: 0, marginBottom: 22 }}>{bodyLines(c.setBody)}</p>
-        <p style={{ ...SERIF, fontWeight: 400, textTransform: "none", fontStyle: "italic", fontSize: 16, marginBottom: 16, textAlign: "center" }}>
+        <p style={{ ...SERIF, fontWeight: 400, textTransform: "none", marginBottom: 16, textAlign: "center" }}>
           {c.setItalic}
         </p>
         <Link href="/contact" style={{ ...BODY, color: "#151515", textDecoration: "none" }}>
@@ -159,11 +159,11 @@ export default function Floral() {
         </Link>
       </div>
 
-      <img src={imgSet1} alt="" style={{ position: "absolute", left: 140, top: 925, width: 340, height: 390, objectFit: "cover" }} />
-      <img src={imgSet2} alt="" style={{ position: "absolute", left: 500, top: 925, width: 340, height: 390, objectFit: "cover" }} />
+      <img src={imgSet1} alt="" style={{ position: "absolute", left: 140, top: 925, width: 340, height: 453, objectFit: "cover" }} />
+      <img src={imgSet2} alt="" style={{ position: "absolute", left: 500, top: 925, width: 340, height: 453, objectFit: "cover" }} />
 
       {/* ── UNE VISION GLOBALE ───────────────────────────── */}
-      <div style={{ position: "absolute", left: 140, top: 1415, width: 930 }}>
+      <div style={{ position: "absolute", left: 140, top: 1460, width: 930 }}>
         <div style={{ ...SERIF, marginBottom: 20 }}>{c.globalTitle}</div>
         <p style={{ ...BODY, margin: 0, marginBottom: 22 }}>{bodyLines(c.globalBody)}</p>
         <Link href="/contact" style={{ ...BODY, color: "#151515", textDecoration: "none" }}>
@@ -172,8 +172,8 @@ export default function Floral() {
       </div>
 
       <div style={{
-        position: "absolute", left: 700, top: 1510, width: 460, textAlign: "right",
-        ...SERIF, fontWeight: 400, textTransform: "none", fontStyle: "italic", fontSize: 16,
+        position: "absolute", left: 700, top: 1555, width: 460, textAlign: "right",
+        ...SERIF, fontWeight: 400, textTransform: "none",
       }}>
         {c.globalItalic}
       </div>

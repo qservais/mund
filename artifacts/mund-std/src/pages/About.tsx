@@ -5,8 +5,6 @@ const julieImg = "/images/julie.webp";
 
 const LEFT  = 496;
 const W_BIO = 520;
-const W_COL = 220;
-const COL2  = 730;
 
 const copy = {
   fr: {
@@ -45,26 +43,26 @@ function AboutMobile({ c }: { c: typeof copy.fr }) {
 
       <div style={{ marginBottom: 20 }}>
         {c.titleLines.map((line) => (
-          <div key={line} style={{ fontFamily: S, fontSize: 20, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 2 }}>
+          <div key={line} style={{ fontFamily: S, fontSize: 16, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 2 }}>
             {line}
           </div>
         ))}
       </div>
 
-      <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.65, margin: "0 0 12px" }}>{c.bio1}</p>
-      <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.65, margin: "0 0 12px" }}>{c.bio2}</p>
-      <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.65, margin: "0 0 28px" }}>{c.bio3}</p>
+      <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: "0 0 0", textAlign: "justify" }}>{c.bio1}</p>
+      <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: "0 0 12px", textAlign: "justify" }}>{c.bio2}</p>
+      <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: "0 0 28px", textAlign: "justify" }}>{c.bio3}</p>
 
       <div style={{ height: 1, backgroundColor: "rgba(0,0,0,0.15)", marginBottom: 24 }} />
 
-      <p style={{ fontFamily: F, fontSize: 14, fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1.6, margin: "0 0 14px", color: "rgba(0,0,0,0.7)" }}>{c.col1}</p>
-      <p style={{ fontFamily: F, fontSize: 14, fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1.6, margin: "0 0 28px", color: "rgba(0,0,0,0.7)" }}>{c.col2}</p>
+      <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: "0 0 14px", textAlign: "justify" }}>{c.col1}</p>
+      <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: "0 0 28px", textAlign: "justify" }}>{c.col2}</p>
 
       <div style={{ height: 1, backgroundColor: "rgba(0,0,0,0.15)", marginBottom: 24 }} />
 
       <div style={{ marginBottom: 16 }}>
         {c.vides.map((l) => (
-          <div key={l} style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.5 }}>{l}</div>
+          <div key={l} style={{ fontFamily: S, fontSize: 16, fontWeight: 700, letterSpacing: "-0.05em", lineHeight: 1.0 }}>{l}</div>
         ))}
       </div>
 
@@ -92,30 +90,41 @@ export default function About() {
       </div>
 
       {/* ── Bio paragraphs ────────────────────────────────── */}
-      <div style={{ position: "absolute", left: LEFT, top: 270, width: W_BIO }}>
-        <p style={{ ...BODY, lineHeight: 1.6, margin: "0 0 14px" }}>{c.bio1}</p>
-        <p style={{ ...BODY, lineHeight: 1.6, margin: "0 0 14px" }}>{c.bio2}</p>
-        <p style={{ ...BODY, lineHeight: 1.6, margin: 0 }}>{c.bio3}</p>
+      {/* bio1 + bio2: single block, no gap between them */}
+      <div style={{ position: "absolute", left: LEFT, top: 280, width: W_BIO }}>
+        <p style={{ ...BODY, margin: 0, textAlign: "justify" }}>{c.bio1}</p>
+        <p style={{ ...BODY, margin: 0, textAlign: "justify" }}>{c.bio2}</p>
       </div>
 
-      {/* ── Two narrow columns ────────────────────────────── */}
-      <div style={{ position: "absolute", left: LEFT, top: 590, width: W_COL }}>
-        <p style={{ ...BODY, fontSize: 16, lineHeight: 1.6, margin: 0 }}>{c.col1}</p>
-      </div>
-      <div style={{ position: "absolute", left: COL2, top: 590, width: W_COL }}>
-        <p style={{ ...BODY, fontSize: 16, lineHeight: 1.6, margin: 0 }}>{c.col2}</p>
+      {/* bio3: 0.5cm gap below bio1+bio2 (~19px) */}
+      <div style={{ position: "absolute", left: LEFT, top: 400, width: W_BIO }}>
+        <p style={{ ...BODY, margin: 0, textAlign: "justify" }}>{c.bio3}</p>
       </div>
 
-      {/* ── vides et pleins / chaos et structure ─────────── */}
-      <div style={{ position: "absolute", left: LEFT, top: 800 }}>
+      {/* ── col1 — 2cm gap below bio3 (~76px) ───────────────── */}
+      <div style={{ position: "absolute", left: LEFT, top: 490, width: W_BIO }}>
+        <p style={{ ...BODY, margin: 0, textAlign: "justify" }}>{c.col1}</p>
+      </div>
+
+      {/* ── col2 — 1cm gap below col1 (~38px) ───────────────── */}
+      <div style={{ position: "absolute", left: LEFT, top: 580, width: W_BIO }}>
+        <p style={{ ...BODY, margin: 0, textAlign: "justify" }}>{c.col2}</p>
+      </div>
+
+      {/* ── vides et pleins / chaos et structure — serif bold ── */}
+      <div style={{ position: "absolute", left: LEFT, top: 720 }}>
         {c.vides.map((l) => (
-          <div key={l} style={{ ...BODY, fontSize: 16, lineHeight: 1.45 }}>{l}</div>
+          <div key={l} style={{
+            fontFamily: '"Cormorant Garamond", "Times New Roman", Times, serif',
+            fontSize: 16, fontWeight: 700, letterSpacing: "-0.05em",
+            lineHeight: 1.0, textTransform: "none",
+          }}>{l}</div>
         ))}
       </div>
 
-      {/* ── Photo — Julie Ahn — wrapper fixe pour ne pas déborder sur le footer ── */}
+      {/* ── Photo — Julie Ahn ─────────────────────────────── */}
       <div style={{
-        position: "absolute", left: LEFT, top: 980,
+        position: "absolute", left: LEFT, top: 870,
         width: 258, height: 440,
         overflow: "hidden",
         zIndex: 1,
@@ -127,13 +136,13 @@ export default function About() {
         />
       </div>
 
-      {/* ── Texte manuscrit — 1ère ligne juste au-dessus de la photo,
-              2ème ligne qui rentre dans l'image ──────────────────── */}
+      {/* ── Texte manuscrit — 1ère ligne juste au-dessus,
+              2ème ligne qui rentre dans l'image ─────────── */}
       <img
         src="/svg/le%20temps%20est%20beau.svg"
         alt="le temps est beau, une petite averse"
         style={{
-          position: "absolute", left: LEFT + 6, top: 955,
+          position: "absolute", left: 620, top: 845,
           width: 310,
           zIndex: 3, pointerEvents: "none",
           opacity: 0.80,

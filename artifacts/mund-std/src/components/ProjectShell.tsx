@@ -5,10 +5,11 @@ import MobileShell from "./MobileShell";
 import { useViewportWidth, ARTBOARD_W, NAV_STYLE, BODY, GULDSCRIPT } from "./ArtboardShell";
 
 const NAV_ITEMS = [
-  { label: "work",   href: "/floral",      testId: "nav-work"   },
-  { label: "floral", href: "/abonnements", testId: "nav-floral" },
-  { label: "past",   href: "/past",        testId: "nav-past"   },
-  { label: "about",  href: "/about",       testId: "nav-about"  },
+  { label: "work",    href: "/floral",      testId: "nav-work"    },
+  { label: "floral",  href: "/abonnements", testId: "nav-floral"  },
+  { label: "past",    href: "/past",        testId: "nav-past"    },
+  { label: "about",   href: "/about",       testId: "nav-about"   },
+  { label: "contact", href: "/contact",     testId: "nav-contact" },
 ];
 
 type Props = {
@@ -85,11 +86,14 @@ export default function ProjectShell({ heroSrc, heroAlt, children, mobile }: Pro
             data-testid="lang-toggle"
             style={{
               position: "absolute", top: 52, right: 130,
-              ...BODY, fontSize: 18, color: "#111",
+              ...BODY, color: "#111",
               background: "transparent", border: "none", padding: 0, cursor: "pointer", zIndex: 10,
+              display: "flex", gap: 2, alignItems: "baseline",
             }}
           >
-            {lang === "fr" ? "en" : "fr"}
+            <span style={{ fontWeight: lang === "fr" ? 700 : 300, opacity: lang === "fr" ? 1 : 0.45 }}>fr</span>
+            <span style={{ fontWeight: 300, opacity: 0.45 }}>{" | "}</span>
+            <span style={{ fontWeight: lang === "en" ? 700 : 300, opacity: lang === "en" ? 1 : 0.45 }}>en</span>
           </button>
         </div>
       </header>
@@ -115,7 +119,7 @@ export default function ProjectShell({ heroSrc, heroAlt, children, mobile }: Pro
         display: "flex",
         justifyContent: "space-between",
         alignItems: "baseline",
-        ...BODY, fontSize: 13, color: "rgba(0,0,0,0.4)",
+        ...BODY, color: "rgba(0,0,0,0.4)",
       }}>
         <span>MUND STUDIO — Rue Monulphe 7, 4000 Liège</span>
         <span>vides et pleins / chaos et structure</span>

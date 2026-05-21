@@ -22,10 +22,10 @@ const copy = {
     devisTitle: "DEVIS & PROJETS",
     devisBody: [
       "nous accompagnons chaque projet de manière unique.",
-      "vous souhaitez en savoir plus sur notre manière de travailler",
-      "ou vous souhaitez travailler avec nous ?",
+      "vous souhaitez en savoir plus sur notre manière",
+      "de travailler ou travailler avec nous ?",
     ],
-    devisCta: "écrivez nous",
+    devisCta: "écrivez-nous",
   },
   en: {
     floralTitle: "FLORAL DESIGN",
@@ -43,7 +43,7 @@ const copy = {
     devisBody: [
       "we support each project in a unique way.",
       "would you like to know more about how we work",
-      "or work with us?",
+      "or would you like to work with us?",
     ],
     devisCta: "write to us",
   },
@@ -63,32 +63,30 @@ function HomeMobile({ c }: { c: typeof copy.fr }) {
       />
 
       <div style={{ marginBottom: 32 }}>
-        <div style={{ fontFamily: S, fontSize: 20, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 }}>
+        <div style={{ fontFamily: S, fontSize: 16, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 }}>
           {c.floralTitle}
         </div>
-        <p style={{ fontFamily: F, fontSize: 16, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.6, margin: 0, marginBottom: 12 }}>
+        <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: 0, marginBottom: 12 }}>
           {c.floralBody.join(" ")}
         </p>
-        <p style={{ fontFamily: F, fontSize: 14, fontWeight: 300, letterSpacing: "-0.04em", fontStyle: "italic", lineHeight: 1.5, margin: 0, color: "rgba(0,0,0,0.5)", textAlign: "right" }}>
+        <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: 0, textAlign: "right" }}>
           {c.caption.join(" ")}
         </p>
       </div>
 
-      <div style={{ height: 1, backgroundColor: "rgba(0,0,0,0.15)", marginBottom: 28 }} />
-
       <div style={{ marginBottom: 32 }}>
-        <div style={{ fontFamily: S, fontSize: 20, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 }}>
+        <div style={{ fontFamily: S, fontSize: 16, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 }}>
           {c.servicesTitle}
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
           <div>
             {c.col1.map((s, i) => (
-              <div key={i} style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.65 }}>{s}</div>
+              <div key={i} style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0 }}>{s}</div>
             ))}
           </div>
           <div>
             {c.col2.map((s, i) => (
-              <div key={i} style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.65 }}>{s}</div>
+              <div key={i} style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0 }}>{s}</div>
             ))}
           </div>
         </div>
@@ -98,19 +96,17 @@ function HomeMobile({ c }: { c: typeof copy.fr }) {
         </div>
       </div>
 
-      <div style={{ height: 1, backgroundColor: "rgba(0,0,0,0.15)", marginBottom: 28 }} />
-
       <div data-testid="home-cta">
-        <div style={{ fontFamily: S, fontSize: 20, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 }}>
+        <div style={{ fontFamily: S, fontSize: 16, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 }}>
           {c.devisTitle}
         </div>
-        <p style={{ fontFamily: F, fontSize: 16, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.6, margin: 0, marginBottom: 16 }}>
+        <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: 0, marginBottom: 16 }}>
           {c.devisBody.join(" ")}
         </p>
         <Link
           href="/contact"
           data-testid="link-contact-cta"
-          style={{ fontFamily: F, fontSize: 16, fontWeight: 300, letterSpacing: "-0.05em", color: "#151515", textDecoration: "underline", textUnderlineOffset: 3 }}
+          style={{ fontFamily: S, fontSize: 16, fontWeight: 700, letterSpacing: "-0.05em", color: "#151515", textDecoration: "none" }}
         >
           {c.devisCta}
         </Link>
@@ -140,37 +136,30 @@ export default function Home() {
       {/* ── FLORAL DESIGN — left 112, top 720 ───────────────── */}
       <div style={{ position: "absolute", left: 112, top: 720, width: 340 }}>
         <div style={{ ...SERIF, marginBottom: 18 }}>{c.floralTitle}</div>
-        <p style={{ ...BODY, lineHeight: 1.55, margin: 0 }}>
+        <p style={{ ...BODY, margin: 0 }}>
           {c.floralBody.map((l, i) => <span key={i}>{l}<br /></span>)}
         </p>
       </div>
 
-      {/* ── Caption italic — right 130, top 860 ─────────────── */}
+      {/* ── Caption — right 110, top 860 ─────────────────────── */}
       <div style={{
-        position: "absolute", right: 130, top: 860,
+        position: "absolute", right: 110, top: 860,
         textAlign: "right",
-        ...BODY, fontStyle: "italic", fontSize: 15, lineHeight: 1.5,
-        color: "rgba(0,0,0,0.5)",
+        ...BODY,
       }}>
         {c.caption.map((l, i) => <span key={i}>{l}<br /></span>)}
       </div>
 
-      {/* ── HR ──────────────────────────────────────────────── */}
-      <div style={{
-        position: "absolute", left: 180, top: 990,
-        width: 940, height: 1, backgroundColor: "rgba(0,0,0,0.18)",
-      }} />
-
       {/* ── NOS SERVICES ────────────────────────────────────── */}
-      <div style={{ position: "absolute", left: 130, top: 1040 }}>
+      <div style={{ position: "absolute", left: 130, top: 1160 }}>
         <div style={{ ...SERIF, marginBottom: 16 }}>{c.servicesTitle}</div>
-        <div style={{ ...BODY, lineHeight: 1.55 }}>
+        <div style={{ ...BODY }}>
           {c.col1.map((s, i) => <div key={i}>{s}</div>)}
         </div>
       </div>
 
-      <div style={{ position: "absolute", left: 380, top: 1065 }}>
-        <div style={{ ...BODY, lineHeight: 1.55 }}>
+      <div style={{ position: "absolute", left: 380, top: 1192 }}>
+        <div style={{ ...BODY }}>
           {c.col2.map((s, i) => <div key={i}>{s}</div>)}
         </div>
       </div>
@@ -179,7 +168,7 @@ export default function Home() {
         src={svc1Img}
         alt=""
         style={{
-          position: "absolute", left: 130, top: 1220,
+          position: "absolute", left: 130, top: 1330,
           width: 230, height: 230, objectFit: "cover",
         }}
       />
@@ -187,24 +176,28 @@ export default function Home() {
         src={svc2Img}
         alt=""
         style={{
-          position: "absolute", left: 380, top: 1220,
+          position: "absolute", left: 380, top: 1330,
           width: 230, height: 230, objectFit: "cover",
         }}
       />
 
-      {/* ── DEVIS & PROJETS — right, top 1580 ───────────────── */}
+      {/* ── DEVIS & PROJETS — right, top 1680 ───────────────── */}
       <div
-        style={{ position: "absolute", right: 130, top: 1580, width: 380, textAlign: "right" }}
+        style={{ position: "absolute", right: 130, top: 1680, width: 380, textAlign: "right" }}
         data-testid="home-cta"
       >
         <div style={{ ...SERIF, marginBottom: 18 }}>{c.devisTitle}</div>
-        <p style={{ ...BODY, lineHeight: 1.6, margin: 0, marginBottom: 14 }}>
+        <p style={{ ...BODY, margin: 0, marginBottom: 14 }}>
           {c.devisBody.map((l, i) => <span key={i}>{l}<br /></span>)}
         </p>
         <Link
           href="/contact"
           data-testid="link-contact-cta"
-          style={{ ...BODY, color: "#151515", textDecoration: "underline", textUnderlineOffset: 3 }}
+          style={{
+            fontFamily: '"Cormorant Garamond", "Times New Roman", Times, serif',
+            fontSize: 16, fontWeight: 700, letterSpacing: "-0.05em", lineHeight: 1.0,
+            color: "#151515", textDecoration: "none",
+          }}
         >
           {c.devisCta}
         </Link>

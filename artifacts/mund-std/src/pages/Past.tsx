@@ -22,7 +22,6 @@ const GRID_ITEMS = [
 
 const CAPTION: React.CSSProperties = {
   ...BODY,
-  fontSize: 14,
   letterSpacing: "-0.07em",
   lineHeight: 1,
   color: "#151515",
@@ -48,7 +47,7 @@ function PastMobile() {
           />
           <div style={{
             fontFamily: F,
-            fontSize: 12,
+            fontSize: 15,
             fontWeight: 300,
             letterSpacing: "-0.06em",
             lineHeight: 1,
