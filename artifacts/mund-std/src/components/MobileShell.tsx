@@ -7,7 +7,7 @@ const SERIF = '"Cormorant Garamond", "Times New Roman", Times, serif';
 
 const NAV_ITEMS = [
   { label: "work",    href: "/floral"      },
-  { label: "floral",  href: "/abonnements" },
+  { label: "floral",  href: "/floral"      },
   { label: "past",    href: "/past"        },
   { label: "about",   href: "/about"       },
   { label: "contact", href: "/contact"     },
@@ -119,7 +119,7 @@ function FullScreenMenu({
           const isActive = location === href || (href !== "/" && location.startsWith(href));
           return (
             <Link
-              key={href}
+              key={label}
               href={href}
               style={{
                 fontFamily: SERIF,

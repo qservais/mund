@@ -8,7 +8,7 @@ const FONT_BODY = '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, 
 
 const navItems = [
   { href: "/floral",      label: "work"   },
-  { href: "/abonnements", label: "floral" },
+  { href: "/floral",      label: "floral" },
   { href: "/past",        label: "past"   },
   { href: "/about",       label: "about"  },
 ];
@@ -97,7 +97,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         }}>
           <nav style={{ display: "flex", flexDirection: "column", gap: 4 }}>
             {navItems.map((item) => (
-              <NavLink key={item.href} {...item} />
+              <NavLink key={item.label} {...item} />
             ))}
           </nav>
 

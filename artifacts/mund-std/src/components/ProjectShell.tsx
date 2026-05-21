@@ -6,7 +6,7 @@ import { useViewportWidth, ARTBOARD_W, NAV_STYLE, BODY, GULDSCRIPT } from "./Art
 
 const NAV_ITEMS = [
   { label: "work",    href: "/floral",      testId: "nav-work"    },
-  { label: "floral",  href: "/abonnements", testId: "nav-floral"  },
+  { label: "floral",  href: "/floral",      testId: "nav-floral"  },
   { label: "past",    href: "/past",        testId: "nav-past"    },
   { label: "about",   href: "/about",       testId: "nav-about"   },
   { label: "contact", href: "/contact",     testId: "nav-contact" },
@@ -52,7 +52,7 @@ export default function ProjectShell({ heroSrc, heroAlt, children, mobile }: Pro
               const isActive = href === "/" ? location === "/" : location.startsWith(href);
               return (
                 <Link
-                  key={href}
+                  key={label}
                   href={href}
                   data-testid={testId}
                   style={{ ...NAV_STYLE, fontWeight: isActive ? 700 : 300 }}

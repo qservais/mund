@@ -132,7 +132,7 @@ export default function Floral() {
       <img
         src={imgRight}
         alt=""
-        style={{ position: "absolute", left: 815, top: 165, width: 360, height: 360, objectFit: "cover" }}
+        style={{ position: "absolute", left: 815, top: 165, width: 360, height: 514, objectFit: "cover" }}
       />
 
       {/* ── EVENEMENTS ───────────────────────────────────── */}

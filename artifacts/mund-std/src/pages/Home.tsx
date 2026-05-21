@@ -169,7 +169,7 @@ export default function Home() {
         alt=""
         style={{
           position: "absolute", left: 130, top: 1330,
-          width: 230, height: 230, objectFit: "cover",
+          width: 230, height: 307, objectFit: "cover",
         }}
       />
       <img
@@ -177,7 +177,7 @@ export default function Home() {
         alt=""
         style={{
           position: "absolute", left: 380, top: 1330,
-          width: 230, height: 230, objectFit: "cover",
+          width: 230, height: 307, objectFit: "cover",
         }}
       />
 

@@ -27,6 +27,7 @@ function Router() {
         <Route path="/contact" component={Contact} />
         <Route path="/projets/:slug" component={ProjectDetail} />
         {/* Legacy redirects */}
+        <Route path="/work"><Redirect to="/floral" /></Route>
         <Route path="/studio"><Redirect to="/about" /></Route>
         <Route path="/projets"><Redirect to="/past" /></Route>
         <Route component={NotFound} />
