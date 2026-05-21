@@ -150,6 +150,12 @@ export default function Home() {
         {c.caption.map((l, i) => <span key={i}>{l}<br /></span>)}
       </div>
 
+      {/* ── Separator line ───────────────────────────────────── */}
+      <div style={{
+        position: "absolute", left: 130, top: 1060,
+        width: 1040, height: 1, backgroundColor: "rgba(0,0,0,0.13)",
+      }} />
+
       {/* ── NOS SERVICES ────────────────────────────────────── */}
       <div style={{ position: "absolute", left: 130, top: 1160 }}>
         <div style={{ ...SERIF, marginBottom: 16 }}>{c.servicesTitle}</div>
@@ -169,7 +175,7 @@ export default function Home() {
         alt=""
         style={{
           position: "absolute", left: 130, top: 1330,
-          width: 230, height: 307, objectFit: "cover",
+          width: 230, height: 230, objectFit: "cover",
         }}
       />
       <img
@@ -177,7 +183,7 @@ export default function Home() {
         alt=""
         style={{
           position: "absolute", left: 380, top: 1330,
-          width: 230, height: 307, objectFit: "cover",
+          width: 230, height: 230, objectFit: "cover",
         }}
       />
 
