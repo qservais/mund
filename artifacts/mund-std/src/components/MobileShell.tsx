@@ -123,10 +123,10 @@ function FullScreenMenu({
               href={href}
               style={{
                 fontFamily: SERIF,
-                fontSize: "clamp(52px, 14vw, 88px)",
+                fontSize: 16,
                 fontWeight: 700,
-                letterSpacing: "-0.04em",
-                lineHeight: 1.05,
+                letterSpacing: "-0.05em",
+                lineHeight: 1.0,
                 color: isActive ? "#111" : "rgba(0,0,0,0.22)",
                 textDecoration: "none",
                 display: "block",

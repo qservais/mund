@@ -52,9 +52,9 @@ function ProjectContent({ plate, prev, next }: { plate: Plate; prev?: Plate; nex
         <h1
           data-testid="project-title"
           style={{
-            fontFamily: SF, fontWeight: 700, fontSize: "clamp(48px, 6vw, 88px)",
-            letterSpacing: "-0.04em", textTransform: "uppercase",
-            lineHeight: 0.92, margin: 0, marginBottom: 12,
+            fontFamily: SF, fontWeight: 700, fontSize: 16,
+            letterSpacing: "-0.05em", textTransform: "uppercase",
+            lineHeight: 1.0, margin: 0, marginBottom: 12,
           }}
         >
           {plate.title}.
@@ -195,7 +195,7 @@ function ProjectMobile({ plate, prev, next }: { plate: Plate; prev?: Plate; next
       </Link>
 
       {/* Title */}
-      <h1 style={{ fontFamily: SF, fontWeight: 700, fontSize: "clamp(36px, 10vw, 56px)", letterSpacing: "-0.04em", textTransform: "uppercase", lineHeight: 0.92, margin: "0 0 10px" }}
+      <h1 style={{ fontFamily: SF, fontWeight: 700, fontSize: 16, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1.0, margin: "0 0 10px" }}
         data-testid="project-title">
         {plate.title}.
       </h1>
