@@ -58,7 +58,7 @@ export function LayoutC({ plate }: Props) {
 
       <div className="flex flex-col items-center px-6 md:px-12 xl:px-24 pt-16 md:pt-24 gap-10 pb-4">
         <p
-          className="font-sans text-base md:text-lg leading-[1.75] text-foreground/80 text-justify max-w-[48ch]"
+          className="font-sans text-[15px] leading-none text-foreground/80 text-justify max-w-[48ch]"
           data-testid="project-story"
         >
           {plate.story}
@@ -78,10 +78,10 @@ export function LayoutC({ plate }: Props) {
 function Meta({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/45">
+      <span className="font-mono text-[15px] uppercase tracking-[0.3em] text-foreground/45">
         {label}
       </span>
-      <span className="font-sans text-sm text-foreground/85">{value}</span>
+      <span className="font-sans text-[15px] text-foreground/85">{value}</span>
     </div>
   );
 }

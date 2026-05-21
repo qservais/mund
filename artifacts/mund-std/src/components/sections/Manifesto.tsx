@@ -15,10 +15,10 @@ export default function Manifesto() {
           transition={{ duration: 1 }}
           className="col-span-12 md:col-span-3 md:col-start-1 flex flex-col gap-2"
         >
-          <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/60">
+          <span className="font-mono text-[15px] uppercase tracking-[0.25em] text-foreground/60">
             03.05.2026
           </span>
-          <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-accent">
+          <span className="font-mono text-[15px] uppercase tracking-[0.25em] text-accent">
             Édito — 02
           </span>
         </motion.div>
@@ -30,7 +30,7 @@ export default function Manifesto() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="col-span-12 md:col-span-9 md:col-start-4"
         >
-          <p className="font-mono uppercase tracking-[0.3em] text-xs text-foreground/55 mb-6">
+          <p className="font-mono uppercase tracking-[0.3em] text-[15px] text-foreground/55 mb-6">
             Manifeste —
           </p>
           <h2 className="font-display uppercase text-[8vw] md:text-[4.2vw] leading-[0.95] tracking-[-0.01em] font-semibold">
@@ -49,8 +49,8 @@ export default function Manifesto() {
           {/* Real facts sourced from the user brief & the MUND STUDIO IG bio
               (@mund.std): address "Rue Monulphe 7, Liège, Belgium 4000",
               director "Julie Ahn" (architecte). */}
-          <p className="font-sans text-sm md:text-base leading-[1.75] text-foreground/85 text-justify">
-            <span className="font-mono uppercase text-xs tracking-[0.2em] text-foreground">MUND STUDIO</span> est un studio de design floral
+          <p className="font-sans text-[15px] leading-none text-foreground/85 text-justify">
+            <span className="font-mono uppercase text-[15px] tracking-[0.2em] text-foreground">MUND STUDIO</span> est un studio de design floral
             contemporain basé <span className="text-accent">Rue Monulphe 7,
             à Liège</span>, dirigé par Julie Ahn. Approche architecturale et
             poétique&nbsp;: fleurs de saison, structures sculpturales, volumes
@@ -76,7 +76,7 @@ export default function Manifesto() {
               loading="lazy"
             />
           </div>
-          <figcaption className="flex items-baseline justify-between font-mono text-[9px] uppercase tracking-[0.25em] text-foreground/60 pt-1">
+          <figcaption className="flex items-baseline justify-between font-mono text-[15px] uppercase tracking-[0.25em] text-foreground/60 pt-1">
             <span>fig. 02</span>
             <span>Amaranthus / Reflets</span>
           </figcaption>
@@ -87,7 +87,7 @@ export default function Manifesto() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="col-span-12 md:col-span-9 md:col-start-4 border-t border-foreground/15 pt-6 mt-8 flex flex-wrap gap-x-10 gap-y-2 font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/70"
+          className="col-span-12 md:col-span-9 md:col-start-4 border-t border-foreground/15 pt-6 mt-8 flex flex-wrap gap-x-10 gap-y-2 font-mono text-[15px] uppercase tracking-[0.25em] text-foreground/70"
         >
           <span>— Design floral</span>
           <span>— Événements</span>

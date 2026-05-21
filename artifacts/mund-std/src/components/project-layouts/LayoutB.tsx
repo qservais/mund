@@ -11,7 +11,7 @@ export function LayoutB({ plate }: Props) {
     <div>
       <div className="px-6 md:px-12 xl:px-24 pt-4 pb-16 md:pb-24">
         <div className="text-center mb-12 md:mb-20">
-          <span className="font-mono text-[9px] uppercase tracking-[0.45em] text-foreground/40">
+          <span className="font-mono text-[15px] uppercase tracking-[0.45em] text-foreground/40">
             Planche {plate.n} — {plate.category}
           </span>
         </div>
@@ -27,7 +27,7 @@ export function LayoutB({ plate }: Props) {
                   className="w-full h-56 md:h-[28rem] object-cover"
                 />
               </div>
-              <span className="font-mono text-[9px] text-foreground/40 tracking-[0.2em]">
+              <span className="font-mono text-[15px] text-foreground/40 tracking-[0.2em]">
                 {String(i + 1).padStart(2, "0")}
               </span>
             </figure>
@@ -36,7 +36,7 @@ export function LayoutB({ plate }: Props) {
 
         <div className="mt-20 md:mt-32 flex flex-col items-center gap-10">
           <p
-            className="font-sans text-base md:text-lg leading-[1.75] text-foreground/80 text-justify max-w-[52ch]"
+            className="font-sans text-[15px] leading-none text-foreground/80 text-justify max-w-[52ch]"
             data-testid="project-story"
           >
             {plate.story}
@@ -57,10 +57,10 @@ export function LayoutB({ plate }: Props) {
 function Meta({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/45">
+      <span className="font-mono text-[15px] uppercase tracking-[0.3em] text-foreground/45">
         {label}
       </span>
-      <span className="font-sans text-sm text-foreground/85">{value}</span>
+      <span className="font-sans text-[15px] text-foreground/85">{value}</span>
     </div>
   );
 }

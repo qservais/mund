@@ -27,7 +27,7 @@ export default function Plate({
         />
       </div>
       <figcaption
-        className={`flex items-baseline gap-3 pt-1 font-mono text-[9px] uppercase tracking-[0.25em] text-foreground/65 ${
+        className={`flex items-baseline gap-3 pt-1 font-mono text-[15px] uppercase tracking-[0.25em] text-foreground/65 ${
           align === "right" ? "justify-end text-right" : ""
         }`}
       >

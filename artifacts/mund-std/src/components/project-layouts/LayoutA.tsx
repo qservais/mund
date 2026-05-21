@@ -14,11 +14,11 @@ export function LayoutA({ plate }: Props) {
         <div className="flex flex-col justify-between px-6 md:px-12 xl:px-20 py-16 md:py-24 gap-16">
           <div className="flex flex-col gap-10">
             <div className="flex flex-col gap-3">
-              <span className="font-mono text-[9px] uppercase tracking-[0.35em] text-accent">
+              <span className="font-mono text-[15px] uppercase tracking-[0.35em] text-accent">
                 Note du studio
               </span>
               <p
-                className="font-sans text-base md:text-lg leading-[1.75] text-foreground/85 text-justify max-w-[42ch]"
+                className="font-sans text-[15px] leading-none text-foreground/85 text-justify max-w-[42ch]"
                 data-testid="project-story"
               >
                 {plate.story}
@@ -65,10 +65,10 @@ export function LayoutA({ plate }: Props) {
 function Meta({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/45">
+      <span className="font-mono text-[15px] uppercase tracking-[0.3em] text-foreground/45">
         {label}
       </span>
-      <span className="font-sans text-sm text-foreground/85">{value}</span>
+      <span className="font-sans text-[15px] text-foreground/85">{value}</span>
     </div>
   );
 }

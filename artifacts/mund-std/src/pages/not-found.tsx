@@ -4,10 +4,10 @@ export default function NotFound() {
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-background text-foreground px-6">
       <div className="max-w-md text-center flex flex-col gap-6">
-        <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-foreground/60">
+        <span className="font-sans text-[15px] tracking-[0.3em] uppercase text-foreground/60">
           Erreur 404
         </span>
-        <h1 className="font-display font-light uppercase text-5xl md:text-6xl leading-none">
+        <h1 className="font-display font-bold uppercase text-[16px] leading-none">
           Page introuvable.
         </h1>
         <p className="font-sans text-[15px] text-foreground/70 leading-none">

@@ -1,0 +1,122 @@
+PAGE ACCUEIL
+
+
+
+Ajouter un onglet contact directement depuis la page d’accueil ?
+
+
+Textes
+
+Pas de texte en italique
+Pas de changement de couleur dans les polices - plus fine ou plus épaisses ok mais pas de couleurs différentes
+Même taille de police pour tous les éléments (12 sur canva) à l’exception des textes en police serif en minuscule (13 sur canva)
+Interligne beaucoup moins grand pour tous les textes groupés/phrases - voir fichier - interligne 1.0 sur canva
+J’aimerais que ce soit indiqué fr/en et pas juste en si possible mais avec une barre verticale pour séparer les deux
+Alignement
+
+de manière générale quasi tous les alignements sont à revoir - je suppose que l’interligne étant plus grande c’est ce qui cause une majorité des décalages mais il y en a quasi pour tous les éléments.
+
+Je t’ai mis des lignes dans le fichier canva si ça a besoin d’être plus clair. 
+
+
+
+La photo principale n’est pas centrée mais un peu décalée - voir les alignements dans le pdf - 1cm// au centre
+Le haut de Mund studio s’aligne sur le dessus de la photo, celle-ci ne dépasse pas
+Aligner texte sous photo principale à la photo principale coté droit
+Rapprocher de la photo principale le texte dessous - « le végétal devient sculpture… »
+Partie du dessous
+
+Tu peux retirer la ligne qui sépare les éléments 
+Mettre un plus grand écart entre la partie 1 et la partie service et devis - 5/7cm
+Pour la partie « nos services » : scénographie doit être alignée avec bouquets et le bas de nos services est aligné avec le haut de mariage
+Section devis & projet : le « travailler » doit être replacer sur la même ligne que la phrase qui le concerne - uniquement trois lignes de texte
+Le « écrivez-nous » est à mettre dans la même police que les titres mais en minuscule + mettre en gras
+Mettre les photos dans le bon sens
+
+
+PAGE WORK
+
+
+
+Textes
+
+Pas de texte en italique
+Pas de changement de couleur dans les polices - plus fine ou plus épaisses ok mais pas de couleurs différentes
+Même taille de police pour tous les éléments (12 sur canva) à l’exception des textes en police serif en minuscule (13 sur canva)
+Interligne beaucoup moins grand pour tous les textes groupés/phrases - voir fichier - interligne 1.0 sur canva
+Rendre les « contactez-nous », « c’est ici » et « écrivez-nous » cliquable avec redirection vers page de contact.
+
+
+Alignement
+
+
+
+« Chaque mariage… » s’aligne au début de « a » de « contactez-nous »
+« Evènement » s’aligne coté gauche (mais bien en dessous) de la première photo - uniquement le titre
+« Un lieu, un moment,… » s’aligne sur le « u » de « chaque » du texte au-dessus et n’a pas d’espace marqué (interligne) avec la dernière ligne du texte supérieur
+Ecartement entre « envie de… » et « votre identité » = écartement entre « vous souhaitez… » et « rien n’est standardisé »
+Idem écartement entre « une idée ? On… » et « mesure pour des campagnes… »
+« Nous composons… » s’insère entre cet espace et s’aligne au début du « m » de « campagne ».
+Le titre « set design » s’aligne au bas de « envie de discuter… »
+Les deux photos du bas on un format plus vertical - +/- 7,5 de large sur 10 de haut
+« Une vision globale » est plus proche du bas des photos - +/- 1.2
+Ecartement entre « contactez-nous » et « chaque élément est pensé… » = écartement entre « vous souhaitez… » et « rien n’est standardisé »
+« Composez au dela du floral » s’insère dans cet espace et s’aligne au « d » de « de la direction visuelle… »
+
+
+PAGE FLORAL
+
+
+
+Textes
+
+Pas de texte en italique
+Pas de changement de couleur dans les polices - plus fine ou plus épaisses ok mais pas de couleurs différentes
+Même taille de police pour tous les éléments (12 sur canva) à l’exception des textes en police serif en minuscule (13 sur canva)
+Interligne beaucoup moins grand pour tous les textes groupés/phrases - voir fichier - interligne 1.0 sur canva
+Rendre les « contactez-nous », cliquable avec redirection vers page de contact.
+« C’est par ici » doit être cliquable et rediriger vers la page de souscription d’abonnement/bouquet
+
+
+Alignement
+
+
+
+Pas d’espace marqué entre « nos abonnements » et le texte en dessous - même interligne que s’ils faisaient partie du même groupement
+Pour les deux sections : l’écartement entre les éléments de textes (titre//groupe de texte//phrase en gras) = identique
+Photo moins longue - format +/- 7 de large sur 12 de haut (placement ok) - mettre la photo dans le bon sens
+Le bas de la section « particuliers » s’aligne sur le bas de la photo
+
+
+PAGE PAST
+
+
+
+Positionnement des photos et format à revoir mais on le fera quand je t’aurais envoyé les fichiers définitifs
+
+
+PAGE ABOUT
+
+
+
+Les textes sont justifiés
+Écart de 1cm entre le titre et le premier bloc de texte
+Même taille de police pour tous les éléments (12 sur canva) à l’exception des textes en police serif en minuscule (13 sur canva)
+Interligne beaucoup moins grand pour tous les textes groupés/phrases - voir fichier - interligne 1.0 sur canva
+« Après un parcours… » et « dans son studio… » font partie d’un seul bloc de texte - pas de séparation marquée
+Écart de 0.5cm entre bloc de texte 1 et bloc de texte 2
+Écart de 2cm entre bloc 2 et bloc 3
+Ecart de 1cm entre bloc 3 et bloc 4 - le bloc 4 ne se positionne pas à droite du bloc 3
+« Vide et pleins… » en serif gras et minuscule + écart de 1cm par rapport à bloc 4
+Photo 2cm sous le dernier bloc de texte
+« Le temps est beau… » doit être décalé vers la droite le « le » se situe au milieu de la photo
+
+
+PAGE CONTACT
+
+
+
+Enlever les jours d’ouverture
+Enlever architecte
+Enlever le delai de réponse
+Si la date est obligatoire les pro qui me contacte pour un abonnement vous être bloqué - il faudrait que ça apparaisse dans les suggestions, c’est un poste qui lisse ma compta sur l’année donc faut que ça puisse être fluide

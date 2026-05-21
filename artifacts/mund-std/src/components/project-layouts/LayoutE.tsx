@@ -32,11 +32,11 @@ export function LayoutE({ plate }: Props) {
 
                 {i === 0 && (
                   <div className="mt-4 mb-8" style={{ width: "clamp(260px, 45vw, 700px)" }}>
-                    <span className="font-mono text-[9px] uppercase tracking-[0.45em] text-accent block mb-5">
+                    <span className="font-mono text-[15px] uppercase tracking-[0.45em] text-accent block mb-5">
                       Note du studio
                     </span>
                     <p
-                      className="font-sans text-sm md:text-base leading-[1.8] text-foreground/80 text-justify"
+                      className="font-sans text-[15px] leading-none text-foreground/80 text-justify"
                       data-testid="project-story"
                     >
                       {plate.story}
@@ -62,10 +62,10 @@ export function LayoutE({ plate }: Props) {
 function Meta({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/45">
+      <span className="font-mono text-[15px] uppercase tracking-[0.3em] text-foreground/45">
         {label}
       </span>
-      <span className="font-sans text-sm text-foreground/85">{value}</span>
+      <span className="font-sans text-[15px] text-foreground/85">{value}</span>
     </div>
   );
 }

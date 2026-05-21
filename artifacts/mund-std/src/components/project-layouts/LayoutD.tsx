@@ -13,11 +13,11 @@ export function LayoutD({ plate }: Props) {
       <div className="relative px-6 md:px-12 xl:px-24 pt-4 pb-0">
         <div className="relative flex gap-0">
           <div className="w-full md:w-[58%] pr-0 md:pr-16 pt-2">
-            <span className="font-mono text-[9px] uppercase tracking-[0.45em] text-accent block mb-8">
+            <span className="font-mono text-[15px] uppercase tracking-[0.45em] text-accent block mb-8">
               Note du studio
             </span>
             <p
-              className="font-mono text-[11px] md:text-[13px] uppercase tracking-[0.18em] leading-[2.2] text-foreground/75 text-justify"
+              className="font-mono text-[15px] uppercase tracking-[0.18em] leading-none text-foreground/75 text-justify"
               data-testid="project-story"
             >
               {plate.story}
@@ -72,10 +72,10 @@ export function LayoutD({ plate }: Props) {
 function Meta({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/45">
+      <span className="font-mono text-[15px] uppercase tracking-[0.3em] text-foreground/45">
         {label}
       </span>
-      <span className="font-sans text-sm text-foreground/85">{value}</span>
+      <span className="font-sans text-[15px] text-foreground/85">{value}</span>
     </div>
   );
 }

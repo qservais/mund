@@ -17,22 +17,20 @@ export default function Projets() {
 
   return (
     <section className="relative w-full pt-32 md:pt-40 pb-32 md:pb-48">
-      {/* Parallax moodboard hero */}
       <div
         ref={scope}
         className="relative w-full h-[78vh] min-h-[560px] md:min-h-[680px] overflow-hidden mb-24 md:mb-40"
       >
-        {/* Centered headline */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="absolute inset-0 z-30 flex flex-col items-center justify-center px-6 text-center pointer-events-none"
         >
-          <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-foreground/55 mb-3">
+          <span className="font-mono text-[15px] uppercase tracking-[0.35em] text-foreground/55 mb-3">
             Moodboard 001 &nbsp;/&nbsp; <span className="text-accent">15 planches</span>
           </span>
-          <p className="font-mono uppercase tracking-[0.3em] text-xs text-foreground/55 mb-4 mix-blend-multiply">
+          <p className="font-mono uppercase tracking-[0.3em] text-[15px] text-foreground/55 mb-4 mix-blend-multiply">
             quinze gestes —
           </p>
           <h1 className="font-display uppercase text-[14vw] md:text-[8.5vw] leading-[0.88] tracking-[-0.02em] font-semibold max-w-[12ch] mix-blend-multiply">
@@ -40,7 +38,6 @@ export default function Projets() {
           </h1>
         </motion.div>
 
-        {/* Floating images */}
         <Floating sensitivity={-0.6} easingFactor={0.06} className="overflow-hidden">
           <FloatingElement depth={0.6} className="top-[6%] left-[6%]">
             <img
@@ -109,13 +106,10 @@ export default function Projets() {
           </FloatingElement>
         </Floating>
 
-        {/* Vignette to keep title legible */}
         <div className="pointer-events-none absolute inset-0 z-20 bg-[radial-gradient(ellipse_at_center,_hsl(var(--background))_18%,_transparent_62%)]" />
       </div>
 
-      {/* Mosaic */}
       <div className="px-6 md:px-12 xl:px-24 flex flex-col gap-32 md:gap-48">
-        {/* Movement 1 — opening pair, asymmetric */}
         <div className="grid grid-cols-12 gap-x-6 gap-y-12">
           <div className="col-span-8 md:col-span-4 md:col-start-2">
             <Plate plate={plates[0]} imgClass="aspect-[3/4]" />
@@ -125,7 +119,6 @@ export default function Projets() {
           </div>
         </div>
 
-        {/* Movement 2 — full bleed editorial interruption */}
         <div className="-mx-6 md:-mx-12 xl:-mx-24">
           <motion.figure
             initial={{ opacity: 0 }}
@@ -142,7 +135,7 @@ export default function Projets() {
                 className="w-full h-full object-cover object-bottom"
               />
             </div>
-            <figcaption className="flex flex-wrap items-baseline gap-3 pt-3 px-6 md:px-12 xl:px-24 font-mono text-[9px] uppercase tracking-[0.25em] text-foreground/65">
+            <figcaption className="flex flex-wrap items-baseline gap-3 pt-3 px-6 md:px-12 xl:px-24 font-mono text-[15px] uppercase tracking-[0.25em] text-foreground/65">
               <span className="text-accent">{plates[2].n}</span>
               <span className="text-foreground/85">{plates[2].title}</span>
               <span className="ml-auto text-foreground/50">{plates[2].meta}</span>
@@ -150,15 +143,14 @@ export default function Projets() {
           </motion.figure>
         </div>
 
-        {/* Movement 3 — moodboard grid 04-09 */}
         <div>
           <div className="mb-12 grid grid-cols-12 gap-6">
             <div className="col-span-12 md:col-span-3">
-              <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/60">
+              <span className="font-mono text-[15px] uppercase tracking-[0.25em] text-foreground/60">
                 Planches 04 → 09
               </span>
             </div>
-            <h2 className="col-span-12 md:col-span-9 font-sans uppercase text-2xl md:text-4xl tracking-[-0.005em] font-semibold text-foreground/90">
+            <h2 className="col-span-12 md:col-span-9 font-display uppercase text-[16px] tracking-[-0.05em] font-bold text-foreground/90">
               Tables, gestes, objets.
             </h2>
           </div>
@@ -172,10 +164,9 @@ export default function Projets() {
           </div>
         </div>
 
-        {/* Movement 4 — overlapping collage pair */}
         <div className="grid grid-cols-12 gap-x-6 gap-y-8 items-start">
           <div className="col-span-12 md:col-span-3 md:col-start-1">
-            <p className="font-sans text-sm md:text-base leading-[1.7] text-foreground/80 text-justify">
+            <p className="font-sans text-[15px] leading-none text-foreground/80 text-justify">
               Deux photographies posées l'une sur l'autre, comme un collage de
               page de droite&nbsp;: la rigueur d'un lobby, la <span className="text-accent">tendresse</span>
               &nbsp;d'un bouquet bureau. La scénographie ne s'arrête jamais à la
@@ -194,7 +185,6 @@ export default function Projets() {
           </div>
         </div>
 
-        {/* Movement 5 — three-up rhythm */}
         <div className="grid grid-cols-12 gap-x-6 gap-y-12">
           <div className="col-span-6 md:col-span-3 md:col-start-2 md:mt-16">
             <Plate plate={plates[11]} imgClass="aspect-[3/4]" />
@@ -207,16 +197,15 @@ export default function Projets() {
           </div>
         </div>
 
-        {/* Movement 6 — closing isolated plate */}
         <div className="grid grid-cols-12 gap-6 items-end">
           <div className="col-span-12 md:col-span-4 md:col-start-2">
             <Plate plate={plates[14]} imgClass="aspect-[5/4]" />
           </div>
           <div className="col-span-12 md:col-span-4 md:col-start-8 flex flex-col gap-3 md:pb-8">
-            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-accent">
+            <span className="font-mono text-[15px] uppercase tracking-[0.25em] text-accent">
               Fin du moodboard 001
             </span>
-            <p className="font-sans text-sm md:text-base leading-[1.7] text-foreground/70 text-justify">
+            <p className="font-sans text-[15px] leading-none text-foreground/70 text-justify">
               Quinze planches sélectionnées dans l'archive du studio. D'autres
               dorment dans les cartons&mdash;sur demande, écrivez-nous via la
               page contact.
