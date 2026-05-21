@@ -14,13 +14,13 @@ function MetaItem({ label, value }: { label: string; value: string }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
       <span style={{
-        fontFamily: FF, fontWeight: 300, fontSize: 10,
+        fontFamily: FF, fontWeight: 300, fontSize: 15,
         textTransform: "uppercase", letterSpacing: "0.26em",
         color: "rgba(0,0,0,0.38)", lineHeight: 1,
       }}>
         {label}
       </span>
-      <span style={{ fontFamily: FF, fontWeight: 300, fontSize: 16, letterSpacing: "-0.05em", color: "rgba(0,0,0,0.75)" }}>
+      <span style={{ fontFamily: FF, fontWeight: 300, fontSize: 15, letterSpacing: "-0.05em", color: "rgba(0,0,0,0.75)" }}>
         {value}
       </span>
     </div>
@@ -40,7 +40,7 @@ function ProjectContent({ plate, prev, next }: { plate: Plate; prev?: Plate; nex
           href="/past"
           data-testid="link-back-projets"
           style={{
-            fontFamily: FF, fontWeight: 300, fontSize: 12,
+            fontFamily: FF, fontWeight: 300, fontSize: 15,
             textTransform: "uppercase", letterSpacing: "0.24em",
             color: "rgba(0,0,0,0.40)", textDecoration: "none",
             display: "inline-block", marginBottom: 28,
@@ -143,7 +143,7 @@ function ProjectContent({ plate, prev, next }: { plate: Plate; prev?: Plate; nex
             data-testid="link-prev-project"
             style={{ textDecoration: "none", display: "flex", flexDirection: "column", gap: 6 }}
           >
-            <span style={{ fontFamily: FF, fontWeight: 300, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.22em", color: "rgba(0,0,0,0.38)" }}>
+            <span style={{ fontFamily: FF, fontWeight: 300, fontSize: 15, textTransform: "uppercase", letterSpacing: "0.22em", color: "rgba(0,0,0,0.38)" }}>
               ← Précédente
             </span>
             <span style={{ fontFamily: SF, fontWeight: 700, fontSize: 16, letterSpacing: "-0.04em", textTransform: "uppercase", color: "#151515" }}>
@@ -158,7 +158,7 @@ function ProjectContent({ plate, prev, next }: { plate: Plate; prev?: Plate; nex
             data-testid="link-next-project"
             style={{ textDecoration: "none", display: "flex", flexDirection: "column", gap: 6, alignItems: "flex-end" }}
           >
-            <span style={{ fontFamily: FF, fontWeight: 300, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.22em", color: "rgba(0,0,0,0.38)" }}>
+            <span style={{ fontFamily: FF, fontWeight: 300, fontSize: 15, textTransform: "uppercase", letterSpacing: "0.22em", color: "rgba(0,0,0,0.38)" }}>
               Suivante →
             </span>
             <span style={{ fontFamily: SF, fontWeight: 700, fontSize: 16, letterSpacing: "-0.04em", textTransform: "uppercase", color: "#151515" }}>
@@ -189,7 +189,7 @@ function ProjectMobile({ plate, prev, next }: { plate: Plate; prev?: Plate; next
       {/* Back */}
       <Link
         href="/past"
-        style={{ fontFamily: FF, fontWeight: 300, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.22em", color: "rgba(0,0,0,0.40)", textDecoration: "none", display: "block", marginBottom: 20 }}
+        style={{ fontFamily: FF, fontWeight: 300, fontSize: 15, textTransform: "uppercase", letterSpacing: "0.22em", color: "rgba(0,0,0,0.40)", textDecoration: "none", display: "block", marginBottom: 20 }}
       >
         ← work
       </Link>
@@ -219,7 +219,7 @@ function ProjectMobile({ plate, prev, next }: { plate: Plate; prev?: Plate; next
       <div style={{ height: 1, backgroundColor: "rgba(0,0,0,0.12)", margin: "24px 0" }} />
 
       {/* Story */}
-      <p data-testid="project-story" style={{ fontFamily: FF, fontWeight: 300, fontSize: 16, letterSpacing: "-0.05em", lineHeight: 1.65, color: "rgba(0,0,0,0.80)", margin: "0 0 32px" }}>
+      <p data-testid="project-story" style={{ fontFamily: FF, fontWeight: 300, fontSize: 15, letterSpacing: "-0.05em", lineHeight: 1.0, color: "rgba(0,0,0,0.80)", margin: "0 0 32px" }}>
         {plate.story}
       </p>
 
@@ -237,14 +237,14 @@ function ProjectMobile({ plate, prev, next }: { plate: Plate; prev?: Plate; next
       <div style={{ borderTop: "1px solid rgba(0,0,0,0.10)", paddingTop: 24, display: "flex", justifyContent: "space-between" }}>
         {prev && (
           <Link href={`/projets/${prev.slug}`} style={{ textDecoration: "none" }} data-testid="link-prev-project">
-            <span style={{ fontFamily: FF, fontWeight: 300, fontSize: 10, textTransform: "uppercase", letterSpacing: "0.22em", color: "rgba(0,0,0,0.38)", display: "block" }}>← Précédente</span>
-            <span style={{ fontFamily: SF, fontWeight: 700, fontSize: 18, letterSpacing: "-0.04em", textTransform: "uppercase", color: "#151515", display: "block" }}>{prev.title}</span>
+            <span style={{ fontFamily: FF, fontWeight: 300, fontSize: 15, textTransform: "uppercase", letterSpacing: "0.22em", color: "rgba(0,0,0,0.38)", display: "block" }}>← Précédente</span>
+            <span style={{ fontFamily: SF, fontWeight: 700, fontSize: 16, letterSpacing: "-0.04em", textTransform: "uppercase", color: "#151515", display: "block" }}>{prev.title}</span>
           </Link>
         )}
         {next && (
           <Link href={`/projets/${next.slug}`} style={{ textDecoration: "none", textAlign: "right" }} data-testid="link-next-project">
-            <span style={{ fontFamily: FF, fontWeight: 300, fontSize: 10, textTransform: "uppercase", letterSpacing: "0.22em", color: "rgba(0,0,0,0.38)", display: "block" }}>Suivante →</span>
-            <span style={{ fontFamily: SF, fontWeight: 700, fontSize: 18, letterSpacing: "-0.04em", textTransform: "uppercase", color: "#151515", display: "block" }}>{next.title}</span>
+            <span style={{ fontFamily: FF, fontWeight: 300, fontSize: 15, textTransform: "uppercase", letterSpacing: "0.22em", color: "rgba(0,0,0,0.38)", display: "block" }}>Suivante →</span>
+            <span style={{ fontFamily: SF, fontWeight: 700, fontSize: 16, letterSpacing: "-0.04em", textTransform: "uppercase", color: "#151515", display: "block" }}>{next.title}</span>
           </Link>
         )}
       </div>

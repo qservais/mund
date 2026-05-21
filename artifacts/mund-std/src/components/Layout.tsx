@@ -22,7 +22,7 @@ function NavLink({ href, label }: { href: string; label: string }) {
       style={{
         display: "block",
         fontFamily: FONT_BODY,
-        fontSize: 18,
+        fontSize: 15,
         fontWeight: 300,
         letterSpacing: "-0.06em",
         lineHeight: 0.9,
@@ -119,7 +119,7 @@ export default function Layout({ children }: { children: ReactNode }) {
               data-testid="lang-toggle"
               style={{
                 fontFamily: FONT_BODY,
-                fontSize: 18,
+                fontSize: 15,
                 fontWeight: 300,
                 letterSpacing: "-0.06em",
                 color: "rgba(0,0,0,0.45)",
@@ -150,7 +150,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         justifyContent: "space-between",
         alignItems: "baseline",
         fontFamily: FONT_BODY,
-        fontSize: 13,
+        fontSize: 15,
         fontWeight: 300,
         letterSpacing: "-0.06em",
         color: "rgba(0,0,0,0.4)",

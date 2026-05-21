@@ -148,11 +148,11 @@ function FullScreenMenu({
       }}>
         <div style={{
           fontFamily: FONT,
-          fontSize: 12,
+          fontSize: 15,
           fontWeight: 300,
           letterSpacing: "-0.04em",
           color: "rgba(0,0,0,0.4)",
-          lineHeight: 1.6,
+          lineHeight: 1.0,
         }}>
           <div>MUND STUDIO</div>
           <div>Rue Monulphe 7, 4000 Liège</div>

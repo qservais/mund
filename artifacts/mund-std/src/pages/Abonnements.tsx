@@ -97,7 +97,7 @@ export default function Abonnements() {
 
       {/* ── NOS ABONNEMENTS — top right, left 840, top 130 */}
       <div style={{ position: "absolute", left: 840, top: 130, width: 330, textAlign: "right" }}>
-        <div style={{ ...SERIF, marginBottom: 14 }}>{c.aboTitle}</div>
+        <div style={{ ...SERIF }}>{c.aboTitle}</div>
         <p style={{ ...BODY, margin: 0 }}>{bodyLines(c.aboSub)}</p>
       </div>
 
