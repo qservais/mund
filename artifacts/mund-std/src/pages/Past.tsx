@@ -33,6 +33,12 @@ const GRID_ITEMS = [
     slug: "composition-2",
     left: 130, top: 660, w: 250, h: 250,
   },
+  {
+    label: "006 — composition I",
+    src: "/images/projects/composition_1/1.jpg",
+    slug: "composition-1",
+    left: 440, top: 630, w: 230, h: 300,
+  },
 ];
 
 const CAPTION: React.CSSProperties = {

@@ -243,6 +243,19 @@ export const plates: Plate[] = [
     location: "Atelier",
     story: "Étude de composition au studio. Trois images, un même geste — la fleur posée, regardée, déplacée. La répétition révèle ce que l'instant seul ne montre pas.",
   },
+  {
+    n: "18",
+    slug: "composition-1",
+    src: p("projects/composition_1/1.jpg"),
+    gallery: [1,2,3,4].map(n => p(`projects/composition_1/${n}.jpg`)),
+    alt: "Composition I — studio",
+    title: "Composition I",
+    meta: "Studio / Printemps 2026",
+    category: "Studio",
+    year: "2026",
+    location: "Atelier",
+    story: "Cosmos, géraniums blancs, menthe noire. Une composition construite dans la lumière du matin — le socle blanc, le mur qui pèle, les tiges qui s'échappent vers le haut. Rien de symétrique, tout d'équilibré.",
+  },
 ];
 
 export const getPlateBySlug = (slug: string): Plate | undefined =>
