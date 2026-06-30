@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from "react";
+import { Link } from "wouter";
 import { useLang } from "@/context/LanguageContext";
 import ArtboardShell, { SERIF, BODY } from "@/components/ArtboardShell";
 
@@ -33,6 +34,9 @@ const copy = {
     direction: "Direction",
     directionText: ["Julie Ahn,", "designer florale."],
     caption: "vides et pleins, chaos et structure.",
+    aboLabel: "Abonnements",
+    aboPro:   "Professionnel →",
+    aboPart:  "Particulier →",
     fields: [
       { name: "nom",     label: "Votre nom",       type: "text",  placeholder: "Prénom & nom",                                       required: true  },
       { name: "email",   label: "Email",            type: "email", placeholder: "vous@exemple.be",                                    required: true  },
@@ -54,6 +58,9 @@ const copy = {
     direction: "Direction",
     directionText: ["Julie Ahn,", "floral designer."],
     caption: "voids and solids, chaos and structure.",
+    aboLabel: "Subscriptions",
+    aboPro:   "Professional →",
+    aboPart:  "Private clients →",
     fields: [
       { name: "nom",     label: "Your name",     type: "text",  placeholder: "First & last name",                                 required: true  },
       { name: "email",   label: "Email",          type: "email", placeholder: "you@example.com",                                   required: true  },
@@ -205,6 +212,23 @@ function ContactMobile({ c }: { c: typeof copy.fr }) {
         </div>
       </div>
 
+      <div style={{ height: 1, backgroundColor: "rgba(0,0,0,0.12)", marginBottom: 32 }} />
+
+      {/* Abonnements links */}
+      <div style={{ marginBottom: 36 }}>
+        <span style={{ ...BODY, textTransform: "uppercase", letterSpacing: "0.28em", color: "rgba(0,0,0,0.38)", lineHeight: 1, display: "block", marginBottom: 10 }}>
+          {c.aboLabel}
+        </span>
+        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+          <Link href="/abonnements#pro" style={{ ...BODY, color: "#151515", textDecoration: "none", borderBottom: "1px solid rgba(0,0,0,0.55)", paddingBottom: 1, display: "inline-block" }}>
+            {c.aboPro}
+          </Link>
+          <Link href="/abonnements#particulier" style={{ ...BODY, color: "#151515", textDecoration: "none", borderBottom: "1px solid rgba(0,0,0,0.55)", paddingBottom: 1, display: "inline-block" }}>
+            {c.aboPart}
+          </Link>
+        </div>
+      </div>
+
       <div style={{ height: 1, backgroundColor: "rgba(0,0,0,0.12)", marginBottom: 36 }} />
 
       <ContactForm c={c} />
@@ -268,6 +292,27 @@ export default function Contact() {
         ...BODY, color: "rgba(0,0,0,0.35)", letterSpacing: "-0.04em",
       }}>
         {c.caption}
+      </div>
+
+      {/* ── Abonnements entry links ────────────────────────────── */}
+      <div style={{ position: "absolute", left: 130, top: 648 }}>
+        <span style={{ ...BODY, textTransform: "uppercase", letterSpacing: "0.28em", color: "rgba(0,0,0,0.38)", lineHeight: 1, display: "block" }}>
+          {c.aboLabel}
+        </span>
+        <div style={{ marginTop: 10, display: "flex", flexDirection: "column", gap: 6 }}>
+          <Link
+            href="/abonnements#pro"
+            style={{ ...BODY, color: "#151515", textDecoration: "none", borderBottom: "1px solid rgba(0,0,0,0.55)", paddingBottom: 1, display: "inline-block" }}
+          >
+            {c.aboPro}
+          </Link>
+          <Link
+            href="/abonnements#particulier"
+            style={{ ...BODY, color: "#151515", textDecoration: "none", borderBottom: "1px solid rgba(0,0,0,0.55)", paddingBottom: 1, display: "inline-block" }}
+          >
+            {c.aboPart}
+          </Link>
+        </div>
       </div>
 
       {/* ── Formulaire ─────────────────────────────────────────── */}
