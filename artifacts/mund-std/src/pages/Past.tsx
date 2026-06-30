@@ -17,7 +17,7 @@ const GRID_ITEMS = [
   },
   {
     label: "003 — bord de meuse",
-    src: "/images/projects/bord_de_meuse/2.webp",
+    src: "/images/projects/bord_de_meuse/2.jpg",
     slug: "bord-de-meuse",
     left: 780, top: 190, w: 290, h: 210,
   },

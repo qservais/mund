@@ -128,8 +128,8 @@ export const plates: Plate[] = [
   {
     n: "09",
     slug: "bord-de-meuse",
-    src: p("projects/bord_de_meuse/1.webp"),
-    gallery: [1,2,3,4,5].map(n => p(`projects/bord_de_meuse/${n}.webp`)),
+    src: p("projects/bord_de_meuse/4.jpg"),
+    gallery: [1,2,3,4,5,6,7,8,9].map(n => p(`projects/bord_de_meuse/${n}.jpg`)),
     alt: "Installation végétale Bord de Meuse",
     title: "Bord de Meuse",
     tagline: "Let the green in.",
