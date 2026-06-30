@@ -1,0 +1,47 @@
+TICKET MODIFICATIONS — MUND STUDIO (mund.madebydone.be)
+
+1. TYPOGRAPHIE & MISE EN PAGE GLOBALE
+
+Agrandir légèrement la police des titres de pages pour améliorer l'expérience utilisateur — rester cohérent entre toutes les pages
+
+Redéfinir les titres des pages (uniformisation du style)
+
+Les espaces en bas de page doivent respirer davantage — sans pour autant être excessifs
+
+Sur desktop : centrer légèrement la phrase "Composer au-delà du floral." — sur mobile c'est déjà correct, ne pas toucher
+
+2. BOUTONS
+
+Les boutons "Contactez-nous" et "C'est ici" doivent être plus identifiables visuellement — meilleur contraste ou style plus affirmé
+
+3. PAGE PARTICULIERS — ABONNEMENT FLORAL
+
+Intégrer les nouvelles photos fournies → Lien photos abonnements particulier : https://1drv.ms/f/c/ddc0adfa98a02710/IgDkF3VwyJHkQ4P2lf30qqAhASQwykybh91eM0gJ4_LaHKI?e=4RWWgK
+
+Intégrer le formulaire abonnement particulier (Tally) : → https://tally.so/r/LZVQ0p
+
+4. ESPACE PRO — DIFFÉRENCIÉ
+
+Créer un espace professionnel clairement distinct du particulier
+
+Intégrer les nouvelles photos fournies → Lien photos abonnements pro : https://1drv.ms/f/c/ddc0adfa98a02710/IgA-QtLj-OoyQYquQ2zFv0EHAUvUHk62Ybtd3MiguIEOB88?e=wjnPw9
+
+Intégrer le formulaire questionnaire pro (Tally) : → https://tally.so/r/rjvG1p
+
+5. PHOTOS GÉNÉRALES
+
+Intégrer les nouvelles photos générales fournies → Lien : https://1drv.ms/f/c/ddc0adfa98a02710/IgDZj30L0HDdSL9Pa7YViUqlAbEZL4EmrWBcVFJcFrA0ssA?e=fqo4Z0
+
+6. SECTION PAST (réalisations)
+
+Intégrer les nouvelles photos dans la section Past — nommer chaque dossier selon le nom des dossiers fournis, en respectant la mise en forme actuelle du site → Lien dossiers PAST : https://1drv.ms/f/c/ddc0adfa98a02710/IgDnvx2ErI-MSLJNs2SpEA8vAYpDjWYNWH3OkNBP9QW95ls?e=U8N4GX
+
+Retravailler l'affichage de la section Past — la cliente souhaite une présentation de ce style comme référence : https://davidecapasso.be/021-alliums (textes de présentation à rédiger par la cliente progressivement — pas urgent)
+
+7. PAGE CONTACT
+
+Identifier clairement deux entrées sur la page contact : Professionnel / Particulier
+
+8. LOGO
+
+Remplacer le logo actuel par le nouveau logo fourni en pièce jointe
