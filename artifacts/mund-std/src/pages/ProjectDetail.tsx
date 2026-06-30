@@ -93,13 +93,15 @@ function ProjectContent({ plate, prev, next }: { plate: Plate; prev?: Plate; nex
         ) : <div />}
       </div>
 
-      {/* ── Horizontal image strip — full width ──────────────────── */}
+      {/* ── Horizontal image strip — scrollable ──────────────────── */}
       <div
         data-testid="project-gallery"
         style={{
           display: "flex",
           gap: 3,
-          width: "100%",
+          overflowX: "auto",
+          overflowY: "hidden",
+          scrollbarWidth: "none",
         }}
       >
         {gallery.map((src, i) => (
@@ -109,9 +111,9 @@ function ProjectContent({ plate, prev, next }: { plate: Plate; prev?: Plate; nex
             alt={`${plate.alt} — ${i + 1}`}
             loading={i === 0 ? undefined : "lazy"}
             style={{
-              flex: 1,
-              minWidth: 0,
+              flexShrink: 0,
               height: 520,
+              width: "auto",
               objectFit: "cover",
               display: "block",
             }}
