@@ -1,4 +1,4 @@
-import ArtboardShell, { SERIF, BODY } from "@/components/ArtboardShell";
+import ArtboardShell, { SERIF, BODY, CTA_LINK } from "@/components/ArtboardShell";
 import { Link } from "wouter";
 import { useLang } from "@/context/LanguageContext";
 import overlayRef from "@assets/work_1778525400139.png";
@@ -54,10 +54,10 @@ const copy = {
 const F = '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif';
 const S = '"Cormorant Garamond", "Times New Roman", Times, serif';
 
-const mTitle: React.CSSProperties = { fontFamily: S, fontSize: 16, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 };
+const mTitle: React.CSSProperties = { fontFamily: S, fontSize: 18, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 };
 const mBody: React.CSSProperties = { fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: 0, marginBottom: 12 };
 const mItalic: React.CSSProperties = { fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: 0, textAlign: "right" };
-const mLink: React.CSSProperties = { fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", color: "#151515", textDecoration: "none" };
+const mLink: React.CSSProperties = { fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", color: "#151515", textDecoration: "none", borderBottom: "1px solid rgba(0,0,0,0.55)", paddingBottom: 2 };
 const mSection: React.CSSProperties = { marginBottom: 40 };
 const mDivider: React.CSSProperties = { height: 1, backgroundColor: "rgba(0,0,0,0.15)", margin: "28px 0" };
 
@@ -115,13 +115,13 @@ export default function Floral() {
     text.split("\n").map((l, i) => <span key={i}>{l}<br /></span>);
 
   return (
-    <ArtboardShell overlayRef={overlayRef} minHeight={1680} mobile={<FloralMobile c={c} />}>
+    <ArtboardShell overlayRef={overlayRef} minHeight={1780} mobile={<FloralMobile c={c} />}>
 
       {/* ── MARIAGES ─────────────────────────────────────── */}
       <div style={{ position: "absolute", left: 130, top: 180, width: 600 }}>
         <div style={{ ...SERIF, marginBottom: 20 }}>{c.mariagesTitle}</div>
         <p style={{ ...BODY, margin: 0, marginBottom: 22 }}>{bodyLines(c.mariagesBody)}</p>
-        <Link href="/contact" style={{ ...BODY, color: "#151515", textDecoration: "none" }}>
+        <Link href="/contact" style={{ ...CTA_LINK }}>
           {c.mariagesLink}
         </Link>
         <p style={{ ...SERIF, fontWeight: 400, textTransform: "none", marginTop: 24 }}>
@@ -142,7 +142,7 @@ export default function Floral() {
         <p style={{ ...SERIF, fontWeight: 400, textTransform: "none", marginBottom: 16 }}>
           {c.eventsItalic}
         </p>
-        <Link href="/contact" style={{ ...BODY, color: "#151515", textDecoration: "none" }}>
+        <Link href="/contact" style={{ ...CTA_LINK }}>
           {c.eventsLink}
         </Link>
       </div>
@@ -154,7 +154,7 @@ export default function Floral() {
         <p style={{ ...SERIF, fontWeight: 400, textTransform: "none", marginBottom: 16, textAlign: "center" }}>
           {c.setItalic}
         </p>
-        <Link href="/contact" style={{ ...BODY, color: "#151515", textDecoration: "none" }}>
+        <Link href="/contact" style={{ ...CTA_LINK }}>
           {c.setLink}
         </Link>
       </div>
@@ -166,13 +166,13 @@ export default function Floral() {
       <div style={{ position: "absolute", left: 140, top: 1460, width: 930 }}>
         <div style={{ ...SERIF, marginBottom: 20 }}>{c.globalTitle}</div>
         <p style={{ ...BODY, margin: 0, marginBottom: 22 }}>{bodyLines(c.globalBody)}</p>
-        <Link href="/contact" style={{ ...BODY, color: "#151515", textDecoration: "none" }}>
+        <Link href="/contact" style={{ ...CTA_LINK }}>
           {c.globalLink}
         </Link>
       </div>
 
       <div style={{
-        position: "absolute", left: 700, top: 1555, width: 460, textAlign: "right",
+        position: "absolute", left: 0, top: 1555, width: 1300, textAlign: "center",
         ...SERIF, fontWeight: 400, textTransform: "none",
       }}>
         {c.globalItalic}

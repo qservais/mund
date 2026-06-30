@@ -74,7 +74,7 @@ export default function ProjectShell({ heroSrc, heroAlt, children, mobile }: Pro
             }}
           >
             <img
-              src="/svg/mund%20studio.svg"
+              src="/images/logo.png"
               alt="mund studio"
               style={{ width: 300, display: "block" }}
             />
@@ -114,7 +114,7 @@ export default function ProjectShell({ heroSrc, heroAlt, children, mobile }: Pro
 
       {/* ── Footer ───────────────────────────────────────────────────── */}
       <footer style={{
-        padding: "22px 130px",
+        padding: "28px 130px",
         borderTop: "1px solid rgba(0,0,0,0.1)",
         display: "flex",
         justifyContent: "space-between",

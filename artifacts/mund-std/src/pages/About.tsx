@@ -43,7 +43,7 @@ function AboutMobile({ c }: { c: typeof copy.fr }) {
 
       <div style={{ marginBottom: 20 }}>
         {c.titleLines.map((line) => (
-          <div key={line} style={{ fontFamily: S, fontSize: 16, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 2 }}>
+          <div key={line} style={{ fontFamily: S, fontSize: 18, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 2 }}>
             {line}
           </div>
         ))}
@@ -62,7 +62,7 @@ function AboutMobile({ c }: { c: typeof copy.fr }) {
 
       <div style={{ marginBottom: 16 }}>
         {c.vides.map((l) => (
-          <div key={l} style={{ fontFamily: S, fontSize: 16, fontWeight: 700, letterSpacing: "-0.05em", lineHeight: 1.0 }}>{l}</div>
+          <div key={l} style={{ fontFamily: S, fontSize: 18, fontWeight: 700, letterSpacing: "-0.05em", lineHeight: 1.0 }}>{l}</div>
         ))}
       </div>
 

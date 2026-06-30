@@ -217,7 +217,7 @@ export default function Contact() {
   const c = copy[lang];
 
   return (
-    <ArtboardShell minHeight={1100} mobile={<ContactMobile c={c} />}>
+    <ArtboardShell minHeight={1200} mobile={<ContactMobile c={c} />}>
 
       {/* ── CONTACT title ──────────────────────────────────────── */}
       <div style={{ position: "absolute", left: 130, top: 195 }}>

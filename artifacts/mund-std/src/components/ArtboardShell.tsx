@@ -6,11 +6,23 @@ import MobileShell from "./MobileShell";
 // ── Design tokens ────────────────────────────────────────────────────────────
 export const SERIF: React.CSSProperties = {
   fontFamily: '"Cormorant Garamond", "Times New Roman", Times, serif',
-  fontSize: 16,
+  fontSize: 18,
   fontWeight: 700,
   letterSpacing: "-0.05em",
   textTransform: "uppercase",
   lineHeight: 1,
+};
+
+export const CTA_LINK: React.CSSProperties = {
+  fontFamily: '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif',
+  fontSize: 15,
+  fontWeight: 300,
+  letterSpacing: "-0.06em",
+  lineHeight: 1.0,
+  color: "#151515",
+  textDecoration: "none",
+  borderBottom: "1px solid rgba(0,0,0,0.55)",
+  paddingBottom: 2,
 };
 
 export const BODY: React.CSSProperties = {
@@ -162,7 +174,7 @@ export default function ArtboardShell({ children, overlayRef, minHeight = 2048, 
           }}
         >
           <img
-            src="/svg/mund%20studio.svg"
+            src="/images/logo.png"
             alt="mund studio"
             style={{ width: 300, display: "block" }}
           />
@@ -187,7 +199,7 @@ export default function ArtboardShell({ children, overlayRef, minHeight = 2048, 
 
         <div style={{
           position: "absolute", bottom: 0, left: 0, right: 0,
-          padding: "22px 130px",
+          padding: "28px 130px",
           borderTop: "1px solid rgba(0,0,0,0.1)",
           display: "flex", justifyContent: "space-between", alignItems: "baseline",
           ...BODY, color: "rgba(0,0,0,0.4)",

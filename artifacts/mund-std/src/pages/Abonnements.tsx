@@ -1,4 +1,4 @@
-import ArtboardShell, { SERIF, BODY } from "@/components/ArtboardShell";
+import ArtboardShell, { SERIF, BODY, CTA_LINK } from "@/components/ArtboardShell";
 import { Link } from "wouter";
 import { useLang } from "@/context/LanguageContext";
 import overlayRef from "@assets/floral_1778527882896.png";
@@ -42,7 +42,7 @@ function AbonnementsMobile({ c }: { c: typeof copy.fr }) {
   const bodyLines = (text: string) => text.split("\n").join(" ");
   return (
     <div>
-      <div style={{ fontFamily: S, fontSize: 16, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 8 }}>
+      <div style={{ fontFamily: S, fontSize: 18, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 8 }}>
         {c.aboTitle}
       </div>
       <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: "0 0 24px" }}>
@@ -52,13 +52,13 @@ function AbonnementsMobile({ c }: { c: typeof copy.fr }) {
       <img src={imgMain} alt="" style={{ width: "100%", aspectRatio: "7/12", objectFit: "cover", display: "block", marginBottom: 32 }} />
 
       <div style={{ marginBottom: 36 }}>
-        <div style={{ fontFamily: S, fontSize: 16, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 }}>
+        <div style={{ fontFamily: S, fontSize: 18, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 }}>
           {c.proTitle}
         </div>
         <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: "0 0 4px" }}>
           {bodyLines(c.proBody)}
         </p>
-        <Link href="/contact" style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", color: "#151515", textDecoration: "none", display: "block", marginBottom: 12 }}>
+        <Link href="/contact" style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", color: "#151515", textDecoration: "none", borderBottom: "1px solid rgba(0,0,0,0.55)", paddingBottom: 2, display: "inline-block", marginBottom: 12 }}>
           {c.proLink}
         </Link>
         <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: 0, textAlign: "right" }}>
@@ -69,7 +69,7 @@ function AbonnementsMobile({ c }: { c: typeof copy.fr }) {
       <div style={{ height: 1, backgroundColor: "rgba(0,0,0,0.15)", marginBottom: 32 }} />
 
       <div>
-        <div style={{ fontFamily: S, fontSize: 16, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 }}>
+        <div style={{ fontFamily: S, fontSize: 18, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 }}>
           {c.partTitle}
         </div>
         <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: "0 0 12px" }}>
@@ -78,7 +78,7 @@ function AbonnementsMobile({ c }: { c: typeof copy.fr }) {
         <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: "0 0 16px", textAlign: "right" }}>
           {c.partItalic}
         </p>
-        <Link href="/abonnements" style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", color: "#151515", textDecoration: "none" }}>
+        <Link href="/abonnements" style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", color: "#151515", textDecoration: "none", borderBottom: "1px solid rgba(0,0,0,0.55)", paddingBottom: 2 }}>
           {c.partLink}
         </Link>
       </div>
@@ -112,7 +112,7 @@ export default function Abonnements() {
       <div style={{ position: "absolute", left: 120, top: 300, width: 600 }}>
         <div style={{ ...SERIF, marginBottom: 20 }}>{c.proTitle}</div>
         <p style={{ ...BODY, margin: 0, marginBottom: 4 }}>{bodyLines(c.proBody)}</p>
-        <Link href="/contact" style={{ ...BODY, color: "#151515", textDecoration: "none", display: "block", marginBottom: 22 }}>
+        <Link href="/contact" style={{ ...CTA_LINK, display: "inline-block", marginBottom: 22 }}>
           {c.proLink}
         </Link>
         <p style={{
@@ -133,7 +133,7 @@ export default function Abonnements() {
         }}>
           {c.partItalic}
         </p>
-        <Link href="/abonnements" style={{ ...BODY, color: "#151515", textDecoration: "none" }}>
+        <Link href="/abonnements" style={{ ...CTA_LINK }}>
           {c.partLink}
         </Link>
       </div>

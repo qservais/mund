@@ -1,4 +1,4 @@
-import ArtboardShell, { SERIF, BODY } from "@/components/ArtboardShell";
+import ArtboardShell, { SERIF, BODY, CTA_LINK } from "@/components/ArtboardShell";
 import { Link } from "wouter";
 import { useLang } from "@/context/LanguageContext";
 import overlayRef from "@assets/1_1778522805215.png";
@@ -63,7 +63,7 @@ function HomeMobile({ c }: { c: typeof copy.fr }) {
       />
 
       <div style={{ marginBottom: 32 }}>
-        <div style={{ fontFamily: S, fontSize: 16, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 }}>
+        <div style={{ fontFamily: S, fontSize: 18, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 }}>
           {c.floralTitle}
         </div>
         <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: 0, marginBottom: 12 }}>
@@ -75,7 +75,7 @@ function HomeMobile({ c }: { c: typeof copy.fr }) {
       </div>
 
       <div style={{ marginBottom: 32 }}>
-        <div style={{ fontFamily: S, fontSize: 16, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 }}>
+        <div style={{ fontFamily: S, fontSize: 18, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 }}>
           {c.servicesTitle}
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
@@ -97,7 +97,7 @@ function HomeMobile({ c }: { c: typeof copy.fr }) {
       </div>
 
       <div data-testid="home-cta">
-        <div style={{ fontFamily: S, fontSize: 16, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 }}>
+        <div style={{ fontFamily: S, fontSize: 18, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 }}>
           {c.devisTitle}
         </div>
         <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: 0, marginBottom: 16 }}>
@@ -106,7 +106,7 @@ function HomeMobile({ c }: { c: typeof copy.fr }) {
         <Link
           href="/contact"
           data-testid="link-contact-cta"
-          style={{ fontFamily: S, fontSize: 16, fontWeight: 700, letterSpacing: "-0.05em", color: "#151515", textDecoration: "none" }}
+          style={{ fontFamily: S, fontSize: 18, fontWeight: 700, letterSpacing: "-0.05em", color: "#151515", textDecoration: "none", borderBottom: "1px solid rgba(0,0,0,0.55)", paddingBottom: 2 }}
         >
           {c.devisCta}
         </Link>
@@ -201,8 +201,9 @@ export default function Home() {
           data-testid="link-contact-cta"
           style={{
             fontFamily: '"Cormorant Garamond", "Times New Roman", Times, serif',
-            fontSize: 16, fontWeight: 700, letterSpacing: "-0.05em", lineHeight: 1.0,
+            fontSize: 18, fontWeight: 700, letterSpacing: "-0.05em", lineHeight: 1.0,
             color: "#151515", textDecoration: "none",
+            borderBottom: "1px solid rgba(0,0,0,0.55)", paddingBottom: 2,
           }}
         >
           {c.devisCta}

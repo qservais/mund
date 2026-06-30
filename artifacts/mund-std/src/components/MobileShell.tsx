@@ -227,9 +227,9 @@ export default function MobileShell({ children }: { children: ReactNode }) {
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Link href="/" style={{ display: "block", textDecoration: "none" }} onClick={() => setMenuOpen(false)}>
             <img
-              src="/svg/mund%20studio.svg"
+              src="/images/logo.png"
               alt="mund studio"
-              style={{ width: "clamp(100px, 35vw, 200px)", display: "block" }}
+              style={{ width: "clamp(120px, 38vw, 220px)", display: "block" }}
             />
           </Link>
         </div>
