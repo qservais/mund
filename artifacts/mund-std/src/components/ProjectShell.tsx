@@ -2,7 +2,7 @@ import { Link, useLocation } from "wouter";
 import { type ReactNode } from "react";
 import { useLang } from "@/context/LanguageContext";
 import MobileShell from "./MobileShell";
-import { useViewportWidth, ARTBOARD_W, NAV_STYLE, BODY, GULDSCRIPT } from "./ArtboardShell";
+import { useViewportWidth, ARTBOARD_W, NAV_STYLE, BODY } from "./ArtboardShell";
 
 const NAV_ITEMS = [
   { label: "work",    href: "/floral",      testId: "nav-work"    },
@@ -13,23 +13,19 @@ const NAV_ITEMS = [
 ];
 
 type Props = {
-  heroSrc: string;
-  heroAlt: string;
   children: ReactNode;
   mobile: ReactNode;
 };
 
-export default function ProjectShell({ heroSrc, heroAlt, children, mobile }: Props) {
+export default function ProjectShell({ children, mobile }: Props) {
   const viewportW = useViewportWidth();
   const { lang, toggle } = useLang();
   const [location] = useLocation();
 
-  /* ── Mobile ─────────────────────────────────────────────────────────── */
   if (viewportW < ARTBOARD_W) {
     return <MobileShell>{mobile}</MobileShell>;
   }
 
-  /* ── Desktop ────────────────────────────────────────────────────────── */
   return (
     <div style={{
       minHeight: "100vh",
@@ -38,7 +34,6 @@ export default function ProjectShell({ heroSrc, heroAlt, children, mobile }: Pro
       WebkitFontSmoothing: "antialiased",
     }}>
 
-      {/* ── Header — bloc 1300px centré, identique à ArtboardShell ─── */}
       <header style={{ backgroundColor: "#f4f4f2", height: 160, overflow: "hidden" }}>
         <div style={{
           position: "relative",
@@ -46,7 +41,6 @@ export default function ProjectShell({ heroSrc, heroAlt, children, mobile }: Pro
           height: 160,
           margin: "0 auto",
         }}>
-          {/* Nav gauche */}
           <nav style={{ position: "absolute", top: 52, left: 130 }}>
             {NAV_ITEMS.map(({ label, href, testId }) => {
               const isActive = href === "/" ? location === "/" : location.startsWith(href);
@@ -63,7 +57,6 @@ export default function ProjectShell({ heroSrc, heroAlt, children, mobile }: Pro
             })}
           </nav>
 
-          {/* Logo centré dans le bloc 1300px */}
           <Link
             href="/"
             data-testid="nav-brand"
@@ -80,7 +73,6 @@ export default function ProjectShell({ heroSrc, heroAlt, children, mobile }: Pro
             />
           </Link>
 
-          {/* Lang toggle droite */}
           <button
             onClick={toggle}
             data-testid="lang-toggle"
@@ -98,21 +90,10 @@ export default function ProjectShell({ heroSrc, heroAlt, children, mobile }: Pro
         </div>
       </header>
 
-      {/* ── Hero plein écran sous le header ─────────────────────────── */}
-      <div style={{ width: "100%", height: "80vh", overflow: "hidden" }}>
-        <img
-          src={heroSrc}
-          alt={heroAlt}
-          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-        />
-      </div>
-
-      {/* ── Contenu ──────────────────────────────────────────────────── */}
       <main>
         {children}
       </main>
 
-      {/* ── Footer ───────────────────────────────────────────────────── */}
       <footer style={{
         padding: "28px 130px",
         borderTop: "1px solid rgba(0,0,0,0.1)",
