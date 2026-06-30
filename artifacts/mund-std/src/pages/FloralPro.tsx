@@ -3,7 +3,12 @@ import ArtboardShell, { SERIF, BODY, CTA_LINK } from "@/components/ArtboardShell
 import { SubForm, type FormField } from "@/components/SubForm";
 import { useLang } from "@/context/LanguageContext";
 import overlayRef from "@assets/floral_1778527882896.png";
-const imgMain = "/images/svc1.webp";
+
+import img1 from "@assets/5_1782856798282.jpg";
+import img2 from "@assets/6_1782856798282.jpg";
+import img3 from "@assets/7_1782856798282.JPEG";
+import img4 from "@assets/8_1782856798283.JPEG";
+import img5 from "@assets/9_1782856798283.jpg";
 
 const F = '"Helvetica Now Display","Helvetica Neue",Helvetica,Arial,sans-serif';
 const S = '"Cormorant Garamond","Times New Roman",serif';
@@ -55,15 +60,32 @@ const copy = {
   },
 };
 
+/* ── Desktop grid constants ───────────────────── */
+const COL_R   = 840;
+const COL_W   = 161;
+const COL_GAP = 10;
+const ROW_H   = 230;
+const ROW_GAP = 10;
+const COL_2   = COL_R + COL_W + COL_GAP;   /* 1011 */
+const FULL_W  = COL_W * 2 + COL_GAP;        /* 332  */
+const GRID_TOP = 220;
+
 function Mobile({ c }: { c: typeof copy.fr }) {
   const t = (s: string) => s.split("\n").join(" ");
+  const photos = [img1, img2, img3, img4, img5];
   return (
     <div>
       <Link href="/abonnements" style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.04em", color: "rgba(0,0,0,0.4)", textDecoration: "none", display: "block", marginBottom: 24 }}>{c.back}</Link>
       <div style={{ fontFamily: S, fontSize: 18, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 8 }}>{c.title}</div>
       <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: "0 0 10px" }}>{t(c.body)}</p>
-      <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: "0 0 28px", textAlign: "right" }}>{c.italic}</p>
-      <img src={imgMain} alt="" style={{ width: "100%", aspectRatio: "7/10", objectFit: "cover", display: "block", marginBottom: 36 }} />
+      <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: "0 0 24px", textAlign: "right" }}>{c.italic}</p>
+      {/* 2-col grid, last image spans full width */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6, marginBottom: 36 }}>
+        {photos.slice(0, 4).map((src, i) => (
+          <img key={i} src={src} alt="" style={{ width: "100%", aspectRatio: "7/10", objectFit: "cover", display: "block" }} />
+        ))}
+        <img src={photos[4]} alt="" style={{ gridColumn: "1 / -1", width: "100%", aspectRatio: "4/3", objectFit: "cover", objectPosition: "center 40%", display: "block" }} />
+      </div>
       <SubForm fields={c.fields} submit={c.submit} success={c.success} successBody={c.successBody} reset={c.reset} />
     </div>
   );
@@ -83,13 +105,19 @@ export default function FloralPro() {
       </Link>
 
       {/* ── header top-right ── */}
-      <div style={{ position: "absolute", left: 840, top: 130, width: 330, textAlign: "right" }}>
+      <div style={{ position: "absolute", left: COL_R, top: 130, width: FULL_W, textAlign: "right" }}>
         <div style={{ ...SERIF }}>{c.header}</div>
         <p style={{ ...BODY, margin: 0, color: "rgba(0,0,0,0.45)" }}>{c.sub}</p>
       </div>
 
-      {/* ── image right ── */}
-      <img src={imgMain} alt="" style={{ position: "absolute", left: 840, top: 220, width: 335, height: 534, objectFit: "cover" }} />
+      {/* ── 2×2 grid ── */}
+      <img src={img1} alt="" style={{ position: "absolute", left: COL_R, top: GRID_TOP,              width: COL_W, height: ROW_H, objectFit: "cover" }} />
+      <img src={img2} alt="" style={{ position: "absolute", left: COL_2, top: GRID_TOP,              width: COL_W, height: ROW_H, objectFit: "cover" }} />
+      <img src={img3} alt="" style={{ position: "absolute", left: COL_R, top: GRID_TOP + ROW_H + ROW_GAP, width: COL_W, height: ROW_H, objectFit: "cover" }} />
+      <img src={img4} alt="" style={{ position: "absolute", left: COL_2, top: GRID_TOP + ROW_H + ROW_GAP, width: COL_W, height: ROW_H, objectFit: "cover" }} />
+
+      {/* ── full-width 5th image ── */}
+      <img src={img5} alt="" style={{ position: "absolute", left: COL_R, top: GRID_TOP + (ROW_H + ROW_GAP) * 2, width: FULL_W, height: 180, objectFit: "cover", objectPosition: "center 35%" }} />
 
       {/* ── left column ── */}
       <div style={{ position: "absolute", left: 130, top: 195, width: 640 }}>
