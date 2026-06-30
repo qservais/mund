@@ -3,7 +3,15 @@ import ArtboardShell, { SERIF, BODY, CTA_LINK } from "@/components/ArtboardShell
 import { SubForm, type FormField } from "@/components/SubForm";
 import { useLang } from "@/context/LanguageContext";
 import overlayRef from "@assets/floral_1778527882896.png";
-const imgMain = "/images/svc1.webp";
+
+import img1 from "@assets/20250117_111842000_iOS_1782856745220.jpg";
+import img2 from "@assets/20250205_085941000_iOS_1782856745221.jpg";
+import img3 from "@assets/20250205_090041000_iOS_1782856745221.jpg";
+import img4 from "@assets/20250318_163628000_iOS_1782856745221.png";
+import img5 from "@assets/IMG_3778_1782856745221.jpeg";
+import img6 from "@assets/IMG_6231_1782856745222.JPEG";
+
+const PHOTOS = [img1, img2, img3, img4, img5, img6];
 
 const F = '"Helvetica Now Display","Helvetica Neue",Helvetica,Arial,sans-serif';
 const S = '"Cormorant Garamond","Times New Roman",serif';
@@ -66,17 +74,41 @@ function Mobile({ c }: { c: typeof copy.fr }) {
       <Link href="/abonnements" style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.04em", color: "rgba(0,0,0,0.4)", textDecoration: "none", display: "block", marginBottom: 24 }}>{c.back}</Link>
       <div style={{ fontFamily: S, fontSize: 18, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 8 }}>{c.title}</div>
       <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: "0 0 10px" }}>{t(c.body)}</p>
-      <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: "0 0 28px", textAlign: "right" }}>{c.italic}</p>
-      <img src={imgMain} alt="" style={{ width: "100%", aspectRatio: "7/10", objectFit: "cover", display: "block", marginBottom: 36 }} />
+      <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: "0 0 24px", textAlign: "right" }}>{c.italic}</p>
+      {/* 2-col photo grid */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6, marginBottom: 36 }}>
+        {PHOTOS.map((src, i) => (
+          <img key={i} src={src} alt="" style={{ width: "100%", aspectRatio: "7/10", objectFit: "cover", display: "block" }} />
+        ))}
+      </div>
       <SubForm fields={c.fields} submit={c.submit} success={c.success} successBody={c.successBody} reset={c.reset} />
     </div>
   );
 }
 
+/* ── Desktop grid constants ─────────────────────── */
+const COL_R   = 840;   /* right column x start       */
+const COL_W   = 161;   /* each photo column width     */
+const COL_GAP = 10;    /* gap between the two columns */
+const ROW_H   = 230;   /* photo height (≈7:10)        */
+const ROW_GAP = 10;    /* gap between rows            */
+const COL_2   = COL_R + COL_W + COL_GAP;  /* = 1011  */
+const GRID_TOP = 220;
+
+function photoLeft(col: 0 | 1) { return col === 0 ? COL_R : COL_2; }
+function photoTop(row: number)  { return GRID_TOP + row * (ROW_H + ROW_GAP); }
+
 export default function FloralParticulier() {
   const { lang } = useLang();
   const c = copy[lang];
   const bl = (text: string) => text.split("\n").map((l, i) => <span key={i}>{l}<br /></span>);
+
+  /* layout: 3 rows × 2 cols */
+  const grid: [number, number][] = [
+    [0, 0], [1, 0],   /* row 0 */
+    [0, 1], [1, 1],   /* row 1 */
+    [0, 2], [1, 2],   /* row 2 */
+  ];
 
   return (
     <ArtboardShell overlayRef={overlayRef} minHeight={1750} mobile={<Mobile c={c} />}>
@@ -87,13 +119,30 @@ export default function FloralParticulier() {
       </Link>
 
       {/* ── header top-right ── */}
-      <div style={{ position: "absolute", left: 840, top: 130, width: 330, textAlign: "right" }}>
+      <div style={{ position: "absolute", left: 840, top: 130, width: COL_W * 2 + COL_GAP, textAlign: "right" }}>
         <div style={{ ...SERIF }}>{c.header}</div>
         <p style={{ ...BODY, margin: 0, color: "rgba(0,0,0,0.45)" }}>{c.sub}</p>
       </div>
 
-      {/* ── image right ── */}
-      <img src={imgMain} alt="" style={{ position: "absolute", left: 840, top: 220, width: 335, height: 534, objectFit: "cover" }} />
+      {/* ── 2×3 photo grid ── */}
+      {PHOTOS.map((src, i) => {
+        const [col, row] = grid[i];
+        return (
+          <img
+            key={i}
+            src={src}
+            alt=""
+            style={{
+              position: "absolute",
+              left: photoLeft(col as 0 | 1),
+              top:  photoTop(row),
+              width: COL_W,
+              height: ROW_H,
+              objectFit: "cover",
+            }}
+          />
+        );
+      })}
 
       {/* ── left column ── */}
       <div style={{ position: "absolute", left: 130, top: 195, width: 640 }}>
