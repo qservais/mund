@@ -7,6 +7,8 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import Floral from "@/pages/Floral";
 import Abonnements from "@/pages/Abonnements";
+import FloralPro from "@/pages/FloralPro";
+import FloralParticulier from "@/pages/FloralParticulier";
 import Past from "@/pages/Past";
 import About from "@/pages/About";
 import ProjectDetail from "@/pages/ProjectDetail";
@@ -22,6 +24,8 @@ function Router() {
         <Route path="/" component={Home} />
         <Route path="/floral" component={Floral} />
         <Route path="/abonnements" component={Abonnements} />
+        <Route path="/floral/pro" component={FloralPro} />
+        <Route path="/floral/particulier" component={FloralParticulier} />
         <Route path="/past" component={Past} />
         <Route path="/about" component={About} />
         <Route path="/contact" component={Contact} />

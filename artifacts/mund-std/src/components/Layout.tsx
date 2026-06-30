@@ -43,7 +43,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   const viewportW = useViewportWidth();
 
   const artboardRoutes = ["/", "/floral", "/abonnements", "/past", "/about", "/contact"];
-  const isArtboard = artboardRoutes.includes(location) || location.startsWith("/projets/");
+  const isArtboard = artboardRoutes.includes(location) || location.startsWith("/projets/") || location.startsWith("/floral/");
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" });

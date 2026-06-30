@@ -220,10 +220,10 @@ function ContactMobile({ c }: { c: typeof copy.fr }) {
           {c.aboLabel}
         </span>
         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-          <Link href="/abonnements#pro" style={{ ...BODY, color: "#151515", textDecoration: "none", borderBottom: "1px solid rgba(0,0,0,0.55)", paddingBottom: 1, display: "inline-block" }}>
+          <Link href="/floral/pro" style={{ ...BODY, color: "#151515", textDecoration: "none", borderBottom: "1px solid rgba(0,0,0,0.55)", paddingBottom: 1, display: "inline-block" }}>
             {c.aboPro}
           </Link>
-          <Link href="/abonnements#particulier" style={{ ...BODY, color: "#151515", textDecoration: "none", borderBottom: "1px solid rgba(0,0,0,0.55)", paddingBottom: 1, display: "inline-block" }}>
+          <Link href="/floral/particulier" style={{ ...BODY, color: "#151515", textDecoration: "none", borderBottom: "1px solid rgba(0,0,0,0.55)", paddingBottom: 1, display: "inline-block" }}>
             {c.aboPart}
           </Link>
         </div>
@@ -301,13 +301,13 @@ export default function Contact() {
         </span>
         <div style={{ marginTop: 10, display: "flex", flexDirection: "column", gap: 6 }}>
           <Link
-            href="/abonnements#pro"
+            href="/floral/pro"
             style={{ ...BODY, color: "#151515", textDecoration: "none", borderBottom: "1px solid rgba(0,0,0,0.55)", paddingBottom: 1, display: "inline-block" }}
           >
             {c.aboPro}
           </Link>
           <Link
-            href="/abonnements#particulier"
+            href="/floral/particulier"
             style={{ ...BODY, color: "#151515", textDecoration: "none", borderBottom: "1px solid rgba(0,0,0,0.55)", paddingBottom: 1, display: "inline-block" }}
           >
             {c.aboPart}
