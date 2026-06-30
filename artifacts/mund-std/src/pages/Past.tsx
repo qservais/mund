@@ -1,23 +1,38 @@
 import ArtboardShell, { BODY } from "@/components/ArtboardShell";
 import { Link } from "wouter";
-import { plates } from "@/data/plates";
 import overlayRef from "@assets/past_1778525400140.png";
 
-const img1 = "/images/past-1.webp";
-const img2 = "/images/past-2.webp";
-const img3 = "/images/past-3.webp";
-const img4 = "/images/past-4.webp";
-const img5 = "/images/past-5.webp";
-const img6 = "/images/past-6.webp";
-
 const GRID_ITEMS = [
-  { label: "001 - sapiens",       src: img4,                                        slug: "lara-thibault",   left: 130, top:  190, w: 260, h: 220 },
-  { label: "002 - lara",          src: img3,                                        slug: "lara-thibault",   left: 435, top:  190, w: 260, h: 220 },
-  { label: "003 - jardin",        src: "/images/projects/bord_de_meuse/2.webp",    slug: "bord-de-meuse",   left: 640, top:  500, w: 300, h: 210 },
-  { label: "004 - bord de meuse", src: img1,                                        slug: "bord-de-meuse",   left: 965, top:  535, w: 220, h: 260 },
-  { label: "005 - composition",   src: img6,                                        slug: "lignes-minimales",left: 480, top:  775, w: 210, h: 300 },
-  { label: "006 - grappe",        src: img5,                                        slug: "high-contrast",   left: 730, top:  775, w: 210, h: 300 },
-  { label: "007 - vitu",          src: img2,                                        slug: "contraste-brut",  left: 930, top: 1130, w: 255, h: 225 },
+  {
+    label: "001 — lara & thibault",
+    src: "/images/projects/lara_thibault/4.jpg",
+    slug: "lara-thibault",
+    left: 130, top: 190, w: 250, h: 340,
+  },
+  {
+    label: "002 — colin & juliette",
+    src: "/images/projects/colin_juliette/1.jpg",
+    slug: "colin-juliette",
+    left: 435, top: 240, w: 230, h: 300,
+  },
+  {
+    label: "003 — bord de meuse",
+    src: "/images/projects/bord_de_meuse/2.webp",
+    slug: "bord-de-meuse",
+    left: 780, top: 190, w: 290, h: 210,
+  },
+  {
+    label: "004 — high contrast",
+    src: "/images/projects/backfromthedead/3.webp",
+    slug: "high-contrast",
+    left: 730, top: 620, w: 220, h: 300,
+  },
+  {
+    label: "005 — composition II",
+    src: "/images/projects/composition_2/2.jpg",
+    slug: "composition-2",
+    left: 130, top: 660, w: 250, h: 250,
+  },
 ];
 
 const CAPTION: React.CSSProperties = {
@@ -64,7 +79,7 @@ function PastMobile() {
 
 export default function Past() {
   return (
-    <ArtboardShell overlayRef={overlayRef} minHeight={1600} mobile={<PastMobile />}>
+    <ArtboardShell overlayRef={overlayRef} minHeight={1200} mobile={<PastMobile />}>
       {GRID_ITEMS.map(({ label, src, slug, left, top, w, h }) => (
         <div key={label} style={{ position: "absolute", left, top }}>
           <Link href={`/projets/${slug}`} style={{ display: "block", textDecoration: "none" }}>
