@@ -1,7 +1,7 @@
 import ArtboardShell, { SERIF, BODY, GULDSCRIPT } from "@/components/ArtboardShell";
 import { useLang } from "@/context/LanguageContext";
 import overlayRef from "@assets/about_1778527941884.png";
-const julieImg = "/images/julie.webp";
+import julieImg from "@assets/ABOUT_1782856875002.jpg";
 
 const LEFT  = 496;
 const W_BIO = 520;

@@ -2,7 +2,7 @@ import { Link } from "wouter";
 import ArtboardShell, { SERIF, BODY, CTA_LINK } from "@/components/ArtboardShell";
 import { useLang } from "@/context/LanguageContext";
 import overlayRef from "@assets/floral_1778527882896.png";
-const imgMain = "/images/svc1.webp";
+import imgMain from "@assets/FLORAL_1782856875003.jpg";
 
 const F = '"Helvetica Now Display","Helvetica Neue",Helvetica,Arial,sans-serif';
 const S = '"Cormorant Garamond","Times New Roman",serif';
