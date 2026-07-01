@@ -14,6 +14,7 @@ import About from "@/pages/About";
 import ProjectDetail from "@/pages/ProjectDetail";
 import Contact from "@/pages/Contact";
 import Layout from "@/components/Layout";
+import ReviewTool from "@/components/ReviewTool";
 
 const queryClient = new QueryClient();
 
@@ -50,6 +51,7 @@ function App() {
           </WouterRouter>
         </LanguageProvider>
         <Toaster />
+        <ReviewTool />
       </TooltipProvider>
     </QueryClientProvider>
   );
