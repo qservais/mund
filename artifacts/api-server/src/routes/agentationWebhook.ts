@@ -14,7 +14,7 @@ const AnnotationSchema = z.object({
 
 const WebhookPayloadSchema = z.object({
   event: z.string(),
-  timestamp: z.string().optional(),
+  timestamp: z.union([z.string(), z.number()]).optional(),
   url: z.string().optional(),
   annotation: AnnotationSchema.optional(),
   annotations: z.array(AnnotationSchema).optional(),
