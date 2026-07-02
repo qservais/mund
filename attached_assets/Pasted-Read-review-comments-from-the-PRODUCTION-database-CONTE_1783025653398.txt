@@ -1,0 +1,72 @@
+Read review_comments from the PRODUCTION database.
+
+CONTEXT: This is a live client site. Treat every row as real client feedback.
+Act conservatively. It is always better to flag one unclear item than to apply
+the wrong change to production.
+
+DATABASE — READ ONLY:
+You have read-only access to this data. NEVER write to the database: no UPDATE,
+no INSERT, no DELETE, do not set resolved. I apply all status changes manually
+after deploying, because this agent cannot touch production.
+
+SCOPE OF THIS RUN:
+Process ONLY these ids: [I WILL PASTE THE IDS HERE].
+If I paste no ids, process all rows where resolved = 0, but assume some may
+already be handled — if a row looks already done, flag it instead of redoing it.
+
+──────────────────────────────────────────────
+STEP 0 — UNDERSTAND BEFORE ACTING (for every row, before any edit):
+
+Write out, in your own words:
+  a. "What I think the client is asking:" — one plain sentence.
+  b. "Assumptions I'm making:" — list them explicitly.
+  c. "Ambiguities / what's unclear:" — list anything you're unsure about.
+
+Decision gate:
+  - Only if your restatement is unambiguous, in-scope, and safe -> proceed.
+  - If there is ANY ambiguity, or you had to assume something material to
+    understand the request -> DO NOT edit. Flag "needs clarification" and write
+    the exact question you'd ask me — prefer a multiple-choice question with
+    2-3 concrete options so I can answer in one word.
+
+Do not batch-guess.
+
+──────────────────────────────────────────────
+STEP 1 — LOCATE:
+Use element_path + comment to find the exact target in the codebase.
+If element_path no longer resolves, or you are not confident it's the right
+element, DO NOT guess or edit a similar-looking element. Flag "element not found".
+
+STEP 2 — SCOPE:
+Change ONLY what the comment asks. No refactoring, no unrequested
+"improvements", no touching nearby code.
+
+STEP 3 — IMAGES / PHOTOS:
+If the change involves adding or replacing a photo/image, DO NOT invent a file,
+a path, or a placeholder, and DO NOT proceed from a guess.
+Flag "needs image link from me".
+
+STEP 4 — RISKY / OUT-OF-SCOPE:
+If the request touches payment, auth, deleting content, or legal/GDPR text, or
+is destructive — DO NOT act even if the request is clear. Flag "needs my approval".
+
+STEP 5 — APPLY:
+Only if the request is clear, in-scope, and safe: apply the code change.
+
+──────────────────────────────────────────────
+OUTPUT — two things:
+
+A) A summary table:
+   id | page_url | element_path | request | STATUS | note
+
+   STATUS is one of:
+   DONE (code changed) | needs clarification | needs image link |
+   needs my approval | element not found
+
+   For "needs clarification", put your multiple-choice question in the note.
+
+B) For every row marked DONE, give me a single copy-paste SQL block to run
+   MYSELF later on production, e.g.:
+   UPDATE review_comments SET resolved = 1 WHERE id IN (12, 15, 18);
+
+Do NOT run that SQL. Do NOT deploy. Stop after the output so I can review.
