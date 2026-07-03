@@ -7,10 +7,10 @@ import { useViewportWidth, ARTBOARD_W } from "./ArtboardShell";
 const FONT_BODY = '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif';
 
 const navItems = [
-  { href: "/floral",      label: "work"   },
-  { href: "/abonnements", label: "floral" },
-  { href: "/past",        label: "past"   },
-  { href: "/about",       label: "about"  },
+  { href: "/floral",      label: "créations" },
+  { href: "/abonnements", label: "fleurs"    },
+  { href: "/past",        label: "archive"   },
+  { href: "/about",       label: "à propos"  },
 ];
 
 function NavLink({ href, label }: { href: string; label: string }) {
