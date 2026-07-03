@@ -113,7 +113,21 @@ export default function Layout({ children }: { children: ReactNode }) {
             />
           </Link>
 
-          <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "flex-start" }}>
+          <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "baseline", gap: 10 }}>
+            <Link
+              href="/floral/pro"
+              style={{
+                fontFamily: FONT_BODY,
+                fontSize: 15,
+                fontWeight: 300,
+                letterSpacing: "-0.06em",
+                color: "rgba(0,0,0,0.45)",
+                textDecoration: "none",
+              }}
+            >
+              pro
+            </Link>
+            <span style={{ fontFamily: FONT_BODY, fontSize: 15, fontWeight: 300, letterSpacing: "-0.06em", color: "rgba(0,0,0,0.25)" }}>·</span>
             <button
               onClick={toggle}
               data-testid="lang-toggle"

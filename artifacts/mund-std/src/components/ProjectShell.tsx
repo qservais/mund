@@ -73,20 +73,31 @@ export default function ProjectShell({ children, mobile }: Props) {
             />
           </Link>
 
-          <button
-            onClick={toggle}
-            data-testid="lang-toggle"
-            style={{
-              position: "absolute", top: 52, right: 130,
-              ...BODY, color: "#111",
-              background: "transparent", border: "none", padding: 0, cursor: "pointer", zIndex: 10,
-              display: "flex", gap: 2, alignItems: "baseline",
-            }}
-          >
-            <span style={{ fontWeight: lang === "fr" ? 700 : 300, opacity: lang === "fr" ? 1 : 0.45 }}>fr</span>
-            <span style={{ fontWeight: 300, opacity: 0.45 }}>{" | "}</span>
-            <span style={{ fontWeight: lang === "en" ? 700 : 300, opacity: lang === "en" ? 1 : 0.45 }}>en</span>
-          </button>
+          <div style={{
+            position: "absolute", top: 52, right: 130, zIndex: 10,
+            display: "flex", alignItems: "baseline", gap: 10,
+          }}>
+            <Link
+              href="/floral/pro"
+              style={{ ...BODY, color: "rgba(0,0,0,0.45)", textDecoration: "none" }}
+            >
+              pro
+            </Link>
+            <span style={{ ...BODY, color: "rgba(0,0,0,0.25)" }}>·</span>
+            <button
+              onClick={toggle}
+              data-testid="lang-toggle"
+              style={{
+                ...BODY, color: "#111",
+                background: "transparent", border: "none", padding: 0, cursor: "pointer",
+                display: "flex", gap: 2, alignItems: "baseline",
+              }}
+            >
+              <span style={{ fontWeight: lang === "fr" ? 700 : 300, opacity: lang === "fr" ? 1 : 0.45 }}>fr</span>
+              <span style={{ fontWeight: 300, opacity: 0.45 }}>{" | "}</span>
+              <span style={{ fontWeight: lang === "en" ? 700 : 300, opacity: lang === "en" ? 1 : 0.45 }}>en</span>
+            </button>
+          </div>
         </div>
       </header>
 

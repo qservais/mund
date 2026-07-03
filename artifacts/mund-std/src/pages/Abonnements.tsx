@@ -1,66 +1,94 @@
-import { Link } from "wouter";
 import ArtboardShell, { SERIF, BODY, CTA_LINK } from "@/components/ArtboardShell";
+import { SubForm, type FormField } from "@/components/SubForm";
 import { useLang } from "@/context/LanguageContext";
 import overlayRef from "@assets/floral_1778527882896.png";
-import imgMain from "@assets/FLORAL_1782856875003.jpg";
+
+import img1 from "@assets/20250117_111842000_iOS_1782856745220.jpg";
+import img2 from "@assets/20250205_085941000_iOS_1782856745221.jpg";
+import img3 from "@assets/20250205_090041000_iOS_1782856745221.jpg";
+import img4 from "@assets/20250318_163628000_iOS_1782856745221.png";
+import img5 from "@assets/IMG_3778_1782856745221.jpeg";
+import img6 from "@assets/IMG_6231_1782856745222.JPEG";
+
+const PHOTOS = [img1, img2, img3, img4, img5, img6];
 
 const F = '"Helvetica Now Display","Helvetica Neue",Helvetica,Arial,sans-serif';
 const S = '"Cormorant Garamond","Times New Roman",serif';
 
+const PART_FIELDS_FR: FormField[] = [
+  { type: "checkboxgroup", name: "format",    label: "Par quel format êtes-vous intéressés ?", required: true,  options: ["BOUQUET 360°", "BOUQUET PORTRAIT"] },
+  { type: "checkboxgroup", name: "frequence", label: "À quelle fréquence ?",                  required: true,  options: ["ONE SHOT", "ABONNEMENT 3 MOIS", "ABONNEMENT 6 MOIS", "ABONNEMENT 9 MOIS", "ABONNEMENT 12 MOIS"] },
+  { type: "checkboxgroup", name: "retrait",   label: "Retrait ou livraison",                  required: true,  options: ["RETRAIT AU STUDIO — RUE MONULPHE, LIÈGE", "LIVRAISON"] },
+  { type: "textarea",      name: "adresse",   label: "Adresse si livraison",                  required: false, placeholder: "Rue, numéro — Liège" },
+  { type: "email",         name: "email",     label: "Votre email",                           required: true,  placeholder: "vous@exemple.be" },
+  { type: "tel",           name: "telephone", label: "Votre numéro de téléphone",            required: true,  placeholder: "+32 4…" },
+  { type: "textarea",      name: "info",      label: "Informations complémentaires",          required: false, placeholder: "Préférences, allergies, code porte…" },
+  { type: "checkboxgroup", name: "source",    label: "Comment avez-vous entendu parler de nous ?", required: false, options: ["SOCIAL MEDIA", "GOOGLE", "AI", "BOUCHE À OREILLE"] },
+];
+
+const PART_FIELDS_EN: FormField[] = [
+  { type: "checkboxgroup", name: "format",    label: "Which format are you interested in?", required: true,  options: ["BOUQUET 360°", "PORTRAIT BOUQUET"] },
+  { type: "checkboxgroup", name: "frequence", label: "At what frequency?",                  required: true,  options: ["ONE SHOT", "3-MONTH SUBSCRIPTION", "6-MONTH SUBSCRIPTION", "9-MONTH SUBSCRIPTION", "12-MONTH SUBSCRIPTION"] },
+  { type: "checkboxgroup", name: "retrait",   label: "Collection or delivery?",             required: true,  options: ["COLLECTION AT THE STUDIO — RUE MONULPHE, LIÈGE", "DELIVERY"] },
+  { type: "textarea",      name: "adresse",   label: "Address if delivery",                 required: false, placeholder: "Street, number — Liège" },
+  { type: "email",         name: "email",     label: "Your email",                          required: true,  placeholder: "you@example.com" },
+  { type: "tel",           name: "telephone", label: "Your phone number",                  required: true,  placeholder: "+32 4…" },
+  { type: "textarea",      name: "info",      label: "Additional information",              required: false, placeholder: "Preferences, allergies, door code…" },
+  { type: "checkboxgroup", name: "source",    label: "How did you hear about us?",         required: false, options: ["SOCIAL MEDIA", "GOOGLE", "AI", "WORD OF MOUTH"] },
+];
+
 const copy = {
   fr: {
-    aboTitle: "NOS ABONNEMENTS",
-    aboSub:   "retrouver notre travail floral pour vos espaces\nou votre habitation.",
-
-    proTitle:  "ESPACES & PROFESSIONNELS",
-    proBody:   "nous proposons un travail floral récurent pour vos espaces professionnels,\nhôtels, boutiques, bureaux, cabinets...\nchaque intervention est développée sur mesure,\npensée en lien avec l'identité de l'espace.",
-    proItalic: "nous composons avec votre image et votre espace.",
-    proCta:    "s'inscrire ou en savoir plus →",
-
-    partTitle:  "PARTICULIERS",
-    partBody:   "chaque deuxième jeudi du mois, nous vous proposons un bouquet surprise\ncomposé selon les arrivages du moment.\nune manière d'inviter notre travail chez vous en le voyant évoluer\nau fil des saisons ou de manière occasionnelle.",
-    partItalic: "un rendez-vous mensuel autour des fleurs de saison.",
-    partCta:    "s'inscrire ou en savoir plus →",
+    header:  "ABONNEMENTS",
+    sub:     "particuliers",
+    title:   "PARTICULIERS",
+    body:    "chaque deuxième jeudi du mois, nous vous proposons un bouquet surprise\ncomposé selon les arrivages du moment.\nune manière d'inviter notre travail chez vous en le voyant évoluer au fil des\nsaisons ou de manière occasionnelle.\n\nles bouquets sont disponibles en retrait au studio ou en livraison à domicile.\nles commandes ponctuelles sont clôturées le deuxième lundi de chaque mois.",
+    italic:  "un rendez-vous mensuel autour des fleurs de saison.",
+    fields:  PART_FIELDS_FR,
+    submit:  "Envoyer",
+    success: "Inscription bien reçue",
+    successBody: (email: string) => `Merci.\nNous vous contacterons pour confirmer le premier rendez-vous.\n${email}`,
+    reset:   "← Envoyer une autre inscription",
   },
   en: {
-    aboTitle: "OUR SUBSCRIPTIONS",
-    aboSub:   "find our floral work for your spaces\nor your home.",
-
-    proTitle:  "SPACES & PROFESSIONALS",
-    proBody:   "we offer recurring floral work for your professional spaces,\nhotels, boutiques, offices, practices...\neach intervention is developed to measure,\nconceived in relation to the identity of the space.",
-    proItalic: "we compose with your image and your space.",
-    proCta:    "sign up or learn more →",
-
-    partTitle:  "PRIVATE CLIENTS",
-    partBody:   "every second thursday of the month, we offer you a surprise bouquet\ncomposed according to current arrivals.\na way to invite our work into your home,\nwatching it evolve with the seasons or on an occasional basis.",
-    partItalic: "a monthly appointment around seasonal flowers.",
-    partCta:    "sign up or learn more →",
+    header:  "SUBSCRIPTIONS",
+    sub:     "private clients",
+    title:   "PRIVATE CLIENTS",
+    body:    "every second thursday of the month, we offer you a surprise bouquet\ncomposed according to current arrivals.\na way to invite our work into your home,\nwatching it evolve with the seasons or on an occasional basis.\n\nbouquets are available for collection at the studio or home delivery.\nonce-off orders close on the second monday of each month.",
+    italic:  "a monthly appointment around seasonal flowers.",
+    fields:  PART_FIELDS_EN,
+    submit:  "Send",
+    success: "Registration received",
+    successBody: (email: string) => `Thank you.\nWe will contact you to confirm the first appointment.\n${email}`,
+    reset:   "← Send another registration",
   },
 };
+
+/* ── Desktop grid constants ─────────────────────── */
+const COL_R   = 840;
+const COL_W   = 161;
+const COL_GAP = 10;
+const ROW_H   = 230;
+const ROW_GAP = 10;
+const COL_2   = COL_R + COL_W + COL_GAP;
+const GRID_TOP = 220;
+
+function photoLeft(col: 0 | 1) { return col === 0 ? COL_R : COL_2; }
+function photoTop(row: number)  { return GRID_TOP + row * (ROW_H + ROW_GAP); }
 
 function AbonnementsMobile({ c }: { c: typeof copy.fr }) {
   const t = (s: string) => s.split("\n").join(" ");
   return (
     <div>
-      <div style={{ fontFamily: S, fontSize: 18, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 8 }}>{c.aboTitle}</div>
-      <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: "0 0 28px" }}>{t(c.aboSub)}</p>
-      <img src={imgMain} alt="" style={{ width: "100%", aspectRatio: "7/10", objectFit: "cover", display: "block", marginBottom: 36 }} />
-
-      <div style={{ marginBottom: 36 }}>
-        <div style={{ fontFamily: S, fontSize: 18, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 }}>{c.proTitle}</div>
-        <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: "0 0 10px" }}>{t(c.proBody)}</p>
-        <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: "0 0 20px", textAlign: "right" }}>{c.proItalic}</p>
-        <Link href="/floral/pro" style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", color: "#151515", textDecoration: "none", borderBottom: "1px solid rgba(0,0,0,0.55)", paddingBottom: 2 }}>{c.proCta}</Link>
+      <div style={{ fontFamily: S, fontSize: 18, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 8 }}>{c.title}</div>
+      <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: "0 0 10px" }}>{t(c.body)}</p>
+      <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: "0 0 24px", textAlign: "right" }}>{c.italic}</p>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6, marginBottom: 36 }}>
+        {PHOTOS.map((src, i) => (
+          <img key={i} src={src} alt="" style={{ width: "100%", aspectRatio: "7/10", objectFit: "cover", display: "block" }} />
+        ))}
       </div>
-
-      <div style={{ height: 1, backgroundColor: "rgba(0,0,0,0.15)", margin: "8px 0 36px" }} />
-
-      <div>
-        <div style={{ fontFamily: S, fontSize: 18, fontWeight: 700, letterSpacing: "-0.05em", textTransform: "uppercase", lineHeight: 1, marginBottom: 14 }}>{c.partTitle}</div>
-        <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: "0 0 10px" }}>{t(c.partBody)}</p>
-        <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: "0 0 20px", textAlign: "right" }}>{c.partItalic}</p>
-        <Link href="/floral/particulier" style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", color: "#151515", textDecoration: "none", borderBottom: "1px solid rgba(0,0,0,0.55)", paddingBottom: 2 }}>{c.partCta}</Link>
-      </div>
+      <SubForm fields={c.fields} submit={c.submit} success={c.success} successBody={c.successBody} reset={c.reset} />
     </div>
   );
 }
@@ -68,37 +96,49 @@ function AbonnementsMobile({ c }: { c: typeof copy.fr }) {
 export default function Abonnements() {
   const { lang } = useLang();
   const c = copy[lang];
-  const bl = (t: string) => t.split("\n").map((l, i) => <span key={i}>{l}<br /></span>);
+  const bl = (text: string) => text.split("\n").map((l, i) => <span key={i}>{l}<br /></span>);
+
+  const grid: [number, number][] = [
+    [0, 0], [1, 0],
+    [0, 1], [1, 1],
+    [0, 2], [1, 2],
+  ];
 
   return (
-    <ArtboardShell overlayRef={overlayRef} minHeight={1200} mobile={<AbonnementsMobile c={c} />}>
+    <ArtboardShell overlayRef={overlayRef} minHeight={1750} mobile={<AbonnementsMobile c={c} />}>
 
-      {/* ── NOS ABONNEMENTS — top right ── */}
-      <div style={{ position: "absolute", left: 840, top: 130, width: 330, textAlign: "right" }}>
-        <div style={{ ...SERIF }}>{c.aboTitle}</div>
-        <p style={{ ...BODY, margin: 0 }}>{bl(c.aboSub)}</p>
+      {/* ── header top-right ── */}
+      <div style={{ position: "absolute", left: COL_R, top: 130, width: COL_W * 2 + COL_GAP, textAlign: "right" }}>
+        <div style={{ ...SERIF }}>{c.header}</div>
+        <p style={{ ...BODY, margin: 0, color: "rgba(0,0,0,0.45)" }}>{c.sub}</p>
       </div>
 
-      {/* ── Image right ── */}
-      <img src={imgMain} alt="" style={{ position: "absolute", left: 840, top: 220, width: 335, height: 534, objectFit: "cover" }} />
+      {/* ── 2×3 photo grid ── */}
+      {PHOTOS.map((src, i) => {
+        const [col, row] = grid[i];
+        return (
+          <img
+            key={i}
+            src={src}
+            alt=""
+            style={{
+              position: "absolute",
+              left: photoLeft(col as 0 | 1),
+              top:  photoTop(row),
+              width: COL_W,
+              height: ROW_H,
+              objectFit: "cover",
+            }}
+          />
+        );
+      })}
 
-      {/* ── ESPACES & PROFESSIONNELS ── */}
-      <div id="pro" style={{ position: "absolute", left: 130, top: 200, width: 620 }}>
-        <div style={{ ...SERIF, marginBottom: 18 }}>{c.proTitle}</div>
-        <p style={{ ...BODY, margin: 0, marginBottom: 10 }}>{bl(c.proBody)}</p>
-        <p style={{ ...SERIF, fontWeight: 400, textTransform: "none", textAlign: "right", marginBottom: 24 }}>{c.proItalic}</p>
-        <Link href="/floral/pro" style={{ ...CTA_LINK }}>{c.proCta}</Link>
-      </div>
-
-      {/* ── Separator ── */}
-      <div style={{ position: "absolute", left: 130, top: 560, width: 1040, height: 1, backgroundColor: "rgba(0,0,0,0.13)" }} />
-
-      {/* ── PARTICULIERS ── */}
-      <div id="particulier" style={{ position: "absolute", left: 130, top: 610, width: 620 }}>
-        <div style={{ ...SERIF, marginBottom: 18 }}>{c.partTitle}</div>
-        <p style={{ ...BODY, margin: 0, marginBottom: 10 }}>{bl(c.partBody)}</p>
-        <p style={{ ...SERIF, fontWeight: 400, textTransform: "none", textAlign: "right", marginBottom: 24 }}>{c.partItalic}</p>
-        <Link href="/floral/particulier" style={{ ...CTA_LINK }}>{c.partCta}</Link>
+      {/* ── left column ── */}
+      <div style={{ position: "absolute", left: 130, top: 195, width: 640 }}>
+        <div style={{ ...SERIF, marginBottom: 18 }}>{c.title}</div>
+        <p style={{ ...BODY, margin: 0, marginBottom: 10 }}>{bl(c.body)}</p>
+        <p style={{ ...SERIF, fontWeight: 400, textTransform: "none", textAlign: "right", marginBottom: 36 }}>{c.italic}</p>
+        <SubForm fields={c.fields} submit={c.submit} success={c.success} successBody={c.successBody} reset={c.reset} />
       </div>
 
     </ArtboardShell>

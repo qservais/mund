@@ -234,8 +234,23 @@ export default function MobileShell({ children }: { children: ReactNode }) {
           </Link>
         </div>
 
-        {/* right slot — empty (lang toggle moved into fullscreen menu) */}
-        <div />
+        <Link
+          href="/floral/pro"
+          onClick={() => setMenuOpen(false)}
+          style={{
+            fontFamily: FONT,
+            fontSize: 15,
+            fontWeight: 300,
+            letterSpacing: "-0.06em",
+            color: "rgba(0,0,0,0.45)",
+            textDecoration: "none",
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+          }}
+        >
+          pro
+        </Link>
       </header>
 
       {/* ── Full-screen menu overlay ──────────────────────────────── */}
