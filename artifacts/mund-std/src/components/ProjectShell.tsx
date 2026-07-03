@@ -67,9 +67,9 @@ export default function ProjectShell({ children, mobile }: Props) {
             }}
           >
             <img
-              src="/images/logo.png"
+              src="/svg/mund%20studio.svg"
               alt="mund studio"
-              style={{ width: 300, display: "block" }}
+              style={{ width: 280, display: "block" }}
             />
           </Link>
 
