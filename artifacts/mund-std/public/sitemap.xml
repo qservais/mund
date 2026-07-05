@@ -9,109 +9,97 @@
   </url>
 
   <url>
-    <loc>https://mund.be/projets</loc>
-    <lastmod>2026-05-03</lastmod>
+    <loc>https://mund.be/floral</loc>
+    <lastmod>2026-07-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://mund.be/contact</loc>
-    <lastmod>2026-05-03</lastmod>
-    <changefreq>yearly</changefreq>
+    <loc>https://mund.be/abonnements</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Planches — projets -->
+  <url>
+    <loc>https://mund.be/floral/pro</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mund.be/past</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mund.be/about</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mund.be/contact</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Projets actifs (6 planches) -->
   <url>
     <loc>https://mund.be/projets/lara-thibault</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-07-05</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://mund.be/projets/amaranthe-dentelle</loc>
-    <lastmod>2026-05-03</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://mund.be/projets/ceremonie-civile</loc>
-    <lastmod>2026-05-03</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://mund.be/projets/miroirs-alliums</loc>
-    <lastmod>2026-05-03</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://mund.be/projets/lignes-minimales</loc>
-    <lastmod>2026-05-03</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://mund.be/projets/gloriosa</loc>
-    <lastmod>2026-05-03</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://mund.be/projets/contraste-brut</loc>
-    <lastmod>2026-05-03</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://mund.be/projets/camaieu</loc>
-    <lastmod>2026-05-03</lastmod>
+    <loc>https://mund.be/projets/colin-juliette</loc>
+    <lastmod>2026-07-05</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://mund.be/projets/bord-de-meuse</loc>
-    <lastmod>2026-05-03</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://mund.be/projets/lignage</loc>
-    <lastmod>2026-05-03</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://mund.be/projets/glaieuls-reunions</loc>
-    <lastmod>2026-05-03</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://mund.be/projets/mur-vivant</loc>
-    <lastmod>2026-05-03</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://mund.be/projets/hivernale</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-07-05</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://mund.be/projets/high-contrast</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-07-05</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://mund.be/projets/allium-in-extenso</loc>
-    <lastmod>2026-05-03</lastmod>
+    <loc>https://mund.be/projets/composition-2</loc>
+    <lastmod>2026-07-05</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mund.be/projets/composition-1</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Pages légales -->
+  <url>
+    <loc>https://mund.be/mentions-legales</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://mund.be/confidentialite</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 
 </urlset>

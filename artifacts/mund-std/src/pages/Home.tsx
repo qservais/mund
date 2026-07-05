@@ -1,5 +1,6 @@
 import ArtboardShell, { SERIF, BODY, CTA_LINK } from "@/components/ArtboardShell";
 import { Link } from "wouter";
+import { Helmet } from "react-helmet-async";
 import { useLang } from "@/context/LanguageContext";
 import overlayRef from "@assets/1_1778522805215.png";
 import heroImg from "@assets/PAGE_1_-_1_1782856875003.jpg";
@@ -120,6 +121,11 @@ export default function Home() {
   const c = copy[lang];
 
   return (
+    <>
+    <Helmet>
+      <title>{lang === "fr" ? "MUND STUDIO — Studio floral & scénographies végétales · Liège" : "MUND STUDIO — Floral Studio & Botanical Scenography · Liège"}</title>
+      <link rel="canonical" href="https://mund.be/" />
+    </Helmet>
     <ArtboardShell overlayRef={overlayRef} minHeight={2100} mobile={<HomeMobile c={c} />}>
 
       {/* ── Hero image — right side ──────────────────────────── */}
@@ -211,5 +217,6 @@ export default function Home() {
       </div>
 
     </ArtboardShell>
+    </>
   );
 }

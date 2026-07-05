@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import ArtboardShell, { SERIF, BODY, CTA_LINK } from "@/components/ArtboardShell";
+import { Helmet } from "react-helmet-async";
 import { SubForm, type FormField } from "@/components/SubForm";
 import { useLang } from "@/context/LanguageContext";
 import overlayRef from "@assets/floral_1778527882896.png";
@@ -86,7 +87,7 @@ function Mobile({ c }: { c: typeof copy.fr }) {
         ))}
         <img src={photos[4]} alt="" style={{ gridColumn: "1 / -1", width: "100%", aspectRatio: "4/3", objectFit: "cover", objectPosition: "center 40%", display: "block" }} />
       </div>
-      <SubForm fields={c.fields} submit={c.submit} success={c.success} successBody={c.successBody} reset={c.reset} />
+      <SubForm fields={c.fields} submit={c.submit} success={c.success} successBody={c.successBody} reset={c.reset} apiPath="/api/subscribe" subscribeType="pro" />
     </div>
   );
 }
@@ -97,6 +98,12 @@ export default function FloralPro() {
   const bl = (text: string) => text.split("\n").map((l, i) => <span key={i}>{l}<br /></span>);
 
   return (
+    <>
+    <Helmet>
+      <title>{lang === "fr" ? "Abonnements professionnels — MUND STUDIO" : "Professional Subscriptions — MUND STUDIO"}</title>
+      <meta name="description" content={lang === "fr" ? "Abonnements floraux pour espaces professionnels — hôtels, boutiques, bureaux. MUND STUDIO, Liège." : "Floral subscriptions for professional spaces — hotels, boutiques, offices. MUND STUDIO, Liège."} />
+      <link rel="canonical" href="https://mund.be/floral/pro" />
+    </Helmet>
     <ArtboardShell overlayRef={overlayRef} minHeight={1500} mobile={<Mobile c={c} />}>
 
       {/* ── back link ── */}
@@ -124,9 +131,10 @@ export default function FloralPro() {
         <div style={{ ...SERIF, marginBottom: 18 }}>{c.title}</div>
         <p style={{ ...BODY, margin: 0, marginBottom: 10 }}>{bl(c.body)}</p>
         <p style={{ ...SERIF, fontWeight: 400, textTransform: "none", textAlign: "right", marginBottom: 36 }}>{c.italic}</p>
-        <SubForm fields={c.fields} submit={c.submit} success={c.success} successBody={c.successBody} reset={c.reset} />
+        <SubForm fields={c.fields} submit={c.submit} success={c.success} successBody={c.successBody} reset={c.reset} apiPath="/api/subscribe" subscribeType="pro" />
       </div>
 
     </ArtboardShell>
+    </>
   );
 }

@@ -1,4 +1,5 @@
 import ArtboardShell, { SERIF, BODY, GULDSCRIPT } from "@/components/ArtboardShell";
+import { Helmet } from "react-helmet-async";
 import { useLang } from "@/context/LanguageContext";
 import overlayRef from "@assets/about_1778527941884.png";
 import julieImg from "@assets/ABOUT_1782856875002.jpg";
@@ -80,6 +81,12 @@ export default function About() {
   const c = copy[lang];
 
   return (
+    <>
+    <Helmet>
+      <title>{lang === "fr" ? "À propos — Julie Ahn · MUND STUDIO" : "About — Julie Ahn · MUND STUDIO"}</title>
+      <meta name="description" content={lang === "fr" ? "Julie Ahn, designer florale et fondatrice de MUND STUDIO à Liège. Un studio belge de scénographies végétales sur mesure." : "Julie Ahn, floral designer and founder of MUND STUDIO in Liège. A Belgian studio for bespoke botanical scenography."} />
+      <link rel="canonical" href="https://mund.be/about" />
+    </Helmet>
     <ArtboardShell overlayRef={overlayRef} minHeight={1510} mobile={<AboutMobile c={c} />}>
 
       {/* ── Title ─────────────────────────────────────────── */}
@@ -150,5 +157,6 @@ export default function About() {
       />
 
     </ArtboardShell>
+    </>
   );
 }

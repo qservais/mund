@@ -1,7 +1,9 @@
 import { useState, type FormEvent } from "react";
 import { Link } from "wouter";
+import { Helmet } from "react-helmet-async";
 import { useLang } from "@/context/LanguageContext";
 import ArtboardShell, { SERIF, BODY } from "@/components/ArtboardShell";
+import { apiUrl } from "@/lib/api";
 
 const FF  = '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif';
 
@@ -84,13 +86,35 @@ function ContactForm({
 }) {
   const [submitted, setSubmitted] = useState(false);
   const [values, setValues]       = useState<Record<string, string>>({});
+  const [sending, setSending]     = useState(false);
+  const [sendError, setSendError] = useState<string | null>(null);
   const { lang } = useLang();
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setSendError(null);
+    setSending(true);
+    try {
+      const res = await fetch(apiUrl("/api/contact"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        setSendError((body as { error?: string }).error ?? "Erreur réseau.");
+        setSending(false);
+        return;
+      }
+    } catch {
+      setSendError("Impossible d'envoyer. Vérifiez votre connexion.");
+      setSending(false);
+      return;
+    }
+    setSending(false);
     setSubmitted(true);
   }
-  function reset() { setValues({}); setSubmitted(false); }
+  function reset() { setValues({}); setSubmitted(false); setSendError(null); }
 
   if (submitted) {
     return (
@@ -153,6 +177,10 @@ function ContactForm({
         </div>
       ))}
 
+      {sendError && (
+        <p style={{ ...BODY, color: "rgba(180,0,0,0.75)", margin: 0 }}>{sendError}</p>
+      )}
+
       <div style={{
         display: "flex", alignItems: "baseline",
         justifyContent: "flex-end", gap: 24, paddingTop: 8,
@@ -160,17 +188,21 @@ function ContactForm({
       }}>
         <button
           type="submit"
+          disabled={sending}
           data-testid="button-submit"
           style={{
             ...BODY, textTransform: "uppercase", letterSpacing: "0.22em",
-            color: "#151515", background: "transparent", border: "none",
-            borderBottom: "1px solid #151515", paddingBottom: 2,
-            cursor: "pointer", display: "inline-flex", gap: 10, alignItems: "baseline",
+            color: sending ? "rgba(0,0,0,0.35)" : "#151515",
+            background: "transparent", border: "none",
+            borderBottom: `1px solid ${sending ? "rgba(0,0,0,0.2)" : "#151515"}`,
+            paddingBottom: 2,
+            cursor: sending ? "default" : "pointer",
+            display: "inline-flex", gap: 10, alignItems: "baseline",
             whiteSpace: "nowrap",
           }}
         >
-          <span>{c.submit}</span>
-          <span aria-hidden>→</span>
+          <span>{sending ? "…" : c.submit}</span>
+          {!sending && <span aria-hidden>→</span>}
         </button>
       </div>
     </form>
@@ -241,6 +273,12 @@ export default function Contact() {
   const c = copy[lang];
 
   return (
+    <>
+      <Helmet>
+        <title>{lang === "fr" ? "Contact — MUND STUDIO" : "Contact — MUND STUDIO"}</title>
+        <meta name="description" content={lang === "fr" ? "Contactez MUND STUDIO pour un projet floral — mariage, événement, installation ou abonnement. Liège, Belgique." : "Contact MUND STUDIO for a floral project — wedding, event, installation or subscription. Liège, Belgium."} />
+        <link rel="canonical" href="https://mund.be/contact" />
+      </Helmet>
     <ArtboardShell minHeight={1200} mobile={<ContactMobile c={c} />}>
 
       {/* ── CONTACT title ──────────────────────────────────────── */}
@@ -321,5 +359,6 @@ export default function Contact() {
       </div>
 
     </ArtboardShell>
+    </>
   );
 }

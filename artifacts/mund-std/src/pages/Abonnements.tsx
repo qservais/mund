@@ -1,4 +1,5 @@
 import ArtboardShell, { SERIF, BODY, CTA_LINK } from "@/components/ArtboardShell";
+import { Helmet } from "react-helmet-async";
 import { SubForm, type FormField } from "@/components/SubForm";
 import { useLang } from "@/context/LanguageContext";
 import overlayRef from "@assets/floral_1778527882896.png";
@@ -88,7 +89,7 @@ function AbonnementsMobile({ c }: { c: typeof copy.fr }) {
           <img key={i} src={src} alt="" style={{ width: "100%", aspectRatio: "7/10", objectFit: "cover", display: "block" }} />
         ))}
       </div>
-      <SubForm fields={c.fields} submit={c.submit} success={c.success} successBody={c.successBody} reset={c.reset} />
+      <SubForm fields={c.fields} submit={c.submit} success={c.success} successBody={c.successBody} reset={c.reset} apiPath="/api/subscribe" subscribeType="particulier" />
     </div>
   );
 }
@@ -105,6 +106,12 @@ export default function Abonnements() {
   ];
 
   return (
+    <>
+    <Helmet>
+      <title>{lang === "fr" ? "Abonnements fleurs — MUND STUDIO" : "Flower Subscriptions — MUND STUDIO"}</title>
+      <meta name="description" content={lang === "fr" ? "Abonnements floraux particuliers MUND STUDIO — bouquets sur mesure livrés ou à retirer à Liège." : "MUND STUDIO private flower subscriptions — bespoke bouquets delivered or collected in Liège."} />
+      <link rel="canonical" href="https://mund.be/abonnements" />
+    </Helmet>
     <ArtboardShell overlayRef={overlayRef} minHeight={1750} mobile={<AbonnementsMobile c={c} />}>
 
       {/* ── header top-right ── */}
@@ -138,9 +145,10 @@ export default function Abonnements() {
         <div style={{ ...SERIF, marginBottom: 18 }}>{c.title}</div>
         <p style={{ ...BODY, margin: 0, marginBottom: 10 }}>{bl(c.body)}</p>
         <p style={{ ...SERIF, fontWeight: 400, textTransform: "none", textAlign: "right", marginBottom: 36 }}>{c.italic}</p>
-        <SubForm fields={c.fields} submit={c.submit} success={c.success} successBody={c.successBody} reset={c.reset} />
+        <SubForm fields={c.fields} submit={c.submit} success={c.success} successBody={c.successBody} reset={c.reset} apiPath="/api/subscribe" subscribeType="particulier" />
       </div>
 
     </ArtboardShell>
+    </>
   );
 }

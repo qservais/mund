@@ -1,3 +1,5 @@
+import { Link } from "wouter";
+
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
@@ -69,7 +71,11 @@ export default function Footer() {
           <span className="hidden md:inline text-foreground/35">
             — Imprimé sur écran —
           </span>
-          <span>© {year} MUND STUDIO</span>
+          <span className="flex gap-6 items-baseline">
+            <Link href="/mentions-legales" className="hover:text-foreground/80 transition-colors">Mentions légales</Link>
+            <Link href="/confidentialite" className="hover:text-foreground/80 transition-colors">Confidentialité</Link>
+            <span>© {year} MUND STUDIO</span>
+          </span>
         </div>
       </div>
     </footer>

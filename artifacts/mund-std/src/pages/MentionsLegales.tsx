@@ -1,5 +1,4 @@
 import { Helmet } from "react-helmet-async";
-import MobileShell from "@/components/MobileShell";
 import ArtboardShell from "@/components/ArtboardShell";
 
 const FF = '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif';
@@ -57,14 +56,6 @@ function Content() {
   );
 }
 
-function MobileContent() {
-  return (
-    <MobileShell>
-      <Content />
-    </MobileShell>
-  );
-}
-
 export default function MentionsLegales() {
   return (
     <>
@@ -74,7 +65,7 @@ export default function MentionsLegales() {
         <link rel="canonical" href="https://mund.be/mentions-legales" />
         <meta name="robots" content="noindex" />
       </Helmet>
-      <ArtboardShell minHeight={700} mobile={<MobileContent />}>
+      <ArtboardShell minHeight={700} mobile={<Content />}>
         <div style={{ position: "absolute", left: 130, top: 160, width: 800 }}>
           <Content />
         </div>

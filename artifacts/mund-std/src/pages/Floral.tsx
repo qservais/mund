@@ -1,5 +1,6 @@
 import ArtboardShell, { SERIF, BODY, CTA_LINK } from "@/components/ArtboardShell";
 import { Link } from "wouter";
+import { Helmet } from "react-helmet-async";
 import { useLang } from "@/context/LanguageContext";
 import overlayRef from "@assets/work_1778525400139.png";
 import imgRight from "@assets/WORK_1_1782856875004.jpg";
@@ -115,6 +116,12 @@ export default function Floral() {
     text.split("\n").map((l, i) => <span key={i}>{l}<br /></span>);
 
   return (
+    <>
+    <Helmet>
+      <title>{lang === "fr" ? "Créations florales — MUND STUDIO" : "Floral Creations — MUND STUDIO"}</title>
+      <meta name="description" content={lang === "fr" ? "Découvrez les créations florales MUND STUDIO — mariages, événements, scénographies végétales à Liège." : "Discover MUND STUDIO floral creations — weddings, events, botanical scenography in Liège."} />
+      <link rel="canonical" href="https://mund.be/floral" />
+    </Helmet>
     <ArtboardShell overlayRef={overlayRef} minHeight={1780} mobile={<FloralMobile c={c} />}>
 
       {/* ── MARIAGES ─────────────────────────────────────── */}
@@ -179,5 +186,6 @@ export default function Floral() {
       </div>
 
     </ArtboardShell>
+    </>
   );
 }

@@ -1,5 +1,6 @@
 import ArtboardShell, { BODY } from "@/components/ArtboardShell";
 import { Link } from "wouter";
+import { Helmet } from "react-helmet-async";
 import overlayRef from "@assets/past_1778525400140.png";
 
 const GRID_ITEMS = [
@@ -55,6 +56,12 @@ function PastMobile() {
 
 export default function Past() {
   return (
+    <>
+    <Helmet>
+      <title>Archive — MUND STUDIO</title>
+      <meta name="description" content="Archive des projets floraux MUND STUDIO — scénographies, mariages et compositions." />
+      <link rel="canonical" href="https://mund.be/past" />
+    </Helmet>
     <ArtboardShell overlayRef={overlayRef} minHeight={1200} mobile={<PastMobile />}>
       {GRID_ITEMS.map(({ label, src, slug, left, top, w, h }) => (
         <div key={label} style={{ position: "absolute", left, top }}>
@@ -70,5 +77,6 @@ export default function Past() {
         </div>
       ))}
     </ArtboardShell>
+    </>
   );
 }

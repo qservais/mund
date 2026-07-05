@@ -1,4 +1,5 @@
 import { Link, useRoute } from "wouter";
+import { Helmet } from "react-helmet-async";
 import { getNeighbours, getPlateBySlug } from "@/data/plates";
 import NotFound from "@/pages/not-found";
 import ProjectShell from "@/components/ProjectShell";
@@ -244,8 +245,15 @@ export default function ProjectDetail() {
   const { prev, next } = getNeighbours(plate.slug);
 
   return (
-    <ProjectShell mobile={<ProjectMobile plate={plate} prev={prev} next={next} />}>
-      <ProjectContent plate={plate} prev={prev} next={next} />
-    </ProjectShell>
+    <>
+      <Helmet>
+        <title>{plate.title} — MUND STUDIO</title>
+        <meta name="description" content={`Découvrez le projet ${plate.title} — scénographie florale MUND STUDIO, Liège.`} />
+        <link rel="canonical" href={`https://mund.be/projets/${plate.slug}`} />
+      </Helmet>
+      <ProjectShell mobile={<ProjectMobile plate={plate} prev={prev} next={next} />}>
+        <ProjectContent plate={plate} prev={prev} next={next} />
+      </ProjectShell>
+    </>
   );
 }
