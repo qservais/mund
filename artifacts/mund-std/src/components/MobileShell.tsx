@@ -194,7 +194,7 @@ function FullScreenMenu({
 
 /* ── Shell ───────────────────────────────────────────────────────────────── */
 export default function MobileShell({ children }: { children: ReactNode }) {
-  const { lang } = useLang();
+  const { lang, toggle } = useLang();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -218,7 +218,7 @@ export default function MobileShell({ children }: { children: ReactNode }) {
         borderBottom: menuOpen ? "1px solid transparent" : "1px solid rgba(0,0,0,0.1)",
         padding: "20px 20px 16px",
         display: "grid",
-        gridTemplateColumns: "28px 1fr 28px",
+        gridTemplateColumns: "auto 1fr auto",
         alignItems: "center",
         gap: 8,
       }}>
@@ -234,23 +234,46 @@ export default function MobileShell({ children }: { children: ReactNode }) {
           </Link>
         </div>
 
-        <Link
-          href="/floral/pro"
-          onClick={() => setMenuOpen(false)}
-          style={{
-            fontFamily: FONT,
-            fontSize: 15,
-            fontWeight: 300,
-            letterSpacing: "-0.06em",
-            color: "rgba(0,0,0,0.45)",
-            textDecoration: "none",
-            display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "center",
-          }}
-        >
-          pro
-        </Link>
+        {/* pro · fr | en — top-right controls */}
+        <div style={{
+          display: "flex",
+          alignItems: "baseline",
+          gap: 4,
+          fontFamily: FONT,
+          fontSize: 15,
+          fontWeight: 300,
+          letterSpacing: "-0.06em",
+          whiteSpace: "nowrap",
+        }}>
+          <Link
+            href="/floral/pro"
+            onClick={() => setMenuOpen(false)}
+            style={{ color: "rgba(0,0,0,0.45)", textDecoration: "none" }}
+          >
+            pro
+          </Link>
+          <span style={{ color: "rgba(0,0,0,0.25)" }}>·</span>
+          <button
+            onClick={toggle}
+            style={{
+              background: "transparent",
+              border: "none",
+              padding: 0,
+              cursor: "pointer",
+              fontFamily: FONT,
+              fontSize: 15,
+              fontWeight: 300,
+              letterSpacing: "-0.06em",
+              display: "flex",
+              gap: 1,
+              alignItems: "baseline",
+            }}
+          >
+            <span style={{ fontWeight: lang === "fr" ? 700 : 300, color: lang === "fr" ? "#151515" : "rgba(0,0,0,0.38)" }}>fr</span>
+            <span style={{ color: "rgba(0,0,0,0.25)" }}>{" | "}</span>
+            <span style={{ fontWeight: lang === "en" ? 700 : 300, color: lang === "en" ? "#151515" : "rgba(0,0,0,0.38)" }}>en</span>
+          </button>
+        </div>
       </header>
 
       {/* ── Full-screen menu overlay ──────────────────────────────── */}
