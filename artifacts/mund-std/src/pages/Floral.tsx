@@ -4,9 +4,9 @@ import { Link } from "wouter";
 import { Helmet } from "react-helmet-async";
 import { useLang } from "@/context/LanguageContext";
 import overlayRef from "@assets/work_1778525400139.png";
-import imgRight from "@assets/WORK_1_1782856875004.jpg";
-import imgSet1  from "@assets/WORK_2_1782856875004.jpg";
-import imgSet2  from "@assets/WORK_3_1782856875004.jpg";
+const imgRight = "/images/floral-right.webp";
+const imgSet1  = "/images/floral-set1.webp";
+const imgSet2  = "/images/floral-set2.webp";
 
 const copy = {
   fr: {

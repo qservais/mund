@@ -5,17 +5,20 @@ import { useState } from "react";
  *
  * style     → applied to the wrapper div (position, width, height, aspectRatio, etc.)
  * imgStyle  → passed to the <img> (objectFit, objectPosition overrides)
+ * priority  → true on the LCP/hero — skips lazy loading, sets fetchpriority=high
  */
 export function LazyImage({
   src,
   alt = "",
   style,
   imgStyle,
+  priority = false,
 }: {
   src: string;
   alt?: string;
   style?: React.CSSProperties;
   imgStyle?: React.CSSProperties;
+  priority?: boolean;
 }) {
   const [loaded, setLoaded] = useState(false);
   const isAbsolute = style?.position === "absolute";
@@ -44,6 +47,9 @@ export function LazyImage({
       <img
         src={src}
         alt={alt}
+        loading={priority ? "eager" : "lazy"}
+        decoding={priority ? "sync" : "async"}
+        {...(priority ? { fetchPriority: "high" } as Record<string, string> : {})}
         onLoad={() => setLoaded(true)}
         style={{
           width: "100%",

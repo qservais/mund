@@ -2,7 +2,7 @@ import ArtboardShell, { SERIF, BODY, GULDSCRIPT } from "@/components/ArtboardShe
 import { Helmet } from "react-helmet-async";
 import { useLang } from "@/context/LanguageContext";
 import overlayRef from "@assets/about_1778527941884.png";
-import julieImg from "@assets/ABOUT_1782856875002.jpg";
+const julieImg = "/images/julie.webp";
 
 const LEFT  = 496;
 const W_BIO = 520;

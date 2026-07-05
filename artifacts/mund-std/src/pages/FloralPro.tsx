@@ -6,11 +6,11 @@ import { SubForm, type FormField } from "@/components/SubForm";
 import { useLang } from "@/context/LanguageContext";
 import overlayRef from "@assets/floral_1778527882896.png";
 
-import img1 from "@assets/5_1782856798282.jpg";
-import img2 from "@assets/6_1782856798282.jpg";
-import img3 from "@assets/7_1782856798282.JPEG";
-import img4 from "@assets/8_1782856798283.JPEG";
-import img5 from "@assets/9_1782856798283.jpg";
+const img1 = "/images/pro-5_1782856798282.webp";
+const img2 = "/images/pro-6_1782856798282.webp";
+const img3 = "/images/pro-7_1782856798282.webp";
+const img4 = "/images/pro-8_1782856798283.webp";
+const img5 = "/images/pro-9_1782856798283.webp";
 
 const F = '"Helvetica Now Display","Helvetica Neue",Helvetica,Arial,sans-serif';
 const S = '"Cormorant Garamond","Times New Roman",serif';

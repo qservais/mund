@@ -4,9 +4,9 @@ import { Link } from "wouter";
 import { Helmet } from "react-helmet-async";
 import { useLang } from "@/context/LanguageContext";
 import overlayRef from "@assets/1_1778522805215.png";
-import heroImg from "@assets/PAGE_1_-_1_1782856875003.jpg";
-import svc1Img from "@assets/PAGE_1-2_1782856875004.JPG";
-import svc2Img from "@assets/PAGE_1-3_1782856875004.jpg";
+const heroImg = "/images/hero-home.webp";
+const svc1Img = "/images/svc1.webp";
+const svc2Img = "/images/svc2.webp";
 
 const copy = {
   fr: {
@@ -59,6 +59,7 @@ function HomeMobile({ c }: { c: typeof copy.fr }) {
     <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
       <LazyImage
         src={heroImg}
+        priority
         style={{ width: "100%", aspectRatio: "3/4", marginBottom: 28 }}
         imgStyle={{ objectFit: "cover" }}
       />
@@ -132,6 +133,8 @@ export default function Home() {
       <img
         src={heroImg}
         alt=""
+        fetchPriority="high"
+        decoding="sync"
         style={{
           position: "absolute", left: 620, top: 20,
           width: 570, height: 800, objectFit: "cover",

@@ -5,12 +5,12 @@ import { SubForm, type FormField } from "@/components/SubForm";
 import { useLang } from "@/context/LanguageContext";
 import overlayRef from "@assets/floral_1778527882896.png";
 
-import img1 from "@assets/20250117_111842000_iOS_1782856745220.jpg";
-import img2 from "@assets/20250205_085941000_iOS_1782856745221.jpg";
-import img3 from "@assets/20250205_090041000_iOS_1782856745221.jpg";
-import img4 from "@assets/20250318_163628000_iOS_1782856745221.png";
-import img5 from "@assets/IMG_3778_1782856745221.jpeg";
-import img6 from "@assets/IMG_6231_1782856745222.JPEG";
+const img1 = "/images/abn-1.webp";
+const img2 = "/images/abn-2.webp";
+const img3 = "/images/abn-3.webp";
+const img4 = "/images/abn-4.webp";
+const img5 = "/images/abn-5.webp";
+const img6 = "/images/abn-6.webp";
 
 const PHOTOS = [img1, img2, img3, img4, img5, img6];
 

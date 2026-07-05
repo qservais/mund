@@ -1,0 +1,1 @@
+- [Image strategy](image-strategy.md) — pages doivent utiliser /public/images/*.webp, JAMAIS importer depuis @assets pour les images de contenu
