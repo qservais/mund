@@ -321,10 +321,10 @@ export default function MobileShell({ children }: { children: ReactNode }) {
         bottom: 0,
         left: 0,
         right: 0,
-        zIndex: 200,
+        zIndex: 80,
         backgroundColor: "#f4f4f2",
         borderTop: "1px solid rgba(0,0,0,0.12)",
-        display: "flex",
+        display: menuOpen ? "none" : "flex",
         padding: "10px 0 calc(10px + env(safe-area-inset-bottom, 0px))",
       }}>
         {NAV_ITEMS.map(({ label, href }) => {
