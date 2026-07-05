@@ -1,8 +1,10 @@
 import { Switch, Route, Router as WouterRouter, Redirect } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { ConsentBanner } from "@/components/ConsentBanner";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import Floral from "@/pages/Floral";
@@ -12,6 +14,8 @@ import Past from "@/pages/Past";
 import About from "@/pages/About";
 import ProjectDetail from "@/pages/ProjectDetail";
 import Contact from "@/pages/Contact";
+import MentionsLegales from "@/pages/MentionsLegales";
+import Confidentialite from "@/pages/Confidentialite";
 import Layout from "@/components/Layout";
 import ReviewTool from "@/components/ReviewTool";
 
@@ -30,6 +34,8 @@ function Router() {
         <Route path="/about" component={About} />
         <Route path="/contact" component={Contact} />
         <Route path="/projets/:slug" component={ProjectDetail} />
+        <Route path="/mentions-legales" component={MentionsLegales} />
+        <Route path="/confidentialite" component={Confidentialite} />
         {/* Legacy redirects */}
         <Route path="/work"><Redirect to="/floral" /></Route>
         <Route path="/studio"><Redirect to="/about" /></Route>
@@ -42,17 +48,20 @@ function Router() {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <LanguageProvider>
-          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-            <Router />
-          </WouterRouter>
-        </LanguageProvider>
-        <Toaster />
-        <ReviewTool />
-      </TooltipProvider>
-    </QueryClientProvider>
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <LanguageProvider>
+            <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+              <Router />
+            </WouterRouter>
+          </LanguageProvider>
+          <Toaster />
+          <ReviewTool />
+          <ConsentBanner />
+        </TooltipProvider>
+      </QueryClientProvider>
+    </HelmetProvider>
   );
 }
 
