@@ -26,8 +26,6 @@ function gtag(...args: unknown[]) {
 
 export function ConsentBanner() {
   const [consent, setConsentState] = useState<Consent>(() => getConsent());
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 1300;
-
   useEffect(() => {
     if (consent === "accepted") {
       gtag("consent", "update", {
@@ -51,7 +49,7 @@ export function ConsentBanner() {
       role="dialog"
       aria-label="Gestion des cookies"
       style={{
-        position: "fixed", bottom: isMobile ? 52 : 0, left: 0, right: 0, zIndex: 9999,
+        position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 9999,
         backgroundColor: "#faf9f7",
         borderTop: "1px solid rgba(0,0,0,0.12)",
         padding: "16px 24px",

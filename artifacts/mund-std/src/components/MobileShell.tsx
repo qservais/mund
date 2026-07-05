@@ -196,7 +196,6 @@ function FullScreenMenu({
 export default function MobileShell({ children }: { children: ReactNode }) {
   const { lang, toggle } = useLang();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [location] = useLocation();
 
   return (
     <div style={{
@@ -210,10 +209,12 @@ export default function MobileShell({ children }: { children: ReactNode }) {
       flexDirection: "column",
       WebkitFontSmoothing: "antialiased",
     }}>
-      {/* ── Sticky header ────────────────────────────────────────── */}
+      {/* ── Fixed header ─────────────────────────────────────────── */}
       <header style={{
-        position: "sticky",
+        position: "fixed",
         top: 0,
+        left: 0,
+        right: 0,
         zIndex: 100,
         backgroundColor: "#f4f4f2",
         borderBottom: menuOpen ? "1px solid transparent" : "1px solid rgba(0,0,0,0.1)",
@@ -283,7 +284,8 @@ export default function MobileShell({ children }: { children: ReactNode }) {
       {/* ── Page content ─────────────────────────────────────────── */}
       <main style={{
         flex: 1,
-        padding: "28px 20px calc(72px + 52px)",
+        padding: "28px 20px 52px",
+        paddingTop: "calc(62px + 28px)",
         maxWidth: "100%",
         overflowX: "hidden",
       }}>
@@ -314,46 +316,6 @@ export default function MobileShell({ children }: { children: ReactNode }) {
           @mund.std
         </a>
       </footer>
-
-      {/* ── Sticky bottom nav ────────────────────────────────────── */}
-      <nav style={{
-        position: "fixed",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        zIndex: 80,
-        backgroundColor: "#f4f4f2",
-        borderTop: "1px solid rgba(0,0,0,0.12)",
-        display: menuOpen ? "none" : "flex",
-        padding: "10px 0 calc(10px + env(safe-area-inset-bottom, 0px))",
-      }}>
-        {NAV_ITEMS.map(({ label, href }) => {
-          const isActive = location === href || (href !== "/" && location.startsWith(href));
-          return (
-            <Link
-              key={label}
-              href={href}
-              onClick={() => setMenuOpen(false)}
-              style={{
-                flex: 1,
-                textAlign: "center",
-                fontFamily: FONT,
-                fontSize: 10,
-                fontWeight: 300,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color: isActive ? "#111" : "rgba(0,0,0,0.35)",
-                textDecoration: "none",
-                padding: "4px 2px",
-                display: "block",
-                lineHeight: 1,
-              }}
-            >
-              {label}
-            </Link>
-          );
-        })}
-      </nav>
     </div>
   );
 }
