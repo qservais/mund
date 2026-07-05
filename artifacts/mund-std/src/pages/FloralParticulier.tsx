@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { LazyImage } from "@/components/LazyImage";
 import ArtboardShell, { SERIF, BODY, CTA_LINK } from "@/components/ArtboardShell";
 import { SubForm, type FormField } from "@/components/SubForm";
 import { useLang } from "@/context/LanguageContext";
@@ -78,7 +79,7 @@ function Mobile({ c }: { c: typeof copy.fr }) {
       {/* 2-col photo grid */}
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6, marginBottom: 36 }}>
         {PHOTOS.map((src, i) => (
-          <img key={i} src={src} alt="" style={{ width: "100%", aspectRatio: "7/10", objectFit: "cover", display: "block" }} />
+          <LazyImage key={i} src={src} style={{ width: "100%", aspectRatio: "7/10" }} imgStyle={{ objectFit: "cover" }} />
         ))}
       </div>
       <SubForm fields={c.fields} submit={c.submit} success={c.success} successBody={c.successBody} reset={c.reset} />
@@ -128,18 +129,17 @@ export default function FloralParticulier() {
       {PHOTOS.map((src, i) => {
         const [col, row] = grid[i];
         return (
-          <img
+          <LazyImage
             key={i}
             src={src}
-            alt=""
             style={{
               position: "absolute",
               left: photoLeft(col as 0 | 1),
               top:  photoTop(row),
               width: COL_W,
               height: ROW_H,
-              objectFit: "cover",
             }}
+            imgStyle={{ objectFit: "cover" }}
           />
         );
       })}

@@ -1,4 +1,5 @@
 import ArtboardShell, { SERIF, BODY, CTA_LINK } from "@/components/ArtboardShell";
+import { LazyImage } from "@/components/LazyImage";
 import { Link } from "wouter";
 import { Helmet } from "react-helmet-async";
 import { useLang } from "@/context/LanguageContext";
@@ -56,11 +57,10 @@ const S = '"Cormorant Garamond", "Times New Roman", Times, serif';
 function HomeMobile({ c }: { c: typeof copy.fr }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-      <img
+      <LazyImage
         src={heroImg}
-        alt=""
-        style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", display: "block", marginBottom: 28 }}
-        data-testid="home-hero"
+        style={{ width: "100%", aspectRatio: "3/4", marginBottom: 28 }}
+        imgStyle={{ objectFit: "cover" }}
       />
 
       <div style={{ marginBottom: 32 }}>
@@ -92,8 +92,8 @@ function HomeMobile({ c }: { c: typeof copy.fr }) {
           </div>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginTop: 20 }}>
-          <img src={svc1Img} alt="" style={{ width: "100%", aspectRatio: "1", objectFit: "cover", display: "block" }} />
-          <img src={svc2Img} alt="" style={{ width: "100%", aspectRatio: "1", objectFit: "cover", display: "block" }} />
+          <LazyImage src={svc1Img} style={{ width: "100%", aspectRatio: "1" }} imgStyle={{ objectFit: "cover" }} />
+          <LazyImage src={svc2Img} style={{ width: "100%", aspectRatio: "1" }} imgStyle={{ objectFit: "cover" }} />
         </div>
       </div>
 

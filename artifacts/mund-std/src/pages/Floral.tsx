@@ -1,4 +1,5 @@
 import ArtboardShell, { SERIF, BODY, CTA_LINK } from "@/components/ArtboardShell";
+import { LazyImage } from "@/components/LazyImage";
 import { Link } from "wouter";
 import { Helmet } from "react-helmet-async";
 import { useLang } from "@/context/LanguageContext";
@@ -68,7 +69,7 @@ function FloralMobile({ c }: { c: typeof copy.fr }) {
     <div>
       <div style={mSection}>
         <div style={mTitle}>{c.mariagesTitle}</div>
-        <img src={imgRight} alt="" style={{ width: "100%", aspectRatio: "1", objectFit: "cover", display: "block", marginBottom: 16 }} />
+        <LazyImage src={imgRight} style={{ width: "100%", aspectRatio: "1", marginBottom: 16 }} imgStyle={{ objectFit: "cover" }} />
         <p style={mBody}>{bodyLines(c.mariagesBody)}</p>
         <p style={mItalic}>{c.mariagesItalic}</p>
         <Link href="/contact" style={{ ...mLink, display: "block", marginTop: 12 }}>{c.mariagesLink}</Link>
@@ -90,8 +91,8 @@ function FloralMobile({ c }: { c: typeof copy.fr }) {
         <p style={mBody}>{bodyLines(c.setBody)}</p>
         <p style={mItalic}>{c.setItalic}</p>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, margin: "16px 0" }}>
-          <img src={imgSet1} alt="" style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", display: "block" }} />
-          <img src={imgSet2} alt="" style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", display: "block" }} />
+          <LazyImage src={imgSet1} style={{ width: "100%", aspectRatio: "3/4" }} imgStyle={{ objectFit: "cover" }} />
+          <LazyImage src={imgSet2} style={{ width: "100%", aspectRatio: "3/4" }} imgStyle={{ objectFit: "cover" }} />
         </div>
         <Link href="/contact" style={{ ...mLink, display: "block" }}>{c.setLink}</Link>
       </div>
@@ -166,8 +167,8 @@ export default function Floral() {
         </Link>
       </div>
 
-      <img src={imgSet1} alt="" style={{ position: "absolute", left: 140, top: 925, width: 340, height: 453, objectFit: "cover" }} />
-      <img src={imgSet2} alt="" style={{ position: "absolute", left: 500, top: 925, width: 340, height: 453, objectFit: "cover" }} />
+      <LazyImage src={imgSet1} style={{ position: "absolute", left: 140, top: 925, width: 340, height: 453 }} imgStyle={{ objectFit: "cover" }} />
+      <LazyImage src={imgSet2} style={{ position: "absolute", left: 500, top: 925, width: 340, height: 453 }} imgStyle={{ objectFit: "cover" }} />
 
       {/* ── UNE VISION GLOBALE ───────────────────────────── */}
       <div style={{ position: "absolute", left: 140, top: 1460, width: 930 }}>

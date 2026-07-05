@@ -1,3 +1,4 @@
+import { LazyImage } from "@/components/LazyImage";
 import ArtboardShell, { SERIF, BODY, CTA_LINK } from "@/components/ArtboardShell";
 import { Helmet } from "react-helmet-async";
 import { SubForm, type FormField } from "@/components/SubForm";
@@ -86,7 +87,7 @@ function AbonnementsMobile({ c }: { c: typeof copy.fr }) {
       <p style={{ fontFamily: F, fontSize: 15, fontWeight: 300, letterSpacing: "-0.05em", lineHeight: 1.0, margin: "0 0 24px", textAlign: "right" }}>{c.italic}</p>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6, marginBottom: 36 }}>
         {PHOTOS.map((src, i) => (
-          <img key={i} src={src} alt="" style={{ width: "100%", aspectRatio: "7/10", objectFit: "cover", display: "block" }} />
+          <LazyImage key={i} src={src} style={{ width: "100%", aspectRatio: "7/10" }} imgStyle={{ objectFit: "cover" }} />
         ))}
       </div>
       <SubForm fields={c.fields} submit={c.submit} success={c.success} successBody={c.successBody} reset={c.reset} apiPath="/api/subscribe" subscribeType="particulier" />
@@ -124,18 +125,17 @@ export default function Abonnements() {
       {PHOTOS.map((src, i) => {
         const [col, row] = grid[i];
         return (
-          <img
+          <LazyImage
             key={i}
             src={src}
-            alt=""
             style={{
               position: "absolute",
               left: photoLeft(col as 0 | 1),
               top:  photoTop(row),
               width: COL_W,
               height: ROW_H,
-              objectFit: "cover",
             }}
+            imgStyle={{ objectFit: "cover" }}
           />
         );
       })}

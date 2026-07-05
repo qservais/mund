@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { LazyImage } from "@/components/LazyImage";
 import ArtboardShell, { SERIF, BODY, CTA_LINK } from "@/components/ArtboardShell";
 import { Helmet } from "react-helmet-async";
 import { SubForm, type FormField } from "@/components/SubForm";
@@ -83,9 +84,9 @@ function Mobile({ c }: { c: typeof copy.fr }) {
       {/* 2-col grid, last image spans full width */}
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6, marginBottom: 36 }}>
         {photos.slice(0, 4).map((src, i) => (
-          <img key={i} src={src} alt="" style={{ width: "100%", aspectRatio: "7/10", objectFit: "cover", display: "block" }} />
+          <LazyImage key={i} src={src} style={{ width: "100%", aspectRatio: "7/10" }} imgStyle={{ objectFit: "cover" }} />
         ))}
-        <img src={photos[4]} alt="" style={{ gridColumn: "1 / -1", width: "100%", aspectRatio: "4/3", objectFit: "cover", objectPosition: "center 40%", display: "block" }} />
+        <LazyImage src={photos[4]} style={{ gridColumn: "1 / -1", width: "100%", aspectRatio: "4/3" }} imgStyle={{ objectFit: "cover", objectPosition: "center 40%" }} />
       </div>
       <SubForm fields={c.fields} submit={c.submit} success={c.success} successBody={c.successBody} reset={c.reset} apiPath="/api/subscribe" subscribeType="pro" />
     </div>
@@ -118,13 +119,13 @@ export default function FloralPro() {
       </div>
 
       {/* ── 2×2 grid ── */}
-      <img src={img1} alt="" style={{ position: "absolute", left: COL_R, top: GRID_TOP,              width: COL_W, height: ROW_H, objectFit: "cover" }} />
-      <img src={img2} alt="" style={{ position: "absolute", left: COL_2, top: GRID_TOP,              width: COL_W, height: ROW_H, objectFit: "cover" }} />
-      <img src={img3} alt="" style={{ position: "absolute", left: COL_R, top: GRID_TOP + ROW_H + ROW_GAP, width: COL_W, height: ROW_H, objectFit: "cover" }} />
-      <img src={img4} alt="" style={{ position: "absolute", left: COL_2, top: GRID_TOP + ROW_H + ROW_GAP, width: COL_W, height: ROW_H, objectFit: "cover" }} />
+      <LazyImage src={img1} style={{ position: "absolute", left: COL_R, top: GRID_TOP,              width: COL_W, height: ROW_H }} imgStyle={{ objectFit: "cover" }} />
+      <LazyImage src={img2} style={{ position: "absolute", left: COL_2, top: GRID_TOP,              width: COL_W, height: ROW_H }} imgStyle={{ objectFit: "cover" }} />
+      <LazyImage src={img3} style={{ position: "absolute", left: COL_R, top: GRID_TOP + ROW_H + ROW_GAP, width: COL_W, height: ROW_H }} imgStyle={{ objectFit: "cover" }} />
+      <LazyImage src={img4} style={{ position: "absolute", left: COL_2, top: GRID_TOP + ROW_H + ROW_GAP, width: COL_W, height: ROW_H }} imgStyle={{ objectFit: "cover" }} />
 
       {/* ── full-width 5th image ── */}
-      <img src={img5} alt="" style={{ position: "absolute", left: COL_R, top: GRID_TOP + (ROW_H + ROW_GAP) * 2, width: FULL_W, height: 180, objectFit: "cover", objectPosition: "center 35%" }} />
+      <LazyImage src={img5} style={{ position: "absolute", left: COL_R, top: GRID_TOP + (ROW_H + ROW_GAP) * 2, width: FULL_W, height: 180 }} imgStyle={{ objectFit: "cover", objectPosition: "center 35%" }} />
 
       {/* ── left column ── */}
       <div style={{ position: "absolute", left: 130, top: 195, width: 640 }}>
