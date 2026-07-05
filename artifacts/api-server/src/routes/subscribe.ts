@@ -29,7 +29,7 @@ router.post("/subscribe", async (req, res) => {
   }
 
   const to   = process.env["CONTACT_EMAIL"] ?? "julie@mund.be";
-  const from = process.env["RESEND_FROM_EMAIL"] ?? "studio@mund.be";
+  const from = process.env["RESEND_FROM_EMAIL"] ?? "studio@send.mund.be";
   const label = type === "pro" ? "Professionnel" : "Particulier";
 
   const rows = Object.entries(data)
