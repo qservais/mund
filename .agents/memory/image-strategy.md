@@ -15,6 +15,12 @@ Les photos de contenu (heroes, galeries, portraits) doivent être référencées
 - Les overlay PNG de référence ArtboardShell (6MB chacun, `overlayRef` prop) sont des exceptions — ils servent uniquement au positionnement desktop et peuvent rester en @assets pour l'instant
 - Hero image : toujours marquer `priority` sur `<LazyImage>` ou `fetchPriority="high"` sur `<img>` brut
 
+## ⚠️ Piège vécu : ne jamais réutiliser un WebP préexistant sans vérifier sa date
+
+Un lot de WebP pré-généré existait déjà dans `public/images/` (daté du 11 mai) alors que les photos réellement approuvées par la cliente avaient été re-uploadées dans `attached_assets/` le 30 juin (fichiers plus récents, contenu différent). Basculer les pages vers ces WebP "déjà là" a fait régresser le site vers d'anciennes photos — la cliente l'a signalé immédiatement ("on est retourné sur l'ancienne version").
+
+**Toujours comparer `stat -c %Y` du WebP candidat vs du/des fichier(s) source `attached_assets/` avant de les considérer comme équivalents.** Si le WebP est plus vieux que la dernière image source pour ce même usage, il est probablement obsolète — reconvertir depuis la source actuelle plutôt que réutiliser l'existant.
+
 ## Correspondances connues (attached_assets → public/images)
 - PAGE_1_-_1_1782856875003.jpg → hero-home.webp
 - PAGE_1-2_1782856875004.JPG → svc1.webp
@@ -25,3 +31,4 @@ Les photos de contenu (heroes, galeries, portraits) doivent être référencées
 - ABOUT_1782856875002.jpg → julie.webp
 - 5/6/7/8/9_1782856798282*.jpg → pro-*.webp (générés)
 - iOS/IMG_*.jpg|png|jpeg → abn-1 à abn-6.webp (générés)
+- Ces 7 fichiers ont été reconvertis le 10/07/2026 depuis les sources du 30/06 après régression signalée par la cliente
