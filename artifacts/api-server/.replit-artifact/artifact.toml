@@ -7,7 +7,10 @@ id = "3B4_FFSkEVBkAeYMFRJ2e"
 [[services]]
 localPort = 8080
 name = "API Server"
-paths = ["/api"]
+# "/journal" added for the SEO journal (see artifacts/api-server/src/routes/journalPublic.ts):
+# it needs to be served dynamically (real DB-backed HTML, no rebuild needed for new
+# articles), so it's routed here instead of falling through to the mund-std static site.
+paths = ["/api", "/journal"]
 
 [services.development]
 run = "pnpm --filter @workspace/api-server run dev"
