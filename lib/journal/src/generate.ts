@@ -98,7 +98,11 @@ Génère 3 à 5 sections H2.`;
   let parsed: ReturnType<typeof ArticleSchema.parse>;
 
   try {
-    const anthropic = new Anthropic();
+    // Explicit bound: the SDK default timeout is 10 minutes, which would let a
+    // slow Anthropic response hold the request open far longer than any cron
+    // service (or Replit's own request lifetime) tolerates. Fail fast instead —
+    // the next scheduled cron run picks a fresh topic anyway.
+    const anthropic = new Anthropic({ timeout: 45_000, maxRetries: 1 });
     const message = await anthropic.messages.create({
       model: cfg.anthropicModel,
       max_tokens: cfg.anthropicMaxTokens,
