@@ -36,29 +36,125 @@ function articleUrl(slug: string): string {
   return `${BUSINESS_CONFIG.siteUrl}${BUSINESS_CONFIG.journalPath}/${slug}`;
 }
 
+// Same tokens as the live site (see artifacts/mund-std/src/components/Layout.tsx,
+// ArtboardShell.tsx and index.css): #f4f4f2 / #151515, Cormorant Garamond for
+// headings (loaded from the same Google Fonts URL as index.html — "Helvetica Now
+// Display" is never actually @font-face'd anywhere on the site, so it already
+// falls back to Helvetica Neue/Arial there too; same here).
+// Deliberate deviation: the site's own body-copy token (BODY in ArtboardShell.tsx)
+// is 15px / weight 300 / letter-spacing -0.06em / line-height 1.0 — accurate for
+// short nav labels and 2-3 sentence bios, but that tracking/line-height would make
+// 150+ word article paragraphs look broken. Headings, nav, meta, and footer use the
+// exact site tokens; article paragraphs use a lighter tracking and taller
+// line-height so multi-paragraph sections stay readable. Flag it if you'd rather
+// have literal -0.06em/1.0 everywhere.
+const SERIF_FONT = '"Cormorant Garamond", "Times New Roman", Times, serif';
+const BODY_FONT = '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif';
+
+const NAV_ITEMS: { href: string; label: string }[] = [
+  { href: "/floral", label: "créations" },
+  { href: "/abonnements", label: "fleurs" },
+  { href: "/past", label: "archive" },
+  { href: "/about", label: "à propos" },
+];
+
+const GOOGLE_FONTS_HEAD = `<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">`;
+
 const BASE_STYLE = `
 :root{color-scheme:light}
 *{box-sizing:border-box}
-body{margin:0;background:#f4f4f2;color:#151515;font-family:Georgia,"Iowan Old Style","Palatino Linotype",Palatino,serif;-webkit-font-smoothing:antialiased}
+html{overflow-x:hidden}
+body{margin:0;background:#f4f4f2;color:#151515;font-family:${BODY_FONT};-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit}
-.site-header,.site-footer{padding:24px clamp(16px,6vw,64px);font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;font-size:14px}
-.site-header a{text-decoration:none;font-weight:600;text-transform:lowercase;letter-spacing:.02em}
-.site-footer{border-top:1px solid rgba(0,0,0,.1);color:rgba(0,0,0,.5)}
-main{max-width:680px;margin:0 auto;padding:24px clamp(16px,6vw,64px) 80px}
-.eyebrow{font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:rgba(0,0,0,.5);margin:0 0 8px}
-h1{font-size:clamp(28px,5vw,42px);line-height:1.15;margin:0 0 12px;font-weight:600}
-h2{font-size:22px;line-height:1.25;margin:40px 0 12px;font-weight:600}
-.meta{font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;font-size:13px;color:rgba(0,0,0,.5);margin:0 0 32px}
-.hero-fallback{width:100%;aspect-ratio:16/9;border-radius:4px;margin:0 0 32px;background:linear-gradient(135deg,#e4e0d6 0%,#cfc8b8 50%,#b9ae97 100%)}
-p{font-size:17px;line-height:1.65;margin:0 0 18px}
-.intro p{font-size:19px}
-.intro a,section a{text-decoration:underline}
-.tags{list-style:none;display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:40px 0 0}
-.tags li{font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;font-size:12px;background:rgba(0,0,0,.06);padding:5px 12px;border-radius:999px}
-.listing{list-style:none;padding:0;margin:32px 0 0;display:flex;flex-direction:column;gap:32px}
-.listing li a{display:block;text-decoration:none;color:inherit;border-top:1px solid rgba(0,0,0,.1);padding-top:24px}
-.listing h2{margin:0 0 8px;font-size:24px}
+
+.site-header{position:sticky;top:0;z-index:40;background:#f4f4f2}
+.site-header-inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:start;padding:24px clamp(16px,10vw,130px) 16px;gap:16px}
+.site-nav{display:flex;flex-direction:column;gap:4px}
+.site-nav a{font-family:${BODY_FONT};font-size:15px;font-weight:300;letter-spacing:-0.06em;line-height:0.9;color:rgba(0,0,0,0.38);text-decoration:none}
+.site-brand{display:block;text-decoration:none;justify-self:center}
+.site-brand img{width:clamp(140px,22vw,260px);display:block}
+.site-header-right{display:flex;justify-content:flex-end;align-items:baseline}
+.site-header-right a{font-family:${BODY_FONT};font-size:15px;font-weight:300;letter-spacing:-0.06em;color:rgba(0,0,0,0.45);text-decoration:none}
+.site-header-divider{height:1px;background:rgba(0,0,0,0.1);margin:0 clamp(16px,10vw,130px)}
+
+main{max-width:700px;margin:0 auto;padding:56px clamp(16px,10vw,64px) 96px}
+
+.eyebrow{font-family:${BODY_FONT};font-size:12px;font-weight:300;text-transform:uppercase;letter-spacing:0.08em;color:rgba(0,0,0,0.45);margin:0 0 14px}
+h1{font-family:${SERIF_FONT};font-weight:700;letter-spacing:-0.03em;font-size:clamp(30px,4.5vw,46px);line-height:1.08;margin:0 0 16px}
+h2{font-family:${SERIF_FONT};font-weight:700;letter-spacing:-0.02em;font-size:clamp(21px,2.6vw,26px);line-height:1.2;margin:44px 0 14px}
+.meta{font-family:${BODY_FONT};font-size:13px;font-weight:300;letter-spacing:-0.02em;color:rgba(0,0,0,0.45);margin:0 0 32px}
+.hero-fallback{width:100%;aspect-ratio:16/9;margin:0 0 36px;background:linear-gradient(135deg,#eae6db 0%,#ddd7c8 55%,#c9c1ac 100%)}
+p{font-family:${BODY_FONT};font-size:17px;font-weight:300;letter-spacing:-0.01em;line-height:1.55;margin:0 0 18px}
+.intro p{font-size:19px;line-height:1.5}
+.intro a,section a{text-decoration:underline;text-underline-offset:2px}
+.tags{list-style:none;display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:44px 0 0}
+.tags li{font-family:${BODY_FONT};font-size:12px;font-weight:300;letter-spacing:-0.01em;background:rgba(0,0,0,.06);padding:6px 14px;border-radius:999px}
+
+.listing-list{list-style:none;padding:0;margin:8px 0 0}
+.listing-list li{border-top:1px solid rgba(0,0,0,.1)}
+.listing-list li:last-child{border-bottom:1px solid rgba(0,0,0,.1)}
+.listing-list a{display:block;text-decoration:none;color:inherit;padding:28px 0}
+.listing-list h2{margin:2px 0 8px;font-size:24px}
+.listing-list p{font-size:15px;line-height:1.5;margin:0;color:rgba(0,0,0,.65)}
+
+.site-footer{padding:22px clamp(16px,10vw,130px);border-top:1px solid rgba(0,0,0,.1);display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;font-family:${BODY_FONT};font-size:15px;font-weight:300;letter-spacing:-0.06em;color:rgba(0,0,0,.4)}
+.site-footer a{color:rgba(0,0,0,.4);text-decoration:none}
+
+@media (max-width: 640px){
+  .site-header-inner{grid-template-columns:1fr;justify-items:center;gap:14px;text-align:center}
+  .site-nav{flex-direction:row;flex-wrap:wrap;justify-content:center}
+  .site-header-right{justify-content:center}
+  .site-footer{flex-direction:column;text-align:center}
+}
 `.trim();
+
+function renderHeader(): string {
+  const nav = NAV_ITEMS.map(
+    (item) => `<a href="${BUSINESS_CONFIG.siteUrl}${item.href}">${escapeHtml(item.label)}</a>`,
+  ).join("\n");
+
+  return `<header class="site-header">
+<div class="site-header-inner">
+<nav class="site-nav">
+${nav}
+</nav>
+<a class="site-brand" href="${BUSINESS_CONFIG.siteUrl}/"><img src="/svg/mund%20studio.svg" alt="mund studio"></a>
+<div class="site-header-right"><a href="${BUSINESS_CONFIG.siteUrl}/floral/pro">pro</a></div>
+</div>
+<div class="site-header-divider"></div>
+</header>`;
+}
+
+function renderFooter(): string {
+  return `<footer class="site-footer">
+<span>${escapeHtml(BUSINESS_CONFIG.name)} — ${escapeHtml(BUSINESS_CONFIG.address)}</span>
+<span>vides et pleins / chaos et structure</span>
+<a href="https://instagram.com/mund.std" target="_blank" rel="noreferrer">@mund.std</a>
+</footer>`;
+}
+
+function htmlShell(head: string, body: string): string {
+  return `<!doctype html>
+<html lang="${BUSINESS_CONFIG.language}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2">
+${GOOGLE_FONTS_HEAD}
+${head}
+<style>${BASE_STYLE}</style>
+</head>
+<body>
+${renderHeader()}
+<main>
+${body}
+</main>
+${renderFooter()}
+</body>
+</html>`;
+}
 
 export function renderArticleHtml(article: SeoPage): string {
   const url = articleUrl(article.slug);
@@ -73,27 +169,11 @@ export function renderArticleHtml(article: SeoPage): string {
     datePublished: article.date.toISOString(),
     dateModified: article.updatedAt.toISOString(),
     author: { "@type": "Organization", name: BUSINESS_CONFIG.authorOrgName },
-    publisher: {
-      "@type": "Organization",
-      name: BUSINESS_CONFIG.authorOrgName,
-    },
+    publisher: { "@type": "Organization", name: BUSINESS_CONFIG.authorOrgName },
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
   };
 
-  const sectionsHtml = article.sections
-    .map((s) => `<section><h2>${escapeHtml(s.heading)}</h2><p>${renderInlineContent(s.content)}</p></section>`)
-    .join("\n");
-
-  const tagsHtml = article.tags.length
-    ? `<ul class="tags">${article.tags.map((t) => `<li>${escapeHtml(t)}</li>`).join("")}</ul>`
-    : "";
-
-  return `<!doctype html>
-<html lang="${BUSINESS_CONFIG.language}">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${escapeHtml(metaTitle)}</title>
+  const head = `<title>${escapeHtml(metaTitle)}</title>
 <meta name="description" content="${escapeHtml(metaDescription)}">
 <link rel="canonical" href="${url}">
 <meta property="og:type" content="article">
@@ -106,13 +186,17 @@ export function renderArticleHtml(article: SeoPage): string {
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="${escapeHtml(metaTitle)}">
 <meta name="twitter:description" content="${escapeHtml(metaDescription)}">
-<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
-<style>${BASE_STYLE}</style>
-</head>
-<body>
-<header class="site-header"><a href="${BUSINESS_CONFIG.siteUrl}/">mund studio</a></header>
-<main>
-<article>
+<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`;
+
+  const sectionsHtml = article.sections
+    .map((s) => `<section><h2>${escapeHtml(s.heading)}</h2><p>${renderInlineContent(s.content)}</p></section>`)
+    .join("\n");
+
+  const tagsHtml = article.tags.length
+    ? `<ul class="tags">${article.tags.map((t) => `<li>${escapeHtml(t)}</li>`).join("")}</ul>`
+    : "";
+
+  const body = `<article>
 <p class="eyebrow">${escapeHtml(article.category ?? "")}</p>
 <h1>${escapeHtml(article.title)}</h1>
 <p class="meta">${escapeHtml(article.readTime ?? "")} · Mis à jour le ${formatDateFr(article.updatedAt)}</p>
@@ -120,15 +204,17 @@ export function renderArticleHtml(article: SeoPage): string {
 <div class="intro"><p>${renderInlineContent(article.intro)}</p></div>
 ${sectionsHtml}
 ${tagsHtml}
-</article>
-</main>
-<footer class="site-footer">${escapeHtml(BUSINESS_CONFIG.name)} — ${escapeHtml(BUSINESS_CONFIG.address)}</footer>
-</body>
-</html>`;
+</article>`;
+
+  return htmlShell(head, body);
 }
 
 export function renderListingHtml(articles: SeoPage[]): string {
   const url = `${BUSINESS_CONFIG.siteUrl}${BUSINESS_CONFIG.journalPath}`;
+
+  const head = `<title>Journal — ${escapeHtml(BUSINESS_CONFIG.name)}</title>
+<meta name="description" content="Conseils, coulisses et inspirations florales par ${escapeHtml(BUSINESS_CONFIG.name)}.">
+<link rel="canonical" href="${url}">`;
 
   const items = articles
     .map(
@@ -140,27 +226,12 @@ export function renderListingHtml(articles: SeoPage[]): string {
     )
     .join("\n");
 
-  return `<!doctype html>
-<html lang="${BUSINESS_CONFIG.language}">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Journal — ${escapeHtml(BUSINESS_CONFIG.name)}</title>
-<meta name="description" content="Conseils, coulisses et inspirations florales par ${escapeHtml(BUSINESS_CONFIG.name)}.">
-<link rel="canonical" href="${url}">
-<style>${BASE_STYLE}</style>
-</head>
-<body>
-<header class="site-header"><a href="${BUSINESS_CONFIG.siteUrl}/">mund studio</a></header>
-<main>
-<h1>Journal</h1>
-<ul class="listing">
+  const body = `<h1>Journal</h1>
+<ul class="listing-list">
 ${items}
-</ul>
-</main>
-<footer class="site-footer">${escapeHtml(BUSINESS_CONFIG.name)} — ${escapeHtml(BUSINESS_CONFIG.address)}</footer>
-</body>
-</html>`;
+</ul>`;
+
+  return htmlShell(head, body);
 }
 
 export function renderSitemapXml(articles: SeoPage[]): string {
