@@ -10,18 +10,30 @@ export function escapeHtml(s: string): string {
     .replace(/'/g, "&#39;");
 }
 
-const INTERNAL_LINK_RE = /\[([^\]]+)\]\(\/([a-z0-9-]+)\)/g;
+// Two link shapes coming out of generated content: a relative `/slug` links to
+// another journal article; an absolute `https://mund.be/...` links to the main
+// site (see the prompt in generate.ts). Anything else is dropped to plain text.
+const INTERNAL_LINK_RE = /\[([^\]]+)\]\((https?:\/\/[^\s)]+|\/[a-z0-9-]+)\)/g;
 
-/** Escapes plain text while turning `[anchor](/slug)` into a real link to another journal article. */
 function renderInlineContent(text: string): string {
   let result = "";
   let lastIndex = 0;
   for (const match of text.matchAll(INTERNAL_LINK_RE)) {
     const anchor = match[1] ?? "";
-    const targetSlug = match[2] ?? "";
+    const target = match[2] ?? "";
     const index = match.index ?? 0;
     result += escapeHtml(text.slice(lastIndex, index));
-    result += `<a href="${escapeHtml(BUSINESS_CONFIG.journalPath)}/${escapeHtml(targetSlug)}">${escapeHtml(anchor)}</a>`;
+
+    let href: string | null = null;
+    if (target.startsWith(BUSINESS_CONFIG.siteUrl)) {
+      href = target; // link to a real site page (contact, floral, abonnements…)
+    } else if (target.startsWith("/")) {
+      href = `${BUSINESS_CONFIG.journalPath}/${target.slice(1)}`; // another journal article
+    }
+
+    result += href
+      ? `<a href="${escapeHtml(href)}">${escapeHtml(anchor)}</a>`
+      : escapeHtml(anchor); // unrecognized target (e.g. wrong domain) — keep the text, drop the link
     lastIndex = index + match[0].length;
   }
   result += escapeHtml(text.slice(lastIndex));
@@ -68,8 +80,7 @@ const GOOGLE_FONTS_HEAD = `<link rel="preconnect" href="https://fonts.googleapis
 const BASE_STYLE = `
 :root{color-scheme:light}
 *{box-sizing:border-box}
-html{overflow-x:hidden}
-body{margin:0;background:#f4f4f2;color:#151515;font-family:${BODY_FONT};-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{margin:0;background:#f4f4f2;color:#151515;font-family:${BODY_FONT};-webkit-font-smoothing:antialiased;overflow-wrap:break-word}
 a{color:inherit}
 
 .site-header{position:sticky;top:0;z-index:40;background:#f4f4f2}
@@ -97,6 +108,10 @@ p{font-family:${BODY_FONT};font-size:17px;font-weight:300;letter-spacing:-0.01em
 .intro a,section a{text-decoration:underline;text-underline-offset:2px}
 .tags{list-style:none;display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:44px 0 0}
 .tags li{font-family:${BODY_FONT};font-size:12px;font-weight:300;letter-spacing:-0.01em;background:rgba(0,0,0,.06);padding:6px 14px;border-radius:999px}
+
+.mid-cta{margin:40px 0;padding:20px 24px;border:1px solid rgba(0,0,0,.12);background:rgba(0,0,0,.03)}
+.mid-cta p{margin:0;font-size:16px}
+.mid-cta a{text-decoration:underline;text-underline-offset:2px}
 
 .cta-block{margin-top:56px;padding-top:40px;border-top:1px solid rgba(0,0,0,.1)}
 .cta-block p{font-size:17px}
@@ -129,10 +144,7 @@ p{font-family:${BODY_FONT};font-size:17px;font-weight:300;letter-spacing:-0.01em
 `.trim();
 
 function renderHeader(): string {
-  const navDesktop = NAV_ITEMS.map(
-    (item) => `<a href="${BUSINESS_CONFIG.siteUrl}${item.href}">${escapeHtml(item.label)}</a>`,
-  ).join("\n");
-  const navMobile = NAV_ITEMS.map(
+  const nav = NAV_ITEMS.map(
     (item) => `<a href="${BUSINESS_CONFIG.siteUrl}${item.href}">${escapeHtml(item.label)}</a>`,
   ).join("\n");
 
@@ -140,7 +152,7 @@ function renderHeader(): string {
 <input type="checkbox" id="nav-toggle" class="nav-toggle">
 <div class="site-header-inner">
 <nav class="site-nav">
-${navDesktop}
+${nav}
 </nav>
 <a class="site-brand" href="${BUSINESS_CONFIG.siteUrl}/"><img src="/svg/mund%20studio.svg" alt="mund studio"></a>
 <div class="site-header-right"><a href="${BUSINESS_CONFIG.siteUrl}/floral/pro">pro</a></div>
@@ -148,7 +160,7 @@ ${navDesktop}
 </div>
 <div class="site-header-divider"></div>
 <nav class="mobile-menu" aria-label="Menu principal">
-${navMobile}
+${nav}
 </nav>
 </header>`;
 }
@@ -161,7 +173,11 @@ function renderFooter(): string {
 </footer>`;
 }
 
-function renderCtaBlock(): string {
+function renderMidCta(): string {
+  return `<aside class="mid-cta"><p>Un projet floral en tête ? <a href="${BUSINESS_CONFIG.siteUrl}/contact">Discutons-en →</a></p></aside>`;
+}
+
+function renderEndCta(): string {
   return `<section class="cta-block">
 <p class="eyebrow">Devis &amp; projets</p>
 <p>Nous accompagnons chaque projet floral de manière unique — mariage, événement ou abonnement. Envie d'en discuter ?</p>
@@ -198,17 +214,39 @@ export function renderArticleHtml(article: SeoPage): string {
   const url = articleUrl(article.slug);
   const metaTitle = article.metaTitle || article.title;
   const metaDescription = article.metaDescription ?? "";
+  const journalUrl = `${BUSINESS_CONFIG.siteUrl}${BUSINESS_CONFIG.journalPath}`;
 
-  const jsonLd = {
+  const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: article.title,
     description: metaDescription,
+    inLanguage: BUSINESS_CONFIG.locale.replace("_", "-"),
     datePublished: article.date.toISOString(),
     dateModified: article.updatedAt.toISOString(),
-    author: { "@type": "Organization", name: BUSINESS_CONFIG.authorOrgName },
-    publisher: { "@type": "Organization", name: BUSINESS_CONFIG.authorOrgName },
+    // Named author (matches /about) rather than the org alone — a concrete,
+    // verifiable byline is a stronger E-E-A-T signal for both classic ranking
+    // and AI-answer sourcing than an organization-only credit.
+    author: [
+      { "@type": "Person", name: "Julie Ahn", jobTitle: "Designer florale, fondatrice de MUND STUDIO" },
+      { "@type": "Organization", name: BUSINESS_CONFIG.authorOrgName, url: BUSINESS_CONFIG.siteUrl },
+    ],
+    publisher: { "@type": "Organization", name: BUSINESS_CONFIG.authorOrgName, url: BUSINESS_CONFIG.siteUrl },
+    isPartOf: { "@type": "Blog", name: "Journal", url: journalUrl },
+    ...(article.tags.length ? { keywords: article.tags.join(", ") } : {}),
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
+  };
+
+  // Breadcrumbs give crawlers and AI systems an explicit site-hierarchy signal
+  // (Home > Journal > article) even though /journal isn't in the nav menu.
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Accueil", item: `${BUSINESS_CONFIG.siteUrl}/` },
+      { "@type": "ListItem", position: 2, name: "Journal", item: journalUrl },
+      { "@type": "ListItem", position: 3, name: article.title, item: url },
+    ],
   };
 
   const head = `<title>${escapeHtml(metaTitle)}</title>
@@ -224,11 +262,18 @@ export function renderArticleHtml(article: SeoPage): string {
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="${escapeHtml(metaTitle)}">
 <meta name="twitter:description" content="${escapeHtml(metaDescription)}">
-<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`;
+<script type="application/ld+json">${JSON.stringify(articleJsonLd)}</script>
+<script type="application/ld+json">${JSON.stringify(breadcrumbJsonLd)}</script>`;
 
-  const sectionsHtml = article.sections
-    .map((s) => `<section><h2>${escapeHtml(s.heading)}</h2><p>${renderInlineContent(s.content)}</p></section>`)
-    .join("\n");
+  const sectionBlocks = article.sections.map(
+    (s) => `<section><h2>${escapeHtml(s.heading)}</h2><p>${renderInlineContent(s.content)}</p></section>`,
+  );
+  // Drop a lighter CTA roughly in the middle so readers who don't scroll to the
+  // end still get a chance to click through to the main site.
+  if (sectionBlocks.length >= 2) {
+    sectionBlocks.splice(Math.ceil(sectionBlocks.length / 2), 0, renderMidCta());
+  }
+  const sectionsHtml = sectionBlocks.join("\n");
 
   const tagsHtml = article.tags.length
     ? `<ul class="tags">${article.tags.map((t) => `<li>${escapeHtml(t)}</li>`).join("")}</ul>`
@@ -242,7 +287,7 @@ export function renderArticleHtml(article: SeoPage): string {
 <div class="intro"><p>${renderInlineContent(article.intro)}</p></div>
 ${sectionsHtml}
 ${tagsHtml}
-${renderCtaBlock()}
+${renderEndCta()}
 </article>`;
 
   return htmlShell(head, body);
