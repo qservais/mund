@@ -89,8 +89,13 @@ Catégorie : ${category}
 Longueur cible : ${cfg.minWords} à ${cfg.maxWords} mots au total (intro + sections)
 Ton : professionnel, éditorial, utile à quelqu'un qui prépare un mariage, un événement, ou s'intéresse aux fleurs en ${cfg.country}.
 
-Articles déjà publiés sur le site (pour le maillage interne — choisis 0 à 2 liens pertinents à insérer dans le corps d'une section, au format markdown [texte d'ancre](/slug), en réutilisant exactement un des slugs listés ci-dessous ; n'insère jamais un lien vers un slug absent de cette liste) :
+Maillage interne vers d'autres articles (0 à 2 liens maximum, dans le corps des sections, format markdown [texte d'ancre](/slug), en réutilisant EXACTEMENT un des slugs listés ci-dessous — jamais un slug absent de cette liste) :
 ${existingList}
+
+Liens vers le site principal (0 à 1 lien maximum, dans le corps d'une section — jamais dans l'intro —, uniquement si ça s'intègre naturellement dans la phrase, format markdown [texte d'ancre](URL absolue ci-dessous), en réutilisant EXACTEMENT une de ces URLs — jamais une autre URL) :
+- ${cfg.siteUrl}/floral (nos créations florales sur mesure)
+- ${cfg.siteUrl}/abonnements (abonnements floraux, particuliers et professionnels)
+- ${cfg.siteUrl}/contact (nous contacter / demander un devis)
 
 Génère 3 à 5 sections H2.`;
 
