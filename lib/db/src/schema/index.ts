@@ -18,3 +18,5 @@
 //   export type Post = typeof postsTable.$inferSelect;
 
 export * from "./reviewComments";
+export * from "./seoPages";
+export * from "./generationLogs";
