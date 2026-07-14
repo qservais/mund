@@ -37,25 +37,28 @@ function articleUrl(slug: string): string {
 }
 
 // Same tokens as the live site (see artifacts/mund-std/src/components/Layout.tsx,
-// ArtboardShell.tsx and index.css): #f4f4f2 / #151515, Cormorant Garamond for
-// headings (loaded from the same Google Fonts URL as index.html — "Helvetica Now
-// Display" is never actually @font-face'd anywhere on the site, so it already
-// falls back to Helvetica Neue/Arial there too; same here).
+// ArtboardShell.tsx, MobileShell.tsx and index.css): #f4f4f2 / #151515, Cormorant
+// Garamond for headings (loaded from the same Google Fonts URL as index.html —
+// "Helvetica Now Display" is never actually @font-face'd anywhere on the site, so
+// it already falls back to Helvetica Neue/Arial there too; same here).
 // Deliberate deviation: the site's own body-copy token (BODY in ArtboardShell.tsx)
 // is 15px / weight 300 / letter-spacing -0.06em / line-height 1.0 — accurate for
 // short nav labels and 2-3 sentence bios, but that tracking/line-height would make
 // 150+ word article paragraphs look broken. Headings, nav, meta, and footer use the
 // exact site tokens; article paragraphs use a lighter tracking and taller
-// line-height so multi-paragraph sections stay readable. Flag it if you'd rather
-// have literal -0.06em/1.0 everywhere.
+// line-height so multi-paragraph sections stay readable.
 const SERIF_FONT = '"Cormorant Garamond", "Times New Roman", Times, serif';
 const BODY_FONT = '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif';
 
+// Full 5-item menu (matches MobileShell.tsx / ArtboardShell.tsx — Layout.tsx's
+// desktop non-artboard header omits "contact", but that looks like an
+// inconsistency in the site itself rather than something worth copying here).
 const NAV_ITEMS: { href: string; label: string }[] = [
   { href: "/floral", label: "créations" },
   { href: "/abonnements", label: "fleurs" },
   { href: "/past", label: "archive" },
   { href: "/about", label: "à propos" },
+  { href: "/contact", label: "contact" },
 ];
 
 const GOOGLE_FONTS_HEAD = `<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -78,6 +81,9 @@ a{color:inherit}
 .site-header-right{display:flex;justify-content:flex-end;align-items:baseline}
 .site-header-right a{font-family:${BODY_FONT};font-size:15px;font-weight:300;letter-spacing:-0.06em;color:rgba(0,0,0,0.45);text-decoration:none}
 .site-header-divider{height:1px;background:rgba(0,0,0,0.1);margin:0 clamp(16px,10vw,130px)}
+.nav-toggle{position:absolute;opacity:0;height:0;width:0}
+.nav-toggle-label{display:none}
+.mobile-menu{display:none}
 
 main{max-width:700px;margin:0 auto;padding:56px clamp(16px,10vw,64px) 96px}
 
@@ -92,6 +98,12 @@ p{font-family:${BODY_FONT};font-size:17px;font-weight:300;letter-spacing:-0.01em
 .tags{list-style:none;display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:44px 0 0}
 .tags li{font-family:${BODY_FONT};font-size:12px;font-weight:300;letter-spacing:-0.01em;background:rgba(0,0,0,.06);padding:6px 14px;border-radius:999px}
 
+.cta-block{margin-top:56px;padding-top:40px;border-top:1px solid rgba(0,0,0,.1)}
+.cta-block p{font-size:17px}
+.cta-link{display:inline-block;font-family:${BODY_FONT};font-size:17px;font-weight:300;letter-spacing:-0.02em;color:#151515;text-decoration:none;border-bottom:1px solid rgba(0,0,0,.55);padding-bottom:2px;margin:2px 0 28px}
+.explore-more{display:flex;flex-wrap:wrap;gap:8px 20px}
+.explore-more a{font-family:${BODY_FONT};font-size:14px;font-weight:300;letter-spacing:-0.02em;color:rgba(0,0,0,.5);text-decoration:underline;text-underline-offset:2px}
+
 .listing-list{list-style:none;padding:0;margin:8px 0 0}
 .listing-list li{border-top:1px solid rgba(0,0,0,.1)}
 .listing-list li:last-child{border-bottom:1px solid rgba(0,0,0,.1)}
@@ -103,27 +115,41 @@ p{font-family:${BODY_FONT};font-size:17px;font-weight:300;letter-spacing:-0.01em
 .site-footer a{color:rgba(0,0,0,.4);text-decoration:none}
 
 @media (max-width: 640px){
-  .site-header-inner{grid-template-columns:1fr;justify-items:center;gap:14px;text-align:center}
-  .site-nav{flex-direction:row;flex-wrap:wrap;justify-content:center}
-  .site-header-right{justify-content:center}
+  .site-header-inner{position:relative;display:flex;align-items:center;padding:18px 20px 14px}
+  .site-nav,.site-header-right{display:none}
+  .site-brand{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
+  .site-brand img{width:clamp(120px,38vw,200px)}
+  .nav-toggle-label{display:flex;flex-direction:column;justify-content:center;gap:5px;width:24px;height:16px;cursor:pointer}
+  .nav-toggle-label span{display:block;height:1px;background:#151515}
+  .mobile-menu{display:flex;flex-direction:column;max-height:0;overflow:hidden;padding:0 20px;transition:max-height .35s ease}
+  .mobile-menu a{font-family:${SERIF_FONT};font-size:24px;font-weight:700;text-transform:uppercase;letter-spacing:-0.02em;color:#151515;text-decoration:none;padding:12px 0;border-top:1px solid rgba(0,0,0,.08)}
+  .nav-toggle:checked ~ .mobile-menu{max-height:400px;padding-bottom:16px}
   .site-footer{flex-direction:column;text-align:center}
 }
 `.trim();
 
 function renderHeader(): string {
-  const nav = NAV_ITEMS.map(
+  const navDesktop = NAV_ITEMS.map(
+    (item) => `<a href="${BUSINESS_CONFIG.siteUrl}${item.href}">${escapeHtml(item.label)}</a>`,
+  ).join("\n");
+  const navMobile = NAV_ITEMS.map(
     (item) => `<a href="${BUSINESS_CONFIG.siteUrl}${item.href}">${escapeHtml(item.label)}</a>`,
   ).join("\n");
 
   return `<header class="site-header">
+<input type="checkbox" id="nav-toggle" class="nav-toggle">
 <div class="site-header-inner">
 <nav class="site-nav">
-${nav}
+${navDesktop}
 </nav>
 <a class="site-brand" href="${BUSINESS_CONFIG.siteUrl}/"><img src="/svg/mund%20studio.svg" alt="mund studio"></a>
 <div class="site-header-right"><a href="${BUSINESS_CONFIG.siteUrl}/floral/pro">pro</a></div>
+<label for="nav-toggle" class="nav-toggle-label" aria-label="Menu"><span></span><span></span><span></span></label>
 </div>
 <div class="site-header-divider"></div>
+<nav class="mobile-menu" aria-label="Menu principal">
+${navMobile}
+</nav>
 </header>`;
 }
 
@@ -133,6 +159,18 @@ function renderFooter(): string {
 <span>vides et pleins / chaos et structure</span>
 <a href="https://instagram.com/mund.std" target="_blank" rel="noreferrer">@mund.std</a>
 </footer>`;
+}
+
+function renderCtaBlock(): string {
+  return `<section class="cta-block">
+<p class="eyebrow">Devis &amp; projets</p>
+<p>Nous accompagnons chaque projet floral de manière unique — mariage, événement ou abonnement. Envie d'en discuter ?</p>
+<a class="cta-link" href="${BUSINESS_CONFIG.siteUrl}/contact">Écrivez-nous →</a>
+<nav class="explore-more" aria-label="Explorer le site">
+<a href="${BUSINESS_CONFIG.siteUrl}/floral">voir nos créations</a>
+<a href="${BUSINESS_CONFIG.siteUrl}/abonnements">découvrir les abonnements</a>
+</nav>
+</section>`;
 }
 
 function htmlShell(head: string, body: string): string {
@@ -204,6 +242,7 @@ export function renderArticleHtml(article: SeoPage): string {
 <div class="intro"><p>${renderInlineContent(article.intro)}</p></div>
 ${sectionsHtml}
 ${tagsHtml}
+${renderCtaBlock()}
 </article>`;
 
   return htmlShell(head, body);
