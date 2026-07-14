@@ -25,6 +25,9 @@ a{color:inherit}
 .site-header-right{display:flex;justify-content:flex-end;align-items:baseline}
 .site-header-right a{font-family:"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif;font-size:15px;font-weight:300;letter-spacing:-0.06em;color:rgba(0,0,0,0.45);text-decoration:none}
 .site-header-divider{height:1px;background:rgba(0,0,0,0.1);margin:0 clamp(16px,10vw,130px)}
+.nav-toggle{position:absolute;opacity:0;height:0;width:0}
+.nav-toggle-label{display:none}
+.mobile-menu{display:none}
 
 main{max-width:700px;margin:0 auto;padding:56px clamp(16px,10vw,64px) 96px}
 
@@ -39,6 +42,12 @@ p{font-family:"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-
 .tags{list-style:none;display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:44px 0 0}
 .tags li{font-family:"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif;font-size:12px;font-weight:300;letter-spacing:-0.01em;background:rgba(0,0,0,.06);padding:6px 14px;border-radius:999px}
 
+.cta-block{margin-top:56px;padding-top:40px;border-top:1px solid rgba(0,0,0,.1)}
+.cta-block p{font-size:17px}
+.cta-link{display:inline-block;font-family:"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif;font-size:17px;font-weight:300;letter-spacing:-0.02em;color:#151515;text-decoration:none;border-bottom:1px solid rgba(0,0,0,.55);padding-bottom:2px;margin:2px 0 28px}
+.explore-more{display:flex;flex-wrap:wrap;gap:8px 20px}
+.explore-more a{font-family:"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif;font-size:14px;font-weight:300;letter-spacing:-0.02em;color:rgba(0,0,0,.5);text-decoration:underline;text-underline-offset:2px}
+
 .listing-list{list-style:none;padding:0;margin:8px 0 0}
 .listing-list li{border-top:1px solid rgba(0,0,0,.1)}
 .listing-list li:last-child{border-bottom:1px solid rgba(0,0,0,.1)}
@@ -50,25 +59,41 @@ p{font-family:"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-
 .site-footer a{color:rgba(0,0,0,.4);text-decoration:none}
 
 @media (max-width: 640px){
-  .site-header-inner{grid-template-columns:1fr;justify-items:center;gap:14px;text-align:center}
-  .site-nav{flex-direction:row;flex-wrap:wrap;justify-content:center}
-  .site-header-right{justify-content:center}
+  .site-header-inner{position:relative;display:flex;align-items:center;padding:18px 20px 14px}
+  .site-nav,.site-header-right{display:none}
+  .site-brand{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
+  .site-brand img{width:clamp(120px,38vw,200px)}
+  .nav-toggle-label{display:flex;flex-direction:column;justify-content:center;gap:5px;width:24px;height:16px;cursor:pointer}
+  .nav-toggle-label span{display:block;height:1px;background:#151515}
+  .mobile-menu{display:flex;flex-direction:column;max-height:0;overflow:hidden;padding:0 20px;transition:max-height .35s ease}
+  .mobile-menu a{font-family:"Cormorant Garamond", "Times New Roman", Times, serif;font-size:24px;font-weight:700;text-transform:uppercase;letter-spacing:-0.02em;color:#151515;text-decoration:none;padding:12px 0;border-top:1px solid rgba(0,0,0,.08)}
+  .nav-toggle:checked ~ .mobile-menu{max-height:400px;padding-bottom:16px}
   .site-footer{flex-direction:column;text-align:center}
 }</style>
 </head>
 <body>
 <header class="site-header">
+<input type="checkbox" id="nav-toggle" class="nav-toggle">
 <div class="site-header-inner">
 <nav class="site-nav">
 <a href="https://mund.be/floral">créations</a>
 <a href="https://mund.be/abonnements">fleurs</a>
 <a href="https://mund.be/past">archive</a>
 <a href="https://mund.be/about">à propos</a>
+<a href="https://mund.be/contact">contact</a>
 </nav>
 <a class="site-brand" href="https://mund.be/"><img src="/svg/mund%20studio.svg" alt="mund studio"></a>
 <div class="site-header-right"><a href="https://mund.be/floral/pro">pro</a></div>
+<label for="nav-toggle" class="nav-toggle-label" aria-label="Menu"><span></span><span></span><span></span></label>
 </div>
 <div class="site-header-divider"></div>
+<nav class="mobile-menu" aria-label="Menu principal">
+<a href="https://mund.be/floral">créations</a>
+<a href="https://mund.be/abonnements">fleurs</a>
+<a href="https://mund.be/past">archive</a>
+<a href="https://mund.be/about">à propos</a>
+<a href="https://mund.be/contact">contact</a>
+</nav>
 </header>
 <main>
 <h1>Journal</h1>
